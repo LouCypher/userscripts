@@ -20,7 +20,7 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       3.0
+// @version       4.0b
 // @author        LouCypher
 // @licensed      GPL
 // @icon          http://i.imgur.com/VDx96.png
@@ -30,8 +30,15 @@
 
 /*
     Changelog:
-      - 2.0 (2012-07-02): Fixed something.
-      - 1.0 (2012-07-01): Initial release.
+      - 2012-07-07
+          v4.0b:
+            - Added Flattr button on commit page.
+            - Reduced Flattr icon size.
+          v3.0: Don't Flattr organizations.
+      - 2012-07-02
+          v2.0: Fixed something.
+      - 2012-07-01
+          v1.0: Initial release.
 */
 
 (function() {
@@ -62,19 +69,35 @@
   var li = ul.insertBefore(document.createElement("li"),
                            $("li.text", ul) ? $("li.text", ul).nextSibling
                                             : ul.firstChild);
-  li.id = "flattr-button";
-  li.innerHTML = '<a href="https://flattr.com/submit/auto?url='
-               + encodeURIComponent(url) + '" class="minibutton"'
-               + ' target="_blank" title="Flattr ' + name + '"'
-               + ' data-flattr-uid="flattr"'
-               + ' data-flattr-tags="software, github, opensource"'
-               + ' data-flattr-category="software"><img src="'
-               + '//api.flattr.com/button/flattr-badge-small.png"'
-               + ' alt="Flattr!" style="vertical-align: -3px;'
-               + ' margin-right: 0.5em; width: 16px; height: 16px;"/>'
-               + 'Flattr!</a>';
+  li.appendChild(flattrButton(url, "Flattr " + name, "minibutton"));
+
+  var bb = $("#js-repo-pjax-container > .commit > .browse-button");
+  bb && (bb.style.marginLeft = ".5em")
+     && bb.parentNode.insertBefore(flattrButton(location.href,
+                                                "Flattr this commit!",
+                                                "browse-button"),
+                                   bb.nextSibling);
 
   function $(aSelector, aNode) {
     return (aNode ? aNode : document).querySelector(aSelector);
   }
+
+  // Flattr button
+  function flattrButton(aURL, aTitle, aClassName) {
+    var link = document.createElement("a");
+    link.href = "https://flattr.com/submit/auto?url="
+              + encodeURIComponent(aURL);
+    link.title = aTitle;
+    link.className = aClassName;
+    link.target = "_blank";
+    link.setAttribute("data-flattr-uid", "flattr");
+    link.setAttribute("data-flattr-category", "software");
+    link.setAttribute("data-flattr-tags", "software, github, opensource");
+    link.innerHTML = '<img src="'
+                   + 'https://api.flattr.com/button/flattr-badge-small.png"'
+                   + ' alt="Flattr!" style="width: 12px; height: 12px;'
+                   + ' vertical-align: -1px; margin-right: .5em; "/>Flattr!';
+    return link;
+  }
+
 })()
