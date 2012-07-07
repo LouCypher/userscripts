@@ -1,0 +1,1 @@
+[User scripts](http://wiki.greasespot.net/User_script) for [Userscripts.org](http://userscripts.org/).
