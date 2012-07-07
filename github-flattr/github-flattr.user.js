@@ -20,7 +20,7 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       4.0b
+// @version       4.0
 // @author        LouCypher
 // @licensed      GPL
 // @icon          http://i.imgur.com/VDx96.png
@@ -31,10 +31,11 @@
 /*
     Changelog:
       - 2012-07-07
+          v4.0: Don't add Flattr button on your own commit.
           v4.0b:
             - Added Flattr button on commit page.
             - Reduced Flattr icon size.
-          v3.0: Don't Flattr organizations.
+          v3.0: Don't add Flattr button on organizations.
       - 2012-07-02
           v2.0: Fixed something.
       - 2012-07-01
@@ -47,9 +48,6 @@
 
       // Thou shalt not Flattreth thyself.
       ($("li.text", ul) && ($("li.text", ul).textContent == "This is you!")) ||
-
-      // Thou shalt not Flattreth thine own repo.
-      $("li.for-owner", ul) ||
 
       // Thou canst not Flattreth organizations.
       // http://blog.flattr.net/2012/02/winter-update-github-tweets-extensions/#comment-8471
@@ -66,12 +64,21 @@
 
   var name = repoName ? repoName.toString() : username.textContent;
 
-  var li = ul.insertBefore(document.createElement("li"),
-                           $("li.text", ul) ? $("li.text", ul).nextSibling
-                                            : ul.firstChild);
-  li.appendChild(flattrButton(url, "Flattr " + name, "minibutton"));
+  if (!$("li.for-owner", ul)) { // Thou shalt not Flattreth thine own repo.
+    var li = ul.insertBefore(document.createElement("li"),
+                             $("li.text", ul) ? $("li.text", ul).nextSibling
+                                              : ul.firstChild);
+    li.appendChild(flattrButton(url, "Flattr " + name, "minibutton"));
+  }
 
-  var bb = $("#js-repo-pjax-container > .commit > .browse-button");
+  var container = $("#js-repo-pjax-container");
+  var committer = $(".authorship .author-name a", container);
+  var user = $("#user .name"); // Logged in.
+
+  // Thou shalt not Flattreth thine own commit.
+  if (user && (user.href == committer.href)) return;
+
+  var bb = $(".commit > .browse-button", container);
   bb && (bb.style.marginLeft = ".5em")
      && bb.parentNode.insertBefore(flattrButton(location.href,
                                                 "Flattr this commit!",
