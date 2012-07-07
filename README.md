@@ -1,2 +1,1 @@
-userscripts
-===========
+Browser [user scripts](http://wiki.greasespot.net/User_script) for Firefox (requires [Greasemonkey](/greasemonkey/greasemonkey) or [Scriptish](/scriptish/scriptish)), Chrome, Opera, Safari (requires [NinjaKit](/os0x/NinjaKit)).
