@@ -10,6 +10,7 @@
 // @version         1.0
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/COPYING
+// @updateURL       https://userscripts.org/scripts/source/137963.meta.js
 // @include         https://userscripts.org/*
 // @include         http://userscripts.org/*
 // @include         http://userscripts.org./*
