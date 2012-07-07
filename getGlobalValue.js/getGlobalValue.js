@@ -1,4 +1,4 @@
-//@https://gist.github.com/937d82d7a9c5d8d3ffcf
+//@https://github.com/LouCypher/userscripts/tree/master/getGlobalValue.js
 /*
     Get value a global variable from user script. Version 1.3
     Copyright (C) 2012 LouCypher
