@@ -7,7 +7,7 @@
 // ==UserScript==
 // @name            USO: Auto hides notification
 // @namespace       http://userstyles.org/users/12
-// @version         1.0
+// @version         2.0
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/COPYING
 // @updateURL       https://userscripts.org/scripts/source/137963.meta.js
@@ -47,6 +47,7 @@
     notice.parentNode.setAttribute("style",
                                    cssPrefix + "animation: linear 1000ms; "
                                  + cssPrefix + "animation-name: slide; "
+                                 + "pointer-events: none; "
                                  + "margin-top: -40px; opacity: 0;");
     GM_addStyle("@" + cssPrefix + "keyframes slide {\
       from { margin-top: 0;     opacity: 1; }\
