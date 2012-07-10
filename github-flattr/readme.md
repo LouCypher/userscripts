@@ -1,4 +1,5 @@
 # GitHub: Add Flattr button userscript
+Add [Flattr](https://flattr.com/) button on [GitHub.com](https://github.com/)
 
 ## Screenshot
 ![Screenshot](http://i.imgur.com/TbL9y.png)
@@ -10,5 +11,5 @@
 * Safari 5+ (requires [NinjaKit](https://github.com/os0x/NinjaKit) 0.9.1+)
 * SeaMonkey 2.1+ (requires Greasemonkey 0.9+ or Scriptish 0.1.7+)
 
+
 [![Flattr this!](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/t/733518 "Flattr this!")
-Add [Flattr](https://flattr.com/) button on [GitHub.com](https://github.com/)
