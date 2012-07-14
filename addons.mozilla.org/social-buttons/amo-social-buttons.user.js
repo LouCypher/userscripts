@@ -23,7 +23,7 @@
 // @version         2.16
 // @author          LouCypher
 // @license         GPL
-// @icon            https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/amo-social-buttons.png
+// @icon            https://github.com/LouCypher/userscripts/raw/master/addons.mozilla.org/social-buttons/amo-social-buttons.png
 // @require         https://raw.github.com/LouCypher/GM_config/master/gm_config.js
 // @resource        CSS https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/amo-social-buttons.css
 // @resource        configCSS https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/gm_config.css
