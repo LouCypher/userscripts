@@ -1,0 +1,42 @@
+#amo-social-buttons-userscript {
+  margin: 2em 0 0 !important;
+}
+#amo-social-buttons-userscript > * {
+  float: left !important;
+  margin: 0 0 1em !important;
+  vertical-align: middle !important;
+}
+.g-plusone, .g-share, a.twitter-share-button, .fb-like,
+.pin-it-button, .DiggThisButton, .a2a_dd, .st_sharethis {
+  display: none;
+}
+.g-share { width: 40px; }
+.g-share img { opacity: .85; }
+.g-share img:hover { opacity: 1; }
+.a2a_dd { margin-left: 1em !important; }
+#GM_config_overlay {
+  position: fixed; z-index: 70 !important;
+  top: 314px;
+  right: 671px;
+  bottom: 314px;
+  left: 671px;
+  background-color: rgba(0, 0, 0, .8);
+/*https://developer.mozilla.org/en/CSS/CSS_transitions*/
+  -moz-transition-property: top, right, bottom, left;
+  -moz-transition-timing-function: ease-out;
+  -moz-transition-duration: 200ms;
+  -moz-transition-delay: 100ms;
+}
+#GM_config {
+  -moz-box-shadow: 6px 9px 9px rgba(0, 0, 0, .75);
+  box-shadow: 6px 9px 9px rgba(0, 0, 0, .75);
+  border: 1px solid #aaa !important;
+  width: 450px !important;
+  height: auto !important;
+  min-height: 500px !important;
+  opacity: 0;
+  -moz-transition-property: opacity;
+  -moz-transition-timing-function: ease;
+  -moz-transition-duration: 400ms;
+  -moz-transition-delay: 200ms;
+}

@@ -1,0 +1,27 @@
+
+
+/*************** Social Buttons for AMO ***************/
+html, .saveclose_buttons, #GM_config {
+  background: transparent none !important;
+}
+.config_var { margin-left: 3em !important; }
+#GM_config_header {
+  background-color: activecaption;
+  color: captiontext;
+  font-weight: bold;
+  line-height: 2em;
+  padding-left: 1em;
+  font-size: 12pt !important;
+  text-align: left !important;
+  margin: -2px -2px 0 -2px !important;
+}
+#GM_config_gPlus_var:before { content: 'Google+'; }
+#GM_config_fbLike_var:before { content: 'Facebook'; }
+#GM_config_twitter_var:before { content: 'more'; }
+#GM_config_gPlus_var:before,
+#GM_config_fbLike_var:before,
+#GM_config_twitter_var:before {
+  display: block;
+  font-size: large;
+  margin: 1em 0 .5em;
+}

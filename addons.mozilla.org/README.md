@@ -1,0 +1,1 @@
+[Greasemonkey](https://addons.mozilla.org/addon/greasemonkey) [user scripts](http://wiki.greasespot.net/User_script) for [Mozilla Add-ons](https://addons.mozilla.org/).
