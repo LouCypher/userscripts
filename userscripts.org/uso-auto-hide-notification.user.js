@@ -7,7 +7,7 @@
 // ==UserScript==
 // @name            USO: Auto hides notification
 // @namespace       http://userstyles.org/users/12
-// @version         2.0
+// @version         3.0
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/COPYING
 // @updateURL       https://userscripts.org/scripts/source/137963.meta.js
@@ -24,9 +24,11 @@
   var cssPrefix = getCSSPrefix();
 
   notice.parentNode.addEventListener("click", hide, false); // Click to hide
+  notice.parentNode.title = "Click to hide";
+  notice.parentNode.style.cursor = "pointer";
   setTimeout(function() {
     hide();
-  }, 3000); // Hide after 3 seconds
+  }, 5000); // Hide after 5 seconds
 
   if (typeof GM_addStyle != "function") {
     function GM_addStyle(aCSS) {
