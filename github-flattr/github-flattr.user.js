@@ -32,6 +32,8 @@
 
 /*
     Changelog:
+      - 2012-07-15
+          v5.0: Don't add Flattr button on repo admin page.
       - 2012-07-07
           v4.0: Don't add Flattr button on your own commit.
           v4.0b:
