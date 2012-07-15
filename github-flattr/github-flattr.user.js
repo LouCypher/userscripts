@@ -20,12 +20,13 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       5.0
+// @version       6.0
 // @author        LouCypher
 // @licensed      GPL
 // @icon          http://i.imgur.com/VDx96.png
 // @updateURL     https://userscripts.org/scripts/source/137434.meta.js
 // @include       https://github.com/*
+// @exclude       https://github.com/dashboard/*
 // @exclude       https://github.com/*/*/admin
 // @exclude       https://github.com/*/*/admin/*
 // ==/UserScript==
@@ -33,6 +34,7 @@
 /*
     Changelog:
       - 2012-07-15
+          v6.0: Don't add Flattr button on user's dashboard.
           v5.0: Don't add Flattr button on repo admin page.
       - 2012-07-07
           v4.0: Don't add Flattr button on your own commit.
