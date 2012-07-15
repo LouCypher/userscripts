@@ -22,7 +22,7 @@
 // @description   Add Flattr button on GitHub.com
 // @version       6.0
 // @author        LouCypher
-// @licensed      GPL
+// @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
 // @updateURL     https://userscripts.org/scripts/source/137434.meta.js
 // @include       https://github.com/*
