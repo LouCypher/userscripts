@@ -34,6 +34,7 @@
       - 2012-07-16
           v7.0:
             - Don't add Flattr button on specific pages.
+            - Fixed 'committer is null' error.
       - 2012-07-15
           v6.0: Don't add Flattr button on user's dashboard.
           v5.0: Don't add Flattr button on repo admin page.
@@ -85,7 +86,7 @@
   var user = $("#user .name"); // Logged in.
 
   // Thou shalt not Flattreth thine own commit.
-  if (user && (user.href == committer.href)) return;
+  if (user && committer && (user.href == committer.href)) return;
 
   var bb = $(".commit > .browse-button", container);
   bb && (bb.style.marginLeft = ".5em")
