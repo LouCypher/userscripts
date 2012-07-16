@@ -7,7 +7,7 @@
 // ==UserScript==
 // @name            USO: Auto hides notification
 // @namespace       http://userstyles.org/users/12
-// @version         3.0
+// @version         4.0
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/COPYING
 // @updateURL       https://userscripts.org/scripts/source/137963.meta.js
@@ -30,14 +30,6 @@
     hide();
   }, 5000); // Hide after 5 seconds
 
-  if (typeof GM_addStyle != "function") {
-    function GM_addStyle(aCSS) {
-      var style = $("head").appendChild(document.createElement("style"));
-      style.type = "text/css";
-      style.textContent = aCSS;
-    }
-  }
-
   function getCSSPrefix() {
     var ua = navigator.userAgent;
     if (/Firefox/.test(ua)) return "-moz-";
@@ -46,15 +38,17 @@
   }
 
   function hide() {
-    notice.parentNode.setAttribute("style",
-                                   cssPrefix + "animation: linear 1000ms; "
-                                 + cssPrefix + "animation-name: slide; "
-                                 + "pointer-events: none; "
-                                 + "margin-top: -40px; opacity: 0;");
-    GM_addStyle("@" + cssPrefix + "keyframes slide {\
+    var style = $("head").appendChild(document.createElement("style"));
+    style.type = "text/css";
+    style.textContent = "@" + cssPrefix + "keyframes slide {\
       from { margin-top: 0;     opacity: 1; }\
       to   { margin-top: -40px; opacity: 0; }\
-    }")}
+    }";
+    notice.parentNode.setAttribute("style", cssPrefix
+                                 + "animation: slide linear 1000ms; "
+                                 + "pointer-events: none; "
+                                 + "margin-top: -40px; opacity: 0;");
+  }
 
   function $(aSelector, aNode) {
     return (aNode ? aNode : document).querySelector(aSelector);
