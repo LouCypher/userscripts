@@ -33,7 +33,7 @@ function getGlobalValue(aGlobalVarName, debug) {
   var script = document.querySelector("head")
                        .appendChild(document.createElement("script"));
   script.type = "text/javascript";
-  
+
   // Unique name for sessionStorage
   var itemName = "globalValue_" + (new Date()).getTime().toString();
 
