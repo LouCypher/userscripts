@@ -20,19 +20,20 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       6.0
+// @version       7.0
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
 // @updateURL     https://userscripts.org/scripts/source/137434.meta.js
 // @include       https://github.com/*
 // @exclude       https://github.com/dashboard/*
-// @exclude       https://github.com/*/*/admin
-// @exclude       https://github.com/*/*/admin/*
 // ==/UserScript==
 
 /*
     Changelog:
+      - 2012-07-16
+          v7.0:
+            - Don't add Flattr button on specific pages.
       - 2012-07-15
           v6.0: Don't add Flattr button on user's dashboard.
           v5.0: Don't add Flattr button on repo admin page.
@@ -57,7 +58,9 @@
 
       // Thou canst not Flattreth organizations.
       // http://blog.flattr.net/2012/02/winter-update-github-tweets-extensions/#comment-8471
-      $(".pagehead > .avatared > .organization-bit")
+      $(".pagehead > .avatared > .organization-bit") ||
+
+      $("li a.minibutton.btn-back", ul)
 
      ) return;
 
@@ -112,5 +115,4 @@
                    + ' vertical-align: -1px; margin-right: .5em; "/>Flattr!';
     return link;
   }
-
 })()
