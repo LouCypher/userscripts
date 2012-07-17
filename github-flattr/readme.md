@@ -1,8 +1,19 @@
 # GitHub: Add Flattr button userscript
 Add [Flattr](https://flattr.com/) button on [GitHub.com](https://github.com/)
 
-## Screenshot
-![Screenshot](http://i.imgur.com/TbL9y.png)
+## Screenshots
+### profile page
+![screenshot](http://i.imgur.com/MM6ZV.png)
+
+### repository page
+![screenshot](http://i.imgur.com/TbL9y.png)
+
+### commit page
+![screenshot](http://i.imgur.com/dCS4C.png)
+
+### gist
+![screenshot](http://i.imgur.com/LxfO0.png)
+
 
 ## Compatibility
 * Chrome 10+
@@ -12,4 +23,4 @@ Add [Flattr](https://flattr.com/) button on [GitHub.com](https://github.com/)
 * SeaMonkey 2.1+ (requires Greasemonkey 0.9+ or Scriptish 0.1.7+)
 
 
-[![Flattr this!](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/t/733518 "Flattr this!")
+[![Flattr this!](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/thing/733518/Add-Flattr-button-on-GitHub-com "Flattr this!")
