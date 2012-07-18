@@ -20,7 +20,7 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       8.0
+// @version       9.0
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
@@ -32,6 +32,8 @@
 
 /*
     Changelog:
+      - 2012-07-18
+          v9.0: Fixed Flattr button style on gist.
       - 2012-07-17
           v8.0: Includes gist.github.com (public gist only).
       - 2012-07-16
@@ -85,13 +87,15 @@
                       + "height: 18px; font-size: 13px; font-weight: bold; "
                       + "margin-left: .75em; vertical-align: 1px; "
                       + "padding: 0 1em 0 2em; border: 1px solid #787878; "
-                      + "border-radius: 2em; background-image: "
-                      + "url('https://api.flattr.com/button/"
-                      + "flattr-badge-small.png'),"
-                      + "-moz-linear-gradient(top, #fff 0%, #f0f0f0 100%);"
-                      + "background-position: .75em center, 0 0;"
-                      + "background-repeat: no-repeat, repeat-x;"
-                      + "background-size: 10px 10px; text-decoration: none;");
+                      + "-moz-border-radius: 2em; -o-border-radius: 2em; "
+                      + "-webkit-border-radius: 2em; border-radius: 2em; "
+                      + "background-image: url('https://api.flattr.com/button/"
+                      + "flattr-badge-small.png'), " + getCSSPrefix()
+                      + "linear-gradient(top, #fff 0%, #ddd 100%); "
+                      + "background-position: .75em center, 0 0; "
+                      + "background-repeat: no-repeat, repeat-x; "
+                      + "background-size: 10px 10px, 80px 18px; "
+                      + "text-decoration: none;");
     return;
   }
 
@@ -132,6 +136,13 @@
 
   function insertBefore(aNode, aSibling, aParent) {
     return aParent.insertBefore(aNode, aSibling);
+  }
+
+  function getCSSPrefix() {
+    var ua = navigator.userAgent;
+    if (/Firefox/.test(ua)) return "-moz-";
+    if (/Opera/.test(ua)) return "-o-";
+    if (/AppleWebKit/.test(ua)) return "-webkit-";
   }
 
   // Flattr button
