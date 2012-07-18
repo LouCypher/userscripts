@@ -20,7 +20,7 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       9.0
+// @version       9.1
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
@@ -32,6 +32,8 @@
 
 /*
     Changelog:
+      - 2012-07-19
+          v9.1: Another CSS fix.
       - 2012-07-18
           v9.0:
             - Fixed Flattr button style on gist.
@@ -86,12 +88,12 @@
                         "color: rgba(0, 0, 0, .8); width: 80px; "
                       + "height: 18px; font-size: 13px; font-weight: bold; "
                       + "margin-left: .75em; vertical-align: 1px; "
-                      + "padding: 0 1em 0 2em; border: 1px solid #787878; "
+                      + "padding: 0 1em 0 2em; border: 1px solid #8b8b8b; "
                       + "-moz-border-radius: 2em; -o-border-radius: 2em; "
                       + "-webkit-border-radius: 2em; border-radius: 2em; "
                       + "background-image: url('https://api.flattr.com/button/"
                       + "flattr-badge-small.png'), " + getCSSPrefix()
-                      + "linear-gradient(top, #fff 0%, #ddd 100%); "
+                      + "linear-gradient(top, #fff, #ddd); "
                       + "background-position: .75em center, 0 0; "
                       + "background-repeat: no-repeat, repeat-x; "
                       + "background-size: 10px 10px, 80px 18px; "
