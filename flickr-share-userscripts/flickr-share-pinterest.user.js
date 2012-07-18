@@ -21,7 +21,7 @@
 // @namespace       http://pinterest.com/zoolcar9
 // @description     Add Pinterest button on Flickr photo page to share on Pinterest
 // @icon            http://i.imgur.com/ZKsQ2.png
-// @version         1.6
+// @version         2.0
 // @author          LouCypher
 // @license         GPL
 // @updateURL       https://userscripts.org/scripts/source/130486.meta.js
@@ -35,6 +35,8 @@
 
 /*
 Changelog:
+  - v2.0  (2012-07-18) Change class name if sharing is disabled
+                       or photo is not public.
   - v1.6  (2012-05-07) Fixed: Disabling icon failed on photo set.
   - v1.5  (2012-05-07) Opera compatibility.   
   - v1.4  (2012-05-07) Fixed: small icon not showing.
@@ -51,12 +53,14 @@ Changelog:
 (function() { // Function wrapper for Opera
 
 var canonical = $("link[rel='canonical']");
+
 var image = $("#main-photo-container img") ||
-            $("#primary_photo_img") ||
+            $("#main-photo-container img") ||
             null;
 
 var noShare = $("meta[name='pinterest'][content='nopin']") ||
               $(".share-disabled a");
+
 var pinterest = $(".share-dialog-action.share-via-service-132");
 pinterest && (pinterest.parentNode.style.display = "none");
 
@@ -76,15 +80,13 @@ var PinIt = {
            + $esc(canonical ? canonical.href : location.href)
            + "&media="
            + $esc($("#main-photo-container img")
-                   ? $("#main-photo-container img").src
-                   : $("#primary_photo_img").src.replace(/\_m.jpg/, ".jpg"))
+                  ? $("#main-photo-container img").src
+                  : $("#primary_photo_img").src.replace(/\_m.jpg/, ".jpg"))
            + "&description="
-           + ($esc($(".photo-title") ? ($(".photo-title").textContent
-                                       + ", photo")
-                                     : ($(".set-title").textContent
-                                                       .match(/\w.*/)
-                                                       .toString()
-                                       + ", photo set")))
+           + ($esc($(".photo-title")
+             ? ($(".photo-title").textContent + ", photo")
+             : ($(".set-title").textContent.match(/\w.*/).toString()
+             + ", photo set")))
            + " by "
            + $esc($(".username") ? $(".username a").textContent
                                  : $("#setCrumbs a").textContent)
@@ -121,11 +123,10 @@ var addIcon = {
     var li = aSibling.parentNode.insertBefore(document.createElement("li"),
                                               aSibling.nextSibling);
     li.className = "share-this-v3 share-service share-service-last"
-                  + (noShare ? " share-disabled" : "");
-    li.style.opacity = noShare ? ".3" : "1";
-    li.innerHTML = '<span class="share-service-options">'
-                 + '<span class="Butt">'
-                 + '<a class="share-icon" href="' + PinIt.href
+                 + (noShare ? " share-disabled" : "");
+    li.innerHTML = '<span class="share-service-options"><span class="'
+                 + (noShare ? 'share-disabled DisabledButt' : 'Butt')
+                 + '"><a class="share-icon" href="' + PinIt.href
                  + '" title="' + PinIt.text
                  + '" style="background-image: url(\''
                  + '//a248.e.akamai.net/passets.pinterest.com.s3.'
@@ -137,11 +138,11 @@ var addIcon = {
     var li = aParent.insertBefore(document.createElement("li"),
                                   pinterest.parentNode);
     li.className = "share-service" + (noShare ? " share-disabled" : "");
-    li.style.opacity = noShare ? ".3" : "1";
-    li.innerHTML = '<a href="' + PinIt.href + '" title="' + PinIt.text + '"/>'
+    li.innerHTML = '<a href="#" title="' + PinIt.text + '"/>'
                  + '<img src="//a248.e.akamai.net/passets.pinterest.com'
                  + '.s3.amazonaws.com/images/about/big-p-button.png" '
-                 + 'alt="' + PinIt.name + '" width="45" height="45"/>'
+                 + 'alt="' + PinIt.name + '" width="45" height="45" '
+                 + ' style="opacity: ' + (noShare ? '.3' : '1') + ';"/>'
                  + '<span class="service-name">' + PinIt.name + '</span>'
                  + '</a>';
     return li;
@@ -167,7 +168,7 @@ if (document.getElementById("head-signin-link")) { // if not signed in
 icon.addEventListener("click", function(e) {
   e.preventDefault();
   if (image) {
-    window.open(PinIt.href, "",
+    window.open(PinIt.href, "_blank",
                 "width=600, height=400, toolbar=no, location");
   } else {
     var script = document.body.appendChild(document.createElement("script"));
@@ -184,5 +185,4 @@ function $(aSelector, aNode) {
 function $esc(aString) {
   return encodeURIComponent(aString);
 }
-
 })()
