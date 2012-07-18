@@ -20,7 +20,7 @@
 // @name            Flickr Posterous
 // @namespace       http://userstyles.org/users/12
 // @description     Add 'Share on Posterous' on Flickr photo and group page
-// @version         1.0
+// @version         2.0
 // @author          LouCypher
 // @license         GPL
 // @updateURL       https://userscripts.org/scripts/source/132660.meta.js
@@ -34,7 +34,9 @@
 
 /*
 Changelog:
-  - v1.0    (2012-05-07) Initial release.
+  - v2.0  (2012-05-07) Change class name if sharing is disabled
+                       or photo is not public.
+  - v1.0  (2012-05-07) Initial release.
 */
 
 (function() { // Function wrapper for Opera UserJS
@@ -128,10 +130,10 @@ var addIcon = {
     var li = aSibling.parentNode.insertBefore(document.createElement("li"),
                                               aSibling.nextSibling);
     li.className = "share-this-v3 share-service share-service-last"
-                  + (noShare ? " share-disabled" : "");
-    li.style.opacity = noShare ? ".3" : "1";
-    li.innerHTML = '<span class="share-service-options"><span class="Butt">'
-                 + '<a class="share-icon" href="' + Posterous.href
+                 + (noShare ? " share-disabled" : "");
+    li.innerHTML = '<span class="share-service-options"><span class="'
+                 + (noShare ? 'share-disabled DisabledButt' : 'Butt')
+                 + '"><a class="share-icon" href="' + Posterous.href
                  + '" title="' + Posterous.text
                  + '" style="background-image: url(\''
                  + Posterous.icon + '\'); background-size: 16px 16px;">'
@@ -141,11 +143,10 @@ var addIcon = {
   big: function(aParent) {
     var li = aParent.appendChild(document.createElement("li"));
     li.className = "share-service" + (noShare ? " share-disabled" : "");
-    li.style.opacity = noShare ? ".3" : "1";
     li.innerHTML = '<a href="' + Posterous.href + '" title="'
-                 + Posterous.text + '">'
-                 + '<img src="' + Posterous.icon + '" alt="'
-                 + Posterous.name + '"/>'
+                 + Posterous.text + '"><img src="' + Posterous.icon
+                 + '" alt="' + Posterous.name + '" style="opacity: '
+                 + (noShare ? '.3' : '1') + ';"/>'
                  + '<span class="service-name">' + Posterous.name
                  + '</span></a>';
     return li;
