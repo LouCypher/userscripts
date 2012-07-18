@@ -33,7 +33,9 @@
 /*
     Changelog:
       - 2012-07-18
-          v9.0: Fixed Flattr button style on gist.
+          v9.0:
+            - Fixed Flattr button style on gist.
+            - Refactored.
       - 2012-07-17
           v8.0: Includes gist.github.com (public gist only).
       - 2012-07-16
@@ -78,10 +80,8 @@
     var owner = $("#owner .name a"), user = $(".userbox .name");
     if (user && (user.href == owner.href)) return; // Thou shalt not Flattreth thine own snippet.
 
-    var button = insertBefore(flattrButton(url.match(/^https:\/\/gist.github.com\/\w+/),
-                                           "Flattr this snippet!"),
-                              buttons.lastChild,
-                              buttons);
+    var button = insertBefore(flattrButton(url.match(/^https:\/\/gist.github.com\/\w+/)),
+                              buttons.lastChild, buttons);
     button.setAttribute("style",
                         "color: rgba(0, 0, 0, .8); width: 80px; "
                       + "height: 18px; font-size: 13px; font-weight: bold; "
@@ -150,7 +150,7 @@
     var link = document.createElement("a");
     link.href = "https://flattr.com/submit/auto?url="
               + encodeURIComponent(aURL);
-    link.title = aTitle;
+    link.title = aTitle ? aTitle : "";
     link.className = aClassName ? aClassName : "";
     link.target = "_blank";
     link.setAttribute("data-flattr-uid", "flattr");
