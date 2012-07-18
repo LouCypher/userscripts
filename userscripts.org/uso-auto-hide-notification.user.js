@@ -7,7 +7,7 @@
 // ==UserScript==
 // @name            USO: Auto hides notification
 // @namespace       http://userstyles.org/users/12
-// @version         4.0
+// @version         5.0
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/COPYING
 // @updateURL       https://userscripts.org/scripts/source/137963.meta.js
@@ -18,14 +18,22 @@
 // ==/UserScript==
 
 (function() {
-  var notice = $("#content p.notice span");
-  if (!notice) return;
+  var span = $("#content p.notice span");
+  if (!span) return;
 
-  var cssPrefix = getCSSPrefix();
+  var notice = span.parentNode;
+  notice.addEventListener("click", hide, false); // Click to hide
+  notice.title = "Click to hide";
+  notice.style.cursor = "pointer";
 
-  notice.parentNode.addEventListener("click", hide, false); // Click to hide
-  notice.parentNode.title = "Click to hide";
-  notice.parentNode.style.cursor = "pointer";
+  var x = notice.appendChild(document.createElement("span"));
+  x.style.backgroundImage = "none";
+  x.style.cssFloat = "right";
+  x.style.fontSize = "large";
+  x.style.fontWeight = "bold";
+  x.style.marginRight = "1em";
+  x.textContent = "\u00D7";
+
   setTimeout(function() {
     hide();
   }, 5000); // Hide after 5 seconds
@@ -40,14 +48,14 @@
   function hide() {
     var style = $("head").appendChild(document.createElement("style"));
     style.type = "text/css";
-    style.textContent = "@" + cssPrefix + "keyframes slide {\
+    style.textContent = "@" + getCSSPrefix() + "keyframes slide {\
       from { margin-top: 0;     opacity: 1; }\
       to   { margin-top: -40px; opacity: 0; }\
     }";
-    notice.parentNode.setAttribute("style", cssPrefix
-                                 + "animation: slide linear 1000ms; "
-                                 + "pointer-events: none; "
-                                 + "margin-top: -40px; opacity: 0;");
+    notice.setAttribute("style", getCSSPrefix()
+                      + "animation: slide linear 1000ms; "
+                      + "pointer-events: none; "
+                      + "margin-top: -40px; opacity: 0;");
   }
 
   function $(aSelector, aNode) {
