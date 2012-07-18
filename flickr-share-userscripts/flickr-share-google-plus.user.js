@@ -21,7 +21,7 @@
 // @namespace       http://flickr.com/zoolcar9
 // @description     Add 'Share on Google+' on Flickr photo and group page
 // @icon            http://i.imgur.com/WCN0X.png
-// @version         3.6
+// @version         4.0
 // @author          LouCypher
 // @license         GPL
 // @updateURL       https://userscripts.org/scripts/source/126151.meta.js
@@ -35,6 +35,8 @@
 
 /*
 Changelog:
+  - v4.0    (2012-07-18) Change class name if sharing is disabled
+                         or photo is not public.
   - v3.6    (2012-05-07) Fixed: Disabling icon failed on photo set.
   - v3.5    (2012-05-07) Opera compatibility.
   - v3.4    (2012-05-06) Disable icon if sharing is disabled
@@ -87,11 +89,12 @@ var addIcon = {
     var li = aSibling.parentNode.insertBefore(document.createElement("li"),
                                               aSibling.nextSibling);
     li.className = "share-this-v3 share-service share-service-last"
-                  + (noShare ? " share-disabled" : "");
-    li.style.opacity = noShare ? ".3" : "1";
-    li.innerHTML = '<span class="share-service-options"><span class="Butt">'
-                 + '<a class="share-icon" href="' + GPlus.href + '" title="'
-                 + GPlus.text + '" style="background-image: url(\''
+                 + (noShare ? " share-disabled" : "");
+    li.innerHTML = '<span class="share-service-options"><span class="'
+                 + (noShare ? 'share-disabled DisabledButt' : 'Butt')
+                 + '"><a class="share-icon" href="' + GPlus.href
+                 + '" title="' + GPlus.text
+                 + '" style="background-image: url(\''
                  + '//ssl.gstatic.com/images/icons/gplus-16.png\');">'
                  + GPlus.text + '</a></span></span>';
     return li;
@@ -99,11 +102,12 @@ var addIcon = {
   big: function(aParent) {
     var li = aParent.appendChild(document.createElement("li"));
     li.className = "share-service" + (noShare ? " share-disabled" : "");
-    li.style.opacity = noShare ? ".3" : "1";
     li.innerHTML = '<a href="' + GPlus.href + '" title="' + GPlus.text + '">'
                  + '<img src="//ssl.gstatic.com/images/'
                  + 'icons/gplus-64.png" alt="' + GPlus.name
-                 + '" width="45" height="45"/><span class="service-name">'
+                 + '" width="45" height="45" style="opacity: '
+                 + (noShare ? '.3' : '1')
+                 + ';"/><span class="service-name">'
                  + GPlus.name + '</span></a>';
     return li;
   }
