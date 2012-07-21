@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            MediaWiki Get Global Value Example
-// @namespace       http://www.wikia.com/User:LouCypher
+// @namespace       http://userstyles.org/users/12
 // @description     Get variables from content window
 // @include         http://*.wikia.com/*
 // @include         http://*.wikipedia.org/*
@@ -25,7 +25,7 @@
 
   console.log(msg);
 
-  //@https://gist.github.com/937d82d7a9c5d8d3ffcf
+  //@https://github.com/LouCypher/userscripts/tree/master/getGlobalValue.js
   /*
       Get value a global variable from user script. Version 1.3
       Copyright (C) 2012 LouCypher
@@ -60,7 +60,7 @@
     var script = document.querySelector("head")
                          .appendChild(document.createElement("script"));
     script.type = "text/javascript";
-    
+
     // Unique name for sessionStorage
     var itemName = "globalValue_" + (new Date()).getTime().toString();
 
@@ -83,5 +83,4 @@
     return globalValue; // Returns the value of aGlobalVarName
                         // Returns null if aGlobalVarName is undefined
   }
-
 })()
