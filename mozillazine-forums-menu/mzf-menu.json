@@ -1,0 +1,70 @@
+[
+  { "name" : "Firefox", "id" : "49",
+    "subs" : [
+      { "name" : "Firefox Support",                        "id" : "38" },
+      { "name" : "Firefox General",                        "id" :  "7" },
+      { "name" : "Firefox Builds",                         "id" : "23" },
+      { "name" : "Firefox Features",                       "id" :  "8" },
+      { "name" : "Firefox Bugs",                           "id" :  "9" },
+      { "name" : "Official Forum",                         "id" :  "!",
+        "url"  :  "https://support.mozilla.com/"                       }
+    ]
+  },
+  { "name" : "Thunderbird", "id" : "50",
+    "subs" : [
+      { "name" : "Thunderbird Support",                    "id" : "39" },
+      { "name" : "Thunderbird General",                    "id" : "28" },
+      { "name" : "Thunderbird Builds",                     "id" : "29" },
+      { "name" : "Thunderbird Features",                   "id" : "30" },
+      { "name" : "Thunderbird Bugs",                       "id" : "31" },
+      { "name" : "Official Forum",                         "id" : "!",
+        "url"  :  "http://support.mozillamessaging.com/"               }
+    ]
+   },
+  { "name" : "SeaMonkey", "id" : "51",
+    "subs" : [
+      { "name" : "SeaMonkey Support",                      "id" : "40" },
+      { "name" : "SeaMonkey General",                      "id" :  "3" },
+      { "name" : "SeaMonkey Builds",                       "id" :  "6" },
+      { "name" : "SeaMonkey Features",                     "id" :  "4" },
+      { "name" : "SeaMonkey Bugs",                         "id" :  "5" }
+    ]
+  },
+  { "name" : "Others", "id" : "52",
+    "subs" : [
+      { "name" : "Camino",                                 "id" : "12" },
+      { "name" : "Calendar",                               "id" : "46" },
+      { "name" : "Mobile",                                 "id" : "47" },
+      { "name" : "Miscellaneous Support",                  "id" : "32" },
+      { "name" : "Other Applications and Distributions",   "id" : "34" },
+      { "name" : "Official Mobile Forum",                  "id" :  "!",
+        "url"  :  "https://support.mozilla.com/mobile"                 }
+    ]
+  },
+  { "name" : "Add-ons", "id" : "53",
+    "subs" : [
+      { "name" : "Extension/Theme Releases",               "id" : "48" },
+      { "name" : "Extension Development",                  "id" : "19" },
+      { "name" : "Theme Development",                      "id" : "18" },
+      { "name" : "Mozilla Add-ons Forum",                  "id" :  "!",
+        "url"  :  "https://forums.mozilla.org/addons/"                 }
+    ]
+  },
+  { "name" : "Development", "id" : "54",
+    "subs" : [
+      { "name" : "Mozilla Development",                    "id" : "27" },
+      { "name" : "Web Development / Standards Evangelism", "id" : "25" },
+      { "name" : "Third Party/Unofficial Builds",          "id" : "42" }
+    ]
+  },
+  { "name" : "mozillaZine", "id" : "55",
+    "subs" : [
+      { "name" : "MozillaZine Site Discussion",            "id" : "11" },
+      { "name" : "MozillaZine Tech",                       "id" : "37" },
+      { "name" : "MozillaZine AfterDark",                  "id" : "22" },
+      { "name" : "Locked Posts",                           "id" : "26" },
+      { "name" : "About This User Script",                 "id" :  "?",
+        "url"  :  "http://userscripts.org/scripts/show/1455"           }
+    ]
+  }
+]
