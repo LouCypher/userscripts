@@ -8,10 +8,10 @@
 // @name            mozillaZine Forums: Fix sidebar when scrolling
 // @namespace       http://userstyles.org/users/12
 // @description     Fix sidebar position when scrolling
-// @version         1.0
+// @version         1.1
 // @author          LouCypher
 // @license         MPL 2.0
-// @icon            https://raw.github.com/gist/1087992/icon.png
+// @icon            https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/icon.png
 // @updateURL       https://userscripts.org/scripts/source/137677.meta.js
 // @include         http://forums.mozillazine.org/*
 // ==/UserScript==
