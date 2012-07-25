@@ -20,7 +20,7 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       9.1
+// @version       10.0
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
@@ -32,6 +32,8 @@
 
 /*
     Changelog:
+      - 2021-07-26
+          v10.0: Fixed: incorrect commit URL.
       - 2012-07-19
           v9.1: Another CSS fix.
       - 2012-07-18
@@ -106,7 +108,6 @@
   if (!(repoName || username)) return;
 
   var permalink = $(".js-current-repository");
-  var url = permalink ? permalink.href : url;
 
   var name = repoName ? repoName.toString() : username.textContent;
 
@@ -116,7 +117,8 @@
                                                   nextSibling
                                                 : buttons.firstChild,
                           buttons);
-    li.appendChild(flattrButton(url, "Flattr " + name, "minibutton"));
+    li.appendChild(flattrButton(permalink ? permalink.href : url,
+                                "Flattr " + name, "minibutton"));
   }
 
   var container = $("#js-repo-pjax-container");
