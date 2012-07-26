@@ -24,7 +24,7 @@
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
-// @resource      license https://github.com/LouCypher/userscripts/raw/master/github-flattr/LICENSE
+// @resource      license https://github.com/LouCypher/userscripts/raw/master/github-flattr/LICENSE.txt
 // @updateURL     https://userscripts.org/scripts/source/137434.meta.js
 // @include       https://github.com/*
 // @include       https://gist.github.com/*
