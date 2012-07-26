@@ -20,10 +20,11 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       10.0
+// @version       11.0
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
+// @resource      license https://github.com/LouCypher/userscripts/raw/master/github-flattr/LICENSE
 // @updateURL     https://userscripts.org/scripts/source/137434.meta.js
 // @include       https://github.com/*
 // @include       https://gist.github.com/*
@@ -32,6 +33,8 @@
 
 /*
     Changelog:
+      - 2021-07-27
+          v11.0: Updated to new repo layout.
       - 2021-07-26
           v10.0: Fixed: incorrect commit URL.
       - 2012-07-19
@@ -111,7 +114,8 @@
 
   var name = repoName ? repoName.toString() : username.textContent;
 
-  if (!$("li.for-owner", buttons)) { // Thou shalt not Flattreth thine own repo.
+  if (!/admin$/.test($(".repohead ul.tabs li:last-child a").href)) {
+  // Thou shalt not Flattreth thine own repo.
     var li = insertBefore(document.createElement("li"),
                           $("li.text", buttons) ? $("li.text", buttons).
                                                   nextSibling
