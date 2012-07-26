@@ -20,7 +20,7 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       11.0
+// @version       11.1
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
@@ -114,7 +114,7 @@
 
   var name = repoName ? repoName.toString() : username.textContent;
 
-  if (!/admin$/.test($(".repohead ul.tabs li:last-child a").href)) {
+  if (!$(".repohead ul.tabs li:last-child a[href$='admin']")) {
   // Thou shalt not Flattreth thine own repo.
     var li = insertBefore(document.createElement("li"),
                           $("li.text", buttons) ? $("li.text", buttons).
