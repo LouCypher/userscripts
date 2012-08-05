@@ -14,13 +14,14 @@
 // @icon            https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/icon.png
 // @resource        CSS https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/mzf-menu.css
 // @resource        JSON https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/mzf-menu.json
-// @resource        license https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/LICENSE
+// @resource        license https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/LICENSE.txt
 // @updateURL       https://userscripts.org/scripts/source/1455.meta.js
 // @include         http://forums.mozillazine.org/*
 // ==/UserScript==
 
 /*
     Changelog:
+      * v2.11 (2012-07-24): Using innerHTML instead of deprecated E4X.
       * v2.10 (2012-07-04): Refactored.
       * v2.9 (2012-06-25):
         * Shifted menubar top position.
