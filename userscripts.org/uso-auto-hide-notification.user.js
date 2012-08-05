@@ -7,7 +7,7 @@
 // ==UserScript==
 // @name            USO: Auto hides notification
 // @namespace       http://userstyles.org/users/12
-// @version         5.0
+// @version         6.0
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/COPYING
 // @updateURL       https://userscripts.org/scripts/source/137963.meta.js
@@ -34,6 +34,17 @@
   x.style.marginRight = "1em";
   x.textContent = "\u00D7";
 
+  var cssKeyframes = "keyframes slide {\n"
+                   + "  from { margin-top:     0; opacity: 1; }\n"
+                   + "  to   { margin-top: -40px; opacity: 0; }\n"
+                   + "}";
+
+  var style = $("head").appendChild(document.createElement("style"));
+  style.type = "text/css";
+  style.textContent = "@" + getCSSPrefix() + cssKeyframes
+                    + "\n"
+                    + "@" + cssKeyframes;
+
   setTimeout(function() {
     hide();
   }, 5000); // Hide after 5 seconds
@@ -46,13 +57,8 @@
   }
 
   function hide() {
-    var style = $("head").appendChild(document.createElement("style"));
-    style.type = "text/css";
-    style.textContent = "@" + getCSSPrefix() + "keyframes slide {\
-      from { margin-top: 0;     opacity: 1; }\
-      to   { margin-top: -40px; opacity: 0; }\
-    }";
     notice.setAttribute("style", getCSSPrefix()
+                      + "animation: slide linear 1000ms; "
                       + "animation: slide linear 1000ms; "
                       + "pointer-events: none; "
                       + "margin-top: -40px; opacity: 0;");
