@@ -8,48 +8,17 @@
 // @name            mozillaZine Forums Menu
 // @namespace       http://mozilla.status.net/loucypher
 // @description     Navigation menu for mozillaZine Forums
-// @version         2.11
+// @version         2.11.1
 // @author          LouCypher
 // @license         MPL 2.0
 // @icon            https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/icon.png
 // @resource        CSS https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/mzf-menu.css
 // @resource        JSON https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/mzf-menu.json
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/LICENSE.txt
+// @resource        changelog https://raw.github.com/LouCypher/userscripts/master/mozillazine-forums-menu/changelog.txt
 // @updateURL       https://userscripts.org/scripts/source/1455.meta.js
 // @include         http://forums.mozillazine.org/*
 // ==/UserScript==
-
-/*
-    Changelog:
-      * v2.11 (2012-07-24): Using innerHTML instead of deprecated E4X.
-      * v2.10 (2012-07-04): Refactored.
-      * v2.9 (2012-06-25):
-        * Shifted menubar top position.
-        + Menubar transition.
-      * v2.8 (2012-06-25): Refactored.
-      * v2.7 (2012-06-25): Resize menubar when window is resized.
-      * v2.6 (2012-06-24): Fixed position when scroll.
-      * v2.5 (2012-06-22):
-        + Use @resource metadata for CSS
-        + Use @resource metadata for menu data as JSON
-        + Added @updateURL metadata
-        * Upgraded license to MPL 2.0
-      * v2.2 (2011-07-21):
-        + Added links to official forums for Firefox/Thunderbird/mobile
-        * Cosmetic changes
-      * v2.1 (2011-07-19):
-        + Added link to this user script at userscripts.org
-        x Cosmetic changes
-      * v2.0 (2011-07-18): Updated
-      * 2006-07-31: Updated to new layout
-      * 2006-06-20: Added new forum and new forum category
-      * 2006-06-12: Rearranged
-      * 2005-08-13: Rearranged
-      * 2005-08-08:
-        - Fixed menu positions
-        - Added index to insertMenu function
-        - Added User Links menu
-*/
 
 var pageHeader = $("#page-header");
 var pageBody = $("#page-body");
