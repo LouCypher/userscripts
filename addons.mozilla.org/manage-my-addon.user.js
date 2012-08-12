@@ -6,15 +6,18 @@
 // @name            AMO: Manage My Add-on
 // @namespace       http://mozilla.status.net/loucypher
 // @description     Manage your add-on from add-on page without having to visit dev-hub page first
-// @version         3.7
+// @version         3.8
 // @author          LouCypher
-// @license         MPL
+// @license         MPL 2.0
 // @updateURL       https://userscripts.org/scripts/source/105791.meta.js
 // @include         https://addons.mozilla.org/*/addon/*
 // ==/UserScript==
 
 /*
   Changelog:
+  - v3.8
+    2012-08012
+      x De-E4X-ization
   - v3.7
     2012-06-05
       x Updated to new AMO layout.
@@ -241,57 +244,35 @@ for (var i = 0; i < languages.length; i++) {
 
 var app = location.pathname.split("/")[2];
 var baseURL = location.pathname.replace(app, "developers");
-var menu = <div xmlns="http://www.w3.org/1999/xhtml"
-                id="edit-popup" class="popup"
-                style={"width: 300px; display: none; " +
-                       "line-height: 1.5em; " +
-                       "top: 380px; " + leftRight +
-                       "bottom: inherit; font-size: medium;"}>
-            <div>
-              <ul id="dont-hide">
-                <li>
-                  <a href={baseURL + "edit"} style={block}>
-                    {text.edit}
-                  </a>
-                </li>
-                <li>
-                  <a href={baseURL + "ownership"} style={block}>
-                    {text.ownership}
-                  </a>
-                </li>
-                <li>
-                  <a href={baseURL + "profile"} style={block}>
-                    {text.profile}
-                  </a>
-                </li>
-                <li>
-                  <a href={baseURL + "payments"} style={block}>
-                    {text.payments}
-                  </a>
-                </li>
-                <li>
-                  <a href={baseURL + "versions"} style={block}>
-                    {text.versions}
-                  </a>
-                </li>
-                <li>
-                  <a href={baseURL.replace(/addon/, "feed")} style={block}>
-                    {text.changes}
-                  </a>
-                </li>
-                <li style={l10n}>
-                  <a href="http://userscripts.org/topics/78247#posts-357043"
-                     style={block}>Translate this menu to your language</a>
-                </li>
-              </ul>
-            </div>
-          </div>;
 
-var div = (new DOMParser)
-            .parseFromString(new XML(menu).toXMLString(), "application/xml")
-            .documentElement;
+var menu = '<div id="edit-popup" class="popup"'
+         + ' style="width: 300px; display: none;'
+         + ' line-height: 1.5em; top: 380px; '
+         + leftRight
+         + ' bottom: inherit; font-size: medium;">'
+         + '<div><ul id="dont-hide">'
+         + '<li><a href="' + baseURL + 'edit" style="' + block + '">'
+         + text.edit + '</a></li>'
+         + '<li><a href="' + baseURL + 'ownership" style="' + block + '">'
+         + text.ownership + '</a></li>'
+         + '<li><a href="' + baseURL + 'profile" style="' + block + '">'
+         + text.profile + '</a></li>'
+         + '<li><a href="' + baseURL + 'payments" style="' + block + '">'
+         + text.payments + '</a></li>'
+         + '<li><a href="' + baseURL + 'versions" style="' + block + '">'
+         + text.versions + '</a></li>'
+         + '<li><a href="' + baseURL.replace(/addon/, "feed")
+         + '" style="' + block + '">' + text.changes + '</a></li>'
+         + '<li style="' + l10n + '">'
+         + '<a href="http://userscripts.org/topics/78247#posts-357043"'
+         + ' style="' + block + '">Translate this menu to your language</a>'
+         + '</li>'
+         + '</ul></div></div>';
 
-document.body.appendChild(div);
+var div = document.createElement("div");
+div.innerHTML = menu;
+
+document.body.appendChild(div.firstChild);
 
 // If 'Social Buttons for Amo' userscript is installed and running
 $("#GM_config_overlay") && (div.style.top = "402px");
@@ -305,7 +286,7 @@ button.addEventListener("click", function(e) {
   popup.style.display = (popup.style.display == "none") ? "block" : "none";
 }, false);
 
-window.addEventListener("click", function(e) {
+addEventListener("click", function(e) {
   if ((e.target.className == "button developer prominent") ||
       (e.target.parentNode.className == "button developer prominent") ||
       (e.target.parentNode.parentNode.id == "dont-hide")) return;
