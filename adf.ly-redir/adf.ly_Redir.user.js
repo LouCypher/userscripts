@@ -18,17 +18,20 @@
 // ==/UserScript==
 
 (function() {
-  document.title = "Redirecting\u2026";
-  document.body.textContent = document.title;
   if (/blocked/.test(location.pathname)) {
     redir(sessionStorage.getItem("adfly_redirURL"));
     return;
   }
   var script = document.querySelector("script:not([src])");
-  var url = script.textContent.match(/\/go\/.*(?=')/).toString();
+  if (!script) return;
+  var url = script.textContent.match(/\/go\/.*(?=')/);
+  if (!url) return;
+  url = url.toString();
   sessionStorage.setItem("adfly_redirURL", url);
   redir(url);
   function redir(aURL) {
+    document.title = "Redirecting\u2026";
+    document.body.textContent = document.title;
     location.replace(location.href.replace(location.pathname, aURL));
   }
 })()
