@@ -11,6 +11,7 @@
 // @version         1.0
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/
+// @updateURL       https://userscripts.org/scripts/source/141047.meta.js
 // @resource        license https://github.com/LouCypher/userscripts/raw/master/adf.ly-redir/LICENSE.txt
 // @include         http://adf.ly/*
 // @exclude         http://adf.ly/go/*
