@@ -8,7 +8,7 @@
 // @name            adf.ly Redir
 // @namespace       http://userscripts.org/users/12
 // @description     Redirect adf.ly to its target location.
-// @version         1.0
+// @version         2.0
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/
 // @updateURL       https://userscripts.org/scripts/source/141047.meta.js
@@ -23,7 +23,7 @@
     redir(sessionStorage.getItem("adfly_redirURL"));
     return;
   }
-  var script = document.querySelector("script:not([src])");
+  var script = document.head.querySelector("script:not([src])");
   if (!script) return;
   var url = script.textContent.match(/\/go\/.*(?=')/);
   if (!url) return;
