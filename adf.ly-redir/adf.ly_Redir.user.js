@@ -20,13 +20,17 @@
 // @name            adf.ly Redir
 // @namespace       http://userscripts.org/users/12
 // @description     Redirect adf.ly to its target location.
-// @version         3.0
+// @version         4.0
 // @author          LouCypher
 // @license         GPL
 // @updateURL       https://userscripts.org/scripts/source/141047.meta.js
-// @resource        license https://github.com/LouCypher/userscripts/raw/master/adf.ly-redir/LICENSE.txt
+// @resource        license https://raw.github.com/LouCypher/userscripts/master/adf.ly-redir/LICENSE.txt
 // @include         http://adf.ly/*
-// @exclude         http://adf.ly/go/*
+// @include         http://j.gs/*
+// @include         http://q.gs/*
+// @include         http://9.bb/*
+// @include         http://u.bb/*
+// @exclude         http://*/go/*
 // @grant           none
 // ==/UserScript==
 
@@ -45,6 +49,6 @@
   function redir(aURL) {
     document.title = "Redirecting\u2026";
     document.body.textContent = document.title;
-    location.replace(location.href.replace(location.pathname, aURL));
+    location.replace("http://adf.ly" + aURL);
   }
 })()
