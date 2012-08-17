@@ -30,7 +30,7 @@
 // @include         http://q.gs/*
 // @include         http://9.bb/*
 // @include         http://u.bb/*
-// @exclude         http://*/go/*
+// @exclude         http://adf.ly/go/*
 // @grant           none
 // ==/UserScript==
 
