@@ -11,6 +11,7 @@
 // @author          LouCypher
 // @version         1.0
 // @license         WTFPL http://sam.zoy.org/wtfpl/
+// @updateURL       https://userscripts.org/scripts/source/141735.meta.js
 // @include         https://userscripts.org/tags
 // @include         https://userscripts.org/tags/*
 // @include         http://userscripts.org/tags
