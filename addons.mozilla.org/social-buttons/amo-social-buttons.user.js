@@ -20,7 +20,7 @@
 // @name            Social Buttons for AMO
 // @namespace       http://mozilla.status.net/loucypher
 // @description     Add Google +1, Twitter, Facebook Like Pinterest buttons, etc. to AMO
-// @version         2.16
+// @version         2.17
 // @author          LouCypher
 // @license         GPL
 // @icon            https://github.com/LouCypher/userscripts/raw/master/addons.mozilla.org/social-buttons/amo-social-buttons.png
@@ -29,10 +29,17 @@
 // @resource        configCSS https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/gm_config.css
 // @updateURL       https://userscripts.org/scripts/source/106110.meta.js
 // @include         https://addons.mozilla.org/*/addon/*
+// @grant           GM_addStyle
+// @grant           GM_getResourceText
+// @grant           GM_log
 // ==/UserScript==
 
 /*
 Changelog
+  v2.17  2012-08-15
+    x De-E4X-ization.
+    + Using @grant metadata for GM 1.0
+    - Removed GM_registerMenuCommand.
   v2.15  2012-06-27:
     + Using @resource for stylesheets.
   v2.14  2012-06-08:
@@ -204,9 +211,6 @@ GM_config.init({
 //GM_log(GM_config.get("gPlus"));
 //GM_config.open();
 
-// Add menu command to GM Menu to call GM_config
-GM_registerMenuCommand(customize_config.title, $config);
-
 // Add link to document to call GM_config
 var config = $(".widgets").appendChild($new("a"));
 config.href = "http://userscripts.org/scripts/show/106110";
@@ -248,51 +252,41 @@ var desc = $("head").appendChild($new("meta"));
 desc.setAttribute("name", "description");
 desc.setAttribute("content", $("#addon-summary").textContent);
 
-// E4X, Gecko browsers only
-var xml = <div xmlns="http://www.w3.org/1999/xhtml"
-               xmlns:su="http://www.w3.org/1999/xhtml"
-               id="amo-social-buttons-userscript"
-               style={"float: " + ((dir == "rtl") ? "right" : "none") + ";"}>
-            <!-- Google+1 -->
-            <div class="g-plusone" data-href={url} data-size="medium"
-                 data-annotation="bubble" data-width="100px"></div>
-            <!-- Share to Google+ -->
-            <div class="g-share"><a href="" title="Share on Google+"><img
-                 src="//ssl.gstatic.com/images/icons/gplus-32.png"
-                 alt="Share on Google+" width="20" height="20"
-                 border="0"/></a></div>
-            <!-- Twitter -->
-            <div><a class="twitter-share-button" data-uri={url}
-                    data-related="mozamo:Mozilla Add-ons"></a></div>
-            <!-- Facebook Like -->
-            <div class="fb-like" data-href={url} data-layout="button_count"
-                 data-send={GM_config.get("fbSend")}
-                 data-show-faces="false" data-width="90px"></div>
-            <!-- Pinterest -->
-            <div><a class="pin-it-button" title="Pin It"
-                    href={"http://pinterest.com/pin/create/button/?url=" +
-                          $esc(url) + "&media=" + $esc(imgSrc.href) +
-                          "&description=" + $esc(document.title) +
-                          " - " + $esc(desc.content)}
-                    count-layout="horizontal"><img border="0"
-                    src="//assets.pinterest.com/images/PinExt.png"/></a></div>
-            <!-- Digg -->
-            <div><a class="DiggThisButton DiggCompact"></a></div>
-            <!-- StumbleUpon -->
-            <div><su:badge layout="2" location={url}></su:badge></div>
-            <!-- Lockerz Share (AddToAny) -->
-            <div><a class="a2a_dd"
-                    href={"http://www.addtoany.com/share_save?linkurl=" +
-                          $esc(url) + "&linkname=" + $esc(document.title)}
-                    ><img
-                    src="//static.addtoany.com/buttons/favicon.png"
-                    width="16" height="16" border="0" alt="Share"/></a></div>
-            <!-- ShareThis -->
-            <div><span class="st_sharethis" displayText="ShareThis"
-                       st_url={url} st_title={document.title}></span></div>
-          </div>;
+var xml = '<div class="g-plusone" data-href="' + url + '" data-size="medium"'
+        + ' data-annotation="bubble" data-width="100px"></div>'
+        + '<div class="g-share"><a href="" title="Share on Google+">'
+        + '<img src="//ssl.gstatic.com/images/icons/gplus-32.png"'
+        + ' alt="Share on Google+" width="20" height="20" border="0"/></a>'
+        + '</div>'
+        + '<div><a class="twitter-share-button" data-uri="' + url + '"'
+        + ' data-related="mozamo:Mozilla Add-ons"></a></div>'
+        + '<div class="fb-like" data-href="' + url + '"'
+        + ' data-layout="button_count"'
+        + ' data-send="' + GM_config.get("fbSend") + '"'
+        + ' data-show-faces="false" data-width="90px"></div>'
+        + '<div><a class="pin-it-button" title="Pin It"'
+        + ' href="http://pinterest.com/pin/create/button/'
+        + '?url=' + $esc(url) + '&media=' + $esc(imgSrc.href)
+        + '&description=' + $esc(document.title)
+        + ' - ' + $esc(desc.content) + '"' + ' count-layout="horizontal">'
+        + '<img border="0" src="//assets.pinterest.com/images/PinExt.png"/>'
+        + '</a></div>'
+        + '<div><a class="DiggThisButton DiggCompact"></a></div>'
+        + '<div><su:badge layout="2" location="' + url + '"></su:badge></div>'
+        + '<div><a class="a2a_dd"'
+        + ' href="http://www.addtoany.com/share_save?linkurl='
+        + $esc(url) + '&linkname=' + $esc(document.title) + '">'
+        + '<img src="//static.addtoany.com/buttons/favicon.png"'
+        + ' width="16" height="16" border="0" alt="Share"/></a></div>'
+        + '<div><span class="st_sharethis" displayText="ShareThis"'
+        + ' st_url="' + url + '" st_title="' + document.title + '"></span>'
+        + '</div>';
 
-var buttons = parseXML(xml);
+var buttons = document.createElement("div");
+buttons.id = "amo-social-buttons-userscript";
+buttons.style.cssFloat = (dir == "rtl") ? "right" : "none";
+buttons.innerHTML = xml;
+
 addon.appendChild(buttons);
 
 // must use DOM method or the scripts won't execute
@@ -390,10 +384,4 @@ function $config(aEvent) {
   //overlay.style.display = (overlay.style.display == "") ? "block" : "";
   if ($("#GM_config")) GM_config.close();
   else GM_config.open();
-}
-
-function parseXML(aXML) {
-  return (new DOMParser).parseFromString(new XML(aXML).toXMLString(),
-                                         "application/xml")
-                        .documentElement;
 }
