@@ -7,7 +7,7 @@
 // ==UserScript==
 // @name            userstyles.org: Trim Extra Lines from Style Code
 // @namespace       http://userscripts.org/users/12
-// @version         1.0
+// @version         2.0
 // @author          LouCypher
 // @license         WTFPL
 // @include         http://userstyles.org/styles/*
@@ -26,7 +26,7 @@ w.loadCode = function loadCode(callback, promptOnIncomplete) {
     text = codeElement.textContent;
   else
     text = codeElement.innerText;
-  if (text.length > 0 && options == currentOptions) {
+  if (text.length > 0 && options == w.currentOptions) {
     if (callback) {
       callback();
     }
@@ -42,7 +42,7 @@ w.loadCode = function loadCode(callback, promptOnIncomplete) {
           codeElement.textContent = responseText;
         else
           codeElement.innerText = responseText;
-        currentOptions = options;
+        w.currentOptions = options;
         if (callback)
           callback();
       } else {
