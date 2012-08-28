@@ -7,12 +7,17 @@
 // ==UserScript==
 // @name            userstyles.org: Trim Extra Lines from Style Code
 // @namespace       http://userscripts.org/users/12
-// @version         2.0
+// @version         3.0
 // @author          LouCypher
 // @license         WTFPL
 // @include         http://userstyles.org/styles/*
 // @grant           unsafeWindow
 // ==/UserScript==
+
+setTimeout(function() {
+  var codeElement = document.getElementById('stylish-code');
+  codeElement.textContent = codeElement.textContent.replace(/\r/g, "");
+}, 1000)
 
 var w = unsafeWindow;
 w.loadCode = function loadCode(callback, promptOnIncomplete) {
@@ -23,9 +28,9 @@ w.loadCode = function loadCode(callback, promptOnIncomplete) {
     return false;
   }
   if ("textContent" in codeElement)
-    text = codeElement.textContent;
+    text = codeElement.textContent.replace(/\r/g, "");
   else
-    text = codeElement.innerText;
+    text = codeElement.innerText.replace(/\r/g, "");
   if (text.length > 0 && options == w.currentOptions) {
     if (callback) {
       callback();
