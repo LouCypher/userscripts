@@ -20,7 +20,7 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       11.1
+// @version       12
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
@@ -29,13 +29,16 @@
 // @include       https://github.com/*
 // @include       https://gist.github.com/*
 // @exclude       https://github.com/dashboard/*
+// @grant         none
 // ==/UserScript==
 
 /*
     Changelog:
-      - 2021-07-27
+      - 2012-09-24
+          v12: Updated button on user's profile page.
+      - 2012-07-27
           v11.0: Updated to new repo layout.
-      - 2021-07-26
+      - 2012-07-26
           v10.0: Fixed: incorrect commit URL.
       - 2012-07-19
           v9.1: Another CSS fix.
@@ -67,7 +70,8 @@
 (function() {
   var isGist = location.hostname == "gist.github.com";
   var buttons = isGist ? $("#repos .repo.public .path") // public gist
-                       : $(".site ul.pagehead-actions");
+                       : $(".site ul.pagehead-actions") ||
+                         $(".user-following-container");
   if (!buttons ||
 
       // Thou shalt not Flattreth thyself.
@@ -106,7 +110,7 @@
     return;
   }
 
-  var username = $(".username");
+  var username = $(".avatared > h1 > em");
   var repoName = url.match(/[^(\.com\/)]\w+\/.[^\/]*/);
   if (!(repoName || username)) return;
 
@@ -114,7 +118,13 @@
 
   var name = repoName ? repoName.toString() : username.textContent;
 
-  if (!$(".repohead ul.tabs li:last-child a[href$='admin']")) {
+  if (buttons.nodeName == "SPAN") {
+    url = location.href.replace(location.search, "");
+    var span = insertBefore(document.createElement("span"),
+                            buttons.firstChild, buttons);
+    span.appendChild(flattrButton(url, "Flattr " + name, "minibutton"));
+
+  } else if (!$(".repohead ul.tabs li:last-child a[href$='admin']")) {
   // Thou shalt not Flattreth thine own repo.
     var li = insertBefore(document.createElement("li"),
                           $("li.text", buttons) ? $("li.text", buttons).
