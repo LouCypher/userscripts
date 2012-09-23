@@ -20,7 +20,7 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       12
+// @version       12.1
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
@@ -110,7 +110,7 @@
     return;
   }
 
-  var username = $(".avatared > h1 > em");
+  var username = $(".avatared > h1 > em") || $(".avatared > h1 > .name-only");
   var repoName = url.match(/[^(\.com\/)]\w+\/.[^\/]*/);
   if (!(repoName || username)) return;
 
