@@ -20,7 +20,7 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       12.1
+// @version       12.2
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
@@ -30,6 +30,7 @@
 // @include       https://github.com/*
 // @include       https://gist.github.com/*
 // @exclude       https://github.com/dashboard/*
+// @exclude       https://github.com/*/following
 // @grant         none
 // ==/UserScript==
 
