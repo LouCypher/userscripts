@@ -1,7 +1,7 @@
 
 
 /*************** Social Buttons for AMO ***************/
-html, .saveclose_buttons, #GM_config {
+html, .saveclose_buttons {
   background: transparent none !important;
 }
 .config_var { margin-left: 3em !important; }
