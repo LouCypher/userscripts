@@ -11,6 +11,7 @@
 // @version         2.0
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/COPYING
+// @updateURL       https://userscripts.org/scripts/source/150793.meta.js
 // @include         *
 // @exclude         file:///*
 // @exclude         /^https?://twitter\.com/.*/
