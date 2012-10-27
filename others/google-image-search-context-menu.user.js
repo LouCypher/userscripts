@@ -25,6 +25,7 @@
 // @version         1.0
 // @author          LouCypher
 // @license         GPL
+// @updateURL       https://userscripts.org/scripts/source/151097.meta.js
 // @include         *
 // @exclude         file://*
 // @grant           GM_openInTab
