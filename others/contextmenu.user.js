@@ -8,7 +8,7 @@
 // @name            Context Menu Example
 // @namespace       http://userscripts.org/users/12
 // @description     Share page/link to Twitter/Facebook/Google+ from browser context menu
-// @version         2.1
+// @version         3.0
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/COPYING
 // @updateURL       https://userscripts.org/scripts/source/150793.meta.js
@@ -17,7 +17,6 @@
 // @exclude         /^https?://twitter\.com/.*/
 // @exclude         /^https?://plus\.google\.com/.*/
 // @exclude         /^https?://www\.facebook\.com/.*/
-// @grant           none
 // ==/UserScript==
 
 /*
@@ -27,7 +26,16 @@
 */
 
 var menu = document.body.appendChild(document.createElement("menu"));
-menu.outerHTML = '<menu id="userscript-context-menu" type="context">\
+var html = document.documentElement;
+if (html.hasAttribute("contextmenu")) {
+  // We don't want to override web page context menu if any
+  var contextmenu = $("#" + html.getAttribute("contextmenu"));
+  contextmenu.appendChild(menu); // Append to web page context menu
+} else {
+  html.setAttribute("contextmenu", "userscript-share-context-menu");
+}
+
+menu.outerHTML = '<menu id="userscript-share-context-menu" type="context">\
                     <menu label="" url="">\
                       <menuitem label="Twitter"\
                                 icon="data:application/ico;base64,\
@@ -459,13 +467,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAABwAAAAAAAAAM=">\
                     </menu>\
                   </menu>';
 
-var html = document.documentElement;
-html.setAttribute("contextmenu", "userscript-context-menu");
-
 // If browser supports contextmenu
 if ("contextMenu" in html && "HTMLMenuItemElement" in window) {
   // Executed on clicking a menuitem
-  $("#userscript-context-menu menu").addEventListener("click", share, false);
+  $("#userscript-share-context-menu menu").addEventListener("click", share, false);
   html.addEventListener("contextmenu", initMenu, false); // Executed on right clicking
 }
 
@@ -473,7 +478,7 @@ function initMenu(e) {
   var node = e.target;
   var title = document.title;
 
-  var menu = $("#userscript-context-menu menu");
+  var menu = $("#userscript-share-context-menu menu");
   menu.label = "Share This Page\u2026"; // Set menu label
 
   var canonical = $("head link[rel='canonical']");
