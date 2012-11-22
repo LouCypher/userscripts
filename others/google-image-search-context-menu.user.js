@@ -54,6 +54,7 @@ document.querySelector("#userscript-search-by-image menuitem")
         .addEventListener("click", searchImage, false);
 
 function initMenu(aEvent) {
+  // Executed when user right click on web page body
   // aEvent.target is the element you right click on
   var node = aEvent.target;
   var item = document.querySelector("#userscript-search-by-image menuitem");
@@ -75,6 +76,7 @@ function addParamsToForm(aForm, aKey, aValue) {
 }
 
 function searchImage(aEvent) {
+  // Executed when user click on menuitem
   // aEvent.target is the <menuitem> element
   var imageURL = aEvent.target.getAttribute("imageURL");
   if (imageURL.indexOf("data:") == 0) {
