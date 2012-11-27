@@ -26,6 +26,7 @@
 // @author          LouCypher
 // @contributor     luckymouse (CSS)
 // @license         GPL
+// @homepageURL     https://github.com/LouCypher/userscripts/tree/master/darken
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/darken/darken.user.js
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/darken/darken.css
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
