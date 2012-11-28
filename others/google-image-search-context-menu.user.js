@@ -22,23 +22,25 @@
 // @name            Google Image Search Context Menu
 // @namespace       http://userscripts.org/users/12
 // @description     Add 'Search by Image' in browser context menu when you right click on image to search Google with that image.
-// @version         1.1
+// @version         1.2
 // @author          LouCypher
 // @license         GPL
-// @updateURL       https://userscripts.org/scripts/source/151097.meta.js
+// @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
+// @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/google-image-search-context-menu.user.js
 // @include         *
 // @exclude         file://*
 // @grant           GM_openInTab
 // ==/UserScript==
 
-if (!"HTMLMenuItemElement" in window) return;
+if (!("contextMenu" in document.documentElement &&
+      "HTMLMenuItemElement" in window)) return;
 
 var body = document.body;
 body.addEventListener("contextmenu", initMenu, false);
 
 var menu = body.appendChild(document.createElement("menu"));
 menu.outerHTML = '<menu id="userscript-search-by-image" type="context">\
-                    <menuitem label="Search by Image"\
+                    <menuitem label="Search Google with this image"\
                               icon="data:image/png;base64,\
 iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz\
 AAAK6wAACusBgosNWgAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNXG14zYAAAEl\
