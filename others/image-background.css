@@ -1,0 +1,10 @@
+html, body {
+  background: transparent url("data:image/gif;base64,\
+R0lGODlhEAAQAIAAAPDz+P///ywAAAAAEAAQAAACH4RvoauIzNyBSyYaLMDZcv15HAaS\
+IlWiJ5Sya/RWVgEAOw==") 0 0 repeat fixed !important;
+}
+
+img {
+  background: transparent none !important;
+  /*box-shadow: 0px 0px 9px rgba(0, 0, 0, .5) !important;*/
+}
