@@ -22,7 +22,7 @@
 // @name            Darken
 // @namespace       http://userscripts.org/users/12
 // @description     Add menuitem to browser context menu to darken the web page
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @contributor     luckymouse (CSS)
 // @license         GPL
@@ -37,6 +37,7 @@ const STYLE_ID = "userscript-darken-style";
 var isDark = sessionStorage.getItem("dark-site");
 if (isDark) darken();
 
+if (!(document.head && document.body)) return;
 var menu = document.body.appendChild(document.createElement("menu"));
 var html = document.documentElement;
 if (html.hasAttribute("contextmenu")) {
