@@ -8,7 +8,7 @@
 // @name            Single Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change single image background and show transparency
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/
 // @homepageURL     https://github.com/LouCypher/userscripts
@@ -20,6 +20,13 @@
 // @grant           GM_addStyle
 // @grant           GM_getResourceText
 // ==/UserScript==
+
+/*
+  Changelog:
+  2.1 - Customizable color for background checkers in CSS
+  2.0 - Using @resource for CSS
+  1.0 - Initial release.
+*/
 
 if (!/^image\//.test(document.contentType)) return;
 GM_addStyle(GM_getResourceText("css"));
