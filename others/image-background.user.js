@@ -5,10 +5,10 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */
 
 // ==UserScript==
-// @name            Single Image Background and Transparency
+// @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
-// @description     Change single image background and show transparency
-// @version         2.1
+// @description     Change standalone image background and show transparency
+// @version         2.2
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/
 // @homepageURL     https://github.com/LouCypher/userscripts
@@ -23,8 +23,9 @@
 
 /*
   Changelog:
-  2.1 - Customizable color for background checkers in CSS
-  2.0 - Using @resource for CSS
+  2.2 - Changed name and description.
+  2.1 - Customizable color for background checkers in CSS.
+  2.0 - Using @resource for CSS.
   1.0 - Initial release.
 */
 
