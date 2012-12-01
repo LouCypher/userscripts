@@ -22,12 +22,12 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         3.1
+// @version         3.2
 // @author          LouCypher
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts
-// @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/image-background.user.js
-// @resource        css https://raw.github.com/LouCypher/userscripts/master/others/image-background.css
+// @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
+// @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @run-at          document-start
 // @include         *
@@ -39,6 +39,7 @@
 
 /*
   Changelog:
+  3.2 - Dir changes
   3.1 - Scriptish compatibility.
   3.0 - Background color and patterns are now configurable.
   2.2 - Changed name and description.
