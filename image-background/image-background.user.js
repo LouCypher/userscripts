@@ -25,7 +25,7 @@
 // @version         3.4
 // @author          LouCypher
 // @license         GPL
-// @homepageURL     https://github.com/LouCypher/userscripts
+// @homepageURL     https://github.com/LouCypher/userscripts/tree/master/image-background
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
 // @resource        menu https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
