@@ -1,7 +1,7 @@
 /*
     Standalone Image Background and Transparency
     Change standalone image background and show transparency on Firefox.
-    Compatibility: Firefox 11.0 or newer.
+    Compatibility: Firefox 15.0 or newer.
     Copyright (C) 2012 LouCypher
 
     This program is free software: you can redistribute it and/or modify
