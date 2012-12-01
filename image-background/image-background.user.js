@@ -22,12 +22,13 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         3.2
+// @version         3.4
 // @author          LouCypher
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
+// @resource        menu https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @run-at          document-start
 // @include         *
@@ -39,6 +40,8 @@
 
 /*
   Changelog:
+  3.4 - Using @resource for menu.
+  3.3 - Refactored.
   3.2 - Dir changes
   3.1 - Scriptish compatibility.
   3.0 - Background color and patterns are now configurable.
@@ -53,8 +56,8 @@ if (!/^image\//.test(document.contentType)) return;
 var colorPref = "bgColor"; // Color pref name
 var bgColor = GM_getValue(colorPref, ""); // Retrieve color value from pref
 var bgImage = GM_getValue("bgImage", true);
-
 var html = document.documentElement;
+
 setBgColor(bgColor); // Set background color
 setBgImage(bgImage);
 
@@ -63,25 +66,14 @@ GM_addStyle(GM_getResourceText("css")); // Inject style from @resource
 if (!("contextMenu" in html && "HTMLMenuItemElement" in window)) return;
 
 // Add context menu
-var id = (typeof GM_info == "object")
-          ? GM_info.script.name
-          : "Standalone Image Background and Transparency";
-id = id.replace(/\s/g, "-") + "-";
 var menu = document.body.appendChild(document.createElement("menu"));
-menu.outerHTML = '<menu id="' + id + 'context-menu"\
-                        type="context">\
-                    <menuitem id="' + id + 'change-background-color"\
-                              label="Change backgound color"></menuitem>\
-                    <menuitem id="' + id + 'toggle-background-image"\
-                              type="checkbox"\
-                              label="Use background patterns"></menuitem>\
-                  </menu>';
+menu.outerHTML = GM_getResourceText("menu");
 
 // Init context menu
-if (bgImage) $("#" + id + "toggle-background-image").setAttribute("checked", "true");
-$("#" + id + "change-background-color").addEventListener("click", configColor, false);
-$("#" + id + "toggle-background-image").addEventListener("click", toggleBgImage, false);
-html.setAttribute("contextmenu", id + "context-menu");
+if (bgImage) $("toggle-background-image").setAttribute("checked", "true");
+$("change-background-color").addEventListener("click", configColor, false);
+$("toggle-background-image").addEventListener("click", toggleBgImage, false);
+html.setAttribute("contextmenu", "context-menu");
 
 /**/
 
@@ -114,6 +106,6 @@ function configColor() {
   if (color || (color == "")) setBgColor(color);
 }
 
-function $(aSelector, aNode) {
-  return (aNode || document).querySelector(aSelector);
+function $(aId) {
+  return document.getElementById(aId);
 }
