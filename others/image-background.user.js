@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         3.0
+// @version         3.1
 // @author          LouCypher
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts
@@ -39,6 +39,7 @@
 
 /*
   Changelog:
+  3.1 - Scriptish compatibility.
   3.0 - Background color and patterns are now configurable.
   2.2 - Changed name and description.
   2.1 - Customizable color for background checkers in CSS.
@@ -61,7 +62,10 @@ GM_addStyle(GM_getResourceText("css")); // Inject style from @resource
 if (!("contextMenu" in html && "HTMLMenuItemElement" in window)) return;
 
 // Add context menu
-var id = GM_info.script.name.replace(/\s/g, "-") + "-";
+var id = (typeof GM_info == "object")
+          ? GM_info.script.name
+          : "Standalone Image Background and Transparency";
+id = id.replace(/\s/g, "-") + "-";
 var menu = document.body.appendChild(document.createElement("menu"));
 menu.outerHTML = '<menu id="' + id + 'context-menu"\
                         type="context">\
