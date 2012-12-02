@@ -17,17 +17,15 @@ To change image background settings, right click on the page.
 
 ![Right click on the page to configure](http://lh5.googleusercontent.com/-K8k1wMN78dY/ULl_yAmHrfI/AAAAAAAAC64/USQ_y_pi4VE/s0/image-after-contextmenu.png "Right click on the page to configure")
 
-### Change background color
-
-To change background color, select *Change background color* on context menu.
-
-Enter valid [color value](https://developer.mozilla.org/CSS/color_value).
-
-![Set background color](http://lh5.googleusercontent.com/-SJPtGsp_D48/ULmJws41KqI/AAAAAAAAC7U/dXKsCPXOvjE/s266/image-after-prompt.png "Set background color")
-
 ### Toggle background patterns
 
 To toggle background patterns, just check/uncheck *Use background patterns* on context menu.
+
+### Change background color
+
+To change background color, select *Change background color* on context menu and enter valid [color value](https://developer.mozilla.org/CSS/color_value).
+
+![Set background color](http://lh5.googleusercontent.com/-SJPtGsp_D48/ULmJws41KqI/AAAAAAAAC7U/dXKsCPXOvjE/s266/image-after-prompt.png "Set background color")
 
 - - -
 
