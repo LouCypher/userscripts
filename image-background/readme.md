@@ -1,5 +1,8 @@
 # Standalone Image Background and Transparency
 
+[![Flattr this!](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?url=https%3A%2F%2Fgithub.com%2FLouCypher%2Fuserscripts)
+[![Tweet](https://si0.twimg.com/a/1309282244/images/goodies/tweetn.png)](https://twitter.com/share?text=Change+standalone+image+background+and+show+transparency+on+%23Firefox+with+this+%23userscript&url=https%3A%2F%2Fgithub.com%2FLouCypher%2Fuserscripts%2Ftree%2Fmaster%2Fimage-background&related=zoolcar9&via=zoolcar9)
+
 Change standalone image background and show transparency on Firefox. Use context menu to configure background color and patterns.
 
 [![Before](https://lh4.googleusercontent.com/-Pay5iiGHq0Q/ULZsaTrwlRI/AAAAAAAAC5U/ND8sMF1-XZg/s320/image-before.png "Before")](https://lh4.googleusercontent.com/-Pay5iiGHq0Q/ULZsaTrwlRI/AAAAAAAAC5U/ND8sMF1-XZg/s0/image-before.png)
@@ -26,8 +29,3 @@ To toggle background patterns, just check/uncheck *Use background patterns* on c
 To change background color, select *Change background color* on context menu and enter valid [color value](https://developer.mozilla.org/CSS/color_value).
 
 ![Set background color](http://lh5.googleusercontent.com/-SJPtGsp_D48/ULmJws41KqI/AAAAAAAAC7U/dXKsCPXOvjE/s266/image-after-prompt.png "Set background color")
-
-- - -
-
-[![Flattr this!](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?url=https%3A%2F%2Fgithub.com%2FLouCypher%2Fuserscripts%2Ftree%2Fmaster%2Fimage-background)
-[![Tweet](https://si0.twimg.com/a/1309282244/images/goodies/tweetn.png)](https://twitter.com/share?text=Change+standalone+image+background+and+show+transparency+on+%23Firefox+with+this+%23userscript&url=https%3A%2F%2Fgithub.com%2FLouCypher%2Fuserscripts%2Ftree%2Fmaster%2Fimage-background&related=zoolcar9)
