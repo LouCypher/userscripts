@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         3.4
+// @version         4.0
 // @author          LouCypher
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/image-background
@@ -40,6 +40,7 @@
 
 /*
   Changelog:
+  4.0 - Added 'Show Image Transparency' menuitem.
   3.4 - Using @resource for menu.
   3.3 - Refactored.
   3.2 - Dir changes
@@ -53,15 +54,21 @@
 
 if (!/^image\//.test(document.contentType)) return;
 
-var colorPref = "bgColor"; // Color pref name
-var bgColor = GM_getValue(colorPref, ""); // Retrieve color value from pref
-var bgImage = GM_getValue("bgImage", true);
+// Check preferences
+var bgColor = GM_getValue("bgColor", ""); // Get color value pref
+var bgImage = GM_getValue("bgImage", true); // Get background pref
+var imgTrans = GM_getValue("imgTrans", true); // Get transparency pref
+
 var html = document.documentElement;
 
-setBgColor(bgColor); // Set background color
+setBgColor(bgColor);
 setBgImage(bgImage);
 
-GM_addStyle(GM_getResourceText("css")); // Inject style from @resource
+var css = GM_getResourceText("css");
+if (!imgTrans) { // 
+  css = css.replace(/transparent/, "hsl(0,0%,90%)");
+}
+GM_addStyle(css); // Inject style from @resource
 
 if (!("contextMenu" in html && "HTMLMenuItemElement" in window)) return;
 
@@ -70,8 +77,10 @@ var menu = document.body.appendChild(document.createElement("menu"));
 menu.outerHTML = GM_getResourceText("menu");
 
 // Init context menu
-if (bgImage) $("toggle-background-image").setAttribute("checked", "true");
+bgImage && $("toggle-background-image").setAttribute("checked", "true");
+imgTrans && $("toggle-image-transparency").setAttribute("checked", "true");
 $("change-background-color").addEventListener("click", configColor, false);
+$("toggle-image-transparency").addEventListener("click", toggleTransparency, false);
 $("toggle-background-image").addEventListener("click", toggleBgImage, false);
 html.setAttribute("contextmenu", "context-menu");
 
@@ -102,8 +111,20 @@ function toggleBgImage(aEvent) {
 function configColor() {
   var color = prompt("Enter valid color value.\n" +
                      "Enter empty string to use default color.\n\n",
-                     GM_getValue(colorPref, ""));
+                     GM_getValue("bgColor", ""));
   if (color || (color == "")) setBgColor(color);
+}
+
+function showTransparency(aImage, aBoolean) {
+  aImage.style.setProperty("background-color",
+                           aBoolean ? "transparent" : "hsl(0,0%,90%)",
+                           "important");
+  GM_setValue("imgTrans", aBoolean);
+}
+
+function toggleTransparency(aEvent) {
+  showTransparency(document.querySelector("body > img"),
+                   aEvent.target.checked);
 }
 
 function $(aId) {
