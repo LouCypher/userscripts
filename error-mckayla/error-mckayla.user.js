@@ -24,7 +24,7 @@
 // @version         1.0
 // @author          LouCypher
 // @license         GPL
-// @iconURL         https://lh4.googleusercontent.com/-IKe4ZFDgZEM/UMORs0PJ8oI/AAAAAAAAC-o/6Glt50oL4Pw/s0/error-mckayla-icon.png
+// @icon            https://lh4.googleusercontent.com/-IKe4ZFDgZEM/UMORs0PJ8oI/AAAAAAAAC-o/6Glt50oL4Pw/s0/error-mckayla-icon.png
 // @screenshot      https://lh4.googleusercontent.com/-pm9icNNEJRQ/UMOQtTtv0_I/AAAAAAAAC-g/8tnpnpwUx84/s640/error-mckayla.png
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/error-mckayla
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/error-mckayla/error-mckayla.user.js
