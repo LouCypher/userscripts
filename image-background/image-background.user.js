@@ -22,10 +22,11 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         4.0
+// @version         4.1
 // @author          LouCypher
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/image-background
+// @downloadURL     https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
 // @resource        menu https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
@@ -38,37 +39,20 @@
 // @grant           GM_setValue
 // ==/UserScript==
 
-/*
-  Changelog:
-  4.0 - Added 'Show Image Transparency' menuitem.
-  3.4 - Using @resource for menu.
-  3.3 - Refactored.
-  3.2 - Dir changes
-  3.1 - Scriptish compatibility.
-  3.0 - Background color and patterns are now configurable.
-  2.2 - Changed name and description.
-  2.1 - Customizable color for background checkers in CSS.
-  2.0 - Using @resource for CSS.
-  1.0 - Initial release.
-*/
-
 if (!/^image\//.test(document.contentType)) return;
 
-// Check preferences
-var bgColor = GM_getValue("bgColor", ""); // Get color value pref
-var bgImage = GM_getValue("bgImage", true); // Get background pref
-var imgTrans = GM_getValue("imgTrans", true); // Get transparency pref
+/** Start checking preferences **/
+var bgColor = GM_getValue("bgColor", ""); // Get color value pref (def = empty)
+var bgImage = GM_getValue("bgImage", true); // Get background pref (def = true)
+var imgTrans = GM_getValue("imgTrans", true); // Get transparency pref (def = true)
+/** End checking preferences **/
 
 var html = document.documentElement;
 
-setBgColor(bgColor);
-setBgImage(bgImage);
-
-var css = GM_getResourceText("css");
-if (!imgTrans) { // 
-  css = css.replace(/transparent/, "hsl(0,0%,90%)");
-}
-GM_addStyle(css); // Inject style from @resource
+setBgColor(bgColor); // Set background color from pref
+setBgImage(bgImage); // Set background patters from pref
+showTransparency(imgTrans); // Set image transparency from pref
+GM_addStyle(GM_getResourceText("css")); // Inject style from @resource
 
 if (!("contextMenu" in html && "HTMLMenuItemElement" in window)) return;
 
@@ -76,16 +60,23 @@ if (!("contextMenu" in html && "HTMLMenuItemElement" in window)) return;
 var menu = document.body.appendChild(document.createElement("menu"));
 menu.outerHTML = GM_getResourceText("menu");
 
-// Init context menu
+/** Start context menu initialization **/
+
+// Check/uncheck menu items based on prefs
 bgImage && $("toggle-background-image").setAttribute("checked", "true");
 imgTrans && $("toggle-image-transparency").setAttribute("checked", "true");
+
+// Add click events to menu items
 $("change-background-color").addEventListener("click", configColor, false);
 $("toggle-image-transparency").addEventListener("click", toggleTransparency, false);
 $("toggle-background-image").addEventListener("click", toggleBgImage, false);
+
+// Set context menu to html element
 html.setAttribute("contextmenu", "context-menu");
 
-/**/
+/** End context menu initialization **/
 
+// Set background color
 function setBgColor(aColorValue) {
   if (aColorValue == "") {
     html.style.backgroundColor = ""; // Use default color in CSS resource
@@ -95,36 +86,52 @@ function setBgColor(aColorValue) {
   GM_setValue("bgColor", aColorValue); // Store color value to pref
 }
 
+// Enable/disable background patterns
 function setBgImage(aBoolean) {
   switch(aBoolean) {
-    case true: html.style.backgroundImage = ""; // Use bg patterns in CSS resource
-               break;
-    case false: html.style.setProperty("background-image", "none", "important");
+    case true: // Enable background patterns
+      html.style.backgroundImage = ""; // Use bg patterns in CSS resource
+      break;
+    case false: // Disable background patterns
+      html.style.setProperty("background-image", "none", "important");
   }
-  GM_setValue("bgImage", aBoolean);
+  GM_setValue("bgImage", aBoolean); // Store background option to pref
 }
 
+// Toggle background patterns on/off
 function toggleBgImage(aEvent) {
   setBgImage(aEvent.target.checked);
 }
 
+// Ask user to enter color value for background
 function configColor() {
   var color = prompt("Enter valid color value.\n" +
                      "Enter empty string to use default color.\n\n",
                      GM_getValue("bgColor", ""));
-  if (color || (color == "")) setBgColor(color);
+  if (color || (color == "")) setBgColor(color); // Store color value to pref
 }
 
-function showTransparency(aImage, aBoolean) {
-  aImage.style.setProperty("background-color",
-                           aBoolean ? "transparent" : "hsl(0,0%,90%)",
-                           "important");
-  GM_setValue("imgTrans", aBoolean);
+// Enable/disable image transparency
+function showTransparency(aBoolean) {
+  var styleId = "transparent-image";
+  var style = null;
+  switch (aBoolean) {
+    case true: // Enable image transparency
+      // Inject style
+      style = document.head.appendChild(document.createElement("style"));
+      style.textContent = "img { background-color: transparent !important; }";
+      style.id = styleId;
+      break;
+    case false: // Disable image transparency
+      style = $(styleId);
+      style && style.parentNode.removeChild(style); // Remove style if exists
+  }
+  GM_setValue("imgTrans", aBoolean); // Store image transparency option to pref
 }
 
+// Toggle image transparency on/off
 function toggleTransparency(aEvent) {
-  showTransparency(document.querySelector("body > img"),
-                   aEvent.target.checked);
+  showTransparency(aEvent.target.checked);
 }
 
 function $(aId) {

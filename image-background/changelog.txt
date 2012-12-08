@@ -1,0 +1,14 @@
+4.1 - Fixed: image transparency lost when zoom/unzoom image.
+4.0 - Added 'Show Image Transparency' menuitem.
+
+3.4 - Using @resource for menu.
+3.3 - Refactored.
+3.2 - Dir changes
+3.1 - Scriptish compatibility.
+3.0 - Background color and patterns are now configurable via context menu.
+
+2.2 - Changed name and description.
+2.1 - Configurable color for background checkers in CSS.
+2.0 - Using @resource for CSS.
+
+1.0 - Initial release.
