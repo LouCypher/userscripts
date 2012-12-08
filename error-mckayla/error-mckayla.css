@@ -1,0 +1,24 @@
+html {
+  background-image: url("http://lh3.googleusercontent.com/-hxF0dhBj6u0/UMN_GW1eSlI/AAAAAAAAC-M/GhAwly8FOqc/s0/McKayla-384.png") !important;
+  background-position: right bottom !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+#errorPageContainer {
+  background-image: -moz-linear-gradient(left, rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)),
+                    url("http://lh3.googleusercontent.com/-hxF0dhBj6u0/UMN_GW1eSlI/AAAAAAAAC-M/GhAwly8FOqc/s0/McKayla-384.png") !important;
+  background-position: 0 0, right bottom !important;
+  background-repeat: repeat, no-repeat !important;
+  background-attachment: scroll, fixed !important;
+}
+
+#errorTitle {
+  margin-left: 0 !important;
+  padding-left: 80px !important;
+  background-image: url("http://lh6.googleusercontent.com/-kYJ-FrOxdDk/UMN1quxYwBI/AAAAAAAAC9s/NjLbFNtu0Jk/s0/warning-large.png") !important;
+  background-position: 0 0 !important;
+  background-repeat: no-repeat !important;
+}
+
+#resurrect { background-color: transparent !important; }
