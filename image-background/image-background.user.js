@@ -31,6 +31,7 @@
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
 // @resource        menu https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
+// @resource        changelog https://raw.github.com/LouCypher/userscripts/master/image-background/changelog.txt
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @run-at          document-start
 // @include         *
