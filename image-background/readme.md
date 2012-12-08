@@ -10,7 +10,15 @@ Change standalone image background and show transparency on Firefox. Use context
 
 ## Compatibility
 
-Firefox 15+ with [Greasemonkey](https://addons.mozilla.org/addon/greasemonkey) 0.9.16+ or [Scriptish](https://addons.mozilla.org/addon/scriptish) 0.1+
+### Browsers
+* Firefox 15+
+* Pale Moon 15+
+* SeaMonkey 2.12+
+
+### Extensions
+
+* [Greasemonkey](https://addons.mozilla.org/addon/greasemonkey?src=external-github.com/loucypher/userscripts) 0.9.16+
+* [Scriptish](https://addons.mozilla.org/addon/scriptish?src=external-github.com/loucypher/userscripts) 0.1+
 
 [![Install](https://lh5.googleusercontent.com/-FtCn5O9tCIw/UL-im_1aBzI/AAAAAAAAC8Y/c-aoqaalnMM/s0/_install.png)](https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js "Install this user script")
 
