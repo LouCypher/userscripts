@@ -28,7 +28,6 @@
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/image-background
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
-// @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
 // @resource        menu https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
 // @resource        changelog https://raw.github.com/LouCypher/userscripts/master/image-background/changelog.txt
