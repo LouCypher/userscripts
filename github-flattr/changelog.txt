@@ -1,0 +1,30 @@
+13.0 - Updated with new Gists layout.
+
+12.0 - Updated button on user's profile page.
+
+11.0 - Updated to new repo layout.
+
+10.0 - Fixed - incorrect commit URL.
+
+ 9.1 - Another CSS fix.
+ 9.0 - Fixed Flattr button style on gist.
+     - Refactored.
+
+ 8.0 - Includes gist.github.com (public gist only).
+
+ 7.0 - Don't add Flattr button on specific pages.
+     - Fixed 'committer is null' error.
+
+ 6.0 - Don't add Flattr button on user's dashboard.
+
+ 5.0 - Don't add Flattr button on repo admin page.
+
+ 4.0 - Don't add Flattr button on your own commit.
+ 4.0b - Added Flattr button on commit page.
+      - Reduced Flattr icon size.
+
+ 3.0 - Don't add Flattr button on organizations.
+
+ 2.0 - Fixed something.
+
+ 1.0 - Initial release.
