@@ -1,3 +1,5 @@
+5.0 - Added color value checker.
+
 4.1 - Fixed: image transparency lost when zoom/unzoom image.
 4.0 - Added 'Show Image Transparency' menuitem.
 

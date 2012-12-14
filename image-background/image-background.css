@@ -7,5 +7,5 @@ html, body {
                    /8StgZLQfDcRhbwAAfyQHW028hvoAAAAASUVORK5CYII=")
               0 0 repeat fixed !important;
 }
-
 img { background-image: none !important; }
+#dummy { color: transparent; display: none;}

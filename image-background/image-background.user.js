@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         4.1
+// @version         5.0
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -42,11 +42,11 @@
 
 if (!/^image\//.test(document.contentType)) return;
 
-/** Start checking preferences **/
+/***** Start checking preferences *****/
 var bgColor = GM_getValue("bgColor", ""); // Get color value pref (def = empty)
 var bgImage = GM_getValue("bgImage", true); // Get background pref (def = true)
 var imgTrans = GM_getValue("imgTrans", true); // Get transparency pref (def = true)
-/** End checking preferences **/
+/***** End checking preferences *****/
 
 var html = document.documentElement;
 
@@ -61,8 +61,11 @@ if (!("contextMenu" in html && "HTMLMenuItemElement" in window)) return;
 var menu = document.body.appendChild(document.createElement("menu"));
 menu.outerHTML = GM_getResourceText("menu");
 
-/** Start context menu initialization **/
+// Add dummy element to check color value
+var dummy = document.body.appendChild(document.createElement("div"));
+dummy.id = "dummy";
 
+/***** Start context menu initialization *****/
 // Check/uncheck menu items based on prefs
 bgImage && $("toggle-background-image").setAttribute("checked", "true");
 imgTrans && $("toggle-image-transparency").setAttribute("checked", "true");
@@ -74,8 +77,7 @@ $("toggle-background-image").addEventListener("click", toggleBgImage, false);
 
 // Set context menu to html element
 html.setAttribute("contextmenu", "context-menu");
-
-/** End context menu initialization **/
+/***** End context menu initialization *****/
 
 // Set background color
 function setBgColor(aColorValue) {
@@ -109,7 +111,19 @@ function configColor() {
   var color = prompt("Enter valid color value.\n" +
                      "Enter empty string to use default color.\n\n",
                      GM_getValue("bgColor", ""));
-  if (color || (color == "")) setBgColor(color); // Store color value to pref
+
+  if (color || (color == "")) {
+    // Set dummy element color
+    $("dummy").style.color = (color == "") ? "#222" : color;
+
+    if (getComputedStyle(dummy, null).color == "transparent") {
+    // If dummy element's color is not set because invalid color value
+      alert("Invalid color value!");
+    } else {
+      setBgColor(color); // Set background color
+    }
+    $("dummy").style.color = ""; // Reset dummy element's color
+  }
 }
 
 // Enable/disable image transparency
