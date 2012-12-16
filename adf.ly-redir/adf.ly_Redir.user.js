@@ -24,6 +24,7 @@
 // @author          LouCypher
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/adf.ly-redir
+// @updateURL       https://raw.github.com/LouCypher/userscripts/master/adf.ly-redir/adf.ly_Redir.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/adf.ly-redir/adf.ly_Redir.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @include         http://adf.ly/*
