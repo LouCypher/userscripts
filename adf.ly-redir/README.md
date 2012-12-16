@@ -1,7 +1,8 @@
 # adf.ly Redir
 
-Redirect adf.ly to its target location.
-It works even with [Adblock Plus](https://addons.mozilla.org/addon/adblock-plus) and [NoScript](https://addons.mozilla.org/addon/noscript) extensions enabled.
+Redirect adf.ly to its target location. No ads, no counters, just redirect.
+
+It works even with [Adblock Plus](https://addons.mozilla.org/addon/adblock-plus/?src=external-github.com/loucypher/userscripts), [NoScript](https://addons.mozilla.org/addon/noscript/?src=external-github.com/loucypher/userscripts) and [Ghostery](https://addons.mozilla.org/addon/ghostery/?src=external-github.com/loucypher/userscripts) extensions are active. 
 
 ## Compatibility
 
