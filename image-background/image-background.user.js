@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.0a4
+// @version         6.0a5
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -92,8 +92,19 @@ $("default").addEventListener("click", defaultBgColor, false);
 
 // Set context menu to html element
 html.setAttribute("contextmenu", "context-menu");
+html.addEventListener("contextmenu", popupShowing, false);
 /***** End context menu initialization *****/
 
+// Executed on right click
+function popupShowing(aEvent) {
+  var node = aEvent.target;
+  while (node && node.id != "color-config") node = node.parentNode;
+  if (node) { // Color config dialog
+    html.removeAttribute("contextmenu"); // Hide context menu items
+  } else {
+    html.setAttribute("contextmenu", "context-menu"); // Show context menu items
+  }
+}
 
 // Check validity of color value
 function validateColor(aColor, aCallback) {
