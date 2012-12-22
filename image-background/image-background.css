@@ -1,4 +1,4 @@
-html, body {
+html {
   background: #222
               url("data:image/png;base64,\
                    iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hA\
@@ -7,7 +7,11 @@ html, body {
                    /8StgZLQfDcRhbwAAfyQHW028hvoAAAAASUVORK5CYII=")
               0 0 repeat fixed !important;
 }
-img { background-image: none !important; }
+body, img { background-image: none !important; }
+img {
+  box-shadow: none !important;
+  background: hsl(0,0%,90%);
+}
 #dummy { color: transparent; }
 #dummy, #color-config { display: none; }
 #color-config {
@@ -15,11 +19,13 @@ img { background-image: none !important; }
   color: -moz-dialogtext;
   border: 1px outset threedface;
   border-radius: 6px;
-  box-shadow: 1px 3px 6px rgba(0, 0, 0, .5);
   padding: 0 1em;
   width: 350px;
   height: 100px;
-  position: fixed;
   top: 50px;
   left: 50px;
+}
+#color-config, body > div:last-child {
+  position: fixed !important;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, .5);
 }
