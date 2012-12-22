@@ -1,5 +1,5 @@
 6.0 - Added color picker from jscolor.com.
-    - Refactored.
+    - Fixed: conflict with Walnut theme.
 
 5.0 - Added color validator.
 
