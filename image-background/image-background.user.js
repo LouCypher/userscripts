@@ -136,8 +136,9 @@ function defaultBgColor() {
 
 // Show color configuration dialog
 function showColorConfig() {
-  $("color-picker").value = GM_getValue("bgColor", "");
   $("color-config").style.display = "block";
+  $("color-picker").value = GM_getValue("bgColor", "");
+  $("color-picker").focus();
 }
 
 // Preview background color when chosing color in color picker
