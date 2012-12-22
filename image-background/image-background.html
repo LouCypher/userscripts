@@ -1,3 +1,4 @@
+<!-- Menu element for context menu -->
 <menu id="context-menu" type="context">
   <menuitem id="change-background-color"
             label="Change Backgound Color">
@@ -11,13 +12,16 @@
             type="checkbox">
   </menuitem>
 </menu>
+
+<!-- Dummy element to check color value -->
 <div id="dummy" style=""></div>
+
+<!-- This is the color configuration dialog -->
 <div id="color-config">
   <p>
     Pick a color or enter valid
     <a href="https://developer.mozilla.org/docs/CSS/color_value"
-       target="_blank">color value</a>.<br>
-    Leave it empty to use default color.
+       target="_blank">color value</a>.
   </p>
   <p>
     <input id="color-picker" placeholder="Color value"
@@ -27,3 +31,6 @@
     <button id="default">Default</button>
   </p>
 </div>
+
+<!-- Noscript element to check if JavaScript is enabled for JSColor to work -->
+<noscript id="noscript"></noscript>

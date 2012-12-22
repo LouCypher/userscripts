@@ -32,8 +32,8 @@
 // @require         https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/jscolor.js
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
 // @resource        htmlElements https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
-// @resource        changelog https://raw.github.com/LouCypher/userscripts/master/image-background/changelog.txt
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
+// @resource        changelog https://raw.github.com/LouCypher/userscripts/master/image-background/changelog.txt
 // @run-at          document-start
 // @include         *
 // @grant           GM_addStyle
@@ -63,8 +63,15 @@ if (!("contextMenu" in html && "HTMLMenuItemElement" in window)) return;
 var div = document.body.appendChild(document.createElement("div"));
 div.innerHTML = GM_getResourceText("htmlElements");
 
-jscolor.dir = "https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/";
-$("color-picker").value = bgColor;
+// Check if JavaScript is enabled for JSColor to work
+if (getComputedStyle($("noscript"), null).display == "none") { // If JavaScript is enabled
+  jscolor.dir = "https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/";
+  $("color-picker").value = bgColor;
+} else { // JavaScript is disabled
+  jscolor.binding = false; // Disable color picker
+  var p = $("color-config").querySelector("p");
+  p.replaceChild(document.createTextNode("Enter valid "), p.firstChild);
+}
 
 /***** Start context menu initialization *****/
 // Check/uncheck menu items based on prefs
@@ -77,6 +84,7 @@ $("toggle-image-transparency").addEventListener("click", toggleTransparency, fal
 $("toggle-background-image").addEventListener("click", toggleBgImage, false);
 
 // Add event listeners to color configuration
+$("color-picker").addEventListener("input", previewBgColor, false);
 $("color-picker").addEventListener("change", previewBgColor, false);
 $("ok").addEventListener("click", saveBgColor, false);
 $("cancel").addEventListener("click", resetBgColor, false);
@@ -95,7 +103,7 @@ function validateColor(aColor, aCallback) {
 
   if (getComputedStyle($("dummy"), null).color == "transparent") {
   // If dummy element's color is not set because invalid color value
-    alert("Invalid color value!");
+    alert("Invalid color value: " + aColor);
   } else {
     aCallback(aColor); // Run callback function
     save = true;
