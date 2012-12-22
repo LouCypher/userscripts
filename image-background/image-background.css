@@ -8,4 +8,20 @@ html, body {
               0 0 repeat fixed !important;
 }
 img { background-image: none !important; }
-#dummy { color: transparent; display: none;}
+#dummy { color: transparent; }
+#dummy, #color-config { display: none; }
+#color-config {
+  background-color: -moz-dialog;
+  color: -moz-dialogtext;
+  border: 1px outset threedface;
+  border-radius: 6px;
+  box-shadow: 1px 3px 6px rgba(0, 0, 0, .5);
+  padding: 0 1em;
+  width: 350px;
+  height: 110px;
+  position: fixed;
+  top:      calc(50% - 110px);
+  top: -moz-calc(50% - 110px);
+  left:      calc(50% - 175px);
+  left: -moz-calc(50% - 175px);
+}
