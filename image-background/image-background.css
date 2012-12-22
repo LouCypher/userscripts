@@ -20,8 +20,6 @@ img { background-image: none !important; }
   width: 350px;
   height: 100px;
   position: fixed;
-  top: -moz-calc(50% - 100px);
-  top:      calc(50% - 100px);
-  left: -moz-calc(50% - 175px);
-  left:      calc(50% - 175px);
+  top: 50px;
+  left: 50px;
 }
