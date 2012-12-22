@@ -28,16 +28,19 @@ To change image background settings, right click on the page.
 
 ![Right click on the page to configure](https://lh3.googleusercontent.com/-B-l3fYMSfac/UL-gXOA3ufI/AAAAAAAAC8I/-BfWxawoW_A/s0/image-after-contextmenu.png "Right click on the page to configure")
 
-### Toggle image transparency
+### Change background color
 
-To toggle image transparency, check/uncheck **Show Image Transparency** on context menu.
+To change background color, select **Change Background Color** on context menu and enter valid [color value](https://developer.mozilla.org/CSS/color_value).
+
+![Set background color](https://lh6.googleusercontent.com/-ON7ksho8qMk/UNUDvWeHytI/AAAAAAAAC_Y/iQW-jQSDHHU/s0/image-jscolor-1.png "Set background color")
+
+![Set background color](https://lh5.googleusercontent.com/-5L7qjSZyLFg/UNUDv-I8AkI/AAAAAAAAC_c/yI2UPP9sQkY/s0/image-jscolor-2.png "Set background color")
 
 ### Toggle background patterns
 
 To toggle background patterns, check/uncheck **Use Background Patterns** on context menu.
 
-### Change background color
+### Toggle image transparency
 
-To change background color, select **Change Background Color** on context menu and enter valid [color value](https://developer.mozilla.org/CSS/color_value).
+To toggle image transparency, check/uncheck **Show Image Transparency** on context menu.
 
-![Set background color](https://lh5.googleusercontent.com/-SJPtGsp_D48/ULmJws41KqI/AAAAAAAAC7U/dXKsCPXOvjE/s266/image-after-prompt.png "Set background color")
