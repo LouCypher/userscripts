@@ -30,10 +30,13 @@ To change image background settings, right click on the page.
 
 ### Change background color
 
-To change background color, select **Change Background Color** on context menu and enter valid [color value](https://developer.mozilla.org/CSS/color_value).
+To change background color, select **Change Background Color** on context menu to show the color dialog.
 
-[![Set background color](https://lh6.googleusercontent.com/-ON7ksho8qMk/UNUDvWeHytI/AAAAAAAAC_Y/iQW-jQSDHHU/s320/image-jscolor-1.png "Set background color")](https://lh6.googleusercontent.com/-ON7ksho8qMk/UNUDvWeHytI/AAAAAAAAC_Y/iQW-jQSDHHU/s0/image-jscolor-1.png)
-[![Set background color](https://lh5.googleusercontent.com/-5L7qjSZyLFg/UNUDv-I8AkI/AAAAAAAAC_c/yI2UPP9sQkY/s320/image-jscolor-2.png "Set background color")](https://lh5.googleusercontent.com/-5L7qjSZyLFg/UNUDv-I8AkI/AAAAAAAAC_c/yI2UPP9sQkY/s0/image-jscolor-2.png)
+![Change background color with color picker](https://lh5.googleusercontent.com/-OZn3h4LXiiM/UNUnJmIFsqI/AAAAAAAAC_w/56PvAepUiJ4/s0/image-jscolor-1.png "Change background color with color picker")
+
+Please note that the color picker requires JavaScript to be enabled. If you have [NoScript](https://addons.mozilla.org/addon/noscript?src=external-github.com/loucypher/userscripts) extension, color picker will not work unless you add the site to NoScript whitelist, although you can still change the background color by entering any valid [color value](https://developer.mozilla.org/CSS/color_value).
+
+![Change background color without color picker](https://lh3.googleusercontent.com/-Gtu_Mid9k2M/UNUnK4vmljI/AAAAAAAAC_0/x3GMc9daz98/s0/image-jscolor-2.png "Change background color without color picker")
 
 ### Toggle background patterns
 
