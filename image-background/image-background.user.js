@@ -27,13 +27,13 @@
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/image-background
-// @updateURL       https://github.com/LouCypher/userscripts/raw/master/image-background/image-background.user.js
-// @downloadURL     https://github.com/LouCypher/userscripts/raw/master/image-background/image-background.user.js
-// @require         https://github.com/LouCypher/userscripts/raw/master/image-background/jscolor/jscolor.js
-// @resource        css https://github.com/LouCypher/userscripts/raw/master/image-background/image-background.css
-// @resource        htmlElements https://github.com/LouCypher/userscripts/raw/master/image-background/image-background.html
-// @resource        changelog https://github.com/LouCypher/userscripts/raw/master/image-background/changelog.txt
-// @resource        license https://github.com/LouCypher/userscripts/raw/master/licenses/GPL/LICENSE.txt
+// @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
+// @downloadURL     https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
+// @require         https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/jscolor.js
+// @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
+// @resource        htmlElements https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
+// @resource        changelog https://raw.github.com/LouCypher/userscripts/master/image-background/changelog.txt
+// @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @run-at          document-start
 // @include         *
 // @grant           GM_addStyle
@@ -63,7 +63,7 @@ if (!("contextMenu" in html && "HTMLMenuItemElement" in window)) return;
 var div = document.body.appendChild(document.createElement("div"));
 div.innerHTML = GM_getResourceText("htmlElements");
 
-jscolor.dir = "https://github.com/LouCypher/userscripts/raw/master/image-background/jscolor/";
+jscolor.dir = "https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/";
 $("color-picker").value = bgColor;
 
 /***** Start context menu initialization *****/
