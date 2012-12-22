@@ -32,9 +32,8 @@ To change image background settings, right click on the page.
 
 To change background color, select **Change Background Color** on context menu and enter valid [color value](https://developer.mozilla.org/CSS/color_value).
 
-![Set background color](https://lh6.googleusercontent.com/-ON7ksho8qMk/UNUDvWeHytI/AAAAAAAAC_Y/iQW-jQSDHHU/s0/image-jscolor-1.png "Set background color")
-
-![Set background color](https://lh5.googleusercontent.com/-5L7qjSZyLFg/UNUDv-I8AkI/AAAAAAAAC_c/yI2UPP9sQkY/s0/image-jscolor-2.png "Set background color")
+[![Set background color](https://lh6.googleusercontent.com/-ON7ksho8qMk/UNUDvWeHytI/AAAAAAAAC_Y/iQW-jQSDHHU/s320/image-jscolor-1.png "Set background color")](https://lh6.googleusercontent.com/-ON7ksho8qMk/UNUDvWeHytI/AAAAAAAAC_Y/iQW-jQSDHHU/s0/image-jscolor-1.png)
+[![Set background color](https://lh5.googleusercontent.com/-5L7qjSZyLFg/UNUDv-I8AkI/AAAAAAAAC_c/yI2UPP9sQkY/s320/image-jscolor-2.png "Set background color")](https://lh5.googleusercontent.com/-5L7qjSZyLFg/UNUDv-I8AkI/AAAAAAAAC_c/yI2UPP9sQkY/s0/image-jscolor-2.png)
 
 ### Toggle background patterns
 
