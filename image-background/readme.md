@@ -45,4 +45,3 @@ To toggle background patterns, check/uncheck **Use Background Patterns** on cont
 ### Toggle image transparency
 
 To toggle image transparency, check/uncheck **Show Image Transparency** on context menu.
-
