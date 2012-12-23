@@ -9,8 +9,8 @@ html {
 }
 body, img { background-image: none !important; }
 img {
-  box-shadow: none !important;
-  background: hsl(0,0%,90%);
+  box-shadow: none;
+  background-color: hsl(0,0%,90%);
 }
 #dummy { color: transparent; }
 #dummy, #color-config { display: none; }

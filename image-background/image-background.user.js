@@ -132,7 +132,7 @@ function setBgColor(aColorValue) {
   if (aColorValue == "") {
     html.style.backgroundColor = ""; // Use default color from CSS resource
   } else {
-    html.style.setProperty("background-color", aColorValue, "important");
+    setStyleProperty(html, "background-color", aColorValue);
   }
 }
 
@@ -148,7 +148,7 @@ function saveBgColor() {
 
 // Reset background color to previous setting
 function resetBgColor() {
-  html.style.setProperty("background-color", GM_getValue("bgColor", ""), "important");
+  setStyleProperty(html, "background-color", GM_getValue("bgColor", ""));
   ("color" in $("color-picker")) && $("color-picker").color.hidePicker();
   $("color-config").style.display = ""; // Hide dialog
 }
@@ -200,7 +200,7 @@ function setBgImage(aBoolean) {
       html.style.backgroundImage = ""; // Use bg patterns in CSS resource
       break;
     case false: // Disable background patterns
-      html.style.setProperty("background-image", "none", "important");
+      setStyleProperty(html, "background-image", "none");
   }
   GM_setValue("bgImage", aBoolean); // Save background option to pref
 }
@@ -231,6 +231,10 @@ function showTransparency(aBoolean) {
 // Toggle image transparency on/off
 function toggleTransparency(aEvent) {
   showTransparency(aEvent.target.checked);
+}
+
+function setStyleProperty(aNode, aPropertyName, aValue) {
+  aNode.style.setProperty(aPropertyName, aValue, "important");
 }
 
 function $(aId) {
