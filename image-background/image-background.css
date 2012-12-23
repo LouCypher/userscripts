@@ -15,17 +15,22 @@ img {
 #dummy { color: transparent; }
 #dummy, #color-config { display: none; }
 #color-config {
-  background-color: -moz-dialog;
-  color: -moz-dialogtext;
-  border: 1px outset threedface;
+  background-color: rgba(255, 255, 255, .9);
+  color: black;
+  border: 1px outset rgba(255, 255, 255, .9);
   border-radius: 6px;
   padding: 0 1em;
   width: 350px;
   height: 100px;
-  top: 50px;
-  left: 50px;
+  top: 20px;
+  left: -moz-calc(50% - 175px);
+  left:      calc(50% - 175px);
 }
 #color-config, body > div:last-child {
   position: fixed !important;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, .5);
 }
+#color-config a { color: blue; }
+#color-config a:active,
+#color-config a:visited:active { color: red; }
+#color-config a:visited { color: purple; }
