@@ -22,7 +22,7 @@ Change standalone image background and show transparency on Firefox. Use context
 
 [![Install](https://lh5.googleusercontent.com/-FtCn5O9tCIw/UL-im_1aBzI/AAAAAAAAC8Y/c-aoqaalnMM/s0/_install.png)](https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js "Install this user script")
 
-## Configuration
+## Configurations
 
 To change image background settings, right click on the page.
 
@@ -32,11 +32,11 @@ To change image background settings, right click on the page.
 
 To change background color, select **Change Background Color** on context menu to show the color dialog.
 
-![Change background color with color picker](https://lh5.googleusercontent.com/-OZn3h4LXiiM/UNUnJmIFsqI/AAAAAAAAC_w/56PvAepUiJ4/s0/image-jscolor-1.png "Change background color with color picker")
+![Change background color with color picker](https://lh6.googleusercontent.com/-m2GcHYlhFUU/UNa2QB4HR3I/AAAAAAAADAg/cr2JhBMDkVk/s0/image-jscolor-1.png "Change background color with color picker")
 
-Please note that the color picker requires JavaScript to be enabled. If you have [NoScript](https://addons.mozilla.org/addon/noscript?src=external-github.com/loucypher/userscripts) extension, color picker will not work unless you add the site to NoScript whitelist, although you can still change the background color by entering any valid [color value](https://developer.mozilla.org/CSS/color_value).
+Please note that the color picker requires JavaScript to be enabled. You can still change the background color by entering any valid [color value](https://developer.mozilla.org/CSS/color_value). If you have [NoScript](https://addons.mozilla.org/addon/noscript?src=external-github.com/loucypher/userscripts) extension, color picker will work if you allow the site from NoScript menu.
 
-![Change background color without color picker](https://lh3.googleusercontent.com/-Gtu_Mid9k2M/UNUnK4vmljI/AAAAAAAAC_0/x3GMc9daz98/s0/image-jscolor-2.png "Change background color without color picker")
+![Change background color without color picker](https://lh3.googleusercontent.com/-xAok34tasEg/UNa2LMCQGSI/AAAAAAAADAY/fLjkZW9_rAc/s0/image-jscolor-2.png "Change background color without color picker")
 
 ### Toggle background patterns
 
