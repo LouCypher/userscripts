@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.0a5
+// @version         6.0a6
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -89,6 +89,8 @@ html.addEventListener("contextmenu", popupShowing, false);
 /***** End context menu initialization *****/
 
 // Color dialog initialization
+html.addEventListener("click", hidePicker, false);
+$("color-picker").addEventListener("mouseenter", showPicker, false);
 $("color-picker").addEventListener("input", previewBgColor, false);
 $("color-picker").addEventListener("change", previewBgColor, false);
 $("ok").addEventListener("click", saveBgColor, false);
@@ -163,6 +165,19 @@ function showColorConfig() {
 // Preview background color when chosing color in color picker
 function previewBgColor(aEvent) {
   setBgColor(aEvent.target.value);
+}
+
+// Show color picker
+function showPicker(aEvent) {
+  ("color" in $("color-picker")) && $("color-picker").color.showPicker();
+}
+
+// Hide color picker
+function hidePicker(aEvent) {
+  var node = aEvent.target;
+  if ((node.localName != "div") && !node.id) {
+    ("color" in $("color-picker")) && $("color-picker").color.hidePicker();
+  }
 }
 
 // Enable/disable background patterns
