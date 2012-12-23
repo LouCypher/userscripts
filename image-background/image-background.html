@@ -21,11 +21,13 @@
   <p>
     Pick any color or enter valid
     <a href="https://developer.mozilla.org/docs/CSS/color_value"
-       target="_blank">color value</a>.
+       target="_help">color value</a>.
   </p>
   <p>
     <input id="color-picker" placeholder="Color value"
-           class="color { hash: false, adjust: false, required: false }">
+           class="color { hash: false, adjust: false, required: false,
+                          pickerFaceColor: 'rgba(255, 255, 255, .8)',
+                          pickerBorderColor: 'rgba(255, 255, 255, .8)' }">
     <button id="ok">OK</button>
     <button id="cancel">Cancel</button>
     <button id="default">Default</button>
