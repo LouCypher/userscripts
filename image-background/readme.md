@@ -34,7 +34,11 @@ To change background color, select **Change Background Color** on context menu t
 
 ![Change background color with color picker](https://lh6.googleusercontent.com/-m2GcHYlhFUU/UNa2QB4HR3I/AAAAAAAADAg/cr2JhBMDkVk/s0/image-jscolor-1.png "Change background color with color picker")
 
-Please note that the color picker requires JavaScript to be enabled. You can still change the background color by entering any valid [color value](https://developer.mozilla.org/CSS/color_value). If you have [NoScript](https://addons.mozilla.org/addon/noscript?src=external-github.com/loucypher/userscripts) extension, color picker will work if you allow the site from NoScript menu.
+Please note that the color picker requires JavaScript to be enabled.
+
+You can still change the background color by entering any valid [color value](https://developer.mozilla.org/CSS/color_value).
+
+If you have [NoScript](https://addons.mozilla.org/addon/noscript?src=external-github.com/loucypher/userscripts) extension, color picker will work if you allow the site from NoScript menu.
 
 ![Change background color without color picker](https://lh3.googleusercontent.com/-xAok34tasEg/UNa2LMCQGSI/AAAAAAAADAY/fLjkZW9_rAc/s0/image-jscolor-2.png "Change background color without color picker")
 
