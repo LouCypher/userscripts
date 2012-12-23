@@ -34,3 +34,12 @@ img {
 #color-config a:active,
 #color-config a:visited:active { color: red; }
 #color-config a:visited { color: purple; }
+#help {
+  display: none;
+  float: left;
+  font-size: x-small;
+  border-radius: 1em;
+  padding: 1px 6px;
+  margin-top: .5em;
+  cursor: help;
+}

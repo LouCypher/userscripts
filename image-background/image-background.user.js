@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.0a6
+// @version         6.0a7
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -69,6 +69,7 @@ if (getComputedStyle($("noscript"), null).display == "none") { // If JavaScript 
   $("color-picker").value = bgColor;
 } else { // JavaScript is disabled
   jscolor.binding = false; // Disable color picker
+  $("help").style.display = "inline";
   var p = $("color-config").querySelector("p");
   p.replaceChild(document.createTextNode("Enter valid "), p.firstChild);
 }
@@ -96,6 +97,7 @@ $("color-picker").addEventListener("change", previewBgColor, false);
 $("ok").addEventListener("click", saveBgColor, false);
 $("cancel").addEventListener("click", resetBgColor, false);
 $("default").addEventListener("click", defaultBgColor, false);
+$("help").addEventListener("click", showHelp, false);
 
 // Executed on right click
 function popupShowing(aEvent) {
@@ -175,9 +177,18 @@ function showPicker(aEvent) {
 // Hide color picker
 function hidePicker(aEvent) {
   var node = aEvent.target;
-  if ((node.localName != "div") && !node.id) {
-    ("color" in $("color-picker")) && $("color-picker").color.hidePicker();
+  if ((node.localName != "div") && !node.id && ("color" in $("color-picker"))) {
+    $("color-picker").color.hidePicker();
   }
+}
+
+function showHelp() {
+  var site = (location.protocol == "file:") ? "file://" : location.hostname;
+  alert("Color picker requires JavaScript to be enabled.\n\n" +
+        "You can still change the background color\n" +
+        "by entering any valid color value.\n\n" +
+        "If you have NoScript extension, color picker will work\n" +
+        "if you click 'Allow " + site + "' on NoScript menu.");
 }
 
 // Enable/disable background patterns
