@@ -44,13 +44,13 @@
 
 if (!/^image\//.test(document.contentType)) return;
 
+var html = document.documentElement;
+
 /***** Start checking preferences *****/
 var bgColor = GM_getValue("bgColor", ""); // Get color value pref (def = empty)
 var bgImage = GM_getValue("bgImage", true); // Get background pref (def = true)
 var imgTrans = GM_getValue("imgTrans", true); // Get transparency pref (def = true)
 /***** End checking preferences *****/
-
-var html = document.documentElement;
 
 setBgColor(bgColor); // Set background color from pref
 setBgImage(bgImage); // Set background patters from pref
@@ -59,7 +59,7 @@ GM_addStyle(GM_getResourceText("css")); // Inject style from @resource
 
 if (!("contextMenu" in html && "HTMLMenuItemElement" in window)) return;
 
-// Append HTML elements
+// Append elements
 var div = document.body.appendChild(document.createElement("div"));
 div.innerHTML = GM_getResourceText("htmlElements");
 
@@ -83,17 +83,17 @@ $("change-background-color").addEventListener("click", showColorConfig, false);
 $("toggle-image-transparency").addEventListener("click", toggleTransparency, false);
 $("toggle-background-image").addEventListener("click", toggleBgImage, false);
 
-// Add event listeners to color configuration
+// Set context menu to html element
+html.setAttribute("contextmenu", "context-menu");
+html.addEventListener("contextmenu", popupShowing, false);
+/***** End context menu initialization *****/
+
+// Color dialog initialization
 $("color-picker").addEventListener("input", previewBgColor, false);
 $("color-picker").addEventListener("change", previewBgColor, false);
 $("ok").addEventListener("click", saveBgColor, false);
 $("cancel").addEventListener("click", resetBgColor, false);
 $("default").addEventListener("click", defaultBgColor, false);
-
-// Set context menu to html element
-html.setAttribute("contextmenu", "context-menu");
-html.addEventListener("contextmenu", popupShowing, false);
-/***** End context menu initialization *****/
 
 // Executed on right click
 function popupShowing(aEvent) {
