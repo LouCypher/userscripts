@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.0a7
+// @version         6.0a8
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -141,6 +141,7 @@ function saveBgColor() {
   var color = $("color-picker").value;
   if (validateColor(color, setBgColor)) { // If color value is valid
     GM_setValue("bgColor", color); // Save color value to pref
+    ("color" in $("color-picker")) && $("color-picker").color.hidePicker();
     $("color-config").style.display = ""; // Hide dialog
   }
 }
@@ -148,6 +149,7 @@ function saveBgColor() {
 // Reset background color to previous setting
 function resetBgColor() {
   html.style.setProperty("background-color", GM_getValue("bgColor", ""), "important");
+  ("color" in $("color-picker")) && $("color-picker").color.hidePicker();
   $("color-config").style.display = ""; // Hide dialog
 }
 
