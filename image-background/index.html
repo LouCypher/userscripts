@@ -1,17 +1,23 @@
 <!doctype html>
-<html>
+<html itemscope itemtype="http://schema.org/Person">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta itemprop="name" content="Standalone Image Background and Transparency User Script">
+  <meta itemprop="description" content="Change standalone image background and show transparency on Firefox. Use context menu to configure it.">
+  <meta itemprop="image" content="images/screenshot-after.png">
+  <link rel="author" name="Zulkarnain K." href="https://github.com/LouCypher">
+  <link rel="image_src" href="images/screenshot-after.png">
   <title>Standalone Image Background and Transparency</title>
   <style type="text/css">
-    body { background-color: appworkspace; }
+    body { background-color: #708090; }
     article {
       background-color: white;
       color: black;
-      margin: 1em auto;
+      box-shadow: 6px 6px 9px rgba(0, 0, 0, .5);
+      margin: 2em auto;
       padding: 1em 2em;
-      width: 700px;
+      width: 768px;
     }
     p { line-height: 1.5em; }
     .center { text-align: center; }
@@ -27,6 +33,7 @@
   <details>
     <summary>
       Change standalone image background and show transparency on Firefox.
+      <br>
       Use context menu to configure it.
     </summary>
   </details>
@@ -73,15 +80,15 @@
 
 <h2>Screenshots</h2>
 <p>
-  <a href="https://lh4.googleusercontent.com/-Pay5iiGHq0Q/ULZsaTrwlRI/AAAAAAAAC5U/ND8sMF1-XZg/s0/image-before.png"><img title="Before" alt="Before" src="https://lh4.googleusercontent.com/-Pay5iiGHq0Q/ULZsaTrwlRI/AAAAAAAAC5U/ND8sMF1-XZg/s320/image-before.png"></a>
-  <a href="https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png"><img title="After" alt="After" src="https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s320/image-after.png"></a>
+  <a href="images/screenshot-before.png"><img title="Before" alt="Before" src="images/screenshot-thumb-before.png"></a>
+  <a href="images/screenshot-after.png"><img title="After" alt="After" src="images/screenshot-thumb-after.png"></a>
 </p>
 
 <h2>Configurations</h2>
 
 <p>To change image background settings, right click on the page.</p>
 <p>
-  <img src="https://lh3.googleusercontent.com/-B-l3fYMSfac/UL-gXOA3ufI/AAAAAAAAC8I/-BfWxawoW_A/s0/image-after-contextmenu.png"
+  <img src="images/contextmenu.png"
        alt="Firefox context menu" title="Firefox context menu">
 </p>
 
@@ -89,28 +96,29 @@
 
 <p>
   To change background color, select <strong>Change Background Color</strong>
-  on context menu to open color setting dialog.
+  on context menu<br>  
+  to open color setting dialog.
 </p>
 
 <p>
-  <img src="https://lh6.googleusercontent.com/-m2GcHYlhFUU/UNa2QB4HR3I/AAAAAAAADAg/cr2JhBMDkVk/s0/image-jscolor-1.png"
+  <img src="images/dialog-color-jscolor.png"
        alt="Color setting dialog with color picker"
        title="Color setting dialog with color picker">
 </p>
 
 <p>
   Please note that the color picker requires JavaScript to be enabled.
-  However, you can still change background color by entering any valid
+  However,<br>you can still change background color by entering any valid
   <a href="https://developer.mozilla.org/CSS/color_value">color value</a>.
 </p>
 
 <p>
   If you have <a href="https://addons.mozilla.org/addon/noscript?src=external-github.com/loucypher/userscripts">NoScript</a>
-  extension, color picker will work if you allow the site from NoScript menu.
+  extension, color picker will work if you allow the site<br>from NoScript menu.
 </p>
 
 <p>
-  <img src="https://lh3.googleusercontent.com/-xAok34tasEg/UNa2LMCQGSI/AAAAAAAADAY/fLjkZW9_rAc/s0/image-jscolor-2.png"
+  <img src="images/dialog-color.png"
        alt="Color setting dialog without color picker" title="Color setting dialog without color picker">
 </p>
 
