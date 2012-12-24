@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.0a8
+// @version         6.0a9
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -38,6 +38,7 @@
 // @include         *
 // @grant           GM_addStyle
 // @grant           GM_getResourceText
+// @grant           GM_getResourceURL
 // @grant           GM_getValue
 // @grant           GM_setValue
 // ==/UserScript==
@@ -141,16 +142,14 @@ function saveBgColor() {
   var color = $("color-picker").value;
   if (validateColor(color, setBgColor)) { // If color value is valid
     GM_setValue("bgColor", color); // Save color value to pref
-    ("color" in $("color-picker")) && $("color-picker").color.hidePicker();
-    $("color-config").style.display = ""; // Hide dialog
+    hideColorConfig();
   }
 }
 
 // Reset background color to previous setting
 function resetBgColor() {
   setStyleProperty(html, "background-color", GM_getValue("bgColor", ""));
-  ("color" in $("color-picker")) && $("color-picker").color.hidePicker();
-  $("color-config").style.display = ""; // Hide dialog
+  hideColorConfig();
 }
 
 // Use default background color
@@ -161,9 +160,17 @@ function defaultBgColor() {
 
 // Show color configuration dialog
 function showColorConfig() {
+  $("change-background-color").disabled = true; // Disable menu item
   $("color-config").style.display = "block";
   $("color-picker").value = GM_getValue("bgColor", "");
   $("color-picker").focus();
+}
+
+// Hide color configuration dialog
+function hideColorConfig() {
+  ("color" in $("color-picker")) && $("color-picker").color.hidePicker();
+  $("color-config").style.display = ""; // Hide dialog
+  $("change-background-color").disabled = false; // Enable menu item
 }
 
 // Preview background color when chosing color in color picker
