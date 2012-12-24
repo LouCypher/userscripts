@@ -39,7 +39,7 @@ To change image background settings, right click on the page.
 To change background color, select **Change Background Color** on
 context menu to open color setting dialog.
 
-![Color setting dialog with color picker](https://lh6.googleusercontent.com/-m2GcHYlhFUU/UNa2QB4HR3I/AAAAAAAADAg/cr2JhBMDkVk/s0/image-jscolor-1.png "Color setting dialog")
+![Color setting dialog with color picker](https://lh6.googleusercontent.com/-m2GcHYlhFUU/UNa2QB4HR3I/AAAAAAAADAg/cr2JhBMDkVk/s0/image-jscolor-1.png "Color setting dialog with color picker")
 
 Please note that the color picker requires JavaScript to be enabled.
 However, you can still change background color by entering any valid
