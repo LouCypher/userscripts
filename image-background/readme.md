@@ -21,7 +21,7 @@ Use context menu to configure it.
 ## Installation
 
 * [Kinda stable release](https://userscripts.org/scripts/source/153158.user.js "via Userscripts.org")
-* [Dev build](https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js)
+* [Development build](https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js "via GitHub.com")
 
 ## Screenshots
 
