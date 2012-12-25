@@ -10,9 +10,17 @@
   <link rel="author" name="Zulkarnain K." href="https://github.com/LouCypher">
   <link rel="publisher" name="Zulkarnain K." href="https://plus.google.com/101088441440269967746">
   <link rel="image_src" href="images/screenshot-after.png">
-  <title>Standalone Image Background and Transparency</title>
+  <title>Standalone Image Background and Transparency User Script</title>
   <style type="text/css">
-    body { background-color: #708090; }
+    body {
+      background: #708090
+                  url("https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png")
+                  top right no-repeat fixed;
+    }
+    a:link { color: blue; }
+    a:visited { color: purple; }
+    a:active, a:visited:active { color: red; }
+    a:not(.imglink):hover { background-color: rgba(0, 0, 0, .15); }
     article {
       background-color: white;
       color: black;
@@ -25,6 +33,12 @@
     .center { text-align: center; }
     .clear { clear: both; }
     .left { float: left; }
+    #github {
+      display: block;
+      position: fixed;
+      top:0; right:0;
+      width: 149px; height: 149px;
+    }
   </style>
 </head>
 
@@ -40,15 +54,15 @@
   </header>
 
 <p>
-<a href="https://flattr.com/submit/auto?url=https%3A%2F%2Fgithub.com%2FLouCypher%2Fuserscripts"><img alt="Flattr this!" src="https://api.flattr.com/button/flattr-badge-large.png"></a>
-<a href="https://twitter.com/share?text=Change+standalone+image+background+and+show+transparency+on+%23Firefox+with+this+%23userscript&amp;url=https%3A%2F%2Fgithub.com%2FLouCypher%2Fuserscripts%2Ftree%2Fmaster%2Fimage-background&amp;related=zoolcar9&amp;via=zoolcar9"><img alt="Tweet" src="https://si0.twimg.com/a/1309282244/images/goodies/tweetn.png"></a>
+<a class="imglink" href="https://flattr.com/submit/auto?url=https%3A%2F%2Fgithub.com%2FLouCypher%2Fuserscripts"><img alt="Flattr this!" src="https://api.flattr.com/button/flattr-badge-large.png"></a>
+<a class="imglink" href="https://twitter.com/share?text=Change+standalone+image+background+and+show+transparency+on+%23Firefox+with+this+%23userscript&amp;url=https%3A%2F%2Fgithub.com%2FLouCypher%2Fuserscripts%2Ftree%2Fmaster%2Fimage-background&amp;related=zoolcar9&amp;via=zoolcar9"><img alt="Tweet" src="https://si0.twimg.com/a/1309282244/images/goodies/tweetn.png"></a>
 </p>
 
-<h2>Compatibility</h2>
+<h2 id="compatibility">Compatibility</h2>
 
 <div>
 <div class="left">
-<h3>Browsers</h3>
+<h3 id="compatible-browsers">Browsers</h3>
 <ul>
 <li>Firefox 15+</li>
 <li>Pale Moon 15+</li>
@@ -57,7 +71,7 @@
 </div>
 
 <div class="left">
-<h3>Extensions</h3>
+<h3 id="compatible-extensions">Extensions</h3>
 <ul>
 <li><a href="https://addons.mozilla.org/addon/greasemonkey?src=external-github.com/loucypher/userscripts">Greasemonkey</a> 0.9.16+</li>
 <li><a href="https://addons.mozilla.org/addon/scriptish?src=external-github.com/loucypher/userscripts">Scriptish</a> 0.1+</li>
@@ -66,7 +80,7 @@
 </div>
 <div class="clear"></div>
 
-<h2>Installation</h2>
+<h2 id="installations">Installations</h2>
 
 <ul>
   <li>
@@ -78,13 +92,13 @@
   </li>
 </ul>
 
-<h2>Screenshots</h2>
+<h2 id="screenshots">Screenshots</h2>
 <p>
-  <a href="images/screenshot-before.png"><img title="Before" alt="Before" src="images/screenshot-thumb-before.png"></a>
-  <a href="images/screenshot-after.png"><img title="After" alt="After" src="images/screenshot-thumb-after.png"></a>
+  <a class="imglink" href="images/screenshot-before.png"><img title="Before" alt="Before" src="images/screenshot-thumb-before.png"></a>
+  <a class="imglink" href="images/screenshot-after-3.png"><img title="After" alt="After" src="images/screenshot-thumb-after-3.png"></a>
 </p>
 
-<h2>Configurations</h2>
+<h2 id="configurations">Configurations</h2>
 
 <p>To change image background settings, right click on the page.</p>
 <p>
@@ -92,7 +106,7 @@
        alt="Firefox context menu" title="Firefox context menu">
 </p>
 
-<h3>Change background color</h3>
+<h3 id="configure-background-color"">Change background color</h3>
 
 <p>
   To change background color, select <strong>Change Background Color</strong>
@@ -122,14 +136,17 @@
        alt="Color setting dialog without color picker" title="Color setting dialog without color picker">
 </p>
 
-<h3>Toggle background patterns</h3>
+<h3 id="configure-background-patterns">Toggle background patterns</h3>
 
 <p>To toggle background patterns, check/uncheck <strong>Use Background Patterns</strong> on context menu.</p>
 
-<h3>Toggle image transparency</h3>
+<h3 id="configure-image-transparency">Toggle image transparency</h3>
 
 <p>To toggle image transparency, check/uncheck <strong>Show Image Transparency</strong> on context menu.</p>
 
 </article>
+<div>
+  <a id="github" class="imglink" href="https://github.com/LouCypher/userscripts" title="Fork me on GitHub"></a>
+</div>
 </body>
 </html>
