@@ -9,37 +9,39 @@ html {
 }
 body, img { background-image: none !important; }
 img {
-  box-shadow: none;
+  -moz-box-shadow: none;
+       box-shadow: none;
   background-color: hsl(0,0%,90%);
 }
 #dummy { color: transparent; }
-#dummy, #color-config { display: none; }
 #color-config {
   background-color: rgba(255, 255, 255, .9);
   color: black;
   border: 1px outset rgba(255, 255, 255, .9);
-  border-radius: 6px;
+  -moz-border-radius: 6px;
+       border-radius: 6px;
   padding: 0 1em;
-  width: 350px;
-  height: 100px;
+  width: 340px;
+  height: 105px;
   top: 20px;
-  left: -moz-calc(50% - 175px);
-  left:      calc(50% - 175px);
+  left: -moz-calc(50% - 170px);
+  left:      calc(50% - 170px);
 }
 #color-config, body > div:last-child {
   position: fixed !important;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 3px 3px 6px rgba(0, 0, 0, .5);
+       box-shadow: 3px 3px 6px rgba(0, 0, 0, .5);
 }
-#color-config a { color: blue; }
-#color-config a:active,
-#color-config a:visited:active { color: red; }
-#color-config a:visited { color: purple; }
-#help {
-  display: none;
-  float: left;
+#color-config div { margin: 1em 0; }
+#color-config a, a:visited { color: blue; }
+#color-config a:active { color: red; }
+#links {
   font-size: x-small;
-  border-radius: 1em;
-  padding: 1px 6px;
   margin-top: .5em;
+}
+#error {
+  float: left;
   cursor: help;
 }
+#about { float: right; }
+.hide { display: none; }

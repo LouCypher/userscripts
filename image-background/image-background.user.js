@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.0a9
+// @version         6.0a10
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -32,6 +32,7 @@
 // @require         https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/jscolor.js
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
 // @resource        htmlElements https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
+// @resource        thanks https://raw.github.com/LouCypher/userscripts/master/image-background/thanks.html
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @resource        changelog https://raw.github.com/LouCypher/userscripts/master/image-background/changelog.txt
 // @run-at          document-start
@@ -41,7 +42,14 @@
 // @grant           GM_getResourceURL
 // @grant           GM_getValue
 // @grant           GM_setValue
+// @grant           GM_openInTab
 // ==/UserScript==
+
+var firstTime = GM_getValue("firstTime", true); // Check if first time user
+if (firstTime) { // If first time user
+  GM_openInTab(GM_getResourceURL("thanks")); // Show 'thank you' page once
+  GM_setValue("firstTime", false); // No more a first time user
+}
 
 if (!/^image\//.test(document.contentType)) return;
 
@@ -70,8 +78,8 @@ if (getComputedStyle($("noscript"), null).display == "none") { // If JavaScript 
   $("color-picker").value = bgColor;
 } else { // JavaScript is disabled
   jscolor.binding = false; // Disable color picker
-  $("help").style.display = "inline";
-  var p = $("color-config").querySelector("p");
+  $("error").className = "";
+  var p = $("color-config").querySelector("div");
   p.replaceChild(document.createTextNode("Enter valid "), p.firstChild);
 }
 
@@ -84,6 +92,7 @@ imgTrans && $("toggle-image-transparency").setAttribute("checked", "true");
 $("change-background-color").addEventListener("click", showColorConfig, false);
 $("toggle-image-transparency").addEventListener("click", toggleTransparency, false);
 $("toggle-background-image").addEventListener("click", toggleBgImage, false);
+$("help").addEventListener("click", goHelp, false);
 
 // Set context menu to html element
 html.setAttribute("contextmenu", "context-menu");
@@ -98,7 +107,7 @@ $("color-picker").addEventListener("change", previewBgColor, false);
 $("ok").addEventListener("click", saveBgColor, false);
 $("cancel").addEventListener("click", resetBgColor, false);
 $("default").addEventListener("click", defaultBgColor, false);
-$("help").addEventListener("click", showHelp, false);
+$("error").addEventListener("click", showAlert, false);
 
 // Executed on right click
 function popupShowing(aEvent) {
@@ -161,7 +170,7 @@ function defaultBgColor() {
 // Show color configuration dialog
 function showColorConfig() {
   $("change-background-color").disabled = true; // Disable menu item
-  $("color-config").style.display = "block";
+  $("color-config").className = "";
   $("color-picker").value = GM_getValue("bgColor", "");
   $("color-picker").focus();
 }
@@ -169,7 +178,7 @@ function showColorConfig() {
 // Hide color configuration dialog
 function hideColorConfig() {
   ("color" in $("color-picker")) && $("color-picker").color.hidePicker();
-  $("color-config").style.display = ""; // Hide dialog
+  $("color-config").className = "hide"; // Hide dialog
   $("change-background-color").disabled = false; // Enable menu item
 }
 
@@ -191,13 +200,13 @@ function hidePicker(aEvent) {
   }
 }
 
-function showHelp() {
+function showAlert() {
   var site = (location.protocol == "file:") ? "file://" : location.hostname;
-  alert("Color picker requires JavaScript to be enabled.\n\n" +
-        "You can still change the background color\n" +
-        "by entering any valid color value.\n\n" +
-        "If you have NoScript extension, color picker will work\n" +
-        "if you click 'Allow " + site + "' on NoScript menu.");
+  alert("Color picker requires JavaScript to be enabled. However,\n" +
+        "you can still change the background color by entering any\n" +
+        "valid color value.\n\nIf you have NoScript extension, color " +
+        "picker will work if\nyou click 'Allow " + site +
+        "' from NoScript menu.");
 }
 
 // Enable/disable background patterns
@@ -238,6 +247,10 @@ function showTransparency(aBoolean) {
 // Toggle image transparency on/off
 function toggleTransparency(aEvent) {
   showTransparency(aEvent.target.checked);
+}
+
+function goHelp() {
+  GM_openInTab("https://github.com/LouCypher/userscripts/blob/master/image-background/readme.md#change-background-color");
 }
 
 function setStyleProperty(aNode, aPropertyName, aValue) {
