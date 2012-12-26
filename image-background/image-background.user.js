@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.1
+// @version         6.2
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -33,7 +33,6 @@
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
 // @resource        htmlElements https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
 // @resource        thanks https://raw.github.com/LouCypher/userscripts/master/image-background/thanks.html
-// @resource        thanksDataURI https://raw.github.com/LouCypher/userscripts/master/image-background/thanks.txt
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @resource        changelog https://raw.github.com/LouCypher/userscripts/master/image-background/changelog.txt
 // @run-at          document-start
@@ -46,15 +45,14 @@
 // @grant           GM_openInTab
 // ==/UserScript==
 
-if (location.href == GM_getResourceText("thanksDataURI")) {
-  location.replace(location.href.replace(/text\/plain/, "text/html"));
-  return;
-}
-
 var firstTime = GM_getValue("firstTime", true); // Check if first time user
 if (firstTime) { // If first time user
-  GM_openInTab(GM_getResourceURL("thanks")); // Show 'thank you' page once
-  GM_setValue("firstTime", false); // No more a first time user
+  var thanks = GM_getResourceURL("thanks");
+  if (/^data\:/.test(thanks)) { // If old GM_resourceURL
+    thanks = thanks.replace(/text\/plain/, "text/html");
+  }
+  GM_openInTab(thanks); // Open 'thank you' page
+  GM_setValue("firstTime", false); // Don't open 'thank you' page again
 }
 
 if (!/^image\//.test(document.contentType)) return;
