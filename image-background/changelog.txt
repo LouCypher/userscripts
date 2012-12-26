@@ -1,3 +1,5 @@
+6.1 - Fixed: 'Thank you' page shown as data:text/plain
+      on Scriptish and older Greasemonkey
 6.0 - Added color picker from jscolor.com.
     - Fixed: conflict with Walnut theme.
 
