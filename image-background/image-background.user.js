@@ -22,17 +22,17 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.0a11
+// @version         6.0a12
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/image-background
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
-// @require         https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/jscolor.min.js
+// @require         https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/jscolor.js
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
 // @resource        htmlElements https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
-// @resource        thanks https://raw.github.com/LouCypher/userscripts/master/image-background/thanks.min.html
+// @resource        thanks https://raw.github.com/LouCypher/userscripts/master/image-background/thanks.html
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @resource        changelog https://raw.github.com/LouCypher/userscripts/master/image-background/changelog.txt
 // @run-at          document-start
