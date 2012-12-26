@@ -41,7 +41,9 @@ img {
 }
 #error {
   float: left;
-  cursor: help;
+  cursor: pointer;
+  text-decoration: underline;
 }
 #about { float: right; }
 .hide { display: none; }
+menuitem[disabled] { font-weight: bold; }
