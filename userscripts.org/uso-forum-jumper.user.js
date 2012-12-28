@@ -8,7 +8,7 @@
 // @name          USO: Forum Jumper
 // @namespace     http://userstyles.org/users/12
 // @description   Add links to jump to other forum
-// @version       3.2
+// @version       3.3
 // @author        LouCypher
 // @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
 // @updateURL     https://userscripts.org/scripts/source/137255.meta.js
@@ -37,6 +37,29 @@
 (function() {
   var fLink = $("#mainmenu li a[href='/forums']");
   if (!fLink || fLink.parentNode.className != "active") return;
+
+  var style = $("head").appendChild(document.createElement("style"));
+  style.type = "text/css";
+  style.textContent = "#forum-jumper { width: inherit;"
+                    + " position: relative; }\n"
+                    + "#forum-jumper, #forum-jumper .info {"
+                    + " background-color: inherit; padding-top: 1em; }\n"
+                    + "#forum-jumper.fixed { position: fixed; }\n"
+                    + "#forum-jumper h5 { margin-bottom: 1em; }\n"
+                    + "#forum-jumper li a, "
+                    + "#forum-jumper a:hover + .info { display: block; }\n"
+                    + "#forum-jumper a, "
+                    + "#forum-jumper a:hover {"
+                    + " text-decoration: none !important; }\n"
+                    + "#forum-jumper li { list-style-type: circle; }\n"
+                    + "#forum-jumper li:not(.active):hover {"
+                    + " list-style-type: disc; }\n"
+                    + "#forum-jumper li.active { list-style-type: square;"
+                    + " font-weight: bold; }\n"
+                    + "#forum-jumper .info { display: none;"
+                    + " position: absolute; top: +12em;"
+                    + " font-weight: normal; }\n"
+                    + "#forum-jumper li .info { margin-left: -2em; }";
 
   var div = $("#right").appendChild(document.createElement("div"));
   div.id = "forum-jumper";
@@ -75,29 +98,6 @@
       links[i].parentNode.className = "active";
     }
   }
-
-  var style = $("head").appendChild(document.createElement("style"));
-  style.type = "text/css";
-  style.textContent = "#forum-jumper { width: inherit;"
-                    + " position: relative; }\n"
-                    + "#forum-jumper, #forum-jumper .info {"
-                    + " background-color: inherit; padding-top: 1em; }\n"
-                    + "#forum-jumper.fixed { position: fixed; }\n"
-                    + "#forum-jumper h5 { margin-bottom: 1em; }\n"
-                    + "#forum-jumper li a, "
-                    + "#forum-jumper a:hover + .info { display: block; }\n"
-                    + "#forum-jumper a, "
-                    + "#forum-jumper a:hover {"
-                    + " text-decoration: none !important; }\n"
-                    + "#forum-jumper li { list-style-type: circle; }\n"
-                    + "#forum-jumper li:not(.active):hover {"
-                    + " list-style-type: disc; }\n"
-                    + "#forum-jumper li.active { list-style-type: square;"
-                    + " font-weight: bold; }\n"
-                    + "#forum-jumper .info { display: none;"
-                    + " position: absolute; top: +12em;"
-                    + " font-weight: normal; }\n"
-                    + "#forum-jumper li .info { margin-left: -2em; }";
 
   var divTop = div.offsetTop;
   fixToTop();
