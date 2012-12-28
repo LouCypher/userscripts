@@ -8,24 +8,34 @@
 // @name          USO: Forum Jumper
 // @namespace     http://userstyles.org/users/12
 // @description   Add links to jump to other forum
-// @version       3.3
+// @version       4.0
 // @author        LouCypher
 // @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
+// @downloadURL   https://userscripts.org/scripts/source/137255.user.js
 // @updateURL     https://userscripts.org/scripts/source/137255.meta.js
 // @include       https://userscripts.org/forums/*
 // @include       https://userscripts.org/topics/*
+// @include       https://userscripts.org/posts*
+// @include       https://userscripts.org/spam*
 // @include       http://userscripts.org/forums/*
 // @include       http://userscripts.org/topics/*
+// @include       http://userscripts.org/posts*
+// @include       http://userscripts.org/spam*
 // @include       http://userscripts.org./forums/*
 // @include       http://userscripts.org./topics/*
+// @include       http://userscripts.org./posts*
+// @include       http://userscripts.org./spam*
 // @include       http://greasefire.userscripts.org/forums/*
 // @include       http://greasefire.userscripts.org/topics/*
 // @include       http://greasefire.userscripts.org./forums/*
 // @include       http://greasefire.userscripts.org./topics/*
+// @include       http://greasefire.userscripts.org./posts*
+// @include       http://greasefire.userscripts.org./spam*
 // @exclude       *://*userscripts.org*/topics/new?script_id=*
 // ==/UserScript==
 
 /* Changelog:
+    - 2012-12-29: v4.0 - Added 'Recent posts' and 'Spam' links.
     - 2012-07-05: v3.1 – Fixed style.
     - 2012-07-03: v3.0 – Added forum description.
     - 2012-07-02:
@@ -46,7 +56,7 @@
                     + " background-color: inherit; padding-top: 1em; }\n"
                     + "#forum-jumper.fixed { position: fixed; }\n"
                     + "#forum-jumper h5 { margin-bottom: 1em; }\n"
-                    + "#forum-jumper li a, "
+                    + "#forum-jumper li:not(.notblock) a, "
                     + "#forum-jumper a:hover + .info { display: block; }\n"
                     + "#forum-jumper a, "
                     + "#forum-jumper a:hover {"
@@ -54,10 +64,12 @@
                     + "#forum-jumper li { list-style-type: circle; }\n"
                     + "#forum-jumper li:not(.active):hover {"
                     + " list-style-type: disc; }\n"
-                    + "#forum-jumper li.active { list-style-type: square;"
-                    + " font-weight: bold; }\n"
-                    + "#forum-jumper .info { display: none;"
-                    + " position: absolute; top: +12em;"
+                    + "#forum-jumper li.active { list-style-type: square; }\n"
+                    + "#forum-jumper li a.active { font-weight: bold; }\n"
+                    + "#forum-jumper .info, "
+                    + "#forum-jumper .hide { display: none; }\n"
+                    + "#forum-jumper .info {"
+                    + " position: absolute; top: +17em;"
                     + " font-weight: normal; }\n"
                     + "#forum-jumper li .info { margin-left: -2em; }";
 
@@ -89,14 +101,49 @@
                 + '<li><a href="/forums/4">The Banana Bar</a>'
                 + '<div class="info">A forum for general, off-topic chit-chat'
                 + ' among monkeys.</div></li>'
-                + '</ul>';
+                + '</ul>'
+                + '<ul>'
+                + '<li class="notblock"><a href="/posts">Recent posts</a>'
+                + '<div class="info">View recent posts.</div>'
+                + ' (<a href="/posts?spam=1">include spam</a>)'
+                + '<div class="info">View recent posts including potential'
+                + ' spam posts.</div></li>'
+                + '<li class="hide"><a href="/spam">Spam reports</a>'
+                + '<div class="info">Reported spam posts. Please vote to'
+                + ' help keep Userscripts.org clean.</div>'
+                + '</li>'
+                + '</ul>'
 
-  var links = div.querySelectorAll("a");
+  var login = document.querySelector("#top .login_status");
+  var home = login.querySelectorAll("li")[1].firstChild;
+  var isLoggedIn = /\/home/.test(home.href);
+  if (isLoggedIn) {
+    div.querySelector(".hide").removeAttribute("class");
+  }
+
+  var links = div.querySelectorAll("li a");
+  var link, list;
   for (var i = 0; i < links.length; i++) {
-    if ((links[i].textContent == $("#section h2").textContent) ||
-        (links[i].href == $("#section .subtitle a").href)) {
-      links[i].parentNode.className = "active";
+    link = links[i];
+    list = link.parentNode;
+    if (/\/(posts|spam)/.test(location.pathname)) {
+      if ((new RegExp(location.pathname)).test(link.href)) {
+        list.className += " active";
+        break;
+      }
+    } else {
+      if ((link.textContent == $("#section h2").textContent) ||
+          (link.href == $("#section .subtitle a").href)) {
+        list.className = "active";
+        break;
+      }
     }
+  }
+  link.className = "active";
+  if ((list.querySelectorAll("a").length > 1) &&
+      (/spam/.test(location.search) ==
+       /spam/.test(list.querySelectorAll("a")[1].href))) {
+    list.querySelectorAll("a")[1].className = "active";
   }
 
   var divTop = div.offsetTop;
