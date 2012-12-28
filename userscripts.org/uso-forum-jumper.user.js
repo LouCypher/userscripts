@@ -8,7 +8,7 @@
 // @name          USO: Forum Jumper
 // @namespace     http://userstyles.org/users/12
 // @description   Add links to jump to other forum
-// @version       3.1
+// @version       3.2
 // @author        LouCypher
 // @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
 // @updateURL     https://userscripts.org/scripts/source/137255.meta.js
@@ -22,6 +22,7 @@
 // @include       http://greasefire.userscripts.org/topics/*
 // @include       http://greasefire.userscripts.org./forums/*
 // @include       http://greasefire.userscripts.org./topics/*
+// @exclude       *://*userscripts.org*/topics/new?script_id=*
 // ==/UserScript==
 
 /* Changelog:
