@@ -11,8 +11,8 @@
 // @version       4.0
 // @author        LouCypher
 // @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
-// @downloadURL   https://userscripts.org/scripts/source/137255.user.js
-// @updateURL     https://userscripts.org/scripts/source/137255.meta.js
+// @downloadURL   https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-forum-jumper.user.js
+// @updateURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-forum-jumper.user.js
 // @include       https://userscripts.org/forums/*
 // @include       https://userscripts.org/topics/*
 // @include       https://userscripts.org/posts*
