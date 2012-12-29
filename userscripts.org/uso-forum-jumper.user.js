@@ -31,7 +31,14 @@
 // @include       http://greasefire.userscripts.org./topics/*
 // @include       http://greasefire.userscripts.org./posts*
 // @include       http://greasefire.userscripts.org./spam*
-// @exclude       *://*userscripts.org*/topics/new?script_id=*
+// @exclude       https://userscripts.org/topics/new?script_id=*
+// @exclude       http://userscripts.org/topics/new?script_id=*
+// @exclude       http://userscripts.org./topics/new?script_id=*
+// @exclude       http://greasefire.userscripts.org/topics/new?script_id=*
+// @exclude       https://userscripts.org/posts/search*
+// @exclude       http://userscripts.org/posts/search*
+// @exclude       http://userscripts.org./posts/search*
+// @exclude       http://greasefire.userscripts.org/posts/search*
 // ==/UserScript==
 
 /* Changelog:
@@ -114,9 +121,7 @@
                 + '</li>'
                 + '</ul>'
 
-  var login = document.querySelector("#top .login_status");
-  var home = login.querySelectorAll("li")[1].firstChild;
-  var isLoggedIn = /\/home/.test(home.href);
+  var isLoggedIn = document.querySelector("#top .login_status a[href='/logout']") != null;
   if (isLoggedIn) {
     div.querySelector(".hide").removeAttribute("class");
   }
