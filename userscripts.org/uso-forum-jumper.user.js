@@ -50,8 +50,8 @@
 
   var style = $("head").appendChild(document.createElement("style"));
   style.type = "text/css";
-  style.textContent = "#forum-jumper { width: inherit;"
-                    + " position: relative; }\n"
+  style.textContent = "#forum-jumper, #forum-jumper ul { width: inherit; }\n"
+                    + "#forum-jumper { position: relative; }\n"
                     + "#forum-jumper, #forum-jumper .info {"
                     + " background-color: inherit; padding-top: 1em; }\n"
                     + "#forum-jumper.fixed { position: fixed; }\n"
@@ -144,6 +144,7 @@
       (/spam/.test(location.search) ==
        /spam/.test(list.querySelectorAll("a")[1].href))) {
     list.querySelectorAll("a")[1].className = "active";
+    list.querySelectorAll("a")[1].textContent = "including spam";
   }
 
   var divTop = div.offsetTop;
