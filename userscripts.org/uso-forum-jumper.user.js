@@ -8,23 +8,27 @@
 // @name          USO: Forum Jumper
 // @namespace     http://userstyles.org/users/12
 // @description   Add links to jump to other forum
-// @version       4.0
+// @version       5.0
 // @author        LouCypher
 // @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
 // @downloadURL   https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-forum-jumper.user.js
 // @updateURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-forum-jumper.user.js
+// @include       https://userscripts.org/forums
 // @include       https://userscripts.org/forums/*
 // @include       https://userscripts.org/topics/*
 // @include       https://userscripts.org/posts*
 // @include       https://userscripts.org/spam*
+// @include       http://userscripts.org/forums
 // @include       http://userscripts.org/forums/*
 // @include       http://userscripts.org/topics/*
 // @include       http://userscripts.org/posts*
 // @include       http://userscripts.org/spam*
+// @include       http://userscripts.org./forums
 // @include       http://userscripts.org./forums/*
 // @include       http://userscripts.org./topics/*
 // @include       http://userscripts.org./posts*
 // @include       http://userscripts.org./spam*
+// @include       http://greasefire.userscripts.org/forums
 // @include       http://greasefire.userscripts.org/forums/*
 // @include       http://greasefire.userscripts.org/topics/*
 // @include       http://greasefire.userscripts.org./forums/*
@@ -42,6 +46,7 @@
 // ==/UserScript==
 
 /* Changelog:
+    - 2013-01-03: v5.0 - Removed 'Jetpack' forum.
     - 2012-12-29: v4.0 - Added 'Recent posts' and 'Spam' links.
     - 2012-07-05: v3.1 – Fixed style.
     - 2012-07-03: v3.0 – Added forum description.
@@ -80,7 +85,7 @@
                     + " font-weight: normal; }\n"
                     + "#forum-jumper li .info { margin-left: -2em; }";
 
-  var div = $("#right").appendChild(document.createElement("div"));
+  var div = document.createElement("div");
   div.id = "forum-jumper";
   div.className = "fixed";
   div.innerHTML = '<h5><a href="/forums">Jump to forum</a>:'
@@ -101,10 +106,10 @@
                 + '<li><a href="/forums/5">Greasefire</a>'
                 + '<div class="info">Discussions about the Firefox Addon'
                 + ' that brings userscripts.org to Greasemonkey</div></li>'
-                + '<li><a href="/forums/6">Jetpack</a>'
+                + '<!--<li><a href="/forums/6">Jetpack</a>'
                 + '<div class="info">Mozilla Lab\'s new project to extend'
                 + ' your browser using JavaScript, HTML, jQuery and Firebug.'
-                + '</div></li>'
+                + '</div></li>-->'
                 + '<li><a href="/forums/4">The Banana Bar</a>'
                 + '<div class="info">A forum for general, off-topic chit-chat'
                 + ' among monkeys.</div></li>'
@@ -120,6 +125,13 @@
                 + ' help keep Userscripts.org clean.</div>'
                 + '</li>'
                 + '</ul>'
+
+  if (location.pathname == "/forums") {
+    while ($("#right").lastChild) {
+      $("#right").removeChild($("#right").lastChild);
+    }
+  }
+  $("#right").appendChild(div);
 
   var isLoggedIn = document.querySelector("#top .login_status a[href='/logout']") != null;
   if (isLoggedIn) {
