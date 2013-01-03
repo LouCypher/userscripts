@@ -20,7 +20,7 @@
 // @name            adf.ly Redir
 // @namespace       http://userscripts.org/users/12
 // @description     Redirect adf.ly to its target location.
-// @version         5.1
+// @version         5.2
 // @author          LouCypher
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/adf.ly-redir
@@ -28,6 +28,7 @@
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/adf.ly-redir/adf.ly_Redir.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @include         http://adf.ly/*
+// @include         https://adf.ly/*
 // @include         http://j.gs/*
 // @include         http://q.gs/*
 // @include         http://9.bb/*
@@ -36,10 +37,13 @@
 // ==/UserScript==
 
 (function() {
+  var storage = "adfly_redirURL";
+
   if (/blocked/.test(location.pathname)) {
-    redir(sessionStorage.getItem("adfly_redirURL"));
+    redir(sessionStorage.getItem(storage));
     return;
   }
+
   var scripts = document.querySelectorAll("script:not([src])");
   if (scripts.length) {
     var regx = /\/go\/.*(?=')/;
@@ -47,17 +51,17 @@
       if (regx.test(scripts[i].textContent)) {
         var path = scripts[i].textContent.match(regx);
         path = path.toString();
-        sessionStorage.setItem("adfly_redirURL", path);
+        sessionStorage.setItem(storage, path);
         redir(path);
         return;
       }
     }
   }
-  alert("Sam Ting Wen Wong!");
 
   function redir(aPath) {
+    sessionStorage.removeItem(storage);
     document.title = "Redirecting\u2026";
     document.body.innerHTML = document.title;
-    location.replace("http://adf.ly" + aPath);
+    location.replace("https://adf.ly" + aPath);
   }
 })()

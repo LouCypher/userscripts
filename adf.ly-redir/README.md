@@ -1,6 +1,6 @@
 # adf.ly Redir
 
-Redirect adf.ly to its target location. No ads, no counters, just redirect.
+Redirect adf.ly to its target location. No ads, no counters, just redirect. It won't break your Back button.
 
 It works even with [Adblock Plus](https://addons.mozilla.org/addon/adblock-plus/?src=external-github.com/loucypher/userscripts), [NoScript](https://addons.mozilla.org/addon/noscript/?src=external-github.com/loucypher/userscripts) and [Ghostery](https://addons.mozilla.org/addon/ghostery/?src=external-github.com/loucypher/userscripts) extensions are active. 
 
