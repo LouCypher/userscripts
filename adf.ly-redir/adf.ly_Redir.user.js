@@ -20,7 +20,7 @@
 // @name            adf.ly Redir
 // @namespace       http://userscripts.org/users/12
 // @description     Redirect adf.ly to its target location.
-// @version         5.3
+// @version         5.4a
 // @author          LouCypher
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/adf.ly-redir
@@ -37,10 +37,10 @@
 // ==/UserScript==
 
 (function() {
-  var storage = "adfly_redirURL";
+  var gStorage = "adfly_redirURL";
 
   if (/blocked/.test(location.pathname)) {
-    redir(sessionStorage.getItem(storage));
+    redir(sessionStorage.getItem(gStorage));
     return;
   }
 
@@ -49,9 +49,8 @@
     var regx = /\/go\/.*(?=')/;
     for (var i = 0; i < scripts.length; i++) {
       if (regx.test(scripts[i].textContent)) {
-        var path = scripts[i].textContent.match(regx);
-        path = path.toString();
-        sessionStorage.setItem(storage, path);
+        var path = scripts[i].textContent.match(regx).toString();
+        sessionStorage.setItem(gStorage, path);
         redir(path);
         return;
       }
