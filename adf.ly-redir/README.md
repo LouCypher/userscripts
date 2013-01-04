@@ -1,8 +1,10 @@
 # adf.ly Redir
 
-Redirect adf.ly to its target location. No ads, no counters, just redirect. It won't break your Back button.
+Redirect adf.ly to its target location. No ads, no counters, just redirect.
 
-It works even with [Adblock Plus](https://addons.mozilla.org/addon/adblock-plus/?src=external-github.com/loucypher/userscripts), [NoScript](https://addons.mozilla.org/addon/noscript/?src=external-github.com/loucypher/userscripts) and [Ghostery](https://addons.mozilla.org/addon/ghostery/?src=external-github.com/loucypher/userscripts) extensions are active. 
+Unlike any other adf.ly userscripts, this one won't break your browsing history (Back/Forward).
+
+It works even with [Adblock Plus](https://addons.mozilla.org/addon/adblock-plus/?src=external-github.com/loucypher/userscripts), [NoScript](https://addons.mozilla.org/addon/noscript/?src=external-github.com/loucypher/userscripts) and [Ghostery](https://addons.mozilla.org/addon/ghostery/?src=external-github.com/loucypher/userscripts) extensions are active.
 
 ## Compatibility
 
