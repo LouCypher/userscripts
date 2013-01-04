@@ -20,7 +20,7 @@
 // @name            adf.ly Redir
 // @namespace       http://userscripts.org/users/12
 // @description     Redirect adf.ly to its target location.
-// @version         5.4a
+// @version         5.4
 // @author          LouCypher
 // @contributor     AMZMA (bug reports and feature requests)
 // @license         GPL
