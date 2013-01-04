@@ -22,6 +22,7 @@
 // @description     Redirect adf.ly to its target location.
 // @version         5.4a
 // @author          LouCypher
+// @contributor     AMZMA (bug reports and feature requests)
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/adf.ly-redir
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/adf.ly-redir/adf.ly_Redir.user.js
@@ -58,8 +59,7 @@
   }
 
   function redir(aPath) {
-    document.title = "Redirecting\u2026";
-    document.body.innerHTML = document.title;
+    document.body.innerHTML = document.title = "Redirecting\u2026";
     location.replace("https://adf.ly" + aPath);
   }
 })()
