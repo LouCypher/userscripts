@@ -11,7 +11,8 @@
 // @version       1.1
 // @author        LouCypher
 // @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
-// @updateURL     https://userscripts.org/scripts/source/138063.meta.js
+// @downloadURL   https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-dont-flag-yourself.user.js
+// @updateURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-dont-flag-yourself.user.js
 // @include       https://userscripts.org/topics/*
 // @include       http://userscripts.org/topics/*
 // @include       http://userscripts.org./topics/*
