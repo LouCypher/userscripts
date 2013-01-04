@@ -8,9 +8,10 @@
 // @name          USO: Don't flag yourself
 // @namespace     http://userscripts.org/users/12
 // @description   Remove 'Flag Spam' button from your own posts
-// @version       1.0
+// @version       1.1
 // @author        LouCypher
 // @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
+// @updateURL     https://userscripts.org/scripts/source/138063.meta.js
 // @include       https://userscripts.org/topics/*
 // @include       http://userscripts.org/topics/*
 // @include       http://userscripts.org./topics/*
@@ -28,7 +29,7 @@
   var form;
   for (var i = 0; i < users.length; i++) {
     if (users[i].textContent == loggedin.textContent) {
-      form = users[i].parentNode.parentNode.querySelector(".spam_form");
+      form = users[i].parentNode.parentNode.querySelector("form[action='/spam']");
       form.parentNode.removeChild(form);
     }
   }
