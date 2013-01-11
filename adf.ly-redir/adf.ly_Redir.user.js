@@ -20,7 +20,7 @@
 // @name            adf.ly Redir
 // @namespace       http://userscripts.org/users/12
 // @description     Redirect adf.ly to its target location.
-// @version         5.4
+// @version         5.5
 // @author          LouCypher
 // @contributor     AMZMA (bug reports and feature requests)
 // @license         GPL
@@ -35,13 +35,15 @@
 // @include         http://9.bb/*
 // @include         http://u.bb/*
 // @exclude         http://adf.ly/go/*
+// @exclude         https://adf.ly/go/*
 // ==/UserScript==
 
 (function() {
-  var gStorage = "adfly_redirURL";
+  var gStorage = ["adfly_redirURL", "adfly_redirTitle"];
 
   if (/blocked/.test(location.pathname)) {
-    redir(sessionStorage.getItem(gStorage));
+    redir(sessionStorage.getItem(gStorage[0]),
+          sessionStorage.getItem(gStorage[1]));
     return;
   }
 
@@ -51,15 +53,17 @@
     for (var i = 0; i < scripts.length; i++) {
       if (regx.test(scripts[i].textContent)) {
         var path = scripts[i].textContent.match(regx).toString();
-        sessionStorage.setItem(gStorage, path);
-        redir(path);
+        sessionStorage.setItem(gStorage[0], path);
+        sessionStorage.setItem(gStorage[1], document.title);
+        redir(path, document.title);
         return;
       }
     }
   }
 
-  function redir(aPath) {
-    document.body.innerHTML = document.title = "Redirecting\u2026";
-    location.replace("https://adf.ly" + aPath);
+  function redir(aPath, aTitle) {
+    document.title = "Redirecting to " + aTitle;
+    document.body.innerHTML = "Redirecting\u2026";
+    location.replace("http://adf.ly" + aPath);
   }
 })()
