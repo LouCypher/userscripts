@@ -109,6 +109,18 @@
   $("color-picker").addEventListener("mouseenter", showPicker, false);
   $("color-picker").addEventListener("input", previewBgColor, false);
   $("color-picker").addEventListener("change", previewBgColor, false);
+  $("color-config").addEventListener("keypress", function(e) {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    switch (e.keyCode) {
+      case 13: // 'Enter' key is pressed
+        saveBgColor();
+        break;
+      case 27: // 'Escape' key is pressed
+        $("color-picker").value = GM_getValue("bgColor", "");
+        resetBgColor();
+      default: return;
+    }
+  }, false);
   $("ok").addEventListener("click", saveBgColor, false);
   $("cancel").addEventListener("click", resetBgColor, false);
   $("default").addEventListener("click", defaultBgColor, false);
