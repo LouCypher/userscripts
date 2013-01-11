@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.3a
+// @version         6.4a
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -56,7 +56,10 @@
     GM_setValue("firstTime", false); // Don't open 'thank you' page again
   }
 
-  if (!/^image\//.test(document.contentType)) return;
+  if (!/^image\//.test(document.contentType)) {
+    jscolor.binding = false;
+    return;
+  }
 
   var html = document.documentElement;
 
