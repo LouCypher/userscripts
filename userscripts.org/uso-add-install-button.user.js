@@ -7,16 +7,23 @@
 // ==UserScript==
 // @name            USO: Add install button on script pages
 // @namespace       http://userscripts.org/users/12
-// @version         2.3
+// @version         2.4
 // @author          LouCypher
 // @license         WTFPL http://sam.zoy.org/wtfpl/COPYING
 // @updateURL       https://userscripts.org/scripts/source/128316.meta.js
-// @include         *://userscripts.org/scripts/*/*
-// @include         *://userscripts.org/topics/*
-// @include         *://userscripts.org/reviews/*
-// @match           *://userscripts.org/scripts/*/*
-// @match           *://userscripts.org/topics/*
-// @match           *://userscripts.org/reviews/*
+// @include         /^https?://(greasefire\.)?userscripts.org\.?/(reviews|scripts|topics)/.*$/
+// @include         https://userscripts.org/scripts/*/*
+// @include         http://userscripts.org/scripts/*/*
+// @include         http://userscripts.org./scripts/*/*
+// @include         http://greasefire.userscripts.org./scripts/*/*
+// @include         https://userscripts.org/topics/*
+// @include         http://userscripts.org/topics/*
+// @include         http://userscripts.org./topics/*
+// @include         http://greasefire.userscripts.org./topics/*
+// @include         https://userscripts.org/reviews/*
+// @include         http://userscripts.org/reviews/*
+// @include         http://userscripts.org./reviews/*
+// @include         http://greasefire.userscripts.org./reviews/*
 // ==/UserScript==
 
 (function(){
