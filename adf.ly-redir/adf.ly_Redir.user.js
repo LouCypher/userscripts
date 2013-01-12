@@ -20,7 +20,7 @@
 // @name            adf.ly Redir
 // @namespace       http://userscripts.org/users/12
 // @description     Redirect adf.ly to its target location.
-// @version         5.5
+// @version         5.6
 // @author          LouCypher
 // @contributor     AMZMA (bug reports and feature requests)
 // @license         GPL
@@ -64,6 +64,6 @@
   function redir(aPath, aTitle) {
     document.title = "Redirecting to " + aTitle;
     document.body.innerHTML = "Redirecting\u2026";
-    location.replace("http://adf.ly" + aPath);
+    location.replace("https://adf.ly" + aPath);
   }
 })()
