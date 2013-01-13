@@ -2,15 +2,18 @@
  * the extent permitted by applicable law. You can redistribute it
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
- * http://sam.zoy.org/wtfpl/COPYING for more details. */
+ * http://www.wtfpl.net/ for more details. */
 
 // ==UserScript==
 // @name          USO: Go back or close window on cancel editing script
 // @namespace     http://userstyles.org/users/12
 // @description   Go back or close window if editing script source or description is cancelled
-// @version       0.0
+// @version       1.0
 // @author        LouCypher
-// @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
+// @license       WTFPL http://www.wtfpl.net/
+// @downloadURL   https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-return-to-previous-page-on-cancel-edit.user.js
+// @updateURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-return-to-previous-page-on-cancel-edit.user.js
+// @resource      license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @include       *://userscripts.org/scripts/edit/*
 // @include       *://userscripts.org/scripts/edit_src/*
 // @match         *://userscripts.org/scripts/edit/*

@@ -2,16 +2,18 @@
  * the extent permitted by applicable law. You can redistribute it
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
- * http://sam.zoy.org/wtfpl/COPYING for more details. */
+ * http://www.wtfpl.net/ for more details. */
 
 // ==UserScript==
 // @name          USO: Scripts Table Linkification
 // @namespace     http://userscripts.org/users/12
 // @description   Adds links to scripts' discuss, fans, etc.
-// @version       2.5
+// @version       2.6
 // @author        LouCypher
-// @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
-// @updateURL     https://userscripts.org/scripts/source/128169.meta.js
+// @license       WTFPL http://www.wtfpl.net/
+// @downloadURL   https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-scripts-table-linkification.user.js
+// @updateURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-scripts-table-linkification.user.js
+// @resource      license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @match         *://userscripts.org/*
 // @include       *://userscripts.org/*
 // ==/UserScript==

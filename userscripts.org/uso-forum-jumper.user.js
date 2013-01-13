@@ -2,17 +2,18 @@
  * the extent permitted by applicable law. You can redistribute it
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
- * http://sam.zoy.org/wtfpl/COPYING for more details. */
+ * http://www.wtfpl.net/ for more details. */
 
 // ==UserScript==
 // @name          USO: Forum Jumper
 // @namespace     http://userstyles.org/users/12
 // @description   Add links to jump to other forum
-// @version       5.0
+// @version       5.1
 // @author        LouCypher
-// @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
+// @license       WTFPL http://www.wtfpl.net/
 // @downloadURL   https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-forum-jumper.user.js
 // @updateURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-forum-jumper.user.js
+// @resource      license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @include       https://userscripts.org/forums
 // @include       https://userscripts.org/forums/*
 // @include       https://userscripts.org/topics/*

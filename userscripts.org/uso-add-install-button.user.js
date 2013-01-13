@@ -2,15 +2,17 @@
  * the extent permitted by applicable law. You can redistribute it
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
- * http://sam.zoy.org/wtfpl/COPYING for more details. */
+ * http://www.wtfpl.net/ for more details. */
 
 // ==UserScript==
 // @name            USO: Add install button on script pages
 // @namespace       http://userscripts.org/users/12
-// @version         2.4
+// @version         2.5
 // @author          LouCypher
-// @license         WTFPL http://sam.zoy.org/wtfpl/COPYING
-// @updateURL       https://userscripts.org/scripts/source/128316.meta.js
+// @license         WTFPL http://www.wtfpl.net/
+// @updateURL       https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-add-install-button.user.js
+// @downloadURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-add-install-button.user.js
+// @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @include         /^https?://(greasefire\.)?userscripts.org\.?/(reviews|scripts|topics)/.*$/
 // @include         https://userscripts.org/scripts/*/*
 // @include         http://userscripts.org/scripts/*/*

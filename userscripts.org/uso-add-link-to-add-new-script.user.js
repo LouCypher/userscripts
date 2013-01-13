@@ -2,18 +2,21 @@
  * the extent permitted by applicable law. You can redistribute it
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
- * http://sam.zoy.org/wtfpl/COPYING for more details. */
+ * http://www.wtfpl.net/ for more details. */
 
 // ==UserScript==
-// @name          USO: Add link to add a new script
-// @namespace     http://userstyles.org/users/12
-// @version       0.0
-// @author        LouCypher
-// @license       WTFPL http://sam.zoy.org/wtfpl/COPYING
-// @include       *://userscripts.org/home/scripts
-// @include       *://userscripts.org/users/*
-// @match         *://userscripts.org/home/scripts
-// @match         *://userscripts.org/users/*
+// @name            USO: Add link to add a new script
+// @namespace       http://userstyles.org/users/12
+// @version         1.0
+// @author          LouCypher
+// @license         WTFPL http://www.wtfpl.net/
+// @updateURL       https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-add-link-to-add-new-script.user.js
+// @downloadURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-add-link-to-add-new-script.user.js
+// @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
+// @include         *://userscripts.org/home/scripts
+// @include         *://userscripts.org/users/*
+// @match           *://userscripts.org/home/scripts
+// @match           *://userscripts.org/users/*
 // ==/UserScript==
 
 (function() { // function wrapper for Opera UserJS

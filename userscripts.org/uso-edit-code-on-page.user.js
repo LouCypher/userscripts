@@ -20,10 +20,12 @@
 // @name            USO: Edit code on source page
 // @namespace       http://userstyles.org/users/12
 // @description     Allows you to update code from script source page directyly.
-// @version         3.6
+// @version         3.7
 // @author          LouCypher
 // @license         GPL
-// @updateURL       https://userscripts.org/scripts/source/128324.meta.js
+// @updateURL       https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-edit-code-on-page.user.js
+// @downloadURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-edit-code-on-page.user.js
+// @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @include         https://userscripts.org/scripts/review/*
 // @include         http://userscripts.org/scripts/review/*
 // @include         http://userscripts.org./scripts/review/*

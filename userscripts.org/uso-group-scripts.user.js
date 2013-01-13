@@ -20,10 +20,11 @@
 // @name            USO Group: Show Scripts
 // @namespace       http://userstyles.org/users/12
 // @description     Show group scripts in group main page
-// @version         1.0
+// @version         1.1
 // @author          LouCypher
 // @license         GPL
 // @updateURL       https://userscripts.org/scripts/source/136453.meta.js
+// @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @include         http://userscripts.org/groups/*
 // @include         http://userscripts.org./groups/*
 // @include         https://userscripts.org/groups/*
