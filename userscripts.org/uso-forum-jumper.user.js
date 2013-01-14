@@ -128,11 +128,14 @@
                 + '</ul>'
 
   if (location.pathname == "/forums") {
-    while ($("#right").lastChild) {
-      $("#right").removeChild($("#right").lastChild);
+    $("#right").insertBefore(div, $("#right > h6"));
+    div.removeChild(div.firstChild);
+    while (div.nextSibling) {
+      $("#right").removeChild(div.nextSibling);
     }
+  } else {
+    $("#right").appendChild(div);
   }
-  $("#right").appendChild(div);
 
   var isLoggedIn = document.querySelector("#top .login_status a[href='/logout']") != null;
   if (isLoggedIn) {
