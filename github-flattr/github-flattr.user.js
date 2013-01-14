@@ -20,13 +20,15 @@
 // @name          GitHub: Add Flattr button
 // @namespace     https://github.com/LouCypher
 // @description   Add Flattr button on GitHub.com
-// @version       13.0
+// @version       13.1
 // @author        LouCypher
 // @license       GPL
 // @icon          http://i.imgur.com/VDx96.png
+// @homepageURL   https://github.com/LouCypher/userscripts/tree/master/github-flattr
+// @updateURL     https://raw.github.com/LouCypher/userscripts/master/github-flattr/github-flattr.user.js
+// @downloadURL   https://raw.github.com/LouCypher/userscripts/master/github-flattr/github-flattr.user.js
 // @resource      license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
-// @resource      changelog https://github.com/LouCypher/userscripts/raw/master/github-flattr/changelog.txt
-// @downloadURL   https://github.com/LouCypher/userscripts/raw/master/github-flattr/github-flattr.user.js
+// @resource      changelog https://raw.github.com/LouCypher/userscripts/master/github-flattr/changelog.txt
 // @include       https://github.com/*
 // @include       https://gist.github.com/*
 // @exclude       https://github.com/dashboard/*
