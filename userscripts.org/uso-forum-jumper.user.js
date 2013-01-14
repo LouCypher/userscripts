@@ -8,7 +8,7 @@
 // @name          USO: Forum Jumper
 // @namespace     http://userstyles.org/users/12
 // @description   Add links to jump to other forum
-// @version       5.1
+// @version       6.0
 // @author        LouCypher
 // @license       WTFPL http://www.wtfpl.net/
 // @homepageURL   https://userscripts.org/scripts/show/137255
@@ -48,6 +48,7 @@
 // ==/UserScript==
 
 /* Changelog:
+    - 2013-01-15: v6.0 - Added to forum front page.
     - 2013-01-03: v5.0 - Removed 'Jetpack' forum.
     - 2012-12-29: v4.0 - Added 'Recent posts' and 'Spam' links.
     - 2012-07-05: v3.1 – Fixed style.
