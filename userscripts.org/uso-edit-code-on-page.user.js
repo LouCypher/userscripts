@@ -23,6 +23,7 @@
 // @version         3.7
 // @author          LouCypher
 // @license         GPL
+// @homepageURL     https://userscripts.org/scripts/show/128324
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-edit-code-on-page.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-edit-code-on-page.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt

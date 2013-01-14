@@ -10,6 +10,7 @@
 // @version         2.5
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
+// @homepageURL     https://userscripts.org/scripts/show/128316
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-add-install-button.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-add-install-button.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt

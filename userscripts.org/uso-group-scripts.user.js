@@ -23,6 +23,7 @@
 // @version         1.1
 // @author          LouCypher
 // @license         GPL
+// @homepageURL     https://userscripts.org/scripts/show/136453
 // @updateURL       https://userscripts.org/scripts/source/136453.meta.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @include         http://userscripts.org/groups/*

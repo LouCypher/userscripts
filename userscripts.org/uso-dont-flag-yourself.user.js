@@ -11,6 +11,7 @@
 // @version         1.1
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
+// @homepageURL     https://userscripts.org/scripts/show/138063
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-dont-flag-yourself.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-dont-flag-yourself.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt

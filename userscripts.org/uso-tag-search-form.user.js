@@ -11,6 +11,7 @@
 // @author          LouCypher
 // @version         1.1
 // @license         WTFPL http://www.wtfpl.net/
+// @homepageURL     https://userscripts.org/scripts/show/141735
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-tag-search-form.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-tag-search-form.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt

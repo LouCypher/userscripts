@@ -11,11 +11,14 @@
 // @version       2.6
 // @author        LouCypher
 // @license       WTFPL http://www.wtfpl.net/
+// @homepageURL   https://userscripts.org/scripts/show/128169
 // @downloadURL   https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-scripts-table-linkification.user.js
 // @updateURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-scripts-table-linkification.user.js
 // @resource      license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
-// @match         *://userscripts.org/*
-// @include       *://userscripts.org/*
+// @include       https://userscripts.org/*
+// @include       http://userscripts.org/*
+// @include       http://userscripts.org./*
+// @include       http://greasefire.userscripts.org./*
 // ==/UserScript==
 
 setTimeout(function() {

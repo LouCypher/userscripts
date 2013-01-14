@@ -10,6 +10,7 @@
 // @version         6.1
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
+// @homepageURL     https://userscripts.org/scripts/show/137963
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-auto-hide-notification.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-auto-hide-notification.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt

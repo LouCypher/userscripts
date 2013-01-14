@@ -11,6 +11,7 @@
 // @version       5.1
 // @author        LouCypher
 // @license       WTFPL http://www.wtfpl.net/
+// @homepageURL   https://userscripts.org/scripts/show/137255
 // @downloadURL   https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-forum-jumper.user.js
 // @updateURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-forum-jumper.user.js
 // @resource      license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
