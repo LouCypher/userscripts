@@ -30,6 +30,7 @@
 // @include         http://userscripts.org./groups/*
 // @include         https://userscripts.org/groups/*
 // @include         http://greasefire.userscripts.org/groups/*
+// @grant           GM_xmlhttpRequest
 // ==/UserScript==
 
 (function(){ // function wrapper for Opera UserJS
