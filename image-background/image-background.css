@@ -9,8 +9,7 @@ html {
 }
 body, img { background-image: none !important; }
 img {
-  -moz-box-shadow: none;
-       box-shadow: none;
+  box-shadow: none;
   background-color: hsl(0,0%,90%);
 }
 #dummy { color: transparent; }
@@ -18,8 +17,7 @@ img {
   background-color: rgba(255, 255, 255, .9);
   color: black;
   border: 1px outset rgba(255, 255, 255, .9);
-  -moz-border-radius: 6px;
-       border-radius: 6px;
+  border-radius: 6px;
   padding: 0 1em;
   width: 340px;
   height: 105px;
@@ -29,8 +27,7 @@ img {
 }
 #color-config, body > div:last-child {
   position: fixed !important;
-  -moz-box-shadow: 3px 3px 6px rgba(0, 0, 0, .5);
-       box-shadow: 3px 3px 6px rgba(0, 0, 0, .5);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, .5);
 }
 #color-config div { margin: 1em 0; }
 #color-config a, a:visited { color: blue; }
