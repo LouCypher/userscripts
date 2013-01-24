@@ -56,3 +56,20 @@ To toggle background patterns, check/uncheck **Use Background Patterns** on cont
 ### Toggle image transparency
 
 To toggle image transparency, check/uncheck **Show Image Transparency** on context menu.
+
+## Limitations
+
+By default, this script will not run on image on local disk. To enable it:
+
+* Greasemonkey:
+
+  1. Type `about:config?filter=fileIsGreaseable` in Location Bar and press Enter.
+  2. Change **extensions.greasemonkey.fileIsGreaseable** value to **true**.
+
+
+* Scriptish:
+  1. Open Scriptish options.
+  2. On Sciptish options dialog, select [**Advanced**](http://scriptish.org/screenshots/pref-advanced.png) tab.
+  3. Turn on **file protocol** in **Additional protocols** option.
+
+The script will not run on **about:** and **chrome:** schemes (e.g. `about:logo`, `chrome://greasemonkey/skin/icon32.png`) with Greasemonkey (see [Greaseable schemes](http://wiki.greasespot.net/Include_and_exclude_rules#Greaseable_schemes)). But with Scriptish, you can enable it by repeating step 1 and 2 above, then turn on **about protocol** and **chrome protocol** in **Additional protocols** option.
