@@ -1,6 +1,6 @@
-6.3 - Don't bind JSColor on non-image page.
-6.1 - Fixed: 'Thank you' page shown as data:text/plain
-      on Scriptish and older Greasemonkey
+6.4 - Refactored.
+6.3 - Turn off JSColor if content type is non-image.
+6.2 - Fixed: 'Thank you' page shown as data:text/plain on Scriptish and older Greasemonkey
 6.0 - Added color picker from jscolor.com.
     - Fixed: conflict with Walnut theme.
 
