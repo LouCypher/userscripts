@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.4a
+// @version         6.4a2
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -45,97 +45,107 @@
 // @grant           GM_openInTab
 // ==/UserScript==
 
-var firstTime = GM_getValue("firstTime", true); // Check if first time user
-if (firstTime) { // If first time user
-  var thanks = GM_getResourceURL("thanks");
-  if (/^data\:/.test(thanks)) { // If old GM_resourceURL
-    thanks = thanks.replace(/text\/plain/, "text/html");
+var gHTML = document.documentElement;
+firstTimeCheck();
+init();
+
+function init() {
+  if (!/^image\//.test(document.contentType)) {
+    jscolor.binding = false; // Turn off JSColor on non-image page
+    return;
   }
-  GM_openInTab(thanks); // Open 'thank you' page
-  GM_setValue("firstTime", false); // Don't open 'thank you' page again
-}
 
-if (!/^image\//.test(document.contentType)) {
-  jscolor.binding = false;
-  return;
-}
-
-var html = document.documentElement;
-
-/***** Start checking preferences *****/
-var bgColor = GM_getValue("bgColor", ""); // Get color value pref (def = empty)
-var bgImage = GM_getValue("bgImage", true); // Get background pref (def = true)
-var imgTrans = GM_getValue("imgTrans", true); // Get transparency pref (def = true)
-/***** End checking preferences *****/
-
-setBgColor(bgColor); // Set background color from pref
-setBgImage(bgImage); // Set background patters from pref
-showTransparency(imgTrans); // Set image transparency from pref
-GM_addStyle(GM_getResourceText("css")); // Inject style from @resource
-
-if (!("contextMenu" in html && "HTMLMenuItemElement" in window)) return;
-
-// Append elements
-var div = document.body.appendChild(document.createElement("div"));
-div.innerHTML = GM_getResourceText("htmlElements");
-
-// Check if JavaScript is enabled for JSColor to work
-if (getComputedStyle($("noscript"), null).display == "none") { // If JavaScript is enabled
-  jscolor.dir = "https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/";
-  $("color-picker").value = bgColor;
-} else { // JavaScript is disabled
-  jscolor.binding = false; // Disable color picker
-  $("error").className = "";
-  var p = $("color-config").querySelector("div");
-  p.replaceChild(document.createTextNode("Enter valid "), p.firstChild);
-}
-
-/***** Start context menu initialization *****/
-// Check/uncheck menu items based on prefs
-bgImage && $("toggle-background-image").setAttribute("checked", "true");
-imgTrans && $("toggle-image-transparency").setAttribute("checked", "true");
-
-// Add event listeners to menuitems
-$("change-background-color").addEventListener("click", showColorConfig, false);
-$("toggle-image-transparency").addEventListener("click", toggleTransparency, false);
-$("toggle-background-image").addEventListener("click", toggleBgImage, false);
-$("help").addEventListener("click", goHelp, false);
-
-// Set context menu to html element
-html.setAttribute("contextmenu", "context-menu");
-html.addEventListener("contextmenu", popupShowing, false);
-/***** End context menu initialization *****/
-
-// Color dialog initialization
-html.addEventListener("click", hidePicker, false);
-$("color-picker").addEventListener("mouseenter", showPicker, false);
-$("color-picker").addEventListener("input", previewBgColor, false);
-$("color-picker").addEventListener("change", previewBgColor, false);
-$("color-config").addEventListener("keypress", function(e) {
-  if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
-  switch (e.keyCode) {
-    case 13: // 'Enter' key is pressed
-      saveBgColor();
-      break;
-    case 27: // 'Escape' key is pressed
-      $("color-picker").value = GM_getValue("bgColor", "");
-      resetBgColor();
-    default: return;
+  if (!("contextMenu" in gHTML && "HTMLMenuItemElement" in window)) {
+    alert("This userscript requires Firefox 15 or newer.");
+    return;
   }
-}, false);
-$("ok").addEventListener("click", saveBgColor, false);
-$("cancel").addEventListener("click", resetBgColor, false);
-$("default").addEventListener("click", defaultBgColor, false);
-$("error").addEventListener("click", showAlert, false);
+
+  /***** Start checking preferences *****/
+  var bgColor = GM_getValue("bgColor", ""); // Get color value pref (def = empty)
+  var bgImage = GM_getValue("bgImage", true); // Get background pref (def = true)
+  var imgTrans = GM_getValue("imgTrans", true); // Get transparency pref (def = true)
+  /***** End checking preferences *****/
+
+  setBgColor(bgColor); // Set background color from pref
+  setBgImage(bgImage); // Set background patters from pref
+  showTransparency(imgTrans); // Set image transparency from pref
+  GM_addStyle(GM_getResourceText("css")); // Inject style from @resource
+
+  // Append elements
+  var div = document.body.appendChild(document.createElement("div"));
+  div.innerHTML = GM_getResourceText("htmlElements");
+
+  // Check if JavaScript is enabled for JSColor to work
+  if (getComputedStyle($("noscript"), null).display == "none") { // If JavaScript is enabled
+    jscolor.dir = "https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/";
+    $("color-picker").value = bgColor;
+  } else { // JavaScript is disabled
+    jscolor.binding = false; // Disable color picker
+    $("error").className = "";
+    var p = $("color-config").querySelector("div");
+    p.replaceChild(document.createTextNode("Enter valid "), p.firstChild);
+  }
+
+  /***** Start context menu initialization *****/
+  // Check/uncheck menu items based on prefs
+  bgImage && $("toggle-background-image").setAttribute("checked", "true");
+  imgTrans && $("toggle-image-transparency").setAttribute("checked", "true");
+
+  // Add event listeners to menuitems
+  $("change-background-color").addEventListener("click", showColorConfig, false);
+  $("toggle-image-transparency").addEventListener("click", toggleTransparency, false);
+  $("toggle-background-image").addEventListener("click", toggleBgImage, false);
+  $("help").addEventListener("click", goHelp, false);
+
+  // Set context menu to html element
+  gHTML.setAttribute("contextmenu", "context-menu");
+  gHTML.addEventListener("contextmenu", popupShowing, false);
+  /***** End context menu initialization *****/
+
+  // Color dialog initialization
+  gHTML.addEventListener("click", hidePicker, false);
+  $("color-picker").addEventListener("mouseenter", showPicker, false);
+  $("color-picker").addEventListener("input", previewBgColor, false);
+  $("color-picker").addEventListener("change", previewBgColor, false);
+  $("color-config").addEventListener("keypress", function(e) {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    switch (e.keyCode) {
+      case 13: // 'Enter' key is pressed
+        saveBgColor();
+        break;
+      case 27: // 'Escape' key is pressed
+        $("color-picker").value = GM_getValue("bgColor", "");
+        resetBgColor();
+      default: return;
+    }
+  }, false);
+  $("ok").addEventListener("click", saveBgColor, false);
+  $("cancel").addEventListener("click", resetBgColor, false);
+  $("default").addEventListener("click", defaultBgColor, false);
+  $("error").addEventListener("click", showAlert, false);
+}
+
+// Show 'thank you' page on first time use
+function firstTimeCheck() {
+  var firstTime = GM_getValue("firstTime", true); // Check if first time use
+  if (firstTime) { // If first time use
+    var thanks = GM_getResourceURL("thanks");
+    if (/^data\:/.test(thanks)) { // If old GM_resourceURL
+      thanks = thanks.replace(/text\/plain/, "text/html");
+    }
+    GM_openInTab(thanks); // Open 'thank you' page
+    GM_setValue("firstTime", false); // Don't open 'thank you' page again
+  }
+}
 
 // Executed on right click
 function popupShowing(aEvent) {
-  var node = aEvent.target;
+  var node = aEvent.target; // The web element you right click on
   while (node && node.id != "color-config") node = node.parentNode;
   if (node) { // Color config dialog
-    html.removeAttribute("contextmenu"); // Hide context menu items
+    gHTML.removeAttribute("contextmenu"); // Hide context menu items
   } else {
-    html.setAttribute("contextmenu", "context-menu"); // Show context menu items
+    gHTML.setAttribute("contextmenu", "context-menu"); // Show context menu items
   }
 }
 
@@ -159,9 +169,9 @@ function validateColor(aColor, aCallback) {
 // Set background color
 function setBgColor(aColorValue) {
   if (aColorValue == "") {
-    html.style.backgroundColor = ""; // Use default color from CSS resource
+    gHTML.style.backgroundColor = ""; // Use default color from CSS resource
   } else {
-    setStyleProperty(html, "background-color", aColorValue);
+    setStyleProperty(gHTML, "background-color", aColorValue);
   }
 }
 
@@ -176,14 +186,14 @@ function saveBgColor() {
 
 // Reset background color to previous setting
 function resetBgColor() {
-  setStyleProperty(html, "background-color", GM_getValue("bgColor", ""));
+  setStyleProperty(gHTML, "background-color", GM_getValue("bgColor", ""));
   hideColorConfig();
 }
 
 // Use default background color
 function defaultBgColor() {
   $("color-picker").value = "";
-  html.style.backgroundColor = "";
+  gHTML.style.backgroundColor = "";
 }
 
 // Show color configuration dialog
@@ -232,10 +242,10 @@ function showAlert() {
 function setBgImage(aBoolean) {
   switch(aBoolean) {
     case true: // Enable background patterns
-      html.style.backgroundImage = ""; // Use bg patterns in CSS resource
+      gHTML.style.backgroundImage = ""; // Use bg patterns in CSS resource
       break;
     case false: // Disable background patterns
-      setStyleProperty(html, "background-image", "none");
+      setStyleProperty(gHTML, "background-image", "none");
   }
   GM_setValue("bgImage", aBoolean); // Save background option to pref
 }
