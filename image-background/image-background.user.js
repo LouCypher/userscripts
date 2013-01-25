@@ -22,7 +22,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.4a2
+// @version         6.4a3
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -45,8 +45,12 @@
 // @grant           GM_openInTab
 // ==/UserScript==
 
+if (GM_getValue("firstTime", true)) { // If first time use
+  showThanks(); // Open 'thank you' page
+  GM_setValue("firstTime", false); // Don't open 'thank you' page again
+}
+
 var gHTML = document.documentElement;
-firstTimeCheck();
 init();
 
 function init() {
@@ -125,17 +129,13 @@ function init() {
   $("error").addEventListener("click", showAlert, false);
 }
 
-// Show 'thank you' page on first time use
-function firstTimeCheck() {
-  var firstTime = GM_getValue("firstTime", true); // Check if first time use
-  if (firstTime) { // If first time use
-    var thanks = GM_getResourceURL("thanks");
-    if (/^data\:/.test(thanks)) { // If old GM_resourceURL
-      thanks = thanks.replace(/text\/plain/, "text/html");
-    }
-    GM_openInTab(thanks); // Open 'thank you' page
-    GM_setValue("firstTime", false); // Don't open 'thank you' page again
+// Show 'thank you' page
+function showThanks() {
+  var thanks = GM_getResourceURL("thanks");
+  if (/^data\:/.test(thanks)) { // If old GM_resourceURL
+    thanks = thanks.replace(/text\/plain/, "text/html");
   }
+  GM_openInTab(thanks); // Open 'thank you' page
 }
 
 // Executed on right click
