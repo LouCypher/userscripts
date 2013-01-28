@@ -1,6 +1,6 @@
 /*
     Redirect LinkBucks to its target location.
-    Copyright (C) 2012 LouCypher
+    Copyright (C) 2013 LouCypher
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,9 @@
 // @version         1.0
 // @author          LouCypher
 // @license         GPL
+// @homepageURL     https://github.com/LouCypher/userscripts/tree/master/adf.ly-redir
+// @updateURL       https://raw.github.com/LouCypher/userscripts/master/adf.ly-redir/linkbucks-redir.user.js
+// @downloadURL     https://raw.github.com/LouCypher/userscripts/master/adf.ly-redir/linkbucks-redir.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @include         http://*.linkbucks.com/
 // ==/UserScript==
