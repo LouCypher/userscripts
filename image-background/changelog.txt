@@ -1,3 +1,5 @@
+7.0 - Works with SVG images.
+
 6.4 - Refactored.
 6.3 - Turn off JSColor if content type is non-image.
 6.2 - Fixed: 'Thank you' page shown as data:text/plain on Scriptish and older Greasemonkey

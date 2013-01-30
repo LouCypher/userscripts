@@ -1,7 +1,5 @@
 /*
-    Standalone Image Background and Transparency
-    Change standalone image background and show transparency on Firefox.
-    Compatibility: Firefox 15.0 or newer.
+    Change standalone image background and show its transparency on Firefox.
     Copyright (C) 2012 LouCypher
 
     This program is free software: you can redistribute it and/or modify
@@ -21,8 +19,8 @@
 // ==UserScript==
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
-// @description     Change standalone image background and show transparency on Firefox. Use context menu to configure.
-// @version         6.4a3
+// @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
+// @version         7.0
 // @author          LouCypher
 // @license         GPL
 // @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
@@ -50,7 +48,7 @@ if (GM_getValue("firstTime", true)) { // If first time use
   GM_setValue("firstTime", false); // Don't open 'thank you' page again
 }
 
-var gHTML = document.documentElement;
+var gDocElm = document.documentElement;
 init();
 
 function init() {
@@ -59,20 +57,27 @@ function init() {
     return;
   }
 
-  if (!("contextMenu" in gHTML && "HTMLMenuItemElement" in window)) {
-    alert("This userscript requires Firefox 15 or newer.");
-    return;
-  }
-
   /***** Start checking preferences *****/
   var bgColor = GM_getValue("bgColor", ""); // Get color value pref (def = empty)
   var bgImage = GM_getValue("bgImage", true); // Get background pref (def = true)
   var imgTrans = GM_getValue("imgTrans", true); // Get transparency pref (def = true)
+  var computedColor = GM_getValue("computedColor", "");
   /***** End checking preferences *****/
+
+  if (gDocElm instanceof SVGSVGElement) { // If SVG image
+    initSVG(computedColor, bgImage);
+    return;
+  }
+
+  if (!("contextMenu" in gDocElm && "HTMLMenuItemElement" in window)) {
+    alert("This userscript requires Firefox 15 or newer.");
+    return;
+  }
 
   setBgColor(bgColor); // Set background color from pref
   setBgImage(bgImage); // Set background patters from pref
   showTransparency(imgTrans); // Set image transparency from pref
+  saveComputedColor();
   GM_addStyle(GM_getResourceText("css")); // Inject style from @resource
 
   // Append elements
@@ -99,15 +104,16 @@ function init() {
   $("change-background-color").addEventListener("click", showColorConfig, false);
   $("toggle-image-transparency").addEventListener("click", toggleTransparency, false);
   $("toggle-background-image").addEventListener("click", toggleBgImage, false);
+  $("donate").addEventListener("click", showThanks, false);
   $("help").addEventListener("click", goHelp, false);
 
   // Set context menu to html element
-  gHTML.setAttribute("contextmenu", "context-menu");
-  gHTML.addEventListener("contextmenu", popupShowing, false);
+  gDocElm.setAttribute("contextmenu", "context-menu");
+  gDocElm.addEventListener("contextmenu", popupShowing, false);
   /***** End context menu initialization *****/
 
   // Color dialog initialization
-  gHTML.addEventListener("click", hidePicker, false);
+  gDocElm.addEventListener("click", hidePicker, false);
   $("color-picker").addEventListener("mouseenter", showPicker, false);
   $("color-picker").addEventListener("input", previewBgColor, false);
   $("color-picker").addEventListener("change", previewBgColor, false);
@@ -143,9 +149,9 @@ function popupShowing(aEvent) {
   var node = aEvent.target; // The web element you right click on
   while (node && node.id != "color-config") node = node.parentNode;
   if (node) { // Color config dialog
-    gHTML.removeAttribute("contextmenu"); // Hide context menu items
+    gDocElm.removeAttribute("contextmenu"); // Hide context menu items
   } else {
-    gHTML.setAttribute("contextmenu", "context-menu"); // Show context menu items
+    gDocElm.setAttribute("contextmenu", "context-menu"); // Show context menu items
   }
 }
 
@@ -154,8 +160,9 @@ function validateColor(aColor, aCallback) {
   // Set dummy element color
   $("dummy").style.color = (aColor == "") ? "#222" : aColor;
   var save = false;
+  var computedColor = getComputedStyle($("dummy"), null).color;
 
-  if (getComputedStyle($("dummy"), null).color == "transparent") {
+  if (computedColor == "transparent") {
   // If dummy element's color is not set because invalid color value
     alert("Invalid color value: " + aColor);
   } else {
@@ -169,9 +176,9 @@ function validateColor(aColor, aCallback) {
 // Set background color
 function setBgColor(aColorValue) {
   if (aColorValue == "") {
-    gHTML.style.backgroundColor = ""; // Use default color from CSS resource
+    gDocElm.style.backgroundColor = ""; // Use default color from CSS resource
   } else {
-    setStyleProperty(gHTML, "background-color", aColorValue);
+    setStyleProperty(gDocElm, "background-color", aColorValue);
   }
 }
 
@@ -180,20 +187,21 @@ function saveBgColor() {
   var color = $("color-picker").value;
   if (validateColor(color, setBgColor)) { // If color value is valid
     GM_setValue("bgColor", color); // Save color value to pref
+    saveComputedColor();
     hideColorConfig();
   }
 }
 
 // Reset background color to previous setting
 function resetBgColor() {
-  setStyleProperty(gHTML, "background-color", GM_getValue("bgColor", ""));
+  setStyleProperty(gDocElm, "background-color", GM_getValue("bgColor", ""));
   hideColorConfig();
 }
 
 // Use default background color
 function defaultBgColor() {
   $("color-picker").value = "";
-  gHTML.style.backgroundColor = "";
+  gDocElm.style.backgroundColor = "";
 }
 
 // Show color configuration dialog
@@ -242,10 +250,10 @@ function showAlert() {
 function setBgImage(aBoolean) {
   switch(aBoolean) {
     case true: // Enable background patterns
-      gHTML.style.backgroundImage = ""; // Use bg patterns in CSS resource
+      gDocElm.style.backgroundImage = ""; // Use bg patterns in CSS resource
       break;
     case false: // Disable background patterns
-      setStyleProperty(gHTML, "background-image", "none");
+      setStyleProperty(gDocElm, "background-image", "none");
   }
   GM_setValue("bgImage", aBoolean); // Save background option to pref
 }
@@ -284,6 +292,30 @@ function goHelp() {
 
 function setStyleProperty(aNode, aPropertyName, aValue) {
   aNode.style.setProperty(aPropertyName, aValue, "important");
+}
+
+function saveComputedColor() {
+  GM_setValue("computedColor", getComputedStyle(gDocElm, null).backgroundColor);
+}
+
+function initSVG(aColorValue, aBgImage) {
+  if ((getComputedStyle(gDocElm, null).backgroundColor != "transparent") ||
+      (getComputedStyle(gDocElm, null).backgroundImage != "none"))
+    return; // Don't override if SVG has background color or background image
+
+  // Append <style> element
+  var style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+  style.type = "text/css";
+  style.textContent = 'svg { background: #222 url("data:image/png;base64,'
+                    + 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hA'
+                    + 'AAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAC'
+                    + '5JREFUOMtjZGBgsGfAA/7//38QnzwTA4Vg1IDBYADj///'
+                    + '/8StgZLQfDcRhbwAAfyQHW028hvoAAAAASUVORK5CYII=")'
+                    + ' 0 0 repeat fixed !important; }';
+  gDocElm.appendChild(style);
+
+  setBgColor(aColorValue); // Set background color from pref
+  setBgImage(aBgImage); // Set background patters from pref
 }
 
 function $(aId) {
