@@ -144,6 +144,25 @@
 
 <p>To toggle image transparency, check/uncheck <strong>Show Image Transparency</strong> on context menu.</p>
 
+<h2 id="limitations">Limitations</h2>
+
+<p>By default, this script will not run on image on local disk. To enable it:</p>
+<ul>
+<li>Greasemonkey:
+<ol>
+<li>Type <code>about:config?filter=fileIsGreaseable</code> in Location Bar and press Enter.</li>
+<li>Change <strong>extensions.greasemonkey.fileIsGreaseable</strong> value to <strong>true</strong>.</li>
+</ol><br></li>
+<li>Scriptish:
+<ol>
+<li>Open Scriptish options.</li>
+<li>On Sciptish options dialog, select <a href="http://scriptish.org/screenshots/pref-advanced.png"><strong>Advanced</strong></a> tab.</li>
+<li>Turn on <strong>file protocol (Local files)</strong> in <strong>Additional protocols</strong>.</li>
+</ol></li>
+</ul>
+
+<p>The script will not run on <strong>about:</strong> and <strong>chrome:</strong> schemes (e.g. <code>about:logo</code>, <code>chrome://greasemonkey/skin/icon32.png</code>) with Greasemonkey (see <a href="http://wiki.greasespot.net/Include_and_exclude_rules#Greaseable_schemes">Greaseable schemes</a>). But with Scriptish, you can enable it by repeating step 1 and 2 above, then turn on <strong>about protocol</strong> and <strong>chrome protocol</strong> in <strong>Additional protocols</strong> option.</p>
+
 </article>
 <div>
   <a id="github" class="imglink" href="https://github.com/LouCypher/userscripts" title="Fork me on GitHub"></a>
