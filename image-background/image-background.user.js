@@ -23,8 +23,11 @@
 // @version         7.0
 // @author          LouCypher
 // @license         GPL
-// @screenshot      https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png
+// @screenshot      http://loucypher.github.com/userscripts/image-background/images/screenshot-after.png
+// @icon            http://loucypher.github.com/userscripts/image-background/images/miku-icon48.png
+// @icon64URL       http://loucypher.github.com/userscripts/image-background/images/miku-icon64.png
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/image-background
+// @supportURL      https://github.com/LouCypher/userscripts/issues
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @require         https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/jscolor.js
