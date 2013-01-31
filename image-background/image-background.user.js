@@ -20,7 +20,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         7.0
+// @version         7.1a1
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.com/userscripts/image-background/images/screenshot-after.png
@@ -306,7 +306,7 @@ function initSVG(aColorValue, aBgImage) {
       (getComputedStyle(gDocElm, null).backgroundImage != "none"))
     return; // Don't override if SVG has background color or background image
 
-  // Append <style> element
+  // Append <style> element (because GM_addStyle doesn't work on SVG)
   var style = document.createElementNS("http://www.w3.org/2000/svg", "style");
   style.type = "text/css";
   style.textContent = 'svg { background: #222 url("data:image/png;base64,'
@@ -314,7 +314,9 @@ function initSVG(aColorValue, aBgImage) {
                     + 'AAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAC'
                     + '5JREFUOMtjZGBgsGfAA/7//38QnzwTA4Vg1IDBYADj///'
                     + '/8StgZLQfDcRhbwAAfyQHW028hvoAAAAASUVORK5CYII=")'
-                    + ' 0 0 repeat fixed !important; }';
+                    + ' 0 0 repeat fixed !important;'
+                    + ' margin: auto; position: absolute;'
+                    + ' top: 0; right: 0; bottom: 0; left: 0; }';
   gDocElm.appendChild(style);
 
   setBgColor(aColorValue); // Set background color from pref
