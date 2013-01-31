@@ -1,3 +1,5 @@
+7.3 - Fixed: Context menu error on SVG image.
+7.2 - Fixed: SVG image not always centered.
 7.1 - Centered SVG image.
     - Iconic <menuitem>.
 7.0 - Works with SVG images.
