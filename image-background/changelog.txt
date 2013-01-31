@@ -1,4 +1,5 @@
 7.1 - Centered SVG image.
+    - Iconic <menuitem>.
 7.0 - Works with SVG images.
 
 6.4 - Refactored.
