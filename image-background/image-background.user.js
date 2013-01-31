@@ -20,7 +20,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         7.1a1
+// @version         7.1
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.com/userscripts/image-background/images/screenshot-after.png
