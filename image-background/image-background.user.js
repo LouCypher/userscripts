@@ -20,7 +20,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         7.3
+// @version         7.4a
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.com/userscripts/image-background/images/screenshot-after.png
@@ -249,19 +249,19 @@ function showAlert() {
         "' from NoScript menu.");
 }
 
-// Enable/disable background patterns
+// Enable/disable checkerboard background
 function setBgImage(aBoolean) {
   switch(aBoolean) {
-    case true: // Enable background patterns
-      gDocElm.style.backgroundImage = ""; // Use bg patterns in CSS resource
+    case true: // Enable checkerboard background
+      gDocElm.style.backgroundImage = ""; // Use checkerboard bg in CSS resource
       break;
-    case false: // Disable background patterns
+    case false: // Disable checkerboard background
       setStyleProperty(gDocElm, "background-image", "none");
   }
   GM_setValue("bgImage", aBoolean); // Save background option to pref
 }
 
-// Toggle background patterns on/off
+// Toggle checkerboard background on/off
 function toggleBgImage(aEvent) {
   setBgImage(aEvent.target.checked);
 }
@@ -316,7 +316,9 @@ function initSVG(aColorValue, aBgImage) {
                     + '/8StgZLQfDcRhbwAAfyQHW028hvoAAAAASUVORK5CYII=")'
                     + ' 0 0 repeat fixed !important;'
                     + ' margin: auto !important; position: absolute;'
-                    + ' top: 0; right: 0; bottom: 0; left: 0; }';
+                    + ' top: 0; right: 0; bottom: 0; left: 0;\n'
+                    + ' pointer-events: auto;'
+                    + '\n}';
   gDocElm.appendChild(style);
 
   setBgColor(aColorValue); // Set background color from pref
