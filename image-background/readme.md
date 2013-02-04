@@ -1,10 +1,27 @@
 # Standalone Image Background and Transparency
 
+Change standalone image background and show transparency on Firefox.
+Use context menu to configure it.
+
 [![Flattr this!](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?url=https%3A%2F%2Fgithub.com%2FLouCypher%2Fuserscripts)
 [![Tweet](https://si0.twimg.com/a/1309282244/images/goodies/tweetn.png)](https://twitter.com/share?text=Change+standalone+image+background+and+show+transparency+on+%23Firefox+with+this+%23userscript&url=https%3A%2F%2Fgithub.com%2FLouCypher%2Fuserscripts%2Ftree%2Fmaster%2Fimage-background&related=zoolcar9&via=zoolcar9)
 
-Change standalone image background and show transparency on Firefox.
-Use context menu to configure it.
+## Contents
+
+* [Compatibility](#compatibility)
+ * [Browsers](#browsers)
+ * [Extensions](#extensions)
+* [Installations](#installations)
+* [Screenshots](#screenshots)
+ * [PNG image](#png-image)
+ * [SVG image](#svg-image)
+* [Configurations](#configurations)
+ * [Change background color](#change-background-color)
+ * [Toggle checkerboard background](#toggle-checkerboard-background)
+ * [Toggle image transparency](#toggle-image-transparency)
+* [Limitations](#limitations)
+ * [URL schemes](#url-schemes)
+ * [SVG images](#svg-images)
 
 ## Compatibility
 
@@ -18,7 +35,7 @@ Use context menu to configure it.
 * [Greasemonkey](https://addons.mozilla.org/addon/greasemonkey?src=external-github.com/loucypher/userscripts) 0.9.16+
 * [Scriptish](https://addons.mozilla.org/addon/scriptish?src=external-github.com/loucypher/userscripts) 0.1+
 
-## Installation
+## Installations
 
 * [Kinda stable release](https://userscripts.org/scripts/source/153158.user.js "via Userscripts.org")
 * [Development build](https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js "via GitHub.com")
@@ -39,7 +56,7 @@ Use context menu to configure it.
 
 To change image background settings, right click on the page.
 
-![Firefox context menu](https://lh3.googleusercontent.com/-hWyfN_E8mfo/URAD1xET9HI/AAAAAAAADKQ/z2yV76uTz6w/s0/image-after-contextmenu.png "Firefox context menu")
+![Firefox context menu](https://lh3.googleusercontent.com/-ZndD74yAFPI/URAgePJOlzI/AAAAAAAADLY/cu988cjBenQ/s0/contextmenu.png "Firefox context menu")
 
 ### Change background color
 
@@ -56,9 +73,9 @@ If you have [NoScript](https://addons.mozilla.org/addon/noscript?src=external-gi
 
 ![Color setting dialog without color picker](https://lh3.googleusercontent.com/-xAok34tasEg/UNa2LMCQGSI/AAAAAAAADAY/fLjkZW9_rAc/s0/image-jscolor-2.png "Color setting dialog without color picker")
 
-### Toggle background patterns
+### Toggle checkerboard background
 
-To toggle background patterns, check/uncheck **Use Background Patterns** on context menu.
+To toggle checkerboard background, check/uncheck **Use Checkerboard Background** on context menu.
 
 ### Toggle image transparency
 
