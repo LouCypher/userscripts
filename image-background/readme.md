@@ -25,8 +25,15 @@ Use context menu to configure it.
 
 ## Screenshots
 
-[![Before](https://lh4.googleusercontent.com/-Pay5iiGHq0Q/ULZsaTrwlRI/AAAAAAAAC5U/ND8sMF1-XZg/s320/image-before.png "Before")](https://lh4.googleusercontent.com/-Pay5iiGHq0Q/ULZsaTrwlRI/AAAAAAAAC5U/ND8sMF1-XZg/s0/image-before.png)
-[![After](https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s320/image-after.png "After")](https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png)
+### PNG image
+
+[![Before](https://lh4.googleusercontent.com/-Pay5iiGHq0Q/ULZsaTrwlRI/AAAAAAAAC5U/ND8sMF1-XZg/s320/image-before.png)](https://lh4.googleusercontent.com/-Pay5iiGHq0Q/ULZsaTrwlRI/AAAAAAAAC5U/ND8sMF1-XZg/s0/image-before.png "Before")
+[![After](https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s320/image-after.png)](https://lh4.googleusercontent.com/-9mHK9gjsEd8/ULienLrrojI/AAAAAAAAC6Y/CoJitWWXsHc/s0/image-after.png "After")
+
+### SVG image
+
+[![Before](https://lh3.googleusercontent.com/-7glilSgT0BI/URAXMko0iJI/AAAAAAAADLA/go-dndkhdcU/s320/image-svg-before.png)](https://lh3.googleusercontent.com/-7glilSgT0BI/URAXMko0iJI/AAAAAAAADLA/go-dndkhdcU/s0/image-svg-before.png "Before")
+[![After](https://lh6.googleusercontent.com/-j9EjUTq4UFI/URAXMRsM7cI/AAAAAAAADK8/NP-TCqhLEkI/s320/image-svg-after.png)](https://lh6.googleusercontent.com/-j9EjUTq4UFI/URAXMRsM7cI/AAAAAAAADK8/NP-TCqhLEkI/s0/image-svg-after.png "After")
 
 ## Configurations
 
