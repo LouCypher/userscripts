@@ -32,7 +32,7 @@ Use context menu to configure it.
 
 To change image background settings, right click on the page.
 
-![Firefox context menu](https://lh3.googleusercontent.com/-B-l3fYMSfac/UL-gXOA3ufI/AAAAAAAAC8I/-BfWxawoW_A/s0/image-after-contextmenu.png "Firefox context menu")
+![Firefox context menu](https://lh3.googleusercontent.com/-hWyfN_E8mfo/URAD1xET9HI/AAAAAAAADKQ/z2yV76uTz6w/s0/image-after-contextmenu.png "Firefox context menu")
 
 ### Change background color
 
