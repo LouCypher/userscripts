@@ -11,7 +11,7 @@
 // @version         1.1
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
-// @homepageURL     https://userscripts.org/users/12/scripts
+// @homepageURL     https://userscripts.org/scripts/show/158464
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.user.js
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
