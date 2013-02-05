@@ -7,11 +7,11 @@
 // ==UserScript==
 // @name            Tumblr Tumview Linker
 // @namespace       http://userscripts.org/users/12
-// @description     Add Tumview.com link on Tumblr dashboard widget. Works on custom domains.
-// @version         1.0
+// @description     Add Tumview.com link on Tumblr sites. Works on custom domains.
+// @version         1.1
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
-// @homepageURL     https://userscripts.org/scripts/show/158464
+// @homepageURL     https://userscripts.org/users/12/scripts
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.user.js
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
@@ -21,7 +21,7 @@
 // ==/UserScript==
 
 (function() {
-  var name = location.search.match(/&name=\w+/);
+  var name = location.search.match(/&name=[A-Za-z0-9_-]+/);
   if (name) {
     name = name.toString().split("=")[1];
     var link = document.createElement("a");
