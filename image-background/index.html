@@ -14,8 +14,21 @@
   <style type="text/css">
     body {
       background: #0099b9
-                  url("https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png")
+                  url("https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png")
                   top right no-repeat fixed;
+    }
+    body:before {
+      content: "";
+      position: fixed;
+      top: -10px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      z-index: 100;
+         -moz-box-shadow: 0px -3px 9px rgba(0, 0, 0, .8);
+           -o-box-shadow: 0px -3px 9px rgba(0, 0, 0, .8);
+      -webkit-box-shadow: 0px -3px 9px rgba(0, 0, 0, .8);
+              box-shadow: 0px -3px 9px rgba(0, 0, 0, .8);
     }
     a:not([href]) { cursor: pointer; }
     a:link { color: blue; }
@@ -28,7 +41,15 @@
     article {
       background-color: white;
       color: black;
-      box-shadow: 6px 6px 9px rgba(0, 0, 0, .5);
+      font-size: 12pt;
+         -moz-border-radius: .5em;
+           -o-border-radius: .5em;
+      -webkit-border-radius: .5em;
+              border-radius: .5em;
+         -moz-box-shadow: 6px 6px 9px rgba(0, 0, 0, .5);
+           -o-box-shadow: 6px 6px 9px rgba(0, 0, 0, .5);
+      -webkit-box-shadow: 6px 6px 9px rgba(0, 0, 0, .5);
+              box-shadow: 6px 6px 9px rgba(0, 0, 0, .5);
       margin: 2em auto;
       padding: 1em 2em;
       width: 768px;
