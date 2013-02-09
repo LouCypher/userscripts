@@ -8,7 +8,7 @@
 // @name            Tumblr Tumview Linker
 // @namespace       http://userscripts.org/users/12
 // @description     Add Tumview.com link on Tumblr sites. Works on custom domains.
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @homepageURL     https://userscripts.org/scripts/show/158464
@@ -22,30 +22,39 @@
 // ==/UserScript==
 
 (function() {
+
   var name;
+
   if (/tumblr.com$/.test(location.hostname)) {
-    name = location.search.match(/&name=[A-Za-z0-9_-]+/);
+    name = getName(/&name=[A-Za-z0-9_-]+/);
     if (!name) return;
-    name = name.toString().split("=")[1];
     var link = addLink("Tumview", "http://tumview.com/" + name);
-    link.className = "btn join";
+    link.className = "btn";
     link.title = "View photos from this site on Tumview.com";
     var div = document.querySelector("div.iframe_controls");
     var join = document.getElementById("btn_join");
     if (join) {
       div.insertBefore(link, join);
+      link.classList.add("join"); // Floated right
     } else {
       div.appendChild(link);
     }
+
   } else if (location.hostname === "tumview.com") {
-    name = location.search.match(/&pagename=[A-Za-z0-9_-]+/);
+    name = getName(/&pagename=[A-Za-z0-9_-]+/);
     if (!name) return;
-    name = name.toString().split("=")[1];
     var title = document.querySelector("#left > h1");
     if (!title) return;
     title.appendChild(document.createTextNode("@"));
     title.appendChild(addLink("Tumblr", "http://" + name + ".tumblr.com"));
   }
+
+  function getName(aRexExp) {
+    var name = location.search.match(aRexExp);
+    if (!name) return null;
+    return name.toString().split("=")[1];
+  }
+
   function addLink(aText, aURL) {
     var link = document.createElement("a");
     link.textContent = aText;
