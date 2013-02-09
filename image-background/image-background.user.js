@@ -20,7 +20,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         7.5a
+// @version         7.6a
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.com/userscripts/image-background/images/screenshot-after.png
@@ -61,13 +61,6 @@ function init() {
     return;
   }
 
-  GM_registerMenuCommand("Toggle SVG", function() {
-    GM_setValue("enableSVG", !enableSVG);
-    if (document.contentType === "image/svg+xml") {
-      location.reload();
-    }
-  }, "S");
-
   /***** Start checking preferences *****/
   var bgColor = GM_getValue("bgColor", ""); // Get color value pref (def = empty)
   var bgImage = GM_getValue("bgImage", true); // Get background pref (def = true)
@@ -78,6 +71,10 @@ function init() {
 
   if (gDocElm instanceof SVGSVGElement) { // If SVG image
     enableSVG && initSVG(computedColor, bgImage);
+    GM_registerMenuCommand("Toggle SVG", function() {
+      GM_setValue("enableSVG", !enableSVG);
+      location.reload();
+    }, "S");
     return;
   }
 
@@ -106,6 +103,11 @@ function init() {
     var p = $("color-config").querySelector("div");
     p.replaceChild(document.createTextNode("Enter valid "), p.firstChild);
   }
+
+  // Monkey Menu
+  GM_registerMenuCommand("Change Background Color", showColorConfig);
+  GM_registerMenuCommand("Toggle Checkerboard Background", toggleBgImage);
+  GM_registerMenuCommand("Toggle Image Transparency", toggleTransparency);
 
   /***** Start context menu initialization *****/
   // Check/uncheck menu items based on prefs
@@ -272,7 +274,12 @@ function setBgImage(aBoolean) {
 
 // Toggle checkerboard background on/off
 function toggleBgImage(aEvent) {
-  setBgImage(aEvent.target.checked);
+  var node = aEvent.target;
+  if (node instanceof HTMLMenuItemElement) {
+    setBgImage(node.checked);
+  } else {
+    setBgImage(!GM_getValue("bgImage"));
+  }
 }
 
 // Enable/disable image transparency
@@ -295,7 +302,12 @@ function showTransparency(aBoolean) {
 
 // Toggle image transparency on/off
 function toggleTransparency(aEvent) {
-  showTransparency(aEvent.target.checked);
+  var node = aEvent.target;
+  if (node instanceof HTMLMenuItemElement) {
+    showTransparency(node.checked);
+  } else {
+    showTransparency(!GM_getValue("imgTrans"));
+  }
 }
 
 function goHelp() {
