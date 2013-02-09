@@ -20,7 +20,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         7.4a
+// @version         7.5a
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.com/userscripts/image-background/images/screenshot-after.png
@@ -44,6 +44,7 @@
 // @grant           GM_getValue
 // @grant           GM_setValue
 // @grant           GM_openInTab
+// @grant           GM_registerMenuCommand
 // ==/UserScript==
 
 if (GM_getValue("firstTime", true)) { // If first time use
@@ -60,15 +61,23 @@ function init() {
     return;
   }
 
+  GM_registerMenuCommand("Toggle SVG", function() {
+    GM_setValue("enableSVG", !enableSVG);
+    if (document.contentType === "image/svg+xml") {
+      location.reload();
+    }
+  }, "S");
+
   /***** Start checking preferences *****/
   var bgColor = GM_getValue("bgColor", ""); // Get color value pref (def = empty)
   var bgImage = GM_getValue("bgImage", true); // Get background pref (def = true)
   var imgTrans = GM_getValue("imgTrans", true); // Get transparency pref (def = true)
+  var enableSVG = GM_getValue("enableSVG", true);
   var computedColor = GM_getValue("computedColor", "");
   /***** End checking preferences *****/
 
   if (gDocElm instanceof SVGSVGElement) { // If SVG image
-    initSVG(computedColor, bgImage);
+    enableSVG && initSVG(computedColor, bgImage);
     return;
   }
 

@@ -1,3 +1,5 @@
+7.5 - Added toggle SVG menu command.
+7.4 - Changed some texts.
 7.3 - Fixed: Context menu error on SVG image.
 7.2 - Fixed: SVG image not always centered.
 7.1 - Centered SVG image.
