@@ -8,7 +8,7 @@
 // @name            Tumblr Tumview Linker
 // @namespace       http://userscripts.org/users/12
 // @description     Add Tumview.com link on Tumblr sites. Works on custom domains.
-// @version         2.1
+// @version         2.2
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @homepageURL     https://userscripts.org/scripts/show/158464
@@ -29,13 +29,13 @@
     name = getName(/&name=[A-Za-z0-9_-]+/);
     if (!name) return;
     var link = addLink("Tumview", "http://tumview.com/" + name);
-    link.className = "btn";
+    link.className = "btn icon show_admin";
     link.title = "View photos from this site on Tumview.com";
     var div = document.querySelector("div.iframe_controls");
     var join = document.getElementById("btn_join");
     if (join) {
       div.insertBefore(link, join);
-      link.classList.add("join"); // Floated right
+      link.style.cssFloat = "right";
     } else {
       div.appendChild(link);
     }
