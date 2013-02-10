@@ -8,7 +8,7 @@
 // @name            Tumblr Tumview Linker
 // @namespace       http://userscripts.org/users/12
 // @description     Add Tumview.com link on Tumblr sites. Works on custom domains.
-// @version         2.2
+// @version         2.3
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @homepageURL     https://userscripts.org/scripts/show/158464
@@ -21,6 +21,18 @@
 // @grant           none
 // ==/UserScript==
 
+/*
+  Changelog:
+  2.3 - Fixed: Tumview button not always shown.
+      - Removed button icon because it made Tumview button not visible
+        on some themes.
+  2.2 – Added button icon.
+  2.1 – Refactored.
+  2.0 – Added link back to Tumblr on Tumview.
+  1.1 – Fixed regexp.
+  1.0 – Initial release.
+*/
+
 (function() {
 
   var name;
@@ -29,15 +41,16 @@
     name = getName(/&name=[A-Za-z0-9_-]+/);
     if (!name) return;
     var link = addLink("Tumview", "http://tumview.com/" + name);
-    link.className = "btn icon show_admin";
+    link.className = "btn";
+    link.style.cssFloat = "right";
     link.title = "View photos from this site on Tumview.com";
     var div = document.querySelector("div.iframe_controls");
-    var join = document.getElementById("btn_join");
-    if (join) {
-      div.insertBefore(link, join);
-      link.style.cssFloat = "right";
+    if (!document.body.classList.contains("version_pill")) {
+      div.style.display = "none";
+      document.body.classList.add("version_pill");
+      document.body.appendChild(link);
     } else {
-      div.appendChild(link);
+      div.insertBefore(link, div.querySelector("a:last-child"));
     }
 
   } else if (location.hostname === "tumview.com") {
