@@ -1,0 +1,13 @@
+3.0 - @include *
+    - Shows Tumblr buttons if it's hidden by the theme.
+    - Added tag in Tumblr link on Tumview if it's showing tagged images.
+
+2.3 - Fixed: Tumview button not always shown.
+    - Removed button icon because it made Tumview button not visible
+      on some themes.
+2.2 – Added button icon.
+2.1 – Refactored.
+2.0 – Added link back to Tumblr on Tumview.
+
+1.1 – Fixed regexp.
+1.0 – Initial release.

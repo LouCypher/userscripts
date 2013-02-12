@@ -8,58 +8,57 @@
 // @name            Tumblr Tumview Linker
 // @namespace       http://userscripts.org/users/12
 // @description     Add Tumview.com link on Tumblr sites. Works on custom domains.
-// @version         2.3
+// @version         3.0
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @homepageURL     https://userscripts.org/scripts/show/158464
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.user.js
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
-// @include         http://www.tumblr.com/dashboard/iframe*
-// @include         http://assets.tumblr.com/iframe.html*
-// @include         http://tumview.com/assets/top.php?*
+// !resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.txt
+// @include         *
 // @grant           none
 // ==/UserScript==
 
-/*
-  Changelog:
-  2.3 - Fixed: Tumview button not always shown.
-      - Removed button icon because it made Tumview button not visible
-        on some themes.
-  2.2 – Added button icon.
-  2.1 – Refactored.
-  2.0 – Added link back to Tumblr on Tumview.
-  1.1 – Fixed regexp.
-  1.0 – Initial release.
-*/
-
 (function() {
+  if (window.top === window.self) {
+    var tumblr = document.getElementById("tumblr_controls");
+    if (!tumblr) return;
+    if (getComputedStyle(tumblr, null).display === "none") {
+      tumblr.style.setProperty("display", "block", "important");
+    }
+    return;
+  }
 
-  var name;
+  var name, link;
 
-  if (/tumblr.com$/.test(location.hostname)) {
+  if (/(www|assets).tumblr.com\/(dashboard\/)?iframe(.html)?/.test(location.href)) {
     name = getName(/&name=[A-Za-z0-9_-]+/);
     if (!name) return;
-    var link = addLink("Tumview", "http://tumview.com/" + name);
+    link = addLink("Tumview", "http://tumview.com/" + name);
     link.className = "btn";
     link.style.cssFloat = "right";
     link.title = "View photos from this site on Tumview.com";
+    var body = document.body;
     var div = document.querySelector("div.iframe_controls");
-    if (!document.body.classList.contains("version_pill")) {
-      div.style.display = "none";
-      document.body.classList.add("version_pill");
-      document.body.appendChild(link);
-    } else {
+    if (body.classList.contains("version_pill")) {
       div.insertBefore(link, div.querySelector("a:last-child"));
+    } else {
+      div.style.display = "none";
+      body.classList.add("version_pill");
+      body.appendChild(link);
     }
 
-  } else if (location.hostname === "tumview.com") {
+  } else if (/tumview.com\/assets\/top.php/.test(location.href)) {
     name = getName(/&pagename=[A-Za-z0-9_-]+/);
     if (!name) return;
     var title = document.querySelector("#left > h1");
     if (!title) return;
+    link = addLink("Tumblr", "http://" + name + ".tumblr.com/");
     title.appendChild(document.createTextNode("@"));
-    title.appendChild(addLink("Tumblr", "http://" + name + ".tumblr.com"));
+    title.appendChild(link);
+    var tag = getName(/&tag=[A-Za-z0-9_-]+/);
+    if (tag) link.href += "tagged/" + tag;
   }
 
   function getName(aRexExp) {
