@@ -1,3 +1,4 @@
+7.7 - Fixed some compatibility with Scriptish.
 7.6 - Added GM menu command to configure.
 7.5 - Added GM menu command to toggle SVG.
 7.4 - Changed some texts.

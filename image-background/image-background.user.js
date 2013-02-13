@@ -20,7 +20,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         7.6a
+// @version         7.7a
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.com/userscripts/image-background/images/screenshot-after.png
@@ -110,10 +110,6 @@ function init() {
   GM_registerMenuCommand("Toggle Image Transparency", toggleTransparency);
 
   /***** Start context menu initialization *****/
-  // Check/uncheck menu items based on prefs
-  bgImage && $("toggle-background-image").setAttribute("checked", "true");
-  imgTrans && $("toggle-image-transparency").setAttribute("checked", "true");
-
   // Add event listeners to menuitems
   $("change-background-color").addEventListener("click", showColorConfig, false);
   $("toggle-image-transparency").addEventListener("click", toggleTransparency, false);
@@ -167,6 +163,9 @@ function popupShowing(aEvent) {
   } else {
     gDocElm.setAttribute("contextmenu", "context-menu"); // Show context menu items
   }
+  // Check/uncheck menu items based on prefs
+  $("toggle-background-image").checked = GM_getValue("bgImage");
+  $("toggle-image-transparency").checked = GM_getValue("imgTrans");
 }
 
 // Check validity of color value
@@ -274,6 +273,10 @@ function setBgImage(aBoolean) {
 
 // Toggle checkerboard background on/off
 function toggleBgImage(aEvent) {
+  if (!aEvent) {
+    setBgImage(!GM_getValue("bgImage"));
+    return;
+  }
   var node = aEvent.target;
   if (node instanceof HTMLMenuItemElement) {
     setBgImage(node.checked);
@@ -302,6 +305,10 @@ function showTransparency(aBoolean) {
 
 // Toggle image transparency on/off
 function toggleTransparency(aEvent) {
+  if (!aEvent) {
+    showTransparency(!GM_getValue("imgTrans"));
+    return;
+  }
   var node = aEvent.target;
   if (node instanceof HTMLMenuItemElement) {
     showTransparency(node.checked);
