@@ -27,7 +27,7 @@
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.user.js
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
-// !resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.txt
+// @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/others/tumblr-tumview-linker.txt
 // @include         *
 // @grant           none
 // ==/UserScript==
