@@ -12,6 +12,7 @@
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @homepageURL     https://github.com/LouCypher/userscripts
+// @supportURL      https://github.com/LouCypher/userscripts/issues
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/others/xkcd-share-buttons.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/xkcd-share-buttons.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
