@@ -8,13 +8,13 @@
 // @name          USO: Forum Jumper
 // @namespace     http://userstyles.org/users/12
 // @description   Add links to jump to other forum
-// @version       6.0
+// @version       6.2
 // @author        LouCypher
 // @license       WTFPL http://www.wtfpl.net/
 // @homepageURL   https://userscripts.org/scripts/show/137255
 // @downloadURL   https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-forum-jumper.user.js
 // @updateURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-forum-jumper.user.js
-// @resource      license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
+// @resource      LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @include       https://userscripts.org/forums
 // @include       https://userscripts.org/forums/*
 // @include       https://userscripts.org/topics/*
@@ -84,7 +84,7 @@
                     + "#forum-jumper .info, "
                     + "#forum-jumper .hide { display: none; }\n"
                     + "#forum-jumper .info {"
-                    + " position: absolute; top: +17em;"
+                    + " position: absolute; top: +18em;"
                     + " font-weight: normal; }\n"
                     + "#forum-jumper li .info { margin-left: -2em; }";
 
@@ -126,8 +126,10 @@
                 + '<li class="hide"><a href="/spam">Spam reports</a>'
                 + '<div class="info">Reported spam posts. Please vote to'
                 + ' help keep Userscripts.org clean.</div>'
-                + '</li>'
-                + '</ul>'
+                + '</li></ul>'
+                + '<ul><li class="hide">'
+                + '<a href="/home/posts">Monitored topics</a>'
+                + '</li></ul>'
 
   if (location.pathname == "/forums") {
     $("#right").insertBefore(div, $("#right > h6"));
@@ -141,7 +143,10 @@
 
   var isLoggedIn = document.querySelector("#top .login_status a[href='/logout']") != null;
   if (isLoggedIn) {
-    div.querySelector(".hide").removeAttribute("class");
+    var hide = div.querySelectorAll(".hide");
+    for (var i = 0; i < hide.length; i++) {
+      hide[i].removeAttribute("class");
+    }
   }
 
   var links = div.querySelectorAll("li a");
