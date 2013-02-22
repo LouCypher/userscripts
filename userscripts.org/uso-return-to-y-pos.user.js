@@ -11,6 +11,7 @@
 // @version         1.0
 // @license         WTFPL http://www.wtfpl.net/
 // @homepageURL     https://github.com/LouCypher/userscripts
+// @supportURL      https://github.com/LouCypher/userscripts/issues
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-return-to-y-pos.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/userscripts.org/uso-return-to-y-pos.user.js
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
