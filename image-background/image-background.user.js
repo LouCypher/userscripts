@@ -20,7 +20,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         7.7a
+// @version         7.7.1
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.com/userscripts/image-background/images/screenshot-after.png
@@ -31,11 +31,11 @@
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @require         https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/jscolor.js
-// @resource        css https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
-// @resource        htmlElements https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
+// @resource        CSS https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
+// @resource        HTML https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
+// @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
+// @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/image-background/changelog.txt
 // @resource        thanks https://raw.github.com/LouCypher/userscripts/master/image-background/thanks.html
-// @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
-// @resource        changelog https://raw.github.com/LouCypher/userscripts/master/image-background/changelog.txt
 // @run-at          document-start
 // @include         *
 // @grant           GM_addStyle
@@ -87,11 +87,11 @@ function init() {
   setBgImage(bgImage); // Set background patters from pref
   showTransparency(imgTrans); // Set image transparency from pref
   saveComputedColor();
-  GM_addStyle(GM_getResourceText("css")); // Inject style from @resource
+  GM_addStyle(GM_getResourceText("CSS")); // Inject style from @resource
 
   // Append elements
   var div = document.body.appendChild(document.createElement("div"));
-  div.innerHTML = GM_getResourceText("htmlElements");
+  div.innerHTML = GM_getResourceText("HTML");
 
   // Check if JavaScript is enabled for JSColor to work
   if (getComputedStyle($("noscript"), null).display == "none") { // If JavaScript is enabled
@@ -114,7 +114,7 @@ function init() {
   $("change-background-color").addEventListener("click", showColorConfig, false);
   $("toggle-image-transparency").addEventListener("click", toggleTransparency, false);
   $("toggle-background-image").addEventListener("click", toggleBgImage, false);
-  $("donate").addEventListener("click", showThanks, false);
+  $("about").addEventListener("click", showThanks, false);
   $("help").addEventListener("click", goHelp, false);
 
   // Set context menu to html element
@@ -146,7 +146,8 @@ function init() {
 }
 
 // Show 'thank you' page
-function showThanks() {
+function showThanks(aEvent) {
+  if (aEvent) aEvent.preventDefault();
   var thanks = GM_getResourceURL("thanks");
   if (/^data\:/.test(thanks)) { // If old GM_resourceURL
     thanks = thanks.replace(/text\/plain/, "text/html");
