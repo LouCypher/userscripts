@@ -45,7 +45,7 @@ function addButton(aNode) {
   var media = image.src.replace(/\/thumbnails\/detail\//,
                                 "/wallpapers/" + hd + "/");*/
 
-  var title = $(".detailed_main h1").textContent.replace(/\_\d+/, " @");
+  var title = $(".detailed_main h1").textContent.replace(/\_\d+/, "");
   var button = document.createElement("a");
   var div = $(".left.ml45.mt5", aNode);
   div.appendChild(button);
@@ -53,7 +53,7 @@ function addButton(aNode) {
   button.outerHTML = '<a href="http://pinterest.com/pin/create/button/'
                    + '?url=' + encodeURIComponent(permalink)
                    + '&media=' + encodeURIComponent(media)
-                   + '&description=' + encodeURIComponent(title + ".com") 
+                   + '&description=' + encodeURIComponent(title") 
                    + '" target="_blank" '
                    + 'class="pin-it-button" count-layout="horizontal">'
                    + '<img border="0" '
