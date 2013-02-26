@@ -64,7 +64,7 @@
       { "name" : "MozillaZine AfterDark",                  "id" : "22" },
       { "name" : "Locked Posts",                           "id" : "26" },
       { "name" : "About This User Script",                 "id" :  "?",
-        "url"  :  "http://userscripts.org/scripts/show/1455"           }
+        "url"  :  "https://userscripts.org/scripts/show/1455"           }
     ]
   }
 ]
