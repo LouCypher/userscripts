@@ -19,7 +19,7 @@
 // ==UserScript==
 // @name            Wallpaperhere.com - Add Pinterest button
 // @namespace       http://userstyles.org/users/12
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @licensed        GPL
 // @screenshot      https://s3.amazonaws.com/uso_ss/20382/large.png
@@ -41,9 +41,11 @@ function addButton(aNode) {
   if (!image) throw new Error("Image is " + image);
 
   var media = image.src.replace(/\/detail\//, "/preview/");
-  //var media = image.src.replace(/\/thumbnails\/detail\//, "/wallpapers/1280x800/");
+  /*var hd = $(".download_list a").textContent;
+  var media = image.src.replace(/\/thumbnails\/detail\//,
+                                "/wallpapers/" + hd + "/");*/
 
-  var title = $(".detailed_main h1").textContent;
+  var title = $(".detailed_main h1").textContent.replace(/\_\d+/, " @");
   var button = document.createElement("a");
   var div = $(".left.ml45.mt5", aNode);
   div.appendChild(button);
@@ -51,7 +53,7 @@ function addButton(aNode) {
   button.outerHTML = '<a href="http://pinterest.com/pin/create/button/'
                    + '?url=' + encodeURIComponent(permalink)
                    + '&media=' + encodeURIComponent(media)
-                   + '&description=' + encodeURIComponent(title)
+                   + '&description=' + encodeURIComponent(title + ".com") 
                    + '" target="_blank" '
                    + 'class="pin-it-button" count-layout="horizontal">'
                    + '<img border="0" '
