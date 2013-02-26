@@ -50,12 +50,3 @@
 .menu a:-moz-focusring { outline: none; }
 .submenu a { padding: 0 .5em; }
 .submenu li.external { border-top: 2px groove rgba(202, 220, 235, .5); }
-:target {
-  visibility: hidden;
-  padding: 40px 0 0;
-}
-:target .inner {
-  background-color: rgb(225, 235, 242);
-  visibility: visible;
-  padding: 0 10px;
-}
