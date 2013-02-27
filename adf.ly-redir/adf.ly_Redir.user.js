@@ -36,7 +36,7 @@
 // @include         http://u.bb/*
 // @exclude         http://adf.ly/go/*
 // @exclude         https://adf.ly/go/*
-// @grant           GM_log
+// @grant           none
 // ==/UserScript==
 
 (function() {
@@ -56,7 +56,6 @@
         var path = scripts[i].textContent.match(regx).toString().split("'")[1];
         if (/adf.ly\/go.php/.test(path)) {
           path = atob(path.replace(/^https?:\/\/adf.ly\/go.php\?u\=/, ""));
-          console.log(path);
         }
         sessionStorage.setItem(gStorage[0], path);
         sessionStorage.setItem(gStorage[1], document.title);
