@@ -20,7 +20,7 @@
 // @name            adf.ly Redir
 // @namespace       http://userscripts.org/users/12
 // @description     Redirect adf.ly to its target location.
-// @version         6.0a
+// @version         6.1
 // @author          LouCypher
 // @contributor     AMZMA (bug reports and feature requests)
 // @license         GPL
@@ -48,26 +48,23 @@
     return;
   }
 
-  var scripts = document.querySelectorAll("script:not([src])");
-  if (scripts.length) {
+  var xpath = "/html/head/script[not(@src) and text()[contains(.,'var zzz =')]]";
+  var script = document.evaluate(xpath, document, null, 9, null).singleNodeValue;
+  if (script) {
     var regx = /zzz.*(?=')/;
-    for (var i = 0; i < scripts.length; i++) {
-      if (regx.test(scripts[i].textContent)) {
-        var path = scripts[i].textContent.match(regx).toString().split("'")[1];
-        if (/adf.ly\/go.php/.test(path)) {
-          path = atob(path.replace(/^https?:\/\/adf.ly\/go.php\?u\=/, ""));
-        }
-        sessionStorage.setItem(gStorage[0], path);
-        sessionStorage.setItem(gStorage[1], document.title);
-        redir(path, document.title);
-        return;
-      }
+    var url = script.textContent.match(regx).toString().split("'")[1];
+    if (/adf.ly\/go.php/.test(url)) {
+      url = atob(url.replace(/^https?:\/\/adf.ly\/go.php\?u\=/, ""));
     }
+    sessionStorage.setItem(gStorage[0], url);
+    sessionStorage.setItem(gStorage[1], document.title);
+    redir(url, document.title);
+    return;
   }
 
-  function redir(aPath, aTitle) {
+  function redir(aURL, aTitle) {
     document.title = "Redirecting to " + aTitle;
     document.body.innerHTML = "Redirecting\u2026";
-    location.replace(aPath);
+    location.replace(aURL);
   }
 })()
