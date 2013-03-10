@@ -20,7 +20,7 @@
 // @name            LinkBucks Redir
 // @namespace       http://userscripts.org/users/12
 // @description     Redirect LinkBucks to its target location.
-// @version         1.0
+// @version         1.1
 // @author          LouCypher
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/adf.ly-redir
@@ -28,6 +28,7 @@
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/adf.ly-redir/linkbucks-redir.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @include         http://*.linkbucks.com/
+// @include         http://*.any.gs/
 // ==/UserScript==
 
 (function() {
