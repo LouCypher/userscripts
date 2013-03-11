@@ -23,6 +23,7 @@
 // @version         6.1
 // @author          LouCypher
 // @contributor     AMZMA (bug reports and feature requests)
+// @contributor     coolkips (base64 info)
 // @license         GPL
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/adf.ly-redir
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/adf.ly-redir/adf.ly_Redir.user.js
