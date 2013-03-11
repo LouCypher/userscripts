@@ -8,7 +8,7 @@
 // @name          USO: Forum Jumper
 // @namespace     http://userstyles.org/users/12
 // @description   Add links to jump to other forum
-// @version       6.2
+// @version       6.3
 // @author        LouCypher
 // @license       WTFPL http://www.wtfpl.net/
 // @homepageURL   https://userscripts.org/scripts/show/137255
@@ -25,29 +25,14 @@
 // @include       http://userscripts.org/topics/*
 // @include       http://userscripts.org/posts*
 // @include       http://userscripts.org/spam*
-// @include       http://userscripts.org./forums
-// @include       http://userscripts.org./forums/*
-// @include       http://userscripts.org./topics/*
-// @include       http://userscripts.org./posts*
-// @include       http://userscripts.org./spam*
-// @include       http://greasefire.userscripts.org/forums
-// @include       http://greasefire.userscripts.org/forums/*
-// @include       http://greasefire.userscripts.org/topics/*
-// @include       http://greasefire.userscripts.org./forums/*
-// @include       http://greasefire.userscripts.org./topics/*
-// @include       http://greasefire.userscripts.org./posts*
-// @include       http://greasefire.userscripts.org./spam*
 // @exclude       https://userscripts.org/topics/new?script_id=*
 // @exclude       http://userscripts.org/topics/new?script_id=*
-// @exclude       http://userscripts.org./topics/new?script_id=*
-// @exclude       http://greasefire.userscripts.org/topics/new?script_id=*
 // @exclude       https://userscripts.org/posts/search*
 // @exclude       http://userscripts.org/posts/search*
-// @exclude       http://userscripts.org./posts/search*
-// @exclude       http://greasefire.userscripts.org/posts/search*
 // ==/UserScript==
 
 /* Changelog:
+    - 2013-03-12: v6.3 - Updated CSS. Refactored.
     - 2013-01-15: v6.0 - Added to forum front page.
     - 2013-01-03: v5.0 - Removed 'Jetpack' forum.
     - 2012-12-29: v4.0 - Added 'Recent posts' and 'Spam' links.
@@ -73,8 +58,7 @@
                     + "#forum-jumper h5 { margin-bottom: 1em; }\n"
                     + "#forum-jumper li:not(.notblock) a, "
                     + "#forum-jumper a:hover + .info { display: block; }\n"
-                    + "#forum-jumper a, "
-                    + "#forum-jumper a:hover {"
+                    + "#forum-jumper a, #forum-jumper a:hover {"
                     + " text-decoration: none !important; }\n"
                     + "#forum-jumper li { list-style-type: circle; }\n"
                     + "#forum-jumper li:not(.active):hover {"
@@ -83,10 +67,9 @@
                     + "#forum-jumper li a.active { font-weight: bold; }\n"
                     + "#forum-jumper .info, "
                     + "#forum-jumper .hide { display: none; }\n"
-                    + "#forum-jumper .info {"
-                    + " position: absolute; top: +18em;"
-                    + " font-weight: normal; }\n"
-                    + "#forum-jumper li .info { margin-left: -2em; }";
+                    + "#forum-jumper .info { position: absolute;"
+                    + " top: +19em; font-weight: normal; border: none;"
+                    + " margin-left: -2em; }";
 
   var div = document.createElement("div");
   div.id = "forum-jumper";
@@ -141,15 +124,15 @@
     $("#right").appendChild(div);
   }
 
-  var isLoggedIn = document.querySelector("#top .login_status a[href='/logout']") != null;
+  var isLoggedIn = $("#top .login_status a[href='/logout']") != null;
   if (isLoggedIn) {
-    var hide = div.querySelectorAll(".hide");
+    var hide = $all(".hide", div);
     for (var i = 0; i < hide.length; i++) {
       hide[i].removeAttribute("class");
     }
   }
 
-  var links = div.querySelectorAll("li a");
+  var links = $all("li a", div);
   var link, list;
   for (var i = 0; i < links.length; i++) {
     link = links[i];
@@ -168,11 +151,11 @@
     }
   }
   link.className = "active";
-  if ((list.querySelectorAll("a").length > 1) &&
+  if (($all("a", list).length > 1) &&
       (/spam/.test(location.search) ==
-       /spam/.test(list.querySelectorAll("a")[1].href))) {
-    list.querySelectorAll("a")[1].className = "active";
-    list.querySelectorAll("a")[1].textContent = "including spam";
+       /spam/.test($all("a", list)[1].href))) {
+    $all("a", list)[1].className = "active";
+    $all("a", list)[1].textContent = "including spam";
   }
 
   var divTop = div.offsetTop;
@@ -191,5 +174,9 @@
 
   function $(aSelector, aNode) {
     return (aNode ? aNode : document).querySelector(aSelector);
+  }
+
+  function $all(aSelector, aNode) {
+    return (aNode ? aNode : document).querySelectorAll(aSelector);
   }
 })()
