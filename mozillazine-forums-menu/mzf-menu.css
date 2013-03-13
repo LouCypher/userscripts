@@ -7,7 +7,7 @@
 #page-header.fixed {
   position: fixed;
   margin-top: -35px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   -moz-transition: margin-top 250ms ease-in 500ms;
        transition: margin-top 250ms ease-in 500ms;
 }
