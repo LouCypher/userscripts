@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           2.0
+// @version           2.1
 // @author            LouCypher
 // @license           WTFPL http://www.wtfpl.net/
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
@@ -62,7 +62,6 @@ window.addEventListener('beforescriptexecute', function(e) {
     })
   }
 
-  unsafeWindow.getVM = getVM;
-  unsafeWindow.see_more_vm = getVM;
+  unsafeWindow.getVM = unsafeWindow.see_more_vm = getVM;
 
 }, true)
