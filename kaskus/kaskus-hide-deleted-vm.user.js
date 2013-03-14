@@ -14,7 +14,7 @@
 // @license           WTFPL http://www.wtfpl.net/
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
 // @icon64URL         http://loucypher.github.com/userscripts/kaskus/kaskus-64.png
-// @contributionURL   http://loucypher.github.com/userscripts/donate/?Kaskus+-+Hide+Deleted+VM+userscript
+// @contributionURL   http://loucypher.github.com/userscripts/donate.html?Kaskus+-+Hide+Deleted+VM+userscript
 // @homepageURL       https://github.com/LouCypher/userscripts/tree/master/kaskus
 // @supportURL        https://github.com/LouCypher/userscripts/issues
 // @downloadURL       https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.user.js
