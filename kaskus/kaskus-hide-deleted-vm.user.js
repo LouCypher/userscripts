@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           2.1
+// @version           3.0
 // @author            LouCypher
 // @license           WTFPL http://www.wtfpl.net/
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
@@ -25,43 +25,42 @@
 // @grant             unsafeWindow
 // ==/UserScript==
 
-window.addEventListener('beforescriptexecute', function(e) {
-  e.target.removeEventListener(e.type, arguments.callee, true);
+window.addEventListener('afterscriptexecute', function(e) {
+  if (/profile.js$/.test(e.target.src)) {
+    window.removeEventListener(e.type, arguments.callee, true);
+    var $ = unsafeWindow.$;
 
-  var $ = unsafeWindow.$;
-
-  function getVM(b) {
-    b && $("#do-see-more-updates").remove();
-    var profile = $("#profile-content");
-    profile.append('<div class="item" style="text-align:center"' +
-                   ' id="ajax_loader_html"><img src="http://kkcdn' +
-                   '-static.kaskus.co.id/img/ajax-loader.gif"/></div>');
-    $.getJSON("/profile/stream_activity_vm/all/" + (b ? b : "0") + "/" +
-              $("#userid").val(), function(c) {
-      $("#ajax_loader_html").remove("");
-      $.each(c.stream_activity, function(e, f) {
-        var deleted = /deleted\-vm/.test(f.content);
-        var html = '<div class="item' + (deleted ? ' hide' : '') +
-                   '" id="vm_' + f.vmid + '"><div class="item-content">' +
-                   '<a href="#vm_' + f.vmid + '" class="entry-head">' +
-                   '<i class="icon-star"></i></a>' + f.profilepic +
-                   '<div class="message"><div class="vcard">' + f.username +
-                   f.date + '</div>' + f.content + '</div></div>';
-        if (f.button_action != "") {
-          html += '<div class="m-meta">' + f.button_action + "</div>"
-        }
-        html += "</div>";
-        profile.append(html);
-        if (c.stream_activity.length - 1 == e && f.username != "") {
-          profile.append('<div class="load-more"><a href="javascript:void(0);' +
-                         '" id="do-see-more-updates" onclick="see_more_vm(\'' +
-                         c.oldest_id + '\'); return false;" class="button' +
-                         ' small white">Load More updates</a></div>')
-        }
+    function getVM(b) {
+      b && $("#do-see-more-updates").remove();
+      var profile = $("#profile-content");
+      profile.append('<div class="item" style="text-align:center"' +
+                     ' id="ajax_loader_html"><img src="http://kkcdn' +
+                     '-static.kaskus.co.id/img/ajax-loader.gif"/></div>');
+      $.getJSON("/profile/stream_activity_vm/all/" + (b ? b : "0") + "/" +
+                $("#userid").val(), function(c) {
+        $("#ajax_loader_html").remove("");
+        $.each(c.stream_activity, function(e, f) {
+          var deleted = /deleted\-vm/.test(f.content);
+          var html = '<div class="item' + (deleted ? ' hide' : '') +
+                     '" id="vm_' + f.vmid + '"><div class="item-content">' +
+                     '<a href="#vm_' + f.vmid + '" class="entry-head">' +
+                     '<i class="icon-star"></i></a>' + f.profilepic +
+                     '<div class="message"><div class="vcard">' + f.username +
+                     f.date + '</div>' + f.content + '</div></div>';
+          if (f.button_action != "") {
+            html += '<div class="m-meta">' + f.button_action + "</div>"
+          }
+          html += "</div>";
+          profile.append(html);
+          if (c.stream_activity.length - 1 == e && f.username != "") {
+            profile.append('<div class="load-more"><a href="javascript:void(0);' +
+                           '" id="do-see-more-updates" onclick="see_more_vm(\'' +
+                           c.oldest_id + '\'); return false;" class="button' +
+                           ' small white">Load More updates</a></div>')
+          }
+        })
       })
-    })
+    }
+    unsafeWindow.getVM = unsafeWindow.see_more_vm = getVM;
   }
-
-  unsafeWindow.getVM = unsafeWindow.see_more_vm = getVM;
-
 }, true)
