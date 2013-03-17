@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           5.0
+// @version           6.0
 // @author            LouCypher
 // @license           WTFPL http://www.wtfpl.net/
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
@@ -27,6 +27,7 @@
 
 /*
 Changelog:
+6.0 - Add button to toggle show/hide deleted VM.
 5.0 - Hide immediately if a post has been deleted.
 4.0 - Don't run if user is not logged in or the page is not own profile page.
 3.0 - Use afterscriptexecute event.
@@ -62,7 +63,8 @@ function isMyProfile(aUserId) {
 
 function start() {
   unsafeWindow.hideDeleted = true;
-  window.addEventListener('afterscriptexecute', process, true);
+  window.addEventListener("afterscriptexecute", process, true);
+  document.addEventListener("DOMContentLoaded", contentLoad, false);
 }
 
 function process(aEvent) {
@@ -127,4 +129,25 @@ function process(aEvent) {
       }
     }
   }
+}
+
+function contentLoad(aEvent) {
+  var doc = aEvent.target;
+  var $ = unsafeWindow.$;
+
+  $("#say-what .act input").after('<input type="button"' +
+                                  ' value="Show deleted VM"' +
+                                  ' class="button small white"' +
+                                  ' style="float:left"/>');
+  $("#say-what .act input[type='button']").click(function(e) {
+    if ($(".deleted").hasClass("hide")) {
+      e.target.value = e.target.value.replace(/^Show/, "Hide");
+      $(".deleted").removeClass("hide");
+      unsafeWindow.hideDeleted = false;
+    } else {
+      e.target.value = e.target.value.replace(/^Hide/, "Show");
+      $(".deleted").addClass("hide");
+      unsafeWindow.hideDeleted = true;
+    }
+  });
 }
