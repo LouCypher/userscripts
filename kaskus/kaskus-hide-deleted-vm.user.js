@@ -9,25 +9,56 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           3.0
+// @version           4.0
 // @author            LouCypher
 // @license           WTFPL http://www.wtfpl.net/
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
 // @icon64URL         http://loucypher.github.com/userscripts/kaskus/kaskus-64.png
-// @contributionURL   http://loucypher.github.com/userscripts/donate.html?Kaskus+-+Hide+Deleted+VM+userscript
+// @contributionURL   http://loucypher.github.com/userscripts/donate.html?Kaskus+-+Hide+Deleted+VM
 // @homepageURL       https://github.com/LouCypher/userscripts/tree/master/kaskus
 // @supportURL        https://github.com/LouCypher/userscripts/issues
 // @downloadURL       https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.user.js
 // @updateURL         https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.user.js
 // @resource          LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
-// @include           http://www.kaskus.co.id/profile/*
+// @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/[0-9]+$/
 // @run-at            document-start
 // @grant             unsafeWindow
 // ==/UserScript==
 
-window.addEventListener('afterscriptexecute', function(e) {
-  if (/profile.js$/.test(e.target.src)) {
-    window.removeEventListener(e.type, arguments.callee, true);
+var msg = "Kaskus:";
+if (isMyProfile(getUserId())) start();
+console.log(msg);
+
+function getUserId() {
+  var userid = "";
+  document.cookie.split(";").forEach(function(cookie) {
+    if (/userid/.test(cookie)) {
+      userid = cookie.match(/\d+/).toString();
+    }
+  })
+  msg += (userid ? "\n* You have " : " You're NOT ") + "logged in.";
+  return userid;
+}
+
+function isMyProfile(aUserId) {
+  var mine = false;
+  if (location.href.match(/\d+$/) == aUserId) {
+    mine = true;
+  }
+  if (aUserId) {
+    msg += "\n* This is" + (mine ? " " : " NOT ") + "your profile page.";
+  }
+  return mine;
+}
+
+function start() {
+  unsafeWindow.hideDeleted = true;
+  window.addEventListener('afterscriptexecute', process, true);
+}
+
+function process(aEvent) {
+  if (/profile.js$/.test(aEvent.target.src)) {
+    window.removeEventListener(aEvent.type, arguments.callee, true);
     var $ = unsafeWindow.$;
 
     function getVM(b) {
@@ -41,7 +72,10 @@ window.addEventListener('afterscriptexecute', function(e) {
         $("#ajax_loader_html").remove("");
         $.each(c.stream_activity, function(e, f) {
           var deleted = /deleted\-vm/.test(f.content);
-          var html = '<div class="item' + (deleted ? ' hide' : '') +
+          var hideDeleted = unsafeWindow.hideDeleted;
+          var html = '<div class="item' +
+                     (deleted ? ' deleted' : '') +
+                     (deleted && hideDeleted ? ' hide' : '') +
                      '" id="vm_' + f.vmid + '"><div class="item-content">' +
                      '<a href="#vm_' + f.vmid + '" class="entry-head">' +
                      '<i class="icon-star"></i></a>' + f.profilepic +
@@ -63,4 +97,4 @@ window.addEventListener('afterscriptexecute', function(e) {
     }
     unsafeWindow.getVM = unsafeWindow.see_more_vm = getVM;
   }
-}, true)
+}
