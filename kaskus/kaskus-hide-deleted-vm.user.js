@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           4.0
+// @version           5.0
 // @author            LouCypher
 // @license           WTFPL http://www.wtfpl.net/
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
@@ -24,6 +24,15 @@
 // @run-at            document-start
 // @grant             unsafeWindow
 // ==/UserScript==
+
+/*
+Changelog:
+5.0 - Hide immediately if a post has been deleted.
+4.0 - Don't run if user is not logged in or the page is not own profile page.
+3.0 - Use afterscriptexecute event.
+2.0 - Refactored.
+1.0 - Initial release.
+*/
 
 var msg = "Kaskus:";
 if (isMyProfile(getUserId())) start();
@@ -61,7 +70,7 @@ function process(aEvent) {
     window.removeEventListener(aEvent.type, arguments.callee, true);
     var $ = unsafeWindow.$;
 
-    function getVM(b) {
+    unsafeWindow.getVM = unsafeWindow.see_more_vm = function getVM(b) {
       b && $("#do-see-more-updates").remove();
       var profile = $("#profile-content");
       profile.append('<div class="item" style="text-align:center"' +
@@ -95,6 +104,27 @@ function process(aEvent) {
         })
       })
     }
-    unsafeWindow.getVM = unsafeWindow.see_more_vm = getVM;
+
+    unsafeWindow.moderate_vm = function moderate_vm(a, c) {
+      var b = confirm("Are you sure to " + c + " this message?");
+      if (b) {
+        $.get("/visitormessage/moderate/" + a + "/" + c, function(d) {
+          if (c == "delete") {
+            $("#vm_" + a + " .vcard").after("<b>This message has been" +
+                                            " deleted.</b><br>");
+            $("#vm_" + a + " .m-meta").html('<a href="javascript:void(0);"' +
+                                            ' onclick="moderate_vm(' + a +
+                                            ',\'undelete\');return false;"' +
+                                            ' class="delete"><i class="icon-' +
+                                            'trash"></i>Undelete</a>')
+            $("#vm_" + a).addClass("deleted");
+            unsafeWindow.hideDeleted && $("#vm_" + a).addClass("hide");
+          } else {
+            $("#vm_" + a).html(d);
+            $("#vm_" + a).removeClass("deleted hide");
+          }
+        })
+      }
+    }
   }
 }
