@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           6.1
+// @version           6.2
 // @author            LouCypher
 // @license           WTFPL http://www.wtfpl.net/
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
@@ -27,6 +27,7 @@
 
 /*
 Changelog:
+6.2 - Throw error if JavaScript is disabled.
 6.1 - Refactored.
 6.0 - Add button to toggle show/hide deleted VM.
 5.0 - Hide immediately if a post has been deleted.
@@ -72,7 +73,6 @@ function process(aEvent) {
   if (/profile.js$/.test(aEvent.target.src)) {
     window.removeEventListener(aEvent.type, arguments.callee, true);
     var $ = unsafeWindow.$;
-
     unsafeWindow.getVM = function getVM(b) {
       b && $("#do-see-more-updates").remove();
       var profile = $("#profile-content");
@@ -133,8 +133,11 @@ function process(aEvent) {
 }
 
 function contentLoad() {
-  var $ = unsafeWindow.$;
+  if (typeof unsafeWindow.$ !== "function") {
+    throw new Error("JavaScript must be enabled for this userscript to work.");
+  }
 
+  var $ = unsafeWindow.$;
   $("#say-what .act input").after('<input type="button"' +
                                   ' value="Show deleted VM"' +
                                   ' class="button small white"' +
@@ -149,5 +152,5 @@ function contentLoad() {
       $(".deleted").addClass("hide");
       unsafeWindow.hideDeleted = true;
     }
-  });
+  })
 }
