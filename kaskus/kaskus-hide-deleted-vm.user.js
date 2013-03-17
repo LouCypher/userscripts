@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           6.0
+// @version           6.1
 // @author            LouCypher
 // @license           WTFPL http://www.wtfpl.net/
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
@@ -27,6 +27,7 @@
 
 /*
 Changelog:
+6.1 - Refactored.
 6.0 - Add button to toggle show/hide deleted VM.
 5.0 - Hide immediately if a post has been deleted.
 4.0 - Don't run if user is not logged in or the page is not own profile page.
@@ -37,7 +38,7 @@ Changelog:
 
 var msg = "Kaskus:";
 if (isMyProfile(getUserId())) start();
-console.log(msg);
+//console.log(msg);
 
 function getUserId() {
   var userid = "";
@@ -72,7 +73,7 @@ function process(aEvent) {
     window.removeEventListener(aEvent.type, arguments.callee, true);
     var $ = unsafeWindow.$;
 
-    unsafeWindow.getVM = unsafeWindow.see_more_vm = function getVM(b) {
+    unsafeWindow.getVM = function getVM(b) {
       b && $("#do-see-more-updates").remove();
       var profile = $("#profile-content");
       profile.append('<div class="item" style="text-align:center"' +
@@ -99,7 +100,7 @@ function process(aEvent) {
           profile.append(html);
           if (c.stream_activity.length - 1 == e && f.username != "") {
             profile.append('<div class="load-more"><a href="javascript:void(0);' +
-                           '" id="do-see-more-updates" onclick="see_more_vm(\'' +
+                           '" id="do-see-more-updates" onclick="getVM(\'' +
                            c.oldest_id + '\'); return false;" class="button' +
                            ' small white">Load More updates</a></div>')
           }
@@ -131,8 +132,7 @@ function process(aEvent) {
   }
 }
 
-function contentLoad(aEvent) {
-  var doc = aEvent.target;
+function contentLoad() {
   var $ = unsafeWindow.$;
 
   $("#say-what .act input").after('<input type="button"' +
