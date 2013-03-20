@@ -9,9 +9,9 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           6.2
+// @version           6.4
 // @author            LouCypher
-// @license           WTFPL http://www.wtfpl.net/
+// @license           WTFPL
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
 // @icon64URL         http://loucypher.github.com/userscripts/kaskus/kaskus-64.png
 // @contributionURL   http://loucypher.github.com/userscripts/donate.html?Kaskus+-+Hide+Deleted+VM
@@ -23,10 +23,15 @@
 // @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/[0-9]+$/
 // @run-at            document-start
 // @grant             unsafeWindow
+// @grant             GM_getValue
+// @grant             GM_setValue
+// @grant             GM_log
 // ==/UserScript==
 
 /*
 Changelog:
+6.4 - Better logging.
+6.3 - Set item's background to red when it's deleted.
 6.2 - Throw error if JavaScript is disabled.
 6.1 - Refactored.
 6.0 - Add button to toggle show/hide deleted VM.
@@ -37,9 +42,8 @@ Changelog:
 1.0 - Initial release.
 */
 
-var msg = "Kaskus:";
-if (isMyProfile(getUserId())) start();
-//console.log(msg);
+var log = (typeof GM_info == "object") ? "" : "\n";
+start(isMyProfile(getUserId()));
 
 function getUserId() {
   var userid = "";
@@ -48,7 +52,7 @@ function getUserId() {
       userid = cookie.match(/\d+/).toString();
     }
   })
-  msg += (userid ? "\n* You have " : " You're NOT ") + "logged in.";
+  log += "* You" + (userid ? " have" : "'re NOT") + " logged in.";
   return userid;
 }
 
@@ -58,20 +62,25 @@ function isMyProfile(aUserId) {
     mine = true;
   }
   if (aUserId) {
-    msg += "\n* This is" + (mine ? " " : " NOT ") + "your profile page.";
+    log += "\n* This is" + (mine ? " " : " NOT ") + "your profile page.";
   }
   return mine;
 }
 
-function start() {
-  unsafeWindow.hideDeleted = true;
-  window.addEventListener("afterscriptexecute", process, true);
-  document.addEventListener("DOMContentLoaded", contentLoad, false);
+function start(aOK) {
+  if (aOK) {
+    window.addEventListener("afterscriptexecute", process, true);
+    document.addEventListener("DOMContentLoaded", contentLoad, false);
+  }
+  log += "\n* The userscript is" + (aOK ? " " : " NOT ") + "running.\n";
+  GM_getValue("debug", false) && GM_log(log);
+  GM_setValue("debug", GM_getValue("debug", false));
 }
 
 function process(aEvent) {
   if (/profile.js$/.test(aEvent.target.src)) {
     window.removeEventListener(aEvent.type, arguments.callee, true);
+    unsafeWindow.hideDeleted = true;
     var $ = unsafeWindow.$;
     unsafeWindow.getVM = function getVM(b) {
       b && $("#do-see-more-updates").remove();
@@ -113,18 +122,17 @@ function process(aEvent) {
       if (b) {
         $.get("/visitormessage/moderate/" + a + "/" + c, function(d) {
           if (c == "delete") {
-            $("#vm_" + a + " .vcard").after("<b>This message has been" +
-                                            " deleted.</b><br>");
             $("#vm_" + a + " .m-meta").html('<a href="javascript:void(0);"' +
                                             ' onclick="moderate_vm(' + a +
                                             ',\'undelete\');return false;"' +
                                             ' class="delete"><i class="icon-' +
                                             'trash"></i>Undelete</a>')
             $("#vm_" + a).addClass("deleted");
-            unsafeWindow.hideDeleted && $("#vm_" + a).addClass("hide");
-          } else {
+            $("#vm_" + a + " .message").addClass("deleted-vm"); // paint it red
+            unsafeWindow.hideDeleted && $("#vm_" + a).addClass("hide"); // hide
+          } else { // undelete
             $("#vm_" + a).html(d);
-            $("#vm_" + a).removeClass("deleted hide");
+            $("#vm_" + a).removeClass("deleted hide"); // unhide
           }
         })
       }
@@ -133,10 +141,9 @@ function process(aEvent) {
 }
 
 function contentLoad() {
-  if (typeof unsafeWindow.$ !== "function") {
+  if (!("$" in unsafeWindow)) {
     throw new Error("JavaScript must be enabled for this userscript to work.");
   }
-
   var $ = unsafeWindow.$;
   $("#say-what .act input").after('<input type="button"' +
                                   ' value="Show deleted VM"' +
