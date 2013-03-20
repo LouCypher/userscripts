@@ -19,6 +19,7 @@
 // @supportURL        https://github.com/LouCypher/userscripts/issues
 // @downloadURL       https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.user.js
 // @updateURL         https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.user.js
+// @resource          CHANGELOG https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.CHANGELOG.txt
 // @resource          LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/[0-9]+$/
 // @run-at            document-start
@@ -27,21 +28,6 @@
 // @grant             GM_setValue
 // @grant             GM_log
 // ==/UserScript==
-
-/*
-Changelog:
-7.0 - Bumped version.
-6.4 - Better logging.
-6.3 - Set item's background to red when it's deleted.
-6.2 - Throw error if JavaScript is disabled.
-6.1 - Refactored.
-6.0 - Add button to toggle show/hide deleted VM.
-5.0 - Hide immediately if a post has been deleted.
-4.0 - Don't run if user is not logged in or the page is not own profile page.
-3.0 - Use afterscriptexecute event.
-2.0 - Refactored.
-1.0 - Initial release.
-*/
 
 var log = (typeof GM_info == "object") ? "" : "\n";
 start(isMyProfile(getUserId()));

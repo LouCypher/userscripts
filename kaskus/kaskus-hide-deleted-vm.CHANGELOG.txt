@@ -1,0 +1,11 @@
+7.0 - Bumped version.
+6.4 - Better logging.
+6.3 - Set item's background color to red when it's deleted.
+6.2 - Throw error if JavaScript is disabled.
+6.1 - Refactored.
+6.0 - Add button to toggle show/hide deleted VM.
+5.0 - Hide immediately if a post has been deleted.
+4.0 - Don't run if user is not logged in or the page is not own profile page.
+3.0 - Use afterscriptexecute event.
+2.0 - Refactored.
+1.0 - Initial release.
