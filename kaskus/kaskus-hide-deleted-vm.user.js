@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           6.4
+// @version           7.0
 // @author            LouCypher
 // @license           WTFPL
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
@@ -30,6 +30,7 @@
 
 /*
 Changelog:
+7.0 - Bumped version.
 6.4 - Better logging.
 6.3 - Set item's background to red when it's deleted.
 6.2 - Throw error if JavaScript is disabled.
