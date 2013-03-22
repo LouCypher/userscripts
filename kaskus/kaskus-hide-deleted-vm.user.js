@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           7.0
+// @version           7.1
 // @author            LouCypher
 // @license           WTFPL
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
@@ -21,7 +21,8 @@
 // @updateURL         https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.user.js
 // @resource          CHANGELOG https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.CHANGELOG.txt
 // @resource          LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
-// @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/[0-9]+$/
+// @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/[0-9]+\/?$/
+// @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/?$/
 // @run-at            document-start
 // @grant             unsafeWindow
 // @grant             GM_getValue
@@ -45,7 +46,8 @@ function getUserId() {
 
 function isMyProfile(aUserId) {
   var mine = false;
-  if (location.href.match(/\d+$/) == aUserId) {
+  if ((location.href.match(/\d+/) == aUserId) ||
+      (/\/profile\/?/.test(location.pathname))) {
     mine = true;
   }
   if (aUserId) {
