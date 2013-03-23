@@ -1,0 +1,15 @@
+#added-by-userscript:before {
+  content: "This userscript is installed and is running successfully.";
+  font-size: large;
+  background-color: infobackground;
+  color: #000;
+  border-bottom: 1px solid #aaa;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  text-align: center;
+  line-height: 1em;
+  padding: 1em 0 0;
+  width: auto;
+  height: 2em;
+  z-index: 9999;
+}
