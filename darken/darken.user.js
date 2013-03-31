@@ -22,16 +22,17 @@
 // @name            Darken
 // @namespace       http://userscripts.org/users/12
 // @description     Add menuitem to browser context menu to darken the web page
-// @version         2.1
+// @version         3.0
 // @author          LouCypher
 // @contributor     luckymouse (CSS)
 // @license         GPL
-// @homepageURL     https://github.com/LouCypher/userscripts/tree/master/darken
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/darken/darken.user.js
 // @resource        css https://raw.github.com/LouCypher/userscripts/master/darken/darken.css
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @include         *
 // ==/UserScript==
+
+if (frameElement) return;
 
 const STYLE_ID = "userscript-darken-style";
 var isDark = sessionStorage.getItem("dark-site");
