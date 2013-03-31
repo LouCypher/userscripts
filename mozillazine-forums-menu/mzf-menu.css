@@ -22,8 +22,8 @@
        border-radius: 5px;
 }
 #page-header.fixed .navbar, .menu .submenu, .menu:hover {
-  -moz-box-shadow: 2px 3px 6px rgba(0, 0, 0, .5);
-       box-shadow: 2px 3px 6px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, .5);
+       box-shadow: 1px 2px 3px rgba(0, 0, 0, .5);
 }
 .menu { padding: 1px .5em 0 17px; }
 .menu .submenu {
