@@ -8,7 +8,7 @@
 // @name          USO: Forum Jumper
 // @namespace     http://userstyles.org/users/12
 // @description   Add links to jump to other forum
-// @version       6.3
+// @version       7.0
 // @author        LouCypher
 // @license       WTFPL http://www.wtfpl.net/
 // @homepageURL   https://userscripts.org/scripts/show/137255
@@ -32,6 +32,9 @@
 // ==/UserScript==
 
 /* Changelog:
+    - 2013-03-31: v7.0 - Added 'Your posts'.
+                       - Use different CSS rule if not logged in.
+                       - Refactored.
     - 2013-03-12: v6.3 - Updated CSS. Refactored.
     - 2013-01-15: v6.0 - Added to forum front page.
     - 2013-01-03: v5.0 - Removed 'Jetpack' forum.
@@ -47,6 +50,8 @@
 (function() {
   var fLink = $("#mainmenu li a[href='/forums']");
   if (!fLink || fLink.parentNode.className != "active") return;
+
+  var userId = getUserId();
 
   var style = $("head").appendChild(document.createElement("style"));
   style.type = "text/css";
@@ -68,8 +73,8 @@
                     + "#forum-jumper .info, "
                     + "#forum-jumper .hide { display: none; }\n"
                     + "#forum-jumper .info { position: absolute;"
-                    + " top: +19em; font-weight: normal; border: none;"
-                    + " margin-left: -2em; }";
+                    + " top: +" + (userId ? "20" : "14") + "em;"
+                    + " font-weight: normal; border: none; margin-left: -2em; }";
 
   var div = document.createElement("div");
   div.id = "forum-jumper";
@@ -110,9 +115,13 @@
                 + '<div class="info">Reported spam posts. Please vote to'
                 + ' help keep Userscripts.org clean.</div>'
                 + '</li></ul>'
-                + '<ul><li class="hide">'
+                + '<ul class="hide"><li>'
                 + '<a href="/home/posts">Monitored topics</a>'
-                + '</li></ul>'
+                + '<div class="info">Recent posts in your monitoed topics.'
+                + '</div></li><li>'
+                + '<a href="/users/' + userId + '/posts">Your posts</a>'
+                + '<div class="info">Your recent posts.'
+                + '</div></li></li></ul>'
 
   if (location.pathname == "/forums") {
     $("#right").insertBefore(div, $("#right > h6"));
@@ -124,8 +133,7 @@
     $("#right").appendChild(div);
   }
 
-  var isLoggedIn = $("#top .login_status a[href='/logout']") != null;
-  if (isLoggedIn) {
+  if (userId) {
     var hide = $all(".hide", div);
     for (var i = 0; i < hide.length; i++) {
       hide[i].removeAttribute("class");
@@ -170,6 +178,16 @@
       div.removeAttribute("style");
       div.className = "";
     }
+  }
+
+  function getUserId() {
+    var userId = null;
+    document.cookie.split(";").forEach(function(cookie) {
+      if (/_uso_token/.test(cookie)) {
+        userId = cookie.match(/[^=][0-9]+(?=%)/);
+      }
+    })
+    return userId;
   }
 
   function $(aSelector, aNode) {
