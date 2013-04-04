@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           7.1
+// @version           7.2
 // @author            LouCypher
 // @license           WTFPL
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
@@ -47,7 +47,7 @@ function getUserId() {
 function isMyProfile(aUserId) {
   var mine = false;
   if ((location.href.match(/\d+/) == aUserId) ||
-      (/\/profile\/?/.test(location.pathname))) {
+      (/\/profile\/?$/.test(location.pathname))) {
     mine = true;
   }
   if (aUserId) {
