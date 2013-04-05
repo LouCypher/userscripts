@@ -8,7 +8,7 @@
 // @name              Kaskus - VM No Capcay
 // @id                kaskus-vm-no-capcay@loucypher
 // @namespace         http://userscripts.org/users/12
-// @version           1.0
+// @version           1.1
 // @author            LouCypher
 // @license           WTFPL
 // @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
@@ -19,8 +19,7 @@
 // @downloadURL       https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-vm-no-capcay.user.js
 // @updateURL         https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-vm-no-capcay.user.js
 // @resource          LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
-// @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/[0-9]+\/?$/
-// @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/?$/
+// @include           /^https?:\/\/www\.kaskus\.co\.id\/(profile(\/[0-9]+)?\/?$|visitormessage\/conversation/.*)/
 // @run-at            document-start
 // @grant             none
 // ==/UserScript==
