@@ -9,12 +9,12 @@
 // @id                kaskus.overposting@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Cycle between styles on Kaskus Overposting page.
-// @version           1.0
+// @version           1.1
 // @author            LouCypher
 // @license           WTFPL
-// @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
-// @icon64URL         http://loucypher.github.com/userscripts/kaskus/kaskus-64.png
-// @contributionURL   http://loucypher.github.com/userscripts/donate.html?Kaskus+Overposting
+// @icon              http://loucypher.github.io/userscripts/kaskus/kaskus-48.png
+// @icon64URL         http://loucypher.github.io/userscripts/kaskus/kaskus-64.png
+// @contributionURL   http://loucypher.github.io/userscripts/donate.html?Kaskus+Overposting
 // @homepageURL       https://github.com/LouCypher/userscripts/tree/master/kaskus
 // @supportURL        https://github.com/LouCypher/userscripts/issues
 // @downloadURL       https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-overposting-style-cycler.user.js

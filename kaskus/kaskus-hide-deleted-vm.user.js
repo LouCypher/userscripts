@@ -9,12 +9,12 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           7.2
+// @version           7.3
 // @author            LouCypher
 // @license           WTFPL
-// @icon              http://loucypher.github.com/userscripts/kaskus/kaskus-48.png
-// @icon64URL         http://loucypher.github.com/userscripts/kaskus/kaskus-64.png
-// @contributionURL   http://loucypher.github.com/userscripts/donate.html?Kaskus+-+Hide+Deleted+VM
+// @icon              http://loucypher.github.io/userscripts/kaskus/kaskus-48.png
+// @icon64URL         http://loucypher.github.io/userscripts/kaskus/kaskus-64.png
+// @contributionURL   http://loucypher.github.io/userscripts/donate.html?Kaskus+-+Hide+Deleted+VM
 // @homepageURL       https://github.com/LouCypher/userscripts/tree/master/kaskus
 // @supportURL        https://github.com/LouCypher/userscripts/issues
 // @downloadURL       https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.user.js
