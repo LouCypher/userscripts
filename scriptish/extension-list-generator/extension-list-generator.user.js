@@ -10,15 +10,18 @@
 // @name            Extension List Generator
 // @description     Generate list of enabled extensions from Add-ons Manager.
 // @namespace       http://userscripts.org/users/12
-// @version         1.0
+// @version         1.2
 // @author          LouCypher
 // @license         MPL 2.0
+// @screenshot      https://lh3.googleusercontent.com/-IW0AuEgjBIU/UWef1wVIItI/AAAAAAAADeQ/sI8hwf4_GlQ/s0/extension-list-generator.png
 // @icon            https://addons.cdn.mozilla.net/media//img/addon-icons/default-32.png
 // @icon64URL       https://addons.cdn.mozilla.net/media//img/addon-icons/default-64.png
+// @contributionURL http://loucypher.github.io/userscripts/donate.html?Extensions+List+Generator
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/scriptish/extension-list-generator
 // @supportURL      https://github.com/LouCypher/userscripts/issues
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/extension-list-generator.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/extension-list-generator.user.js
+// @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/changelog.txt
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/MPL/LICENSE.txt
 // @include         about:addons
 // ==/UserScript==
@@ -32,9 +35,12 @@ menu.setAttribute("label", "Generate extensions list");
 var menupopup = menu.appendChild(document.createElement("menupopup"));
 
 ["HTML", "Markdown", "BBCode",
- "BBCode (inside spoiler)"].forEach(function(format) {
+ "BBCode (inside spoiler tag)"].forEach(function(format) {
   var menuitem = menupopup.appendChild(document.createElement("menuitem"));
   menuitem.setAttribute("label", format);
+  if (format == "BBCode (inside spoiler tag)") {
+    menuitem.setAttribute("tooltiptext", "Not all forums support this tag");
+  }
 })
 
 menupopup.addEventListener("command", generate, false);
@@ -60,7 +66,7 @@ function generate(aEvent) {
       case "HTML": generateHTML(theme, extArray); break;
       case "Markdown": generateMarkdown(theme, extArray); break;
       case "BBCode": generateBBCode(theme, extArray); break;
-      case "BBCode (inside spoiler)": generateBBCodeS(theme, extArray); break;
+      case "BBCode (inside spoiler tag)": generateBBCodeS(theme, extArray); break;
     }
   })
 }
@@ -69,11 +75,12 @@ function generateHTML(aTheme, aArray) {
   var extensions = "<h1>Firefox info</h1>"
                  + "<h2>User agent</h2><p>" + navigator.userAgent
                  + "</p><h2>Theme</h2><p>"
-                 + (aTheme.id != "{972ce4c6-7e08-4474-a285-3208198ce6fd}"
+                 + (!isDefaultTheme(aTheme)
                     ? '<a href="' + getThemeURL(aTheme) + '">' + aTheme.name + '</a>'
                     : aTheme.name)
                  + "</p>"
-                 + (aTheme.screenshots && !/getpersonas/.test(aTheme.screenshots)
+                 + (!isDefaultTheme(aTheme) && aTheme.screenshots &&
+                    !/getpersonas/.test(aTheme.screenshots)
                     ? '<p><img src="' + aTheme.screenshots[0].url +
                       '" alt="' + aTheme.name + '"/></p>'
                     : "")
@@ -101,10 +108,11 @@ function generateMarkdown(aTheme, aArray) {
   var extensions = "# Firefox info"
                  + "\n\n## User agent\n\n" + navigator.userAgent
                  + "\n\n## Theme\n\n"
-                 + (aTheme.id != "{972ce4c6-7e08-4474-a285-3208198ce6fd}"
+                 + (!isDefaultTheme(aTheme)
                     ? "[" + aTheme.name + "](" + getThemeURL(aTheme) + ")"
                     : aTheme.name)
-                 + (aTheme.screenshots && !/getpersonas/.test(aTheme.screenshots)
+                 + (!isDefaultTheme(aTheme) && aTheme.screenshots &&
+                    !/getpersonas/.test(aTheme.screenshots)
                     ? "\n\n![" + aTheme.name + "](" + aTheme.screenshots[0].url + ")"
                     : "")
                  + "\n\n## Extensions";
@@ -127,10 +135,11 @@ function generateMarkdown(aTheme, aArray) {
 function generateBBCode(aTheme, aArray) {
   var extensions = "[b]User agent:[/b] " + navigator.userAgent
                  + "\n\n[b]Theme:[/b] "
-                 + (aTheme.id != "{972ce4c6-7e08-4474-a285-3208198ce6fd}"
+                 + (!isDefaultTheme(aTheme)
                     ? "[url=" + getThemeURL(aTheme) + "]" + aTheme.name + "[/url]"
                     : aTheme.name)
-                 + (aTheme.screenshots && !/getpersonas/.test(aTheme.screenshots)
+                 + (!isDefaultTheme(aTheme) && aTheme.screenshots &&
+                    !/getpersonas/.test(aTheme.screenshots)
                     ? "\n[img]" + aTheme.screenshots[0].url + "[/img]"
                     : "")
                  + "\n\n[b]Extensions:[/b]\n[list=1]";
@@ -152,10 +161,11 @@ function generateBBCode(aTheme, aArray) {
 function generateBBCodeS(aTheme, aArray) {
   var extensions = "[spoiler=Firefox info]" + navigator.userAgent
                  + "\n\n[b]Theme:[/b] "
-                 + (aTheme.id != "{972ce4c6-7e08-4474-a285-3208198ce6fd}"
+                 + (!isDefaultTheme(aTheme)
                     ? "[url=" + getThemeURL(aTheme) + "]" + aTheme.name + "[/url]"
                     : aTheme.name)
-                 + (aTheme.screenshots && !/getpersonas/.test(aTheme.screenshots)
+                 + (!isDefaultTheme(aTheme) && aTheme.screenshots &&
+                    !/getpersonas/.test(aTheme.screenshots)
                     ? "\n[img]" + aTheme.screenshots[0].url + "[/img]"
                     : "")
                  + "\n\n[b]Extensions:[/b]\n[list=1]";
@@ -174,15 +184,22 @@ function generateBBCodeS(aTheme, aArray) {
   doSomething(extensions, "text/plain");
 }
 
+function isDefaultTheme(aTheme) {
+  return aTheme.id == "{972ce4c6-7e08-4474-a285-3208198ce6fd}" ||
+         aTheme.id == "modern@themes.mozilla.org";
+}
+
 function getAMOPage(aReviewURL) {
-  return aReviewURL.replace(/\/reviews\/.*$/, "/")
-                   .replace(/mozilla.org\/.*\/addon\//, "mozilla.org/addon/");
+  var url = aReviewURL.replace(/\/reviews\/.*$/, "/")
+                      .replace(/mozilla.org\/.*\/addon\//, "mozilla.org/addon/");
+  url += "?src=external-extension-list-generator";
+  return url;
 }
 
 function getThemeURL(aAddon) {
   var url;
   if (aAddon.reviewURL) {
-    url = getAMOPage(aAddon.reviewURL);
+    return getAMOPage(aAddon.reviewURL);
   } else {
     var id = aAddon.id.match(/\d+/).toString();
     if (/getpersonas/.test(aAddon.screenshots[0].url)) {
@@ -191,6 +208,7 @@ function getThemeURL(aAddon) {
       url = "http://addons.mozilla.org/addon/" + id;
     }
   }
+  url += "/?src=external-extension-list-generator";
   return url;
 }
 
@@ -206,23 +224,10 @@ function doSomething(aString, aContentType, aExt) {
     case 0:
       Cc["@mozilla.org/widget/clipboardhelper;1"].getService(Ci.nsIClipboardHelper)
                                                  .copyString(aString);
-      var clipboard = window.QueryInterface(Ci.nsIInterfaceRequestor)
-                            .getInterface(Ci.nsIWebNavigation)
-                            .QueryInterface(Ci.nsIDocShellTreeItem)
-                            .rootTreeItem
-                            .QueryInterface(Ci.nsIInterfaceRequestor)
-                            .getInterface(Ci.nsIDOMWindow)
-                            .readFromClipboard();
-      var as = Cc["@mozilla.org/alerts-service;1"].getService(Ci.nsIAlertsService)
-      if (clipboard === aString) {
-        as.showAlertNotification("chrome://mozapps/skin/xpinstall/xpinstallItemGeneric.png",
-                                 "Extension List Generator",
-                                 "Copied to clipboard!", false, "", null);
-      } else {
-        as.showAlertNotification("chrome://global/skin/icons/warning-large.png",
-                                 "Extension List Generator",
-                                 "Copy fail!", false, "", null);
-      }
+      Cc["@mozilla.org/alerts-service;1"].getService(Ci.nsIAlertsService).
+      showAlertNotification("chrome://mozapps/skin/xpinstall/xpinstallItemGeneric.png",
+                            "Extension List Generator", "Copied to clipboard!",
+                            false, "", null);
       break;
     case 2:
       openOptionsInTab("data:" + aContentType + ";charset=utf-8," +
