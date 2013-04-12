@@ -10,7 +10,7 @@
 // @name            Extension List Generator
 // @description     Generate list of enabled extensions from Add-ons Manager.
 // @namespace       http://userscripts.org/users/12
-// @version         1.2
+// @version         1.3
 // @author          LouCypher
 // @license         MPL 2.0
 // @screenshot      https://lh3.googleusercontent.com/-IW0AuEgjBIU/UWef1wVIItI/AAAAAAAADeQ/sI8hwf4_GlQ/s0/extension-list-generator.png
@@ -25,6 +25,8 @@
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/MPL/LICENSE.txt
 // @include         about:addons
 // ==/UserScript==
+
+var appName = Application.name;
 
 var utilsMenu = document.getElementById("utils-menu");
 utilsMenu.appendChild(document.createElement("menuseparator"));
@@ -72,7 +74,7 @@ function generate(aEvent) {
 }
 
 function generateHTML(aTheme, aArray) {
-  var extensions = "<h1>Firefox info</h1>"
+  var extensions = "<h1>" + appName + " info</h1>"
                  + "<h2>User agent</h2><p>" + navigator.userAgent
                  + "</p><h2>Theme</h2><p>"
                  + (!isDefaultTheme(aTheme)
@@ -94,7 +96,7 @@ function generateHTML(aTheme, aArray) {
                    : addon.homepageURL
                      ? '<a href="' + addon.homepageURL + '">' + addon.name + '</a>'
                      : '<a href="http://www.google.com/search?q="' +
-                       encodeURIComponent(addon.name + " firefox extension") +
+                       encodeURIComponent(addon.name + " extension") +
                        '">' + addon.name)
                 + "</a>" + (addon.version ? " " + addon.version : "")
                 + "<br/>" + addon.description + "</li>";
@@ -105,7 +107,7 @@ function generateHTML(aTheme, aArray) {
 
 function generateMarkdown(aTheme, aArray) {
   var idx = 0;
-  var extensions = "# Firefox info"
+  var extensions = "# " + appName + " info"
                  + "\n\n## User agent\n\n" + navigator.userAgent
                  + "\n\n## Theme\n\n"
                  + (!isDefaultTheme(aTheme)
@@ -125,7 +127,7 @@ function generateMarkdown(aTheme, aArray) {
                      ? "[" + addon.name + "](" + addon.homepageURL
                      : "[" + addon.name + "](" +
                        "http://www.google.com/search?q=" +
-                       encodeURIComponent(addon.name + " firefox extension"))
+                       encodeURIComponent(addon.name + " extension"))
                 + ")" + (addon.version ? " " + addon.version : "")
                 + "  \n" + addon.description;
   })
@@ -150,7 +152,7 @@ function generateBBCode(aTheme, aArray) {
                    : addon.homepageURL
                      ? "[url=" + addon.homepageURL
                      : "[url=http://www.google.com/search?q=" +
-                       encodeURIComponent(addon.name + " firefox extension"))
+                       encodeURIComponent(addon.name + " extension"))
                 + "]" + addon.name + "[/url]"
                 + (addon.version ? " " + addon.version : "");
   })
@@ -159,7 +161,7 @@ function generateBBCode(aTheme, aArray) {
 }
 
 function generateBBCodeS(aTheme, aArray) {
-  var extensions = "[spoiler=Firefox info]" + navigator.userAgent
+  var extensions = "[spoiler=" + appName + " info]" + navigator.userAgent
                  + "\n\n[b]Theme:[/b] "
                  + (!isDefaultTheme(aTheme)
                     ? "[url=" + getThemeURL(aTheme) + "]" + aTheme.name + "[/url]"
@@ -176,7 +178,7 @@ function generateBBCodeS(aTheme, aArray) {
                    : addon.homepageURL
                      ? "[url=" + addon.homepageURL
                      : "[url=http://www.google.com/search?q=" +
-                       encodeURIComponent(addon.name + " firefox extension"))
+                       encodeURIComponent(addon.name + " extension"))
                 + "]" + addon.name + "[/url]"
                 + (addon.version ? " " + addon.version : "");
   })
@@ -221,7 +223,7 @@ function doSomething(aString, aContentType, aExt) {
                                  "Extension list has been generated.", flags,
                                  "Copy", "", "View", null, {value:false});
   switch (doWhat) {
-    case 0:
+    case 0: // Copy
       Cc["@mozilla.org/widget/clipboardhelper;1"].getService(Ci.nsIClipboardHelper)
                                                  .copyString(aString);
       Cc["@mozilla.org/alerts-service;1"].getService(Ci.nsIAlertsService).
@@ -229,9 +231,9 @@ function doSomething(aString, aContentType, aExt) {
                             "Extension List Generator", "Copied to clipboard!",
                             false, "", null);
       break;
-    case 2:
+    case 2: // View
       openOptionsInTab("data:" + aContentType + ";charset=utf-8," +
                        encodeURIComponent(aString) + (aExt ? aExt : ""));
-    default: // close
+    default: // Cancel
   }
 }

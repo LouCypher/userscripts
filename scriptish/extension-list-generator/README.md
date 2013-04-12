@@ -10,7 +10,7 @@ Scriptish user script to generate list of enabled extensions from Add-ons Manage
 
 ### Compatibility
 
-* [Firefox](https://affiliates.mozilla.org/link/banner/9337) 4 or newer
+* [Firefox](https://affiliates.mozilla.org/link/banner/9337) 4 or newer.
 * [Scriptish](https://addons.mozilla.org/addon/scriptish/?src=external-extension-list-generator) 1.8 or newer.
 
 ### Installations
