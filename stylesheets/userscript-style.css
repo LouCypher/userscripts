@@ -1,0 +1,54 @@
+body {
+  background: #0099b9
+              url("https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png")
+              top right no-repeat fixed;
+}
+body:before {
+  content: "";
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  z-index: 100;
+     -moz-box-shadow: 0px -3px 9px rgba(0, 0, 0, .8);
+       -o-box-shadow: 0px -3px 9px rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0px -3px 9px rgba(0, 0, 0, .8);
+          box-shadow: 0px -3px 9px rgba(0, 0, 0, .8);
+}
+h1 { border-bottom: 1px solid #aaa; }
+a:not([href]) { cursor: pointer; }
+a:link { color: blue; }
+a:visited { color: purple; }
+a:active, a:visited:active { color: red; }
+a:not(.imglink):hover {
+  background-color: rgba(0, 153, 185, .25);
+  text-decoration: none;
+}
+article {
+  background-color: white;
+  color: black;
+  font-size: 12pt;
+     -moz-border-radius: .5em;
+       -o-border-radius: .5em;
+  -webkit-border-radius: .5em;
+          border-radius: .5em;
+     -moz-box-shadow: 0px 6px 9px rgba(0, 0, 0, .5);
+       -o-box-shadow: 0px 6px 9px rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0px 6px 9px rgba(0, 0, 0, .5);
+          box-shadow: 0px 6px 9px rgba(0, 0, 0, .5);
+  margin: 2em auto;
+  padding: 1em 2em;
+  width: 768px;
+}
+p, li { line-height: 1.5em; }
+.imglink + .imglink img { margin-left: 6px; }
+.center { text-align: center; }
+.clear { clear: both; }
+.left { float: left; }
+#github {
+  display: block;
+  position: fixed;
+  top:0; right:0;
+  width: 149px; height: 149px;
+}
