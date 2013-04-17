@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+    Contributor(s):
+    - LouCypher (original code)
+-->
+
+<?xml-stylesheet href="chrome://global/skin/"?>
+
+<prefwindow
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  id="extension-list-generator-options" title="Extension List Generator Options"
+  onload="sizeToContent();">
+
+  <prefpane id="prefpane-menu" label="Prefpane menu">
+
+    <preferences>
+      <preference id="date"
+                  name="extensions.scriptish.scriptvals.extension-list-generator@loucypher.report.currentDate"
+                  type="bool"/>
+      <preference id="addonsURLs"
+                  name="extensions.scriptish.scriptvals.extension-list-generator@loucypher.report.addonsURLs"
+                  type="bool"/>
+      <preference id="addonsDescriptions"
+                  name="extensions.scriptish.scriptvals.extension-list-generator@loucypher.report.addonsDescriptions"
+                  type="bool"/>
+      <preference id="themeScreenshot"
+                  name="extensions.scriptish.scriptvals.extension-list-generator@loucypher.report.themeScreenshot"
+                  type="bool"/>
+      <preference id="spoilerTag"
+                  name="extensions.scriptish.scriptvals.extension-list-generator@loucypher.report.insideSpoiler"
+                  type="bool"/>
+    </preferences>
+
+    <groupbox>
+      <caption>Select which informations to include</caption>
+      <checkbox label="Current date" preference="date"/>
+      <checkbox label="Add-ons URLs" preference="addonsURLs"/>
+      <checkbox label="Add-ons Descriptions" preference="addonsDescriptions"/>
+      <checkbox label="Theme screenshot (for non-default theme)"
+                preference="themeScreenshot"/>
+    </groupbox>
+
+    <groupbox>
+      <caption>BBCode ouput</caption>
+      <checkbox label="Inside [spoiler] tag" preference="spoilerTag"/>
+      <label>Not all forum softwares support this tag.</label>
+    </groupbox>
+
+  </prefpane>
+
+</prefwindow>

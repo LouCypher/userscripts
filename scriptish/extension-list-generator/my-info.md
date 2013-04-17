@@ -1,4 +1,6 @@
-# Firefox info
+# My Firefox information
+
+Last updated: Wed Apr 17 2013 18:06:13 GMT+0700 (SE Asia Standard Time)
 
 ## User agent
 
@@ -73,7 +75,7 @@ Expand AdF.ly link via context menu.
 21. [Developer Assistant](https://addons.mozilla.org/addon/extension-developer/?src=external-extension-list-generator) 0.3.0.20110927  
 A suite of tools for developers
 
-22. [DOM Inspector](https://addons.mozilla.org/addon/dom-inspector-6622/?src=external-extension-list-generator) 2.0.13  
+22. [DOM Inspector](https://addons.mozilla.org/addon/dom-inspector-6622/?src=external-extension-list-generator) 2.0.14  
 Inspects the structure and properties of a window and its contents.
 
 23. [DOM Inspector Plus! [dm]](https://addons.mozilla.org/addon/dom-inspector-dm/?src=external-extension-list-generator) 2.0.13.1  
@@ -159,7 +161,7 @@ Add more context menu items and options to open a URL in Firefox Private Window.
 49. [Paste to Tab and Go](https://addons.mozilla.org/addon/paste-to-tab-and-go/?src=external-extension-list-generator) 0.8  
 Paste URL or text to a tab or a new tab and load the URL or search for the text immediately.
 
-50. [Personas Plus](https://addons.mozilla.org/addon/personas-plus/?src=external-extension-list-generator) 1.7  
+50. [Personas Plus](https://addons.mozilla.org/addon/personas-plus/?src=external-extension-list-generator) 1.7.1  
 Your Firefox, your style. Easy-to-change themes.
 
 51. [PlainOldFavorites](https://addons.mozilla.org/addon/plainoldfavorites/?src=external-extension-list-generator) 1.2  
@@ -201,53 +203,56 @@ Allows you to use external text editor on Scratchpad.
 63. [Scratchpad Snippets](https://addons.mozilla.org/addon/scratchpad-snippets/?src=external-extension-list-generator) 1.5  
 Simple Mozilla Firefox add-on that allows snippets in Scratchpad.
 
-64. [Scriptish](https://addons.mozilla.org/addon/scriptish/?src=external-extension-list-generator) 0.1.9pre.20130412.0400.git-edd650a  
+64. [Scriptish](https://addons.mozilla.org/addon/scriptish/?src=external-extension-list-generator) 0.1.9pre.20130415.0400.git-edd650a  
 A Script Extension Manager for Firefox
 
 65. [Shorten URL](http://shortenurl.googlecode.com/) 0.4pre2012021401  
 Shorten long URL from Firefox context menu or toolbar button with your selected URL shortener and display the result in location bar.
 
-66. [SQLite Manager](https://addons.mozilla.org/addon/sqlite-manager/?src=external-extension-list-generator) 0.7.7  
+66. [Show Parent Folder](https://addons.mozilla.org/addon/show-parent-folder/?src=external-extension-list-generator) 2.0  
+Show Parent Folder
+
+67. [SQLite Manager](https://addons.mozilla.org/addon/sqlite-manager/?src=external-extension-list-generator) 0.7.7  
 Manage any SQLite database on your computer
 
-67. [Stylish](https://addons.mozilla.org/addon/stylish/?src=external-extension-list-generator) 1.3.2b1  
+68. [Stylish](https://addons.mozilla.org/addon/stylish/?src=external-extension-list-generator) 1.3.2b1  
 Restyle the web with Stylish, a user styles manager.
 
-68. [Suspend background tabs](https://addons.mozilla.org/addon/suspend-background-tabs/?src=external-extension-list-generator) 1.0.1  
+69. [Suspend background tabs](https://addons.mozilla.org/addon/suspend-background-tabs/?src=external-extension-list-generator) 1.0.1  
 Delays periodical actions in background tabs until they are selected again, saves CPU time.
 
-69. [Suspend Tab](https://addons.mozilla.org/addon/suspend-tab/?src=external-extension-list-generator) 0.1.2013040601  
+70. [Suspend Tab](https://addons.mozilla.org/addon/suspend-tab/?src=external-extension-list-generator) 0.1.2013040601  
 Suspends background old tabs automatically to save memory usage.
 
-70. [Tab Mix Plus](https://addons.mozilla.org/addon/tab-mix-plus/?src=external-extension-list-generator) 0.4.1.0pre.130408a  
+71. [Tab Mix Plus](https://addons.mozilla.org/addon/tab-mix-plus/?src=external-extension-list-generator) 0.4.1.0pre.130408a  
 Tab browsing with an added boost.
 
-71. [TabGroups Menu](https://addons.mozilla.org/addon/tabgroups-menu/?src=external-extension-list-generator) 0.9.1  
+72. [TabGroups Menu](https://addons.mozilla.org/addon/tabgroups-menu/?src=external-extension-list-generator) 0.9.1  
 Access firefox tabgroups using a dropdown menu.
 
-72. [TabSubmit](https://addons.mozilla.org/addon/tabsubmit/?src=external-extension-list-generator) 1.0.2.4  
+73. [TabSubmit](https://addons.mozilla.org/addon/tabsubmit/?src=external-extension-list-generator) 1.0.2.4  
 Directs the submission of a form to a new tab or window. [Bug #17754]
 
-73. [Test Pilot](https://addons.mozilla.org/addon/test-pilot/?src=external-extension-list-generator) 1.2.2  
+74. [Test Pilot](https://addons.mozilla.org/addon/test-pilot/?src=external-extension-list-generator) 1.2.2  
 Help make Firefox better by running user studies.
 
-74. [TripleSelect](http://patsis.brownhost.com) 1.7  
+75. [TripleSelect](http://patsis.brownhost.com) 1.7  
 Select a paragraph by triple-clicking on text.
 
-75. [Tweet Context](https://addons.mozilla.org/addon/tweet-context/?src=external-extension-list-generator) 0.2.2a.20120403.01  
+76. [Tweet Context](https://addons.mozilla.org/addon/tweet-context/?src=external-extension-list-generator) 0.2.2a.20120403.01  
 Tweet anything from context menu.
 
-76. [Undo Bookmarks Menu](https://addons.mozilla.org/addon/undo-bookmarks-menu/?src=external-extension-list-generator) 1.7  
+77. [Undo Bookmarks Menu](https://addons.mozilla.org/addon/undo-bookmarks-menu/?src=external-extension-list-generator) 1.7  
 Undo Bookmarks Menu
 
-77. [URL in Tab Tooltip](https://addons.mozilla.org/addon/tab-tooltip/?src=external-extension-list-generator) 0.1  
+78. [URL in Tab Tooltip](https://addons.mozilla.org/addon/tab-tooltip/?src=external-extension-list-generator) 0.1  
 Display tab URL in tab tooltip.
 
-78. [User Agent Switcher](https://addons.mozilla.org/addon/user-agent-switcher/?src=external-extension-list-generator) 0.7.3  
+79. [User Agent Switcher](https://addons.mozilla.org/addon/user-agent-switcher/?src=external-extension-list-generator) 0.7.3  
 Adds a menu and a toolbar button to switch the user agent of a browser.
 
-79. [Web Developer](https://addons.mozilla.org/addon/web-developer/?src=external-extension-list-generator) 1.2.2  
+80. [Web Developer](https://addons.mozilla.org/addon/web-developer/?src=external-extension-list-generator) 1.2.2  
 Adds a menu and a toolbar with various web developer tools.
 
-80. [XPather](https://addons.mozilla.org/addon/xpather/?src=external-extension-list-generator) 1.4.5  
+81. [XPather](https://addons.mozilla.org/addon/xpather/?src=external-extension-list-generator) 1.4.5  
 Feature rich XPath generator, editor, inspector and simple extraction tool.

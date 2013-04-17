@@ -8,46 +8,55 @@
 // ==UserScript==
 // @id              extension-list-generator@loucypher
 // @name            Extension List Generator
-// @description     Generate list of enabled extensions from Add-ons Manager.
+// @description     Generate list of enabled extensions from Add-ons Manager to HTML, Markdown, BBCode or plain text output.
 // @namespace       http://userscripts.org/users/12
-// @version         1.3
+// @version         2.0
 // @author          LouCypher
 // @license         MPL 2.0
 // @screenshot      https://lh3.googleusercontent.com/-IW0AuEgjBIU/UWef1wVIItI/AAAAAAAADeQ/sI8hwf4_GlQ/s0/extension-list-generator.png
-// @icon            https://addons.cdn.mozilla.net/media//img/addon-icons/default-32.png
-// @icon64URL       https://addons.cdn.mozilla.net/media//img/addon-icons/default-64.png
+// @icon            https://addons.cdn.mozilla.net/media/img/addon-icons/default-32.png
+// @icon64URL       https://addons.cdn.mozilla.net/media/img/addon-icons/default-64.png
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Extensions+List+Generator
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/scriptish/extension-list-generator
 // @supportURL      https://github.com/LouCypher/userscripts/issues
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/extension-list-generator.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/extension-list-generator.user.js
+// @resource        options https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/options.xul
 // @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/changelog.txt
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/MPL/LICENSE.txt
 // @include         about:addons
+// @include         chrome://mozapps/content/extensions/extensions.xul
 // ==/UserScript==
-
-var appName = Application.name;
 
 var utilsMenu = document.getElementById("utils-menu");
 utilsMenu.appendChild(document.createElement("menuseparator"));
 
 var menu = utilsMenu.appendChild(document.createElement("menu"));
-menu.setAttribute("label", "Generate extensions list");
+menu.setAttribute("label", "Generate extension list");
 
 var menupopup = menu.appendChild(document.createElement("menupopup"));
 
-["HTML", "Markdown", "BBCode",
- "BBCode (inside spoiler tag)"].forEach(function(format) {
+["HTML", "Markdown", "BBCode", "Plain text"].forEach(function(format) {
   var menuitem = menupopup.appendChild(document.createElement("menuitem"));
   menuitem.setAttribute("label", format);
-  if (format == "BBCode (inside spoiler tag)") {
-    menuitem.setAttribute("tooltiptext", "Not all forums support this tag");
-  }
 })
+
+menupopup.appendChild(document.createElement("menuseparator"));
+
+var optionsMenu = menupopup.appendChild(document.createElement("menuitem"));
+optionsMenu.setAttribute("label", "Options");
+optionsMenu.addEventListener("command", openOptions, false);
 
 menupopup.addEventListener("command", generate, false);
 
+var rptCurrentDate, rptAddonsURLs, rptAddonsDescs, rptThemeScreenshot,
+    rptInsideSpoiler;
+
+initPrefs();
+
 function generate(aEvent) {
+  if (aEvent.target.getAttribute("label") == "Options") return;
+  initPrefs();
   AddonManager.getAddonsByTypes(["theme", "extension"], function(addons) {
     var theme;
     var extArray = [];
@@ -64,25 +73,32 @@ function generate(aEvent) {
       if (a > b) return 1;
       return 0;
     })
+    var title = "My " + Application.name + " information";
     switch (aEvent.target.getAttribute("label")) {
-      case "HTML": generateHTML(theme, extArray); break;
-      case "Markdown": generateMarkdown(theme, extArray); break;
-      case "BBCode": generateBBCode(theme, extArray); break;
-      case "BBCode (inside spoiler tag)": generateBBCodeS(theme, extArray); break;
+      case "HTML": generateHTML(title, theme, extArray); break;
+      case "Markdown": generateMarkdown(title, theme, extArray); break;
+      case "BBCode": generateBBCode(title, theme, extArray); break;
+      case "Plain text": generateText(title, theme, extArray);
     }
   })
 }
 
-function generateHTML(aTheme, aArray) {
-  var extensions = "<h1>" + appName + " info</h1>"
+function generateHTML(aTitle, aTheme, aArray) {
+  var extensions = '<!doctype html><html itemscope="itemscope"'
+                 + ' itemtype="http://schema.org/WebPage"><head>'
+                 + '<meta charset="utf-8"><meta itemprop="description"'
+                 + ' content="' + aTitle + '"><meta name="description"'
+                 + ' content="' + aTitle + '"><title>' + aTitle + '</title>'
+                 + '</head><body><h1>' + aTitle + '</h1>'
+                 + (rptCurrentDate ? "<p>Last updated: " + (new Date()) + "</p>" : "")
                  + "<h2>User agent</h2><p>" + navigator.userAgent
                  + "</p><h2>Theme</h2><p>"
-                 + (!isDefaultTheme(aTheme)
+                 + (rptAddonsURLs && !isDefaultTheme(aTheme)
                     ? '<a href="' + getThemeURL(aTheme) + '">' + aTheme.name + '</a>'
                     : aTheme.name)
                  + "</p>"
-                 + (!isDefaultTheme(aTheme) && aTheme.screenshots &&
-                    !/getpersonas/.test(aTheme.screenshots)
+                 + (rptThemeScreenshot && !isDefaultTheme(aTheme) &&
+                    aTheme.screenshots && !/getpersonas/.test(aTheme.screenshots)
                     ? '<p><img src="' + aTheme.screenshots[0].url +
                       '" alt="' + aTheme.name + '"/></p>'
                     : "")
@@ -90,99 +106,109 @@ function generateHTML(aTheme, aArray) {
                  + '<ol style="width:900px">';
   aArray.forEach(function(addon) {
     extensions += '<li style="margin-bottom:1em">'
-                + (addon.reviewURL
-                   ? '<a href="' + getAMOPage(addon.reviewURL) + '">' +
-                     addon.name
-                   : addon.homepageURL
-                     ? '<a href="' + addon.homepageURL + '">' + addon.name + '</a>'
-                     : '<a href="http://www.google.com/search?q="' +
-                       encodeURIComponent(addon.name + " extension") +
-                       '">' + addon.name)
-                + "</a>" + (addon.version ? " " + addon.version : "")
-                + "<br/>" + addon.description + "</li>";
+                + (rptAddonsURLs
+                   ? ((addon.reviewURL
+                      ? '<a href="' + getAMOPage(addon.reviewURL) + '">'
+                      : addon.homepageURL
+                        ? '<a href="' + addon.homepageURL + '">'
+                        : '<a href="http://www.google.com/search?q="' +
+                          encodeURIComponent(addon.name + " extension") +
+                          '">')
+                      + addon.name + '</a>')
+                   : addon.name)
+                + (addon.version ? " " + addon.version : "")
+                + (rptAddonsDescs ? "<br/>" + addon.description : "")
+                + "</li>";
   })
-  extensions += "</ol>";
+  extensions += "</ol></body></html>";
   doSomething(extensions, "text/html");
 }
 
-function generateMarkdown(aTheme, aArray) {
+function generateMarkdown(aTitle, aTheme, aArray) {
   var idx = 0;
-  var extensions = "# " + appName + " info"
+  var extensions = "# " + aTitle
+                 + (rptCurrentDate ? "\n\nLast updated: " + (new Date()) : "")
                  + "\n\n## User agent\n\n" + navigator.userAgent
                  + "\n\n## Theme\n\n"
-                 + (!isDefaultTheme(aTheme)
+                 + (rptAddonsURLs && !isDefaultTheme(aTheme)
                     ? "[" + aTheme.name + "](" + getThemeURL(aTheme) + ")"
                     : aTheme.name)
-                 + (!isDefaultTheme(aTheme) && aTheme.screenshots &&
-                    !/getpersonas/.test(aTheme.screenshots)
+                 + (rptThemeScreenshot && !isDefaultTheme(aTheme) &&
+                    aTheme.screenshots && !/getpersonas/.test(aTheme.screenshots)
                     ? "\n\n![" + aTheme.name + "](" + aTheme.screenshots[0].url + ")"
                     : "")
                  + "\n\n## Extensions";
   aArray.forEach(function(addon) {
     idx++;
     extensions += "\n\n" + idx + ". "
-                + (addon.reviewURL
-                   ? "[" + addon.name + "](" + getAMOPage(addon.reviewURL)
-                   : addon.homepageURL
-                     ? "[" + addon.name + "](" + addon.homepageURL
-                     : "[" + addon.name + "](" +
-                       "http://www.google.com/search?q=" +
-                       encodeURIComponent(addon.name + " extension"))
-                + ")" + (addon.version ? " " + addon.version : "")
-                + "  \n" + addon.description;
+                + (rptAddonsURLs
+                   ? ((addon.reviewURL
+                      ? "[" + addon.name + "](" + getAMOPage(addon.reviewURL)
+                      : addon.homepageURL
+                        ? "[" + addon.name + "](" + addon.homepageURL
+                        : "[" + addon.name + "](" +
+                          "http://www.google.com/search?q=" +
+                          encodeURIComponent(addon.name + " extension"))
+                      + ")")
+                   : addon.name)
+                + (addon.version ? " " + addon.version : "")
+                + (rptAddonsDescs ? "  \n" + addon.description : "")
   })
   doSomething(extensions, "text/plain", "%0A%0A.md");
 }
 
-function generateBBCode(aTheme, aArray) {
-  var extensions = "[b]User agent:[/b] " + navigator.userAgent
+function generateBBCode(aTitle, aTheme, aArray) {
+  var extensions = (rptInsideSpoiler ? "[spoiler=" + aTitle + "]" : "")
+                 + (rptCurrentDate ? "[b]Last updated: [/b]" + (new Date()) : "")
+                 + "\n\n[b]User agent:[/b] " + navigator.userAgent
                  + "\n\n[b]Theme:[/b] "
-                 + (!isDefaultTheme(aTheme)
+                 + (rptAddonsURLs && !isDefaultTheme(aTheme)
                     ? "[url=" + getThemeURL(aTheme) + "]" + aTheme.name + "[/url]"
                     : aTheme.name)
-                 + (!isDefaultTheme(aTheme) && aTheme.screenshots &&
-                    !/getpersonas/.test(aTheme.screenshots)
+                 + (rptThemeScreenshot && !isDefaultTheme(aTheme) &&
+                    aTheme.screenshots && !/getpersonas/.test(aTheme.screenshots)
                     ? "\n[img]" + aTheme.screenshots[0].url + "[/img]"
                     : "")
-                 + "\n\n[b]Extensions:[/b]\n[list=1]";
+                 + "\n\n[b]Extensions:[/b]\n[list=1]"
   aArray.forEach(function(addon) {
     extensions += "[*]"
-                + (addon.reviewURL
-                   ? "[url=" + getAMOPage(addon.reviewURL)
-                   : addon.homepageURL
-                     ? "[url=" + addon.homepageURL
-                     : "[url=http://www.google.com/search?q=" +
-                       encodeURIComponent(addon.name + " extension"))
-                + "]" + addon.name + "[/url]"
+                + (rptAddonsURLs
+                   ? ((addon.reviewURL
+                       ? "[url=" + getAMOPage(addon.reviewURL)
+                       : addon.homepageURL
+                         ? "[url=" + addon.homepageURL
+                         : "[url=http://www.google.com/search?q=" +
+                           encodeURIComponent(addon.name + " extension"))
+                       + "]" + addon.name + "[/url]")
+                   : addon.name)
                 + (addon.version ? " " + addon.version : "");
   })
-  extensions += "[/list]";
+  extensions += rptInsideSpoiler ? "[/list][/spoiler]" : "[/list]";
   doSomething(extensions, "text/plain");
 }
 
-function generateBBCodeS(aTheme, aArray) {
-  var extensions = "[spoiler=" + appName + " info]" + navigator.userAgent
-                 + "\n\n[b]Theme:[/b] "
-                 + (!isDefaultTheme(aTheme)
-                    ? "[url=" + getThemeURL(aTheme) + "]" + aTheme.name + "[/url]"
-                    : aTheme.name)
-                 + (!isDefaultTheme(aTheme) && aTheme.screenshots &&
-                    !/getpersonas/.test(aTheme.screenshots)
-                    ? "\n[img]" + aTheme.screenshots[0].url + "[/img]"
-                    : "")
-                 + "\n\n[b]Extensions:[/b]\n[list=1]";
+function generateText(aTitle, aTheme, aArray) {
+  var idx = 0;
+  var extensions = aTitle + "\n"
+  for (var i = 0; i < aTitle.length; i++) {
+    extensions += "=";
+  }
+  extensions += (rptCurrentDate ? "\n\nLast updated: " + (new Date()) : "")
+              + "\n\nUser agent: " + navigator.userAgent
+              + "\n\nTheme: " + aTheme.name + "\n\nExtensions\n----------";
   aArray.forEach(function(addon) {
-    extensions += "[*]"
-                + (addon.reviewURL
-                   ? "[url=" + getAMOPage(addon.reviewURL)
-                   : addon.homepageURL
-                     ? "[url=" + addon.homepageURL
-                     : "[url=http://www.google.com/search?q=" +
-                       encodeURIComponent(addon.name + " extension"))
-                + "]" + addon.name + "[/url]"
-                + (addon.version ? " " + addon.version : "");
+    idx++;
+    extensions += "\n" + idx + ". " + addon.name
+                + (addon.version ? " " + addon.version : "")
+                + (rptAddonsDescs ? "\n" + addon.description : "")
+                + (rptAddonsURLs
+                   ? "\n" + (addon.reviewURL ? getAMOPage(addon.reviewURL)
+                                             : addon.homepageURL
+                                               ? addon.homepageURL
+                                               : "")
+                   : "")
+                + (rptAddonsDescs || rptAddonsURLs ? "\n" : "");
   })
-  extensions += "[/list][/spoiler]";
   doSomething(extensions, "text/plain");
 }
 
@@ -205,7 +231,7 @@ function getThemeURL(aAddon) {
   } else {
     var id = aAddon.id.match(/\d+/).toString();
     if (/getpersonas/.test(aAddon.screenshots[0].url)) {
-      url = "http://www.getpersonas.com/persona/" + id;
+      url = "http://getpersonas.com/persona/" + id;
     } else {
       url = "http://addons.mozilla.org/addon/" + id;
     }
@@ -236,4 +262,39 @@ function doSomething(aString, aContentType, aExt) {
                        encodeURIComponent(aString) + (aExt ? aExt : ""));
     default: // Cancel
   }
+}
+
+function getBoolPref(aPrefName, aDefVal) {
+  var prefRoot = "extensions.scriptish.scriptvals.extension-list-generator@loucypher.report.";
+  var prefBranch = Services.prefs.getBranch(prefRoot);
+  try {
+    return prefBranch.getBoolPref(aPrefName);
+  } catch(ex) {
+    prefBranch.setBoolPref(aPrefName, aDefVal);
+    return aDefVal;
+  }
+}
+
+function initPrefs() {
+  rptCurrentDate = getBoolPref("currentDate", true);
+  rptAddonsURLs = getBoolPref("addonsURLs", true);
+  rptAddonsDescs = getBoolPref("addonsDescriptions", false);
+  rptThemeScreenshot = getBoolPref("themeScreenshot", true);
+  rptInsideSpoiler = getBoolPref("insideSpoiler", false);
+}
+
+function openOptions() {
+  var em = Services.ww.getWindowEnumerator();
+  var winName = "extension-list-generator-options";
+  var index = 1;
+  while (em.hasMoreElements()) {
+    let win = em.getNext();
+    if(win.name == winName) {
+      win.focus();
+      return;
+    }
+    index++
+  }
+  openDialog(GM_getResourceURL("options"), winName,
+             "chrome, dialog, centerscreen, close");
 }
