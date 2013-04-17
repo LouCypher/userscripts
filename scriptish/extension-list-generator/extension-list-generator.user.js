@@ -10,10 +10,10 @@
 // @name            Extension List Generator
 // @description     Generate list of enabled extensions from Add-ons Manager to HTML, Markdown, BBCode or plain text output.
 // @namespace       http://userscripts.org/users/12
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @license         MPL 2.0
-// @screenshot      https://lh3.googleusercontent.com/-IW0AuEgjBIU/UWef1wVIItI/AAAAAAAADeQ/sI8hwf4_GlQ/s0/extension-list-generator.png
+// @screenshot      https://lh3.googleusercontent.com/-T1PPKIZoT1M/UW7tiMF0rWI/AAAAAAAADfY/XWzdfEDgtD4/s0/extension-list-generator.png
 // @icon            https://addons.cdn.mozilla.net/media/img/addon-icons/default-32.png
 // @icon64URL       https://addons.cdn.mozilla.net/media/img/addon-icons/default-64.png
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Extensions+List+Generator
@@ -181,7 +181,8 @@ function generateBBCode(aTitle, aTheme, aArray) {
                            encodeURIComponent(addon.name + " extension"))
                        + "]" + addon.name + "[/url]")
                    : addon.name)
-                + (addon.version ? " " + addon.version : "");
+                + (addon.version ? " " + addon.version : "")
+                + (rptAddonsDescs ? "\n" + addon.description : "");
   })
   extensions += rptInsideSpoiler ? "[/list][/spoiler]" : "[/list]";
   doSomething(extensions, "text/plain");

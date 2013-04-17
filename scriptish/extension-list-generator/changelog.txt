@@ -1,3 +1,5 @@
+2.1 - Added donation button in options dialog.
+    - Fixed: add-ons descriptions not appear in BBCode output.
 2.0 - Added options.
     - Added plain text output.
     - Fixed some issues.

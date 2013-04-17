@@ -9,11 +9,39 @@
 -->
 
 <?xml-stylesheet href="chrome://global/skin/"?>
+<?xml-stylesheet href="data:text/css;base64,YnV0dG9uW2RsZ3R5cGU9ImV4dHJhMiJdIHsKICAtbW96LWFwcGVhcmFuY2U6IG5vbmU7CiAgY29sb3I6ICNGRkY7CiAgYm9yZGVyOiAxcHggc29saWQgIzNBNEVFRTsKICBib3JkZXItcmFkaXVzOiAzcHg7CiAgbGlzdC1zdHlsZS1pbWFnZTogdXJsKCJjaHJvbWU6Ly9tb3phcHBzL3NraW4vZXh0ZW5zaW9ucy9oZWFydC5wbmciKTsKICBiYWNrZ3JvdW5kLWNvbG9yOiAjMkY3M0VGOwogIGJhY2tncm91bmQtaW1hZ2U6IC1tb3otbGluZWFyLWdyYWRpZW50KHJnYmEoMjUxLCAyNTIsIDI1MywgMC43MCksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmdiYSgyNDYsIDI0NywgMjQ4LCAwLjI3KSA0OSUsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmdiYSgyMzEsIDIzMiwgMjMzLCAwLjI1KSA1MSUsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmdiYSgyMjUsIDIyNiwgMjI5LCAwLjEpKTsKICBiYWNrZ3JvdW5kLWltYWdlOiAgICAgIGxpbmVhci1ncmFkaWVudChyZ2JhKDI1MSwgMjUyLCAyNTMsIDAuNzApLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJnYmEoMjQ2LCAyNDcsIDI0OCwgMC4yNykgNDklLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJnYmEoMjMxLCAyMzIsIDIzMywgMC4yNSkgNTElLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJnYmEoMjI1LCAyMjYsIDIyOSwgMC4xKSk7Cn0KYnV0dG9uW2RsZ3R5cGU9ImV4dHJhMiJdIC5idXR0b24tYm94IHsgcGFkZGluZzogMCA2cHggMXB4IDZweDsgfQpidXR0b25bZGxndHlwZT0iZXh0cmEyIl0gLmJ1dHRvbi1pY29uIHsgLW1vei1tYXJnaW4tZW5kOiAzcHg7IH0KYnV0dG9uW2RsZ3R5cGU9ImV4dHJhMiJdOm5vdCg6YWN0aXZlKTpob3ZlciB7CiAgYm9yZGVyLWNvbG9yOiAjNDI3MUZGOwogIGJhY2tncm91bmQtY29sb3I6ICMwNDU5Rjc7CiAgLW1vei1ib3gtc2hhZG93OiAwIDFweCAwIHJnYmEoMCwgMCwgMCwgMC4xKSwgMCAwIDMuNXB4IGhzbCgxOTAsIDkwJSwgODAlKTsKICAgICAgIGJveC1zaGFkb3c6IDAgMXB4IDAgcmdiYSgwLCAwLCAwLCAwLjEpLCAwIDAgMy41cHggaHNsKDE5MCwgOTAlLCA4MCUpOwogIC1tb3otdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAuNHMgZWFzZS1pbiwKICAgICAgICAgICAgICAgICAgIGJvcmRlci1jb2xvciAuM3MgZWFzZS1pbiwKICAgICAgICAgICAgICAgICAgIGJveC1zaGFkb3cgLjNzIGVhc2UtaW47CiAgICAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIC40cyBlYXNlLWluLAogICAgICAgICAgICAgICAgICAgYm9yZGVyLWNvbG9yIC4zcyBlYXNlLWluLAogICAgICAgICAgICAgICAgICAgYm94LXNoYWRvdyAuM3MgZWFzZS1pbjsKfQpidXR0b25bZGxndHlwZT0iZXh0cmEyIl06YWN0aXZlOmhvdmVyIHsKICBiYWNrZ3JvdW5kLWNvbG9yOiAjOEZBMUMxOwogIGJvcmRlci1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjY1KSByZ2JhKDAsIDAsIDAsIDAuNTUpIHJnYmEoMCwgMCwgMCwgMC41KTsKICAtbW96LWJveC1zaGFkb3c6IDAgMCA2LjVweCByZ2JhKDAsIDAsIDAsIDAuNCkgaW5zZXQsCiAgICAgICAgICAgICAgICAgICAwIDAgMnB4IHJnYmEoMCwgMCwgMCwgMC40KSBpbnNldCwKICAgICAgICAgICAgICAgICAgIDAgMXB4IDAgcmdiYSgyNTUsIDI1NSwgMjU1LCAwLjQpOwogICAgICAgYm94LXNoYWRvdzogMCAwIDYuNXB4IHJnYmEoMCwgMCwgMCwgMC40KSBpbnNldCwKICAgICAgICAgICAgICAgICAgIDAgMCAycHggcmdiYSgwLCAwLCAwLCAwLjQpIGluc2V0LAogICAgICAgICAgICAgICAgICAgMCAxcHggMCByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNCk7Cn0%3D"?>
 
 <prefwindow
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   id="extension-list-generator-options" title="Extension List Generator Options"
-  onload="sizeToContent();">
+  buttons="extra2, accept, cancel"
+  buttonlabelextra2="Contribute"
+  ondialogextra2="contribute(); close();"
+  onload="sizeToContent(); load();">
+
+  <script type="application/x-javascript"><![CDATA[
+    // Load utilityOverlay.js that has openLinkIn function
+    function load() {
+      var chromeDir = "";
+      switch (Application.id) {
+        case "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": // Firefox
+          chromeDir = "browser";
+          break;
+        case "{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}": // SeaMonkey 
+          chromeDir = "communicator";
+      }
+      var baseDir = "chrome://" + chromeDir + "/content/";
+      Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
+                .getService(Components.interfaces.mozIJSSubScriptLoader)
+                .loadSubScript(baseDir + "utilityOverlay.js");
+    }
+
+    function contribute() {
+      var url = "http://loucypher.github.io/userscripts/donate.html"
+              + "?Extension+List+Generator"
+      openLinkIn(url, "tabshifted", {}); // Requires utilityOverlay.js
+    }
+  ]]></script>
 
   <prefpane id="prefpane-menu" label="Prefpane menu">
 
