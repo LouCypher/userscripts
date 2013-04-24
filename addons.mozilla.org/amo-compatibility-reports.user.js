@@ -1,37 +1,30 @@
 // ==UserScript==
 // @name          View Add-on Compatibility Reports
 // @namespace     http://userscripts.org/scripts/show/61398
+// @description   Adds a link to add-on compatibility reports on addons.mozilla.org.
 // @version       0.2
-// @description   Adds a link to add-on compatibility reports to addons.mozilla.org.
-// @include       https://addons.mozilla.org/*/addon/*
-// @include       https://preview.addons.mozilla.org/*/addon/*
 // @author        http://userscripts.org/users/fcp
-// @license       This program is in the public domain.
+// @developer     LouCypher
+// @license       public domain
+// @screenshot    http://i.imgur.com/ADw2E.png
+// @icon          https://addons.cdn.mozilla.net/img/uploads/addon_icons/15/15003-48.png
+// @icon64URL     https://addons.cdn.mozilla.net/img/uploads/addon_icons/15/15003-64.png
+// @homepageURL   http://userscripts.org/scripts/show/105858
+// @supportURL    http://userscripts.org/scripts/discuss/105858
+// @updateURL     https://userscripts.org/scripts/source/105858.meta.js
+// @downloadURL   https://userscripts.org/scripts/source/105858.user.js
+// @include       https://addons.mozilla.org/*/addon/*
+// @grant         none
 // ==/UserScript==
 
-function encodeAsFormValue(s) {
-  return s.replace(/[\x00-\x1F!\"#\$%&\'\(\)\*\+,\/\:;<=>\?@\[\\\]\^`\{\|\}]/g, function(str){
-    var code = str.charCodeAt(0);
-    if (code <= 0x0F)
-      return '%0' + code.toString(16).toUpperCase();
-    else
-      return '%' + code.toString(16).toUpperCase();
-  }).replace(/ /g, '+');
-}
-
-var found = location.href.match(/^https:\/\/[^\/]+\/([^\/?#]+)\/([^\/?#]+)\/addon\/.*\/?$/);
-if (!found) return;
-var lang = found[1];
-var application = found[2];
+var addon = document.getElementById("addon");
 var button = document.querySelector(".install-button > a.button");
-if (!button) return;
-var addonid = button.href.match(/\d+/).toString();
-
-var parent = button.parentNode.parentNode.parentNode.parentNode;
-var div = parent.appendChild(document.createElement("div"));
-div.style.fontFamily = "'Helvetica Neue', Arial, sans-serif";
-div.style.fontSize = "12px";
-var a = div.appendChild(document.createElement('a'));
-a.href = '/' + lang + '/' + application + '/compatibility/reporter?guid=' + encodeAsFormValue(addonid);
-//a.className = "button";
-a.appendChild(document.createTextNode('View compatibility reports'));
+if (addon && button) {
+  var parent = button.parentNode.parentNode.parentNode.parentNode;
+  var div = parent.appendChild(document.createElement("div"));
+  div.style.fontFamily = "'Helvetica Neue', Arial, sans-serif";
+  div.style.fontSize = "12px";
+  var a = div.appendChild(document.createElement('a'));
+  a.href = '../../compatibility/reporter?guid=' + addon.dataset.id;
+  a.textContent = 'View compatibility reports';
+}
