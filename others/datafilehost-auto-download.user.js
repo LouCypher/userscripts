@@ -8,15 +8,17 @@
 // @id              datafilehost-auto-download@loucypher
 // @name            datafilehost auto-download
 // @namespace       http://userscripts.org/users/12
-// @version         0.0
+// @version         0.1
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/others/datafilehost-auto-download.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/datafilehost-auto-download.user.js
 // @run-at          document-start
 // @include         http://*.datafilehost.com/*/*
+// @include         http://*.datafilehost.com/download-*.html
 // @grant           none
 // ==/UserScript==
 
-var fileId = location.pathname.match(/\w+$/);
+var fileId = location.pathname.match(/\w+(?=.html$)/) ||
+             location.pathname.match(/\w+$/);
 location.pathname = "/get.php?file=" + fileId;

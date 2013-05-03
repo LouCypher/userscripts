@@ -8,16 +8,18 @@
 // @id              datafilehost-direct-download@loucypher
 // @name            datafilehost direct download
 // @namespace       http://userscripts.org/users/12
-// @version         0.0
+// @version         0.1
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/others/datafilehost-direct-download.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/datafilehost-direct-download.user.js
 // @include         http://*.datafilehost.com/*/*
+// @include         http://*.datafilehost.com/download-*.html
 // @grant           GM_addStyle
 // ==/UserScript==
 
 GM_addStyle("form[name='cbf']{display:none}form[name='cbf']+div{margin-top:1em}");
-var fileId = location.pathname.match(/\w+$/);
+var fileId = location.pathname.match(/\w+(?=.html$)/) ||
+             location.pathname.match(/\w+$/);
 var button = document.querySelector("#dl a");
 if (button) button.href = "/get.php?file=" + fileId;
