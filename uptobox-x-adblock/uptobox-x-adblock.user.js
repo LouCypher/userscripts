@@ -31,7 +31,7 @@
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/uptobox-x-adblock/uptobox-x-adblock.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/uptobox-x-adblock/uptobox-x-adblock.user.js
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
-// @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/uptobox-x-adblock/changelog.txt
+// @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/uptobox-x-adblock/CHANGELOG.txt
 // @run-at          document-start
 // @include         http://uptobox.com/*
 // @grant           none
