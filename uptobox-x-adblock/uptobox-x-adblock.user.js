@@ -21,7 +21,7 @@
 // @name            Uptobox x Adblock
 // @namespace       http://kask.us/gVMKK
 // @description     Bypass anti-adblock on uptobox.com.
-// @version         1.0
+// @version         2.0
 // @author          LouCypher
 // @contributor     coolkips
 // @license         GPL
@@ -34,12 +34,57 @@
 // @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/uptobox-x-adblock/CHANGELOG.txt
 // @run-at          document-start
 // @include         http://uptobox.com/*
+// @include         http://www.uptobox.com/*
 // @grant           none
 // ==/UserScript==
 
-window.addEventListener("beforescriptexecute", function(e) {
-  if (/Missclick/.test(e.target.textContent)) {
-    window.removeEventListener(e.type, arguments.callee, true);
-    e.preventDefault();
+if ("onbeforescriptexecute" in window) {
+  // Block script before it's executed. Gecko browsers only.
+  window.addEventListener("beforescriptexecute", function(aEvent) {
+    if (/\/pages\/adblock.html/.test(aEvent.target.textContent)) {
+      window.removeEventListener(aEvent.type, arguments.callee, true);
+      aEvent.preventDefault();
+    }
+  }, true)
+}
+
+if (location.pathname == "/pages/adblock.html") {
+  if ((typeof opera === "object" && typeof GM_log !== "function") || 
+      (typeof safari === "object")) {
+    // If Opera UserJS and not Violentmonkey or if Safari (NinjaKit)
+    addForm();
+  } else {
+    // Chrome userscript or Tampermonkey (Chrome) or Violentmonkey (Opera)
+    document.addEventListener("DOMContentLoaded", addForm, false);
   }
-}, true)
+}
+
+function addForm() {
+  var referrer = document.referrer;
+  if (referrer) {
+    var form = document.createElement("form");
+    form.method = "post";
+    form.action = referrer;
+    form.appendChild(addInput("op", "download1"));
+    form.appendChild(addInput("id", referrer.replace(/.*\//, "")));
+    form.appendChild(addInput("referer", referrer));
+    form.appendChild(addInput("method_premium", "Premium Download", "submit"));
+    form.appendChild(addInput("method_free", "Free Download", "submit"));
+    $("#container-page .middle-content").innerHTML = form.outerHTML;
+    $("#container-page .page-top").textContent = "Download";
+  }
+}
+
+function addInput(aName, aValue, aType) {
+  var input = document.createElement("input");
+  input.name = aName;
+  input.type = aType ? aType : "hidden";
+  // input.value = aValue ? aValue : "";
+  // Opera doesn't recognize input.value, use setAttribute instead
+  input.setAttribute("value", aValue ? aValue : "");
+  return input;
+}
+
+function $(aSelector, aNode) {
+  return (aNode || document).querySelector(aSelector);
+}

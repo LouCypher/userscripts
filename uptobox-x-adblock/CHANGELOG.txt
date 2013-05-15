@@ -1,1 +1,2 @@
+2.0 - Cross-browser compatibility.
 1.0 - Initial release.
