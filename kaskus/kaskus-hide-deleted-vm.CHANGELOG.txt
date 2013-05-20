@@ -1,3 +1,5 @@
+7.4 - Fixed style for 'unapproved vm'.
+    - No confirmation on moderating vm.
 7.3 - Changes on GitHub vs Scriptish issue #72.
 7.2 - Fixed: 'show/hide' button is shown on profile page not your own.
 7.0 - Bumped version.

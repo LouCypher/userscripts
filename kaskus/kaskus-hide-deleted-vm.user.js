@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           7.3
+// @version           7.4
 // @author            LouCypher
 // @license           WTFPL
 // @icon              http://loucypher.github.io/userscripts/kaskus/kaskus-48.png
@@ -19,6 +19,7 @@
 // @supportURL        https://github.com/LouCypher/userscripts/issues
 // @downloadURL       https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.user.js
 // @updateURL         https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.user.js
+// @resource          CSS https://raw.github.com/LouCypher/userscripts/master/kaskus/moderated-vm-fix.css
 // @resource          CHANGELOG https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.CHANGELOG.txt
 // @resource          LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/[0-9]+\/?$/
@@ -27,8 +28,12 @@
 // @grant             unsafeWindow
 // @grant             GM_getValue
 // @grant             GM_setValue
+// @grant             GM_addStyle
+// @grant             GM_getResourceText
 // @grant             GM_log
 // ==/UserScript==
+
+GM_addStyle(GM_getResourceText("CSS"));
 
 var log = (typeof GM_info == "object") ? "" : "\n";
 start(isMyProfile(getUserId()));
@@ -107,24 +112,21 @@ function process(aEvent) {
     }
 
     unsafeWindow.moderate_vm = function moderate_vm(a, c) {
-      var b = confirm("Are you sure to " + c + " this message?");
-      if (b) {
-        $.get("/visitormessage/moderate/" + a + "/" + c, function(d) {
-          if (c == "delete") {
-            $("#vm_" + a + " .m-meta").html('<a href="javascript:void(0);"' +
-                                            ' onclick="moderate_vm(' + a +
-                                            ',\'undelete\');return false;"' +
-                                            ' class="delete"><i class="icon-' +
-                                            'trash"></i>Undelete</a>')
-            $("#vm_" + a).addClass("deleted");
-            $("#vm_" + a + " .message").addClass("deleted-vm"); // paint it red
-            unsafeWindow.hideDeleted && $("#vm_" + a).addClass("hide"); // hide
-          } else { // undelete
-            $("#vm_" + a).html(d);
-            $("#vm_" + a).removeClass("deleted hide"); // unhide
-          }
-        })
-      }
+      $.get("/visitormessage/moderate/" + a + "/" + c, function(d) {
+        if (c == "delete") {
+          $("#vm_" + a + " .m-meta").html('<a href="javascript:void(0);"' +
+                                          ' onclick="moderate_vm(' + a +
+                                          ',\'undelete\');return false;"' +
+                                          ' class="delete"><i class="icon-' +
+                                          'trash"></i>Undelete</a>')
+          $("#vm_" + a).addClass("deleted");
+          $("#vm_" + a + " .message").addClass("deleted-vm"); // paint it red
+          unsafeWindow.hideDeleted && $("#vm_" + a).addClass("hide"); // hide
+        } else { // undelete
+          $("#vm_" + a).html(d);
+          $("#vm_" + a).removeClass("deleted hide"); // unhide
+        }
+      })
     }
   }
 }

@@ -1,0 +1,21 @@
+#user-profile-main .list-vm.visitor-message .item-content .moderate_vm {
+  color: #666;
+}
+
+#user-profile-main .list-vm.visitor-message .item-content .moderate_vm em {
+  display: block;
+  font-weight: 700;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+#user-profile-main .list-vm.visitor-message .item-content .moderate_vm:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(255,217,178,0.4);
+}
