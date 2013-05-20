@@ -33,8 +33,6 @@
 // @grant             GM_log
 // ==/UserScript==
 
-GM_addStyle(GM_getResourceText("CSS"));
-
 var log = (typeof GM_info == "object") ? "" : "\n";
 start(isMyProfile(getUserId()));
 
@@ -132,6 +130,7 @@ function process(aEvent) {
 }
 
 function contentLoad() {
+  GM_addStyle(GM_getResourceText("CSS"));
   if (!("$" in unsafeWindow)) {
     throw new Error("JavaScript must be enabled for this userscript to work.");
   }
