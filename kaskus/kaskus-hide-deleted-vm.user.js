@@ -34,8 +34,9 @@
 // ==/UserScript==
 
 var log = (typeof GM_info == "object") ? "" : "\n";
-start(isMyProfile(getUserId()));
+start(isMyProfile(getUserId())); // Start if current page is user's profile page
 
+// Get user's numeric id from cookie if user is logged in
 function getUserId() {
   var userid = "";
   document.cookie.split(";").forEach(function(cookie) {
@@ -47,6 +48,7 @@ function getUserId() {
   return userid;
 }
 
+// Check if current page is user's profile page
 function isMyProfile(aUserId) {
   var mine = false;
   if ((location.href.match(/\d+/) == aUserId) ||
@@ -59,6 +61,7 @@ function isMyProfile(aUserId) {
   return mine;
 }
 
+// Run on startup if argument is true
 function start(aOK) {
   if (aOK) {
     window.addEventListener("afterscriptexecute", process, true);
@@ -69,11 +72,17 @@ function start(aOK) {
   GM_setValue("debug", GM_getValue("debug", false));
 }
 
+// Run after each script is executed
 function process(aEvent) {
   if (/profile.js$/.test(aEvent.target.src)) {
     window.removeEventListener(aEvent.type, arguments.callee, true);
-    unsafeWindow.hideDeleted = true;
+
+    unsafeWindow.hideDeleted = true; // 'hideDeleted' is variable that
+                                     // will be used by 'Show/Hide' button
+
     var $ = unsafeWindow.$;
+
+    // Override 'getVM' function
     unsafeWindow.getVM = function getVM(b) {
       b && $("#do-see-more-updates").remove();
       var profile = $("#profile-content");
@@ -109,6 +118,7 @@ function process(aEvent) {
       })
     }
 
+    // Override 'moderate_vm' function
     unsafeWindow.moderate_vm = function moderate_vm(a, c) {
       $.get("/visitormessage/moderate/" + a + "/" + c, function(d) {
         if (c == "delete") {
@@ -129,16 +139,23 @@ function process(aEvent) {
   }
 }
 
+// Run at DOMContentLoaded
 function contentLoad() {
+  // Scriptish doesn't add styles at document-start so we put it here
   GM_addStyle(GM_getResourceText("CSS"));
+
   if (!("$" in unsafeWindow)) {
     throw new Error("JavaScript must be enabled for this userscript to work.");
   }
   var $ = unsafeWindow.$;
+
+  // Add button to toggle show/hide deleted VM
   $("#say-what .act input").after('<input type="button"' +
                                   ' value="Show deleted VM"' +
                                   ' class="button small white"' +
                                   ' style="float:left"/>');
+
+  // Button action
   $("#say-what .act input[type='button']").click(function(e) {
     if ($(".deleted").hasClass("hide")) {
       e.target.value = e.target.value.replace(/^Show/, "Hide");
