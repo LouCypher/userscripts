@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>Sharebeast</ShortName>
+  <Description>Search on searchbeast.com</Description>
+  <Developer>LouCypher</Developer>
+  <Contact>searchplugins@loucypher.oib.com</Contact>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16">data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAB3RJTUUH3QUUCi4cZ346XAAAAAlw
+SFlzAAALEgAACxIB0t1+/AAAAwBQTFRFOAEAPQAASAAAVAAFnB4wiFRtfFtVkV89Z25WY4AuI5sn
+hXeTJ58tKZ8xcIxCLKIyLaU9Nac+aJo0Nqk2Pqo/Y6glQbE/PrJGRrFGQrM/SLM2R7JFR7ZISbdJ
+g6ZLmJyBTrhKd69AV7hJV7o7U7pJWLlKV7pIWrpIXrlKWLtXa7o3Z7xIZr1LVsJLTcVLfL0zdsBG
+erp9dMJGf8RIgsNNccVvbspNcstJccxQiL+PhMdViMhFlsk+l8hJjctRlcpEc9NPlstOfc2Eh8qF
+hsx1mstKmMxPhs5+l85OoMxJl85Wpc5Oyri/jNNrp9FBq9BHkdKOqtJMnc+fs9FPsdRNwsTDsdVP
+mdh6nNSgwsXHt9VOsdhRrdpZxMjJtddludhQvNClx8nNv9hRqtert9h9xc3KqNmqzMzGtNx5xttb
+wd5j083XzN1VwOBvvONstN+vx997veCbw+Nst9+5ut68xd+WwuN4vuCo2uJS2NbV3ONR4tPgxuOh
+4NfczeOgwOTDx+Svwea/w+mdyuPN2+HS6dzl1u3N5/Tn7Pbq9vP67ffu6/jv/P36/P38/v38/f79
+/v77/f7+/v78/v79/v7+/v7///7+//7//f/8/v/9/v/+/v//////AAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8dnnpQAA
+APtJREFUeNo9jlVTQ1EMhIMWb3GH4u6uxd3d3SnubsWdnHuhZX8sp/eBndnMJPl2ZgmAsPv3TQ4p
+kgse8l5UFaWXYP4ijdizn88lAWgE5iaWzZvl8nO0SIIFv5p6WwY7m0/xuLZPrAhsVXRYPLdbszAV
+GEMsE/nVo9FuK/VlB6h5Jlx03aVWNoytL137tG8UgLxrUVfkenJ71ubiF3ePT5rdQWNaLjk4OboX
+hz19a8VSEtOrdM5RhcmhV5JQrPCPjE3IyIxPMgYt4IfeBfQhwU2Hx5MR4QFDsMli8PDNnukbGOk2
+eO1CkI1xkzM/Pdw/vlrSgw9BqlXgX6zwH8awayD3heUSAAAAAElFTkSuQmCC</Image>
+  <moz:SearchForm>http://www.sharebeast.com/</moz:SearchForm>
+  <Url type="text/html"
+       method="get"
+       template="https://www.google.com/search?sitesearch=www.sharebeast.com&amp;q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml"
+       rel="self"
+       template="https://raw.github.com/LouCypher/userscripts/master/searchforms/searchplugins/sharebeast-via-google.xml"/>
+</OpenSearchDescription>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>Uptobox</ShortName>
+  <Description>Search on uptobox.com</Description>
+  <Developer>LouCypher</Developer>
+  <Contact>searchplugins@loucypher.oib.com</Contact>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16">data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A
+/wD/oL2nkwAAArdJREFUOMttkk1PG1cYhZ/5cOwBUtPQ0kbUVihCcZq0mVipWoSatqv+hf6BbixV
++RvdsmFfsWBRJDaRKrEhSmOJtKiVApYHGWRjc4XFlGHGM/bg8R27ixGmSDm7q6P3uee89ypSypEQ
+Atu2KRQekMmkATg4OCAMQwzDIAxDTNPkXVKvhuv1OpZVBcDzPHzfp16vgzaJKxcRQrwToLdaLTY2
+NgDI5XIAhGFIq9WiXC5j3M6xe6QzepLlzp0k0Y0EcRwTRRGdTgcp5dgQQhBFEfFwiKbBmSPZ3t6m
+Jf5FCEEcxwkAwHEcNE27QZ6YmMBxHP6p54ljyE5pqO99w68vJK/3JrEs6xoQRRG+798A9Ho9AL5/
+dIR9MWC30mW30mUgh+y8DbhwPTY3NxOA67rYto2u6wCkUik6nQ5nZ2fs7+/z4fsp7IsBE4bK0uPb
+ALzc/5TcwjL61Y3ZbHYMGAwGyYZ1nfPzc2w1OX+1UANgJrvAuSdpHjeuKwRBwOXl5fXz6Dq9Xo9n
+334HwMcfpMjfu0+xWOTpw0mGwxHW3itUKSVBEIw7XykMQ+I45q8/3wDwpDCJSh/DMJhS9gBYKJZQ
+r2K7rjuuEAQBQgja7TaPvv6J5mnEbqVLo9EgDEOC0ec0TyOO/l5FnZ6eZnZ2lm63S7/fp1KpoOs6
+1WqVdDqNMXxL/u4t7ItkD47j8PtrF0WB4rOfUU5OTkbr6+usrq6STqcxTZPj42Pa7Tbz8/NsbW3x
+/JcWzdOI/N1bqKpCQ/S5N5fmy/kqipRydHh4SKlUSv7+/7SyssLsJ0+59A/57Y8czdNo7JV+/IjP
+8l4C8DyPWq3Gzs4OjUaDubk5lpaWyGQymKbJ2toaDx7/QN+v4Y++YErZQ2HE8vJyAgCI4xjLsnBd
+F03TWFxcZGZm5kaicrkMQKFQGHv/AVojYQSyks1/AAAAAElFTkSuQmCC</Image>
+  <moz:SearchForm>http://uptobox.com/</moz:SearchForm>
+  <Url type="text/html"
+       method="get"
+       template="https://www.google.com/search?sitesearch=uptobox.com&amp;q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml"
+       rel="self"
+       template="https://raw.github.com/LouCypher/userscripts/master/searchforms/searchplugins/uptobox-via-google.xml"/>
+</OpenSearchDescription>
