@@ -21,7 +21,7 @@
 // @name            Uptobox x Adblock
 // @namespace       http://kask.us/gVMKK
 // @description     Bypass anti-adblock on uptobox.com.
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @contributor     coolkips
 // @license         GPL
@@ -62,14 +62,14 @@ if (location.pathname == "/pages/adblock.html") {
 function addForm() {
   var referrer = document.referrer;
   if (referrer) {
+    history.replaceState(history.state, "Download", referrer);
+    var lang = getLanguage();
     var form = document.createElement("form");
     form.method = "post";
-    form.action = referrer;
     form.appendChild(addInput("op", "download1"));
-    form.appendChild(addInput("id", referrer.replace(/.*\//, "")));
-    form.appendChild(addInput("referer", referrer));
-    form.appendChild(addInput("method_premium", "Premium Download", "submit"));
-    form.appendChild(addInput("method_free", "Free Download", "submit"));
+    form.appendChild(addInput("id", location.pathname.match(/\w+/)));
+    form.appendChild(addInput("method_premium", lang == "english" ? "Premium Download" : "T\u00E9l\u00E9chargement premium", "submit"));
+    form.appendChild(addInput("method_free", lang == "english" ? "Free Download" : "T\u00E9l\u00E9chargement gratuit", "submit"));
     $("#container-page .middle-content").innerHTML = form.outerHTML;
     $("#container-page .page-top").textContent = "Download";
   }
@@ -83,6 +83,14 @@ function addInput(aName, aValue, aType) {
   // Opera doesn't recognize input.value, use setAttribute instead
   input.setAttribute("value", aValue ? aValue : "");
   return input;
+}
+
+function getLanguage() {
+  var lang = "english";
+  document.cookie.split(";").forEach(function(cookie) {
+    if (/lang/.test(cookie)) lang = cookie.match(/\w+$/);
+  })
+  return lang;
 }
 
 function $(aSelector, aNode) {
