@@ -21,7 +21,7 @@
 // @name            Uptobox x Adblock
 // @namespace       http://kask.us/gVMKK
 // @description     Bypass anti-adblock on uptobox.com.
-// @version         2.1
+// @version         2.2
 // @author          LouCypher
 // @contributor     coolkips
 // @license         GPL
@@ -62,16 +62,17 @@ if (location.pathname == "/pages/adblock.html") {
 function addForm() {
   var referrer = document.referrer;
   if (referrer) {
-    history.replaceState(history.state, "Download", referrer);
     var lang = getLanguage();
+    var title = lang == "english" ? "Download" : "T\u00E9l\u00E9charger";
+    history.replaceState(history.state, title, referrer);
     var form = document.createElement("form");
     form.method = "post";
     form.appendChild(addInput("op", "download1"));
     form.appendChild(addInput("id", location.pathname.match(/\w+/)));
-    form.appendChild(addInput("method_premium", lang == "english" ? "Premium Download" : "T\u00E9l\u00E9chargement premium", "submit"));
-    form.appendChild(addInput("method_free", lang == "english" ? "Free Download" : "T\u00E9l\u00E9chargement gratuit", "submit"));
+    form.appendChild(addInput("method_premium", setButtonLabel("premium", lang), "submit"));
+    form.appendChild(addInput("method_free", setButtonLabel("free", lang), "submit"));
     $("#container-page .middle-content").innerHTML = form.outerHTML;
-    $("#container-page .page-top").textContent = "Download";
+    $("#container-page .page-top").textContent = title;
   }
 }
 
@@ -88,9 +89,26 @@ function addInput(aName, aValue, aType) {
 function getLanguage() {
   var lang = "english";
   document.cookie.split(";").forEach(function(cookie) {
-    if (/lang/.test(cookie)) lang = cookie.match(/\w+$/);
+    if (/lang/.test(cookie)) lang = cookie.match(/\w+$/).toString();
   })
   return lang;
+}
+
+function setButtonLabel(aMethod, aLanguage) {
+  var premium = {
+    en: "Premium Download",
+    fr: "T\u00E9l\u00E9chargement premium"
+  }
+  var free = {
+    en: "Free Download",
+    fr: "T\u00E9l\u00E9chargement gratuit"
+  }
+  switch (aLanguage) {
+    case "french":
+      return aMethod == "premium" ? premium.fr : free.fr;
+    default:
+      return aMethod == "premium" ? premium.en : free.en;
+  }
 }
 
 function $(aSelector, aNode) {

@@ -1,4 +1,5 @@
+2.2 - Refactored.
 2.1 - Replace history state.
-    - Button label depends on language.
+    - Set button label depends on language.
 2.0 - Cross-browser compatibility.
 1.0 - Initial release.
