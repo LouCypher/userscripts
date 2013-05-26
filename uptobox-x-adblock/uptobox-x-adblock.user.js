@@ -21,7 +21,7 @@
 // @name            Uptobox x Adblock
 // @namespace       http://kask.us/gVMKK
 // @description     Bypass anti-adblock on uptobox.com.
-// @version         2.2
+// @version         2.3
 // @author          LouCypher
 // @contributor     coolkips
 // @license         GPL
@@ -48,7 +48,7 @@ if ("onbeforescriptexecute" in window) {
   }, true)
 }
 
-if (location.pathname == "/pages/adblock.html") {
+if (location.pathname == "/pages/adblock.html" && document.referrer) {
   if ((typeof opera === "object" && typeof GM_log !== "function") || 
       (typeof safari === "object")) {
     // If Opera UserJS and not Violentmonkey or if Safari (NinjaKit)
@@ -60,27 +60,23 @@ if (location.pathname == "/pages/adblock.html") {
 }
 
 function addForm() {
-  var referrer = document.referrer;
-  if (referrer) {
-    var lang = getLanguage();
-    var title = lang == "english" ? "Download" : "T\u00E9l\u00E9charger";
-    history.replaceState(history.state, title, referrer);
-    var form = document.createElement("form");
-    form.method = "post";
-    form.appendChild(addInput("op", "download1"));
-    form.appendChild(addInput("id", location.pathname.match(/\w+/)));
-    form.appendChild(addInput("method_premium", setButtonLabel("premium", lang), "submit"));
-    form.appendChild(addInput("method_free", setButtonLabel("free", lang), "submit"));
-    $("#container-page .middle-content").innerHTML = form.outerHTML;
-    $("#container-page .page-top").textContent = title;
-  }
+  var lang = getLanguage();
+  var title = lang == "english" ? "Download" : "T\u00E9l\u00E9charger";
+  history.replaceState(history.state, title, document.referrer);
+  var form = document.createElement("form");
+  form.method = "post";
+  form.appendChild(addInput("op", "download1"));
+  form.appendChild(addInput("id", location.pathname.match(/\w+/)));
+  form.appendChild(addInput("method_premium", setButtonLabel("premium", lang), "submit"));
+  form.appendChild(addInput("method_free", setButtonLabel("free", lang), "submit"));
+  $("#container-page .middle-content").innerHTML = form.outerHTML;
+  $("#container-page .page-top").textContent = title;
 }
 
 function addInput(aName, aValue, aType) {
   var input = document.createElement("input");
   input.name = aName;
   input.type = aType ? aType : "hidden";
-  // input.value = aValue ? aValue : "";
   // Opera doesn't recognize input.value, use setAttribute instead
   input.setAttribute("value", aValue ? aValue : "");
   return input;
@@ -103,11 +99,10 @@ function setButtonLabel(aMethod, aLanguage) {
     en: "Free Download",
     fr: "T\u00E9l\u00E9chargement gratuit"
   }
-  switch (aLanguage) {
-    case "french":
-      return aMethod == "premium" ? premium.fr : free.fr;
-    default:
-      return aMethod == "premium" ? premium.en : free.en;
+  if (aLanguage == "french") {
+    return aMethod == "premium" ? premium.fr : free.fr;
+  } else {
+    return aMethod == "premium" ? premium.en : free.en;
   }
 }
 
