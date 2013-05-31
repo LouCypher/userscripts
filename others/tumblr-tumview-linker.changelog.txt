@@ -1,3 +1,4 @@
+4.0 - Updated to new Tumblr.
 3.0 - @include *
     - Shows Tumblr buttons if it's hidden by the theme.
     - Added tag in Tumblr link on Tumview if it's showing tagged images.
