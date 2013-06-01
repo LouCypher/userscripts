@@ -3,7 +3,7 @@
 // @name            Filefolks x Adblock
 // @namespace       http://userscripts.org/users/12
 // @description     Bypass anti-adblock on uptobox.com.
-// @version         0.0.1
+// @version         0.0.2
 // @author          LouCypher
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Filefolks+x+Adblock
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/filefolks-x-adblock
@@ -33,3 +33,8 @@ if ("onbeforescriptexecute" in window) {
       window.removeEventListener(aEvent.type, arguments.callee, true);
   }, true)
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  var noscript = document.querySelector("h2 noscript");
+  noscript && noscript.parentNode.removeChild(noscript);
+}, false)
