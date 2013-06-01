@@ -2,7 +2,7 @@
 // @id              filefolks-x-adblock@loucypher
 // @name            Filefolks x Adblock
 // @namespace       http://userscripts.org/users/12
-// @description     Bypass anti-adblock on uptobox.com.
+// @description     Bypass anti-adblock on filefolks.com.
 // @version         0.0.2
 // @author          LouCypher
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Filefolks+x+Adblock
