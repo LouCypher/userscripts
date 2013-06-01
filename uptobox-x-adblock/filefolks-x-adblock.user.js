@@ -3,7 +3,7 @@
 // @name            Filefolks x Adblock
 // @namespace       http://userscripts.org/users/12
 // @description     Bypass anti-adblock on uptobox.com.
-// @version         0.0
+// @version         0.0.1
 // @author          LouCypher
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Filefolks+x+Adblock
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/filefolks-x-adblock
@@ -18,12 +18,18 @@
 
 unsafeWindow.awm = true;
 
+var scripts = 2; // Number of scripts to be blocked
+
 if ("onbeforescriptexecute" in window) {
   window.addEventListener("beforescriptexecute", function(aEvent) {
     var script = aEvent.target;
-    if (!script.src && script.textContent == "awm = false;") {
-      window.removeEventListener(aEvent.type, arguments.callee, true);
+    var source = script.src;
+    if ((source && /loxtk.com/.test(source)) ||
+        (!source && script.textContent == "awm = false;")) {
+      scripts--;
       aEvent.preventDefault();
     }
+    if (scripts === 0)
+      window.removeEventListener(aEvent.type, arguments.callee, true);
   }, true)
 }
