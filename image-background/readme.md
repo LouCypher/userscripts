@@ -99,4 +99,4 @@ The script will not run on **about:** and **chrome:** schemes (e.g. `about:logo`
 
 ### SVG images
 
-SVG images works with Greasemonkey but not with Scriptish. Context menu to configure background color, however, doesn't work on SVG images.
+Context menu to configure background color doesn't work on SVG images.

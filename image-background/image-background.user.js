@@ -20,7 +20,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         7.7.3
+// @version         7.8
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.io/userscripts/image-background/images/screenshot-after.png
@@ -48,15 +48,23 @@
 // @grant           GM_registerMenuCommand
 // ==/UserScript==
 
-if (GM_getValue("firstTime", true)) { // If first time use
+try {
+  GM_setValue("firstRun", GM_getValue("firstTime")); // Copy from old pref
+  GM_deleteValue("firstTime"); // Remove old pref
+} catch(ex) {};
+
+var firstRun = GM_getValue("firstRun", true);
+if (firstRun) { // If first time use
   showThanks(); // Open 'thank you' page
-  GM_setValue("firstTime", false); // Don't open 'thank you' page again
+  GM_setValue("firstRun", false); // Don't open 'thank you' page again
 }
 
-var gDocElm = document.documentElement;
+var gDocElm = null;
 init();
 
 function init() {
+  gDocElm= document.documentElement
+
   if (!/^image\//.test(document.contentType)) {
     jscolor.binding = false; // Turn off JSColor on non-image page
     return;
@@ -70,8 +78,16 @@ function init() {
   var computedColor = GM_getValue("computedColor", "");
   /***** End checking preferences *****/
 
-  if (gDocElm instanceof SVGSVGElement) { // If SVG image
-    enableSVG && initSVG(computedColor, bgImage);
+  if (document.contentType === "image/svg+xml") { // If SVG image
+    if (enableSVG) {
+      if (typeof GM_notification === "function") { // Scriptish
+        window.addEventListener("load", function() {
+          initSVG(computedColor, bgImage);
+        });
+      } else { // Greasemonkey
+        initSVG(computedColor, bgImage);
+      }
+    }
     GM_registerMenuCommand("Toggle SVG", function() {
       GM_setValue("enableSVG", !enableSVG);
       location.reload();
@@ -112,22 +128,22 @@ function init() {
 
   /***** Start context menu initialization *****/
   // Add event listeners to menuitems
-  $("change-background-color").addEventListener("click", showColorConfig, false);
-  $("toggle-image-transparency").addEventListener("click", toggleTransparency, false);
-  $("toggle-background-image").addEventListener("click", toggleBgImage, false);
-  $("about").addEventListener("click", showThanks, false);
-  $("help").addEventListener("click", goHelp, false);
+  $("change-background-color").addEventListener("click", showColorConfig);
+  $("toggle-image-transparency").addEventListener("click", toggleTransparency);
+  $("toggle-background-image").addEventListener("click", toggleBgImage);
+  $("about").addEventListener("click", showThanks);
+  $("help").addEventListener("click", goHelp);
 
   // Set context menu to html element
   gDocElm.setAttribute("contextmenu", "context-menu");
-  gDocElm.addEventListener("contextmenu", popupShowing, false);
+  gDocElm.addEventListener("contextmenu", popupShowing);
   /***** End context menu initialization *****/
 
   // Color dialog initialization
-  gDocElm.addEventListener("click", hidePicker, false);
-  $("color-picker").addEventListener("mouseenter", showPicker, false);
-  $("color-picker").addEventListener("input", previewBgColor, false);
-  $("color-picker").addEventListener("change", previewBgColor, false);
+  gDocElm.addEventListener("click", hidePicker);
+  $("color-picker").addEventListener("mouseenter", showPicker);
+  $("color-picker").addEventListener("input", previewBgColor);
+  $("color-picker").addEventListener("change", previewBgColor);
   $("color-config").addEventListener("keypress", function(e) {
     if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
     switch (e.keyCode) {
@@ -139,11 +155,11 @@ function init() {
         resetBgColor();
       default: return;
     }
-  }, false);
-  $("ok").addEventListener("click", saveBgColor, false);
-  $("cancel").addEventListener("click", resetBgColor, false);
-  $("default").addEventListener("click", defaultBgColor, false);
-  $("error").addEventListener("click", showAlert, false);
+  });
+  $("ok").addEventListener("click", saveBgColor);
+  $("cancel").addEventListener("click", resetBgColor);
+  $("default").addEventListener("click", defaultBgColor);
+  $("error").addEventListener("click", showAlert);
 }
 
 // Show 'thank you' page
@@ -332,6 +348,7 @@ function saveComputedColor() {
 }
 
 function initSVG(aColorValue, aBgImage) {
+  gDocElm = document.documentElement;
   if ((getComputedStyle(gDocElm, null).backgroundColor != "transparent") ||
       (getComputedStyle(gDocElm, null).backgroundImage != "none"))
     return; // Don't override if SVG has background color or background image
@@ -356,7 +373,7 @@ function initSVG(aColorValue, aBgImage) {
 
   gDocElm.addEventListener("contextmenu", function() {
     getSelection().removeAllRanges();
-  }, false);
+  });
 
 }
 
