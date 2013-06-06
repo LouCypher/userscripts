@@ -23,6 +23,7 @@
 // @supportURL      https://github.com/LouCypher/userscripts/issues
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/scriptish/about-new-tab/about-new-tab.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/scriptish/about-new-tab/about-new-tab.user.js
+// @resource        favicon https://raw.github.com/LouCypher/userscripts/master/scriptish/about-new-tab/favicon.ico
 // @resource        CSS https://raw.github.com/LouCypher/userscripts/master/scriptish/about-new-tab/about-new-tab.css
 // @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/licenses/MPL/CHANGELOG.txt
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/MPL/LICENSE.txt
@@ -32,9 +33,23 @@
 // ==/UserScript==
 
 (function() {
+  // Set favicon. Couln't be done using DOM method, so I cheated.
+  var css = '\
+    @namespace url(' + document.documentElement.namespaceURI + ');\
+    tab[label="' + document.title + '"] .tab-icon-image {\
+      list-style-image: url(' + GM_getResourceURL("favicon") + ') !important;\
+    }'
+  var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"]
+                      .getService(Components.interfaces.nsIStyleSheetService);
+  var uri = Services.io.newURI("data:text/css," +
+                               "/*about:newtab userscript*/" +
+                               encodeURIComponent(css), null, null);
+  if (!sss.sheetRegistered(uri, sss.USER_SHEET))
+    sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+
   // Check if New Tab Tools extension is enabled
   // https://addons.mozilla.org/addon/new-tab-tools/
-  if (typeof unsafeWindow.newTabTools === "object") {
+  if (typeof newTabTools === "object") {
     let addonId;
     let ntt = "New Tab Tools";
     let ujs = "user script";
@@ -116,9 +131,9 @@
 
   var tButton = divF.appendChild(NewTab.createElement("input"));
   tButton.type = "button";
-  tButton.title = unsafeWindow.newTabString("show");
+  tButton.title = newTabString("show");
   tButton.addEventListener("click", function() {
-    unsafeWindow.gAllPages.enabled = !unsafeWindow.gAllPages.enabled;
+    gAllPages.enabled = !gAllPages.enabled;
   })
 
   function addInputField(aLabel, aId, aValue) {
