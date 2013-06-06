@@ -25,7 +25,7 @@
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/scriptish/about-new-tab/about-new-tab.user.js
 // @resource        favicon https://raw.github.com/LouCypher/userscripts/master/scriptish/about-new-tab/favicon.ico
 // @resource        CSS https://raw.github.com/LouCypher/userscripts/master/scriptish/about-new-tab/about-new-tab.css
-// @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/licenses/MPL/CHANGELOG.txt
+// @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/scriptish/about-new-tab/CHANGELOG.txt
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/MPL/LICENSE.txt
 // @include         about:newtab
 // @include         chrome://browser/content/newtab/newTab.xul
