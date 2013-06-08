@@ -20,5 +20,6 @@ if (photolist) {
   for (var i = 0; i < links.length; i++) {
     imgsrc = links[i].nextSibling.value;
     links[i].href = imgsrc.replace(/\_m(?=.\w+$)/, "_big");
+    links[i].removeAttribute("onclick");
   }
 }
