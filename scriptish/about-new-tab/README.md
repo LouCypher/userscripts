@@ -12,7 +12,7 @@ Firefox 17+ and Scriptish 0.1.8+
 
 ## Installations
 
-* [Release version]()
+* [Release version](https://userscripts.org/scripts/source/169976.user.js)
 * [Development version](https://raw.github.com/LouCypher/userscripts/master/scriptish/about-new-tab/about-new-tab.user.js)
 
 ## Screenshots

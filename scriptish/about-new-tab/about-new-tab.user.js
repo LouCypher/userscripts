@@ -12,7 +12,7 @@
 // @name            about:newtab
 // @namespace       http://mozilla.status.net/loucypher
 // @description     Add input fields to change rows and columns setting on about:newtab page.
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @contributor     Benjamin Humphrey - icons http://findicons.com/icon/554396/64_thumbnails
 // @license         MPL 2.0
@@ -94,7 +94,7 @@
     for (let i = 0; i < spacers.length; i++) {
       spacers[i].style.height = "2em";
     }
-    $("#config-title-input").removeAttribute("flex");
+    $("#config-title-input") && $("#config-title-input").removeAttribute("flex");
     $("#config-morePrefs").style.color = "inherit";
   }
 
