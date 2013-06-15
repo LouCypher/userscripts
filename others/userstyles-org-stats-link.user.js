@@ -12,6 +12,7 @@
 // @version         1.0
 // @author          LouCypher
 // @license         WTFPL
+// @screenshot      http://puu.sh/3gfon.png
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?userstyles.org%3A+stats+link
 // @homepageURL     https://github.com/LouCypher/userscripts
 // @supportURL      https://github.com/LouCypher/userscripts/issues
