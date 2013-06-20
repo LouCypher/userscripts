@@ -145,8 +145,14 @@ function contentLoad() {
   GM_addStyle(GM_getResourceText("CSS"));
 
   if (!("$" in unsafeWindow)) {
-    throw new Error("JavaScript must be enabled for this userscript to work.");
+    var msg = "JavaScript must be enabled for Kaskus - Hide Deleted VM "
+            + "userscript to work.\nIf you have NoScript extension, "
+            + "you must allow `googleapis.com`, `kaskus.com` and\n"
+            + "`kaskus.co.id` from NoScript menu.";
+    alert(msg);
+    throw new Error(msg);
   }
+
   var $ = unsafeWindow.$;
 
   // Add button to toggle show/hide deleted VM
