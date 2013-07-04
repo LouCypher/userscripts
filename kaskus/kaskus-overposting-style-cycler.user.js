@@ -29,7 +29,7 @@ if (wrapper) {
   GM_addStyle("#cycler {\
     color: #999;\
     background: transparent;\
-    font-size: large;\
+    font-size: x-large;\
     font-weight: bold;\
     text-decoration: none;\
     position: fixed;\
