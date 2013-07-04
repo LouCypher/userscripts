@@ -9,7 +9,7 @@
 // @id                kaskus.overposting@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Cycle between styles on Kaskus Overposting page.
-// @version           1.1
+// @version           1.2
 // @author            LouCypher
 // @license           WTFPL
 // @icon              http://loucypher.github.io/userscripts/kaskus/kaskus-48.png
@@ -46,7 +46,7 @@ if (wrapper) {
   cycler.id = "cycler";
   cycler.title = "Cycle between styles";
   cycler.href = "";
-  cycler.textContent = "\u2630";
+  cycler.textContent = "\u274B";
   cycler.addEventListener("click", function(e) {
     e.preventDefault();
     var idx = parseInt(wrapper.className.match(/\d$/));
