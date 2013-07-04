@@ -30,7 +30,7 @@ if (wrapper) {
     color: #999;\
     background: transparent;\
     font-size: x-large;\
-    font-weight: bold;\
+    font-weight: normal;\
     text-decoration: none;\
     position: fixed;\
     top: 10px;\
