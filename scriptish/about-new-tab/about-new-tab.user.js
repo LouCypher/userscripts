@@ -12,7 +12,7 @@
 // @name            about:newtab
 // @namespace       http://mozilla.status.net/loucypher
 // @description     Add input fields to change rows and columns setting on about:newtab page.
-// @version         3.0a1
+// @version         3.0
 // @author          LouCypher
 // @contributor     Benjamin Humphrey - icons http://findicons.com/icon/554396/64_thumbnails
 // @license         MPL 2.0
@@ -37,10 +37,10 @@
 let css = '@namespace url("' + document.documentElement.namespaceURI + '");'
         + 'tab[label="' + document.title + '"] .tab-icon-image {'
         + 'list-style-image: url(' + GM_getResourceURL("favicon") + ') !important;}'
-let sss = Components.classes["@mozilla.org/content/style-sheet-service;1"]
-                    .getService(Ci.nsIStyleSheetService);
 let uri = Services.io.newURI("data:text/css,/*about:newtab userscript*/%0A" +
                              encodeURIComponent(css), null, null);
+let sss = Components.classes["@mozilla.org/content/style-sheet-service;1"]
+                    .getService(Ci.nsIStyleSheetService);
 if (!sss.sheetRegistered(uri, sss.USER_SHEET))
   sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
 
@@ -77,7 +77,7 @@ else
 ["#setting-columns", "#setting-rows"].forEach(function(aSelector) {
   $(aSelector).value = getIntPref(aSelector.match(/[a-z]+$/).toString());
   $(aSelector).addEventListener("change", setValueFromInput);
-  $(aSelector).addEventListener("DOMMouseScroll", mouseScroll); // Change value with mouse scroll
+  $(aSelector).addEventListener("DOMMouseScroll", mouseWheel); // Change value with mouse scroll
 })
 
 $('#newtab-form input[type="reset"]').addEventListener("click", function() {
@@ -91,6 +91,7 @@ $('#newtab-form input[type="button"]').addEventListener("click", function() {
   gAllPages.enabled = !gAllPages.enabled;
 })
 
+/***** End initializations *****/
 
 function setIntPref(aRowsOrColumns, aInt) {
   Services.prefs.setIntPref("browser.newtabpage." + aRowsOrColumns, aInt);
@@ -118,7 +119,7 @@ function setValueFromInput(aEvent) {
 
 // Use mouse scroll to increase/decrease value in text input
 // https://developer.mozilla.org/DOM/DOM_event_reference/DOMMouseScroll
-function mouseScroll(aEvent) {
+function mouseWheel(aEvent) {
   let input = aEvent.target;
   if (aEvent.detail > 0) {                // Scroll down
     if (input.value > 1) input.value--;   // Decrease number if value > 1
