@@ -12,7 +12,7 @@
 // @name            untiny.me
 // @namespace       http://userscripts.org/users/12
 // @description     Expand short URL with untiny.me when hover on a link.
-// @version         1.0a2
+// @version         1.0a4
 // @author          LouCypher
 // @license         MPL 2.0
 // @icon            https://raw.github.com/LouCypher/userscripts/master/untiny.me/untiny.me-48.png
@@ -35,7 +35,7 @@
 // @grant           GM_log
 // ==/UserScript==
 
-var regx = new RegExp("^https?:\/\/(" + GM_getResourceText("services") + ")\/(?=.*)", "i");
+var regx = new RegExp("^https?:\/\/(" + GM_getResourceText("services") + ")(?=\/[a-z0-9_]+)", "i");
 if (!regx.test(location.href)) {
   GM_addStyle("a.untinyUserJS{cursor:progress}");
 
@@ -46,7 +46,6 @@ if (!regx.test(location.href)) {
       node = node.parentNode;
 
     if (node && node.nodeName === "A" && regx.test(node.href)) {
-      node.classList.add("untinyUserJS");
       extract(node, node.href);
     }
   })
@@ -61,6 +60,7 @@ if (!regx.test(location.href)) {
 
 // Extract short URL
 function extract(aNode, aURL) {
+  aNode.classList.add("untinyUserJS");
   var log = "Short URL: " + aURL + "\n";
   var msg = "";
 
@@ -93,7 +93,7 @@ function extract(aNode, aURL) {
         var responseText = req.responseText;
 
         if (!/^(http|ftp)s?:\/\//.test(responseText)) {
-          resetAttributes(aNode);
+          aNode.classList.remove("untinyUserJS");
           throw log + responseText;
         }
 
