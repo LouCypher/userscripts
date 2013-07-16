@@ -23,7 +23,7 @@
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/untiny.me/untiny.me.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/untiny.me/untiny.me.user.js
 // @resource        services https://raw.github.com/LouCypher/userscripts/master/untiny.me/services.txt
-// @resource        changelog https://raw.github.com/LouCypher/userscripts/master/untiny.me/MPL/CHANGELOG.txt
+// @resource        changelog https://raw.github.com/LouCypher/userscripts/master/untiny.me/CHANGELOG.txt
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/MPL/LICENSE.txt
 // @include         *
 // @grant           GM_registerMenuCommand
