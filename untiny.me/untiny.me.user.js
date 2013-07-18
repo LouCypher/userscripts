@@ -12,7 +12,7 @@
 // @name            untiny.me
 // @namespace       http://userscripts.org/users/12
 // @description     Expand short URL with untiny.me when hover on a link.
-// @version         1.0a5
+// @version         1.0b1
 // @author          LouCypher
 // @license         MPL 2.0
 // @icon            https://raw.github.com/LouCypher/userscripts/master/untiny.me/untiny.me-48.png
@@ -22,12 +22,14 @@
 // @supportURL      https://github.com/LouCypher/userscripts/issues
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/untiny.me/untiny.me.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/untiny.me/untiny.me.user.js
+// @resource        icon https://raw.github.com/LouCypher/userscripts/master/untiny.me/untiny.me-16.png
 // @resource        services https://raw.github.com/LouCypher/userscripts/master/untiny.me/services.txt
 // @resource        changelog https://raw.github.com/LouCypher/userscripts/master/untiny.me/CHANGELOG.txt
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/MPL/LICENSE.txt
 // @include         *
 // @grant           GM_registerMenuCommand
 // @grant           GM_getResourceText
+// @grant           GM_getResourceURL
 // @grant           GM_xmlhttpRequest
 // @grant           GM_addStyle
 // @grant           GM_getValue
@@ -37,7 +39,7 @@
 
 var regx = new RegExp("^https?:\/\/(" + GM_getResourceText("services") + ")(?=\/[a-z0-9_]+)", "i");
 if (!regx.test(location.href)) {
-  GM_addStyle("a.untinyUserJS{cursor:progress}");
+  GM_addStyle('a.untinyUserJS{cursor:url("' + GM_getResourceURL("icon") + '") 8 0, progress}');
 
   document.addEventListener("mouseover", function(e) {
     var node = e.target;
