@@ -12,7 +12,7 @@
 // @name            untiny.me
 // @namespace       http://userscripts.org/users/12
 // @description     Expand short URL with untiny.me when hover on a link.
-// @version         1.0a4
+// @version         1.0a5
 // @author          LouCypher
 // @license         MPL 2.0
 // @icon            https://raw.github.com/LouCypher/userscripts/master/untiny.me/untiny.me-48.png
@@ -44,6 +44,12 @@ if (!regx.test(location.href)) {
 
     while (node && node.nodeName != "A")
       node = node.parentNode;
+
+    // Facebook
+    if (node && /LinkshimAsyncLink.swap/.test(node.onmouseover)) {
+      node.onmouseover = null;
+      node.onclick = null;
+    }
 
     if (node && node.nodeName === "A" && regx.test(node.href)) {
       extract(node, node.href);
