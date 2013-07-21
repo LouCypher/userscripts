@@ -7,8 +7,8 @@
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/others/imageshack-continue-to-the-image-links.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/imageshack-continue-to-the-image-links.user.js
 // @include         http://imageshack.us/content-round.php?*page=done*
+// @run-at          document-start
 // @grant           none
 // ==/UserScript==
 
-var continueLink = document.querySelector("#continue-link a");
-continueLink && location.replace(continueLink.href);
+location.replace(location.href + "&sa=0");
