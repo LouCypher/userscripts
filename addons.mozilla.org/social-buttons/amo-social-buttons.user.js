@@ -20,13 +20,15 @@
 // @name            Social Buttons for AMO
 // @namespace       http://mozilla.status.net/loucypher
 // @description     Add Google +1, Twitter, Facebook Like Pinterest buttons, etc. to AMO
-// @version         2.17
+// @version         2.20
 // @author          LouCypher
 // @license         GPL
 // @icon            https://github.com/LouCypher/userscripts/raw/master/addons.mozilla.org/social-buttons/amo-social-buttons.png
 // @require         https://raw.github.com/LouCypher/GM_config/master/gm_config.js
 // @resource        CSS https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/amo-social-buttons.css
 // @resource        configCSS https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/gm_config.css
+// @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
+// @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/CHANGEOG.txt
 // @updateURL       https://userscripts.org/scripts/source/106110.meta.js
 // @include         https://addons.mozilla.org/*/addon/*
 // @grant           GM_addStyle
@@ -35,57 +37,11 @@
 // ==/UserScript==
 
 /*
-Changelog
-  v2.17  2012-08-15
-    x De-E4X-ization.
-    + Using @grant metadata for GM 1.0
-    - Removed GM_registerMenuCommand.
-  v2.15  2012-06-27:
-    + Using @resource for stylesheets.
-  v2.14  2012-06-08:
-    x Updated to new AMO layout.
-  v2.13  2012-05-01:
-    + Added 'ShareThis' button.
-  v2.12 2012-04-07:
-    x Fixed: 'Manage My Add-on' userscript popup position.
-  v2.11 2012-04-07:
-    x Fixed: icons positions on RTL pages (Arabic, Farsi, Hebrew locales).
-  v2.10 2012-04-06:
-    + Added CSS transitions.
-  v2.9 2012-04-03:
-    + Added overlay.
-  v2.8 2012-04-02:
-    x Used 'https' on Lockerz Share.
-    x Cosmetic changes for GM_config.
-  v2.7 2012-04-01:
-    + Checked if FB Like is enabled if you enabled FB Send.
-  v2.6 2012-04-01:
-    x More GM_config customizations.
-    + Added Digg, StumbleUpon and Lockerz buttons.
-  v2.5 2012-03-31:
-    x Customized GM_config.
-    + Added 'Apply' button to GM_config.
-  v2.4 2012-03-31:
-    + Added GM_config for script configurations.
-    + Added G+ Share button.
-  v2.3 2012-03-24:
-    + Added Pinterest's 'Pin It' button.
-    x Rearranged buttons positions.
-  v2.2 2012-03-21: Removed hash from canonical link.
-  v2.1 2012-03-17: Removed application name from canonical link.
-  v2.0 2012-03-12
-    + Added Tweet button.
-    x Moved buttons positions.
-    x Using E4X.
-*/
-
-/*
 Resources:
 - https://www.google.com/webmasters/+1/button/
 - https://twitter.com/about/resources/buttons#tweet
 - https://developers.facebook.com/docs/reference/plugins/like/
 - http://pinterest.com/about/goodies/#button_for_websites
-- http://about.digg.com/publishers/buttons
 - http://www.stumbleupon.com/badges/
 - http://share.lockerz.com/buttons/
 - http://sharethis.com/publishers/get-sharing-tools
@@ -190,10 +146,6 @@ GM_config.init({
                  "type": "checkbox",
                  "default": true },
 
-  "digg": { "label": "Digg",
-            "type": "checkbox",
-            "default": false },
-
   "stumble": { "label": "StumbleUpon",
                "type": "checkbox",
                "default": false },
@@ -215,7 +167,7 @@ GM_config.init({
 var config = $(".widgets").appendChild($new("a"));
 config.href = "http://userscripts.org/scripts/show/106110";
 config.className = "widget";
-config.style.background = "url('//static-ssl-cdn.addons.mozilla.net" +
+config.style.background = "url('//addons.cdn.mozilla.net" +
                           "/media/img/addon-icons/social-32.png') " +
                           "top " + ((dir == "rtl") ? "right" : "left") +
                           " no-repeat";
@@ -258,29 +210,29 @@ var xml = '<div class="g-plusone" data-href="' + url + '" data-size="medium"'
         + '<img src="//ssl.gstatic.com/images/icons/gplus-32.png"'
         + ' alt="Share on Google+" width="20" height="20" border="0"/></a>'
         + '</div>'
-        + '<div><a class="twitter-share-button" data-uri="' + url + '"'
+        + '<div><a class="twitter-share-button" data-uri="'
+        + (url + "?src=external-twitter") + '"'
         + ' data-related="mozamo:Mozilla Add-ons"></a></div>'
-        + '<div class="fb-like" data-href="' + url + '"'
-        + ' data-layout="button_count"'
-        + ' data-send="' + GM_config.get("fbSend") + '"'
-        + ' data-show-faces="false" data-width="90px"></div>'
+        + '<div class="fb-like" data-href="' + (url + "?src=external-facebook")
+        + '" data-layout="button_count" data-send="' + GM_config.get("fbSend")
+        + '" data-show-faces="false" data-width="90px"></div>'
         + '<div><a class="pin-it-button" title="Pin It"'
         + ' href="http://pinterest.com/pin/create/button/'
-        + '?url=' + $esc(url) + '&media=' + $esc(imgSrc.href)
-        + '&description=' + $esc(document.title)
+        + '?url=' + $esc(url + "?src=external-pinterest") + '&media='
+        + $esc(imgSrc.href) + '&description=' + $esc(document.title)
         + ' - ' + $esc(desc.content) + '"' + ' count-layout="horizontal">'
         + '<img border="0" src="//assets.pinterest.com/images/PinExt.png"/>'
         + '</a></div>'
-        + '<div><a class="DiggThisButton DiggCompact"></a></div>'
         + '<div><su:badge layout="2" location="' + url + '"></su:badge></div>'
         + '<div><a class="a2a_dd"'
         + ' href="http://www.addtoany.com/share_save?linkurl='
-        + $esc(url) + '&linkname=' + $esc(document.title) + '">'
+        + $esc(url + '?src=external-lockerz') + '&linkname='
+        + $esc(document.title) + '">'
         + '<img src="//static.addtoany.com/buttons/favicon.png"'
         + ' width="16" height="16" border="0" alt="Share"/></a></div>'
         + '<div><span class="st_sharethis" displayText="ShareThis"'
-        + ' st_url="' + url + '" st_title="' + document.title + '"></span>'
-        + '</div>';
+        + ' st_url="' + (url + "?src=external-sharethis") + '" st_title="'
+        + document.title + '"></span></div>';
 
 var buttons = document.createElement("div");
 buttons.id = "amo-social-buttons-userscript";
@@ -298,7 +250,8 @@ if (GM_config.get("gShare")) {
   $(".g-share").addEventListener("click", function(aEvent) {
     aEvent.preventDefault();
     window.open("https://plus.google.com/share?url=" +
-                encodeURIComponent(url), "share-on-google-plus",
+                encodeURIComponent(url + "?src=external-google+"),
+                "share-on-google-plus",
                 "width=600, height=400, toolbar=no, location")
   }, false)
 }
@@ -312,9 +265,6 @@ if (GM_config.get("twitter"))
 if (GM_config.get("pinterest"))
   buttons.appendChild($script("//assets.pinterest.com/js/pinit.js"));
 
-if (GM_config.get("digg"))
-  buttons.appendChild($script("http://widgets.digg.com/buttons.js"));
-
 if (GM_config.get("stumble"))
   buttons.appendChild($script("//platform.stumbleupon.com/1/widgets.js"));
 
@@ -323,12 +273,12 @@ if (GM_config.get("lockerz")) {
   buttons.appendChild($script()).textContent = '\
 var a2a_config = a2a_config || {};\
 a2a_config.linkname = "' + document.title + '";\
-a2a_config.linkurl = "' + url + '";\
+a2a_config.linkurl = "' + (url + "?src=external-lockers") + '";\
 a2a_config.onclick = 1;\
 a2a_config.num_services = 14;\
 a2a_config.prioritize = [\
   "delicious", "tumblr", "diigo", "posterous", "reddit", \
-  "blogger_post", "digg", "typepad_post", "slashdot", \
+  "blogger_post", "typepad_post", "slashdot", \
   "multiply", "squidoo", "ping", "bebo", "email"];';
 
   buttons.appendChild($script("//static.addtoany.com/menu/page.js"));

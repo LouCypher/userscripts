@@ -1,0 +1,44 @@
+v2.20  2013-08-08
+v2.19  2013-08-08
+  - Removed Digg.
+v2.17  2012-08-15
+  x De-E4X-ization.
+  + Using @grant metadata for GM 1.0
+  - Removed GM_registerMenuCommand.
+v2.15  2012-06-27:
+  + Using @resource for stylesheets.
+v2.14  2012-06-08:
+  x Updated to new AMO layout.
+v2.13  2012-05-01:
+  + Added 'ShareThis' button.
+v2.12 2012-04-07:
+  x Fixed: 'Manage My Add-on' userscript popup position.
+v2.11 2012-04-07:
+  x Fixed: icons positions on RTL pages (Arabic, Farsi, Hebrew locales).
+v2.10 2012-04-06:
+  + Added CSS transitions.
+v2.9 2012-04-03:
+  + Added overlay.
+v2.8 2012-04-02:
+  x Used 'https' on Lockerz Share.
+  x Cosmetic changes for GM_config.
+v2.7 2012-04-01:
+  + Checked if FB Like is enabled if you enabled FB Send.
+v2.6 2012-04-01:
+  x More GM_config customizations.
+  + Added Digg, StumbleUpon and Lockerz buttons.
+v2.5 2012-03-31:
+  x Customized GM_config.
+  + Added 'Apply' button to GM_config.
+v2.4 2012-03-31:
+  + Added GM_config for script configurations.
+  + Added G+ Share button.
+v2.3 2012-03-24:
+  + Added Pinterest's 'Pin It' button.
+  x Rearranged buttons positions.
+v2.2 2012-03-21: Removed hash from canonical link.
+v2.1 2012-03-17: Removed application name from canonical link.
+v2.0 2012-03-12
+  + Added Tweet button.
+  x Moved buttons positions.
+  x Using E4X.
