@@ -28,7 +28,7 @@
 // @resource        CSS https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/amo-social-buttons.css
 // @resource        configCSS https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/gm_config.css
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
-// @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/CHANGEOG.txt
+// @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/addons.mozilla.org/social-buttons/CHANGELOG.txt
 // @updateURL       https://userscripts.org/scripts/source/106110.meta.js
 // @include         https://addons.mozilla.org/*/addon/*
 // @grant           GM_addStyle
