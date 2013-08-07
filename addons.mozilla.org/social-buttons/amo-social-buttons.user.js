@@ -48,6 +48,8 @@ Resources:
 - https://github.com/sizzlemctwizzle/GM_config/
 */
 
+(function() {
+
 var addon = $("#page section > #addon");
 if (!addon) {
   //GM_log("This is NOT an ADD-ON page.");
@@ -335,3 +337,5 @@ function $config(aEvent) {
   if ($("#GM_config")) GM_config.close();
   else GM_config.open();
 }
+
+})()
