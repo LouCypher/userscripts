@@ -20,7 +20,7 @@
 // @name            Tumblr Tumview Linker
 // @namespace       http://userscripts.org/users/12
 // @description     Add Tumview.com link on Tumblr sites and vice versa.
-// @version         4.0
+// @version         4.1
 // @author          LouCypher
 // @license         GPL
 // @homepageURL     https://userscripts.org/scripts/show/158464
@@ -36,6 +36,10 @@
   if (window.top === window.self) {
     var tumblr = document.getElementById("tumblr_controls");
     if (!tumblr) return;
+    tumblr.removeAttribute("width");
+    tumblr.removeAttribute("height");
+    /*tumblr.style.setProperty("width", "500px", "important");
+    tumblr.style.setProperty("height", "auto", "important");*/
     if (getComputedStyle(tumblr, null).display === "none") {
       tumblr.style.setProperty("display", "block", "important");
     }
@@ -44,6 +48,7 @@
 
   var url = location.href;
   var name, tmvLink;
+
   if (/(www|assets).tumblr.com\/((dashboard|assets\/html)\/)?iframe/.test(url)) {
     name = getName(/&name=[A-Za-z0-9_-]+/);
     if (!name) return;
@@ -65,6 +70,7 @@
         parent.appendChild(tmvLink);
       } else {
         parent.insertBefore(tmvLink, $("#btn_join", parent));
+        tmvLink.className = "btn button";
         tmvLink.style.cssFloat = "right";
       }
     }
@@ -82,7 +88,7 @@
   }
 
   function getName(aRexExp) {
-    var name = location.search.match(aRexExp);
+    var name = location.href.match(aRexExp);
     if (!name) return null;
     return name.toString().split("=")[1];
   }
