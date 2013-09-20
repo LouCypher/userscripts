@@ -10,7 +10,7 @@
 // @name            Extension List Generator
 // @description     Generate list of enabled extensions from Add-ons Manager to HTML, Markdown, BBCode or plain text output.
 // @namespace       http://userscripts.org/users/12
-// @version         2.1
+// @version         2.2
 // @author          LouCypher
 // @license         MPL 2.0
 // @screenshot      https://lh3.googleusercontent.com/-T1PPKIZoT1M/UW7tiMF0rWI/AAAAAAAADfY/XWzdfEDgtD4/s0/extension-list-generator.png
@@ -21,6 +21,8 @@
 // @supportURL      https://github.com/LouCypher/userscripts/issues
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/extension-list-generator.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/extension-list-generator.user.js
+// @require         https://gist.github.com/LouCypher/ad4e4bc2762a0ef854ac/raw/bbcode.js
+// @require         https://gist.github.com/LouCypher/ad4e4bc2762a0ef854ac/raw/markdown.js
 // @resource        options https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/options.xul
 // @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/scriptish/extension-list-generator/changelog.txt
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/MPL/LICENSE.txt
@@ -74,23 +76,29 @@ function generate(aEvent) {
       return 0;
     })
     var title = "My " + Application.name + " information";
+    var date = new Date();
     switch (aEvent.target.getAttribute("label")) {
-      case "HTML": generateHTML(title, theme, extArray); break;
-      case "Markdown": generateMarkdown(title, theme, extArray); break;
-      case "BBCode": generateBBCode(title, theme, extArray); break;
-      case "Plain text": generateText(title, theme, extArray);
+      case "HTML": generateHTML(title, date, theme, extArray); break;
+      case "Markdown": generateMarkdown(title, date, theme, extArray); break;
+      case "BBCode": generateBBCode(title, date, theme, extArray); break;
+      case "Plain text": generateText(title, date, theme, extArray);
     }
   })
 }
 
-function generateHTML(aTitle, aTheme, aArray) {
+function generateHTML(aTitle, aDate, aTheme, aArray) {
   var extensions = '<!doctype html><html itemscope="itemscope"'
                  + ' itemtype="http://schema.org/WebPage"><head>'
                  + '<meta charset="utf-8"><meta itemprop="description"'
                  + ' content="' + aTitle + '"><meta name="description"'
-                 + ' content="' + aTitle + '"><title>' + aTitle + '</title>'
-                 + '</head><body><h1>' + aTitle + '</h1>'
-                 + (rptCurrentDate ? "<p>Last updated: " + (new Date()) + "</p>" : "")
+                 + ' content="' + aTitle + '"><style type="text/css">'
+                 + 'body{background:appworkspace}a:link{color:blue}a:visited{color:purple}'
+                 + 'a:hover{background:yellow}#wrapper{background:white;color:black;width:'
+                 + '960px;padding:1em 3em;margin:25px auto;border-radius:10px;box-shadow:'
+                 + '3px 6px 9px rgba(0,0,0,.5);line-height:1.5em}.column{width:768px}li{'
+                 + 'margin-bottom:1em}</style><title>' + aTitle + '</title>'
+                 + '</head><body><div id="wrapper"><h1>' + aTitle + '</h1>'
+                 + (rptCurrentDate ? "<p>Last updated: " + aDate + "</p>" : "")
                  + "<h2>User agent</h2><p>" + navigator.userAgent
                  + "</p><h2>Theme</h2><p>"
                  + (rptAddonsURLs && !isDefaultTheme(aTheme)
@@ -103,9 +111,9 @@ function generateHTML(aTitle, aTheme, aArray) {
                       '" alt="' + aTheme.name + '"/></p>'
                     : "")
                  + "<h2>Extensions</h2>"
-                 + '<ol style="width:900px">';
+                 + '<ol class="column">';
   aArray.forEach(function(addon) {
-    extensions += '<li style="margin-bottom:1em">'
+    extensions += '<li>'
                 + (rptAddonsURLs
                    ? ((addon.reviewURL
                       ? '<a href="' + getAMOPage(addon.reviewURL) + '">'
@@ -120,14 +128,14 @@ function generateHTML(aTitle, aTheme, aArray) {
                 + (rptAddonsDescs ? "<br/>" + addon.description : "")
                 + "</li>";
   })
-  extensions += "</ol></body></html>";
-  doSomething(extensions, "text/html");
+  extensions += "</ol></div></body></html>";
+  doSomething(extensions, "html");
 }
 
-function generateMarkdown(aTitle, aTheme, aArray) {
+function generateMarkdown(aTitle, aDate, aTheme, aArray) {
   var idx = 0;
   var extensions = "# " + aTitle
-                 + (rptCurrentDate ? "\n\nLast updated: " + (new Date()) : "")
+                 + (rptCurrentDate ? "\n\nLast updated: " + aDate : "")
                  + "\n\n## User agent\n\n" + navigator.userAgent
                  + "\n\n## Theme\n\n"
                  + (rptAddonsURLs && !isDefaultTheme(aTheme)
@@ -154,12 +162,12 @@ function generateMarkdown(aTitle, aTheme, aArray) {
                 + (addon.version ? " " + addon.version : "")
                 + (rptAddonsDescs ? "  \n" + addon.description : "")
   })
-  doSomething(extensions, "text/plain", "%0A%0A.md");
+  doSomething(extensions, "markdown");
 }
 
-function generateBBCode(aTitle, aTheme, aArray) {
+function generateBBCode(aTitle, aDate, aTheme, aArray) {
   var extensions = (rptInsideSpoiler ? "[spoiler=" + aTitle + "]" : "")
-                 + (rptCurrentDate ? "[b]Last updated: [/b]" + (new Date()) : "")
+                 + (rptCurrentDate ? "[b]Last updated: [/b]" + aDate : "")
                  + "\n\n[b]User agent:[/b] " + navigator.userAgent
                  + "\n\n[b]Theme:[/b] "
                  + (rptAddonsURLs && !isDefaultTheme(aTheme)
@@ -185,16 +193,16 @@ function generateBBCode(aTitle, aTheme, aArray) {
                 + (rptAddonsDescs ? "\n" + addon.description : "");
   })
   extensions += rptInsideSpoiler ? "[/list][/spoiler]" : "[/list]";
-  doSomething(extensions, "text/plain");
+  doSomething(extensions, "bbcode");
 }
 
-function generateText(aTitle, aTheme, aArray) {
+function generateText(aTitle, aDate, aTheme, aArray) {
   var idx = 0;
   var extensions = aTitle + "\n"
   for (var i = 0; i < aTitle.length; i++) {
     extensions += "=";
   }
-  extensions += (rptCurrentDate ? "\n\nLast updated: " + (new Date()) : "")
+  extensions += (rptCurrentDate ? "\n\nLast updated: " + aDate : "")
               + "\n\nUser agent: " + navigator.userAgent
               + "\n\nTheme: " + aTheme.name + "\n\nExtensions\n----------";
   aArray.forEach(function(addon) {
@@ -210,7 +218,57 @@ function generateText(aTitle, aTheme, aArray) {
                    : "")
                 + (rptAddonsDescs || rptAddonsURLs ? "\n" : "");
   })
-  doSomething(extensions, "text/plain");
+  doSomething(extensions, "text");
+}
+
+function doSomething(aString, aFormat) {
+  var prompts = Services.prompt;
+  var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING +
+              prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL +
+              prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;
+  var doWhat = prompts.confirmEx(null, "Extension List Generator",
+                                 "Extension list has been generated.", flags,
+                                 "Copy", "", "View", null, {value:false});
+  switch (doWhat) {
+    case 0: // Copy
+      Cc["@mozilla.org/widget/clipboardhelper;1"].getService(Ci.nsIClipboardHelper)
+                                                 .copyString(aString);
+      Cc["@mozilla.org/alerts-service;1"].getService(Ci.nsIAlertsService).
+      showAlertNotification("chrome://mozapps/skin/xpinstall/xpinstallItemGeneric.png",
+                            "Extension List Generator", "Copied to clipboard!",
+                            false, "", null);
+      break;
+    case 2: // View
+      var contentType;
+      switch(aFormat) {
+        case "html": contentType = "text/html"; break;
+        case "markdown":
+          contentType = "text/html";
+          marked.setOptions({
+            gfm: true,
+            tables: true,
+            breaks: false,
+            pedantic: false,
+            sanitize: true,
+            smartLists: true
+          })
+          aString = marked(aString);
+          break;
+        case "bbcode":
+          contentType = "text/html";
+          var output = XBBCODE.process({
+            text: aString,
+            removeMisalignedTags: false,
+            addInLineBreaks: true
+          })
+          aString = output.html;
+          break;
+        default: contentType = "text/plain";
+      }
+      openOptionsInTab("data:" + contentType + ";charset=utf-8," +
+                       encodeURIComponent(aString));
+    default: // Cancel
+  }
 }
 
 function isDefaultTheme(aTheme) {
@@ -239,30 +297,6 @@ function getThemeURL(aAddon) {
   }
   url += "/?src=external-extension-list-generator";
   return url;
-}
-
-function doSomething(aString, aContentType, aExt) {
-  var prompts = Services.prompt;
-  var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING +
-              prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL +
-              prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;
-  var doWhat = prompts.confirmEx(null, "Extension List Generator",
-                                 "Extension list has been generated.", flags,
-                                 "Copy", "", "View", null, {value:false});
-  switch (doWhat) {
-    case 0: // Copy
-      Cc["@mozilla.org/widget/clipboardhelper;1"].getService(Ci.nsIClipboardHelper)
-                                                 .copyString(aString);
-      Cc["@mozilla.org/alerts-service;1"].getService(Ci.nsIAlertsService).
-      showAlertNotification("chrome://mozapps/skin/xpinstall/xpinstallItemGeneric.png",
-                            "Extension List Generator", "Copied to clipboard!",
-                            false, "", null);
-      break;
-    case 2: // View
-      openOptionsInTab("data:" + aContentType + ";charset=utf-8," +
-                       encodeURIComponent(aString) + (aExt ? aExt : ""));
-    default: // Cancel
-  }
 }
 
 function getBoolPref(aPrefName, aDefVal) {

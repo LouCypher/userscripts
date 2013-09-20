@@ -1,10 +1,10 @@
 # My Firefox information
 
-Last updated: Sat Aug 10 2013 08:55:44 GMT+0700 (SE Asia Standard Time)
+Last updated: Sat Sep 21 2013 00:35:38 GMT+0700 (SE Asia Standard Time)
 
 ## User agent
 
-Mozilla/5.0 (Windows NT 5.1; rv:24.0) Gecko/20100101 Firefox/24.0
+Mozilla/5.0 (Windows NT 5.1; rv:25.0) Gecko/20100101 Firefox/25.0
 
 ## Theme
 
@@ -18,7 +18,7 @@ Adds About: menu into Help menu to access about: pages.
 2. [about:addons-memory](https://addons.mozilla.org/addon/about-addons-memory/?src=external-extension-list-generator) 7  
 Adds an about:addons-memory page that details add-on memory usage
 
-3. [Adblock Plus](https://addons.mozilla.org/addon/adblock-plus/?src=external-extension-list-generator) 2.3.2.3712  
+3. [Adblock Plus](https://addons.mozilla.org/addon/adblock-plus/?src=external-extension-list-generator) 2.3.2.3718  
 Ads were yesterday!
 
 4. [Add to Search Bar](https://addons.mozilla.org/addon/add-to-search-bar/?src=external-extension-list-generator) 2.0  
@@ -93,13 +93,13 @@ Excute JS
 27. [Foundstone HTML5 Local Storage Explorer](https://addons.mozilla.org/addon/foundstone-html5-local-storage/?src=external-extension-list-generator) 1.1  
 Foundstone HTML5 Local Storage Explorer allows for viewing, modifying and deleting of data items stored in the browser's LocalStorage. LocalStorage is a client side storage technology introduced in HTML5.
 
-28. [Ghostery](https://addons.mozilla.org/addon/ghostery/?src=external-extension-list-generator) 2.9.6  
-Ghostery identifies and allows you to block the 3rd parties (web bugs) that are hidden on the current page you're visiting. Web bugs include ad networks, behavioral data collectors and web analytics providers.
+28. [Ghostery](https://addons.mozilla.org/addon/ghostery/?src=external-extension-list-generator) 5.0.4  
+Protect your privacy. See who's tracking your web browsing and block them with Ghostery.
 
 29. [Go Parent Folder](https://addons.mozilla.org/addon/go-parent-folder/?src=external-extension-list-generator) 2.7  
 Go Parent Folder In Library
 
-30. [Greasemonkey](https://addons.mozilla.org/addon/greasemonkey/?src=external-extension-list-generator) 1.12beta3  
+30. [Greasemonkey](https://addons.mozilla.org/addon/greasemonkey/?src=external-extension-list-generator) 1.12  
 A User Script Manager for Firefox
 
 31. [History Submenus Ⅱ](https://addons.mozilla.org/addon/history-submenus-2/?src=external-extension-list-generator) 2.2.0  
@@ -132,121 +132,115 @@ Manipulate your Menu
 40. [MinimizeToTray revived (MinTrayR)](https://addons.mozilla.org/addon/minimizetotray-revived/?src=external-extension-list-generator) 1.1.2  
 Minimizes windows into the system tray
 
-41. [Noia 4 Theme Manager](https://addons.mozilla.org/addon/noia-4/) 1.8.5  
-Select gray, black, blue, Firefox 3-like, FF4+ (Win7) or AeroGlass skins and customize your Firefox with many personal tweaks.
-
-42. [NoScript](https://addons.mozilla.org/addon/noscript/?src=external-extension-list-generator) 2.6.7  
+41. [NoScript](https://addons.mozilla.org/addon/noscript/?src=external-extension-list-generator) 2.6.7.1  
 Extra protection for your Firefox: NoScript allows JavaScript, Java (and other plugins) only for trusted domains of your choice (e.g. your home-banking web site). This whitelist based pre-emptive blocking approach  prevents exploitation of security vulnerabilities (known and even unknown!) with no loss of functionality… Experts will agree: Firefox is really safer with NoScript :-)
 
-43. [Open in Browser](https://addons.mozilla.org/addon/open-in-browser/?src=external-extension-list-generator) 1.11  
+42. [Open in Browser](https://addons.mozilla.org/addon/open-in-browser/?src=external-extension-list-generator) 1.11  
 Offers the possibility to display documents in browser window.
 
-44. [Open in Private Window](https://addons.mozilla.org/addon/openinprivatewindow/?src=external-extension-list-generator) 0.3a1  
+43. [Open in Private Window](https://addons.mozilla.org/addon/openinprivatewindow/?src=external-extension-list-generator) 0.3a1  
 Add more context menu items and options to open a URL in Firefox Private Window.
 
-45. [Paste to Tab and Go](https://addons.mozilla.org/addon/paste-to-tab-and-go/?src=external-extension-list-generator) 0.8  
+44. [Paste to Tab and Go](https://addons.mozilla.org/addon/paste-to-tab-and-go/?src=external-extension-list-generator) 0.8  
 Paste URL or text to a tab or a new tab and load the URL or search for the text immediately.
 
-46. [Personas Plus](https://addons.mozilla.org/addon/personas-plus/?src=external-extension-list-generator) 1.7.2.1  
+45. [Personas Plus](https://addons.mozilla.org/addon/personas-plus/?src=external-extension-list-generator) 1.7.2.1  
 Your Firefox, your style. Easy-to-change themes.
 
-47. [Private Tab](https://addons.mozilla.org/addon/private-tab/?src=external-extension-list-generator) 0.1.3  
+46. [Private Tab](https://addons.mozilla.org/addon/private-tab/?src=external-extension-list-generator) 0.1.5  
 Adds private tabs
 
-48. [QuickNote](https://addons.mozilla.org/addon/quicknote/?src=external-extension-list-generator) 0.7.3  
+47. [QuickNote](https://addons.mozilla.org/addon/quicknote/?src=external-extension-list-generator) 0.7.3  
 A note taking extension with advanced features.
 
-49. [Rebrand](https://addons.mozilla.org/addon/rebrand/?src=external-extension-list-generator) 1.3  
+48. [Rebrand](https://addons.mozilla.org/addon/rebrand/?src=external-extension-list-generator) 1.3  
 Wizard for rebranding Firefox, Thunderbird and SeaMonkey
 
-50. [RefControl](https://addons.mozilla.org/addon/refcontrol/?src=external-extension-list-generator) 0.8.16  
+49. [RefControl](https://addons.mozilla.org/addon/refcontrol/?src=external-extension-list-generator) 0.8.16  
 Control what gets sent as the HTTP Referer on a per-site basis.
 
-51. [RememberPass](https://addons.mozilla.org/addon/rememberpass/?src=external-extension-list-generator) 1.1.2  
+50. [RememberPass](https://addons.mozilla.org/addon/rememberpass/?src=external-extension-list-generator) 1.1.2  
 RememberPass is a Firefox/Firefox Mobile Addon to force browser to remember password even website disable it by default.
 It's done by set autocomplete to "on" where it's "off".
 You can let it automatically make the change or use the menu to force remember pass where needed.
 
-52. [RESTClient](https://addons.mozilla.org/addon/restclient/?src=external-extension-list-generator) 2.0.3  
+51. [RESTClient](https://addons.mozilla.org/addon/restclient/?src=external-extension-list-generator) 2.0.3  
 RESTClient, a debugger for RESTful web services.
 
-53. [Resurrect Pages](https://addons.mozilla.org/addon/resurrect-pages/?src=external-extension-list-generator) 2.0.7  
+52. [Resurrect Pages](https://addons.mozilla.org/addon/resurrect-pages/?src=external-extension-list-generator) 2.0.7  
 Resurrect dead pages, by finding their ghosts.
 
-54. [RSS Icon](https://addons.mozilla.org/addon/rss-icon/?src=external-extension-list-generator) 1.0.6  
+53. [RSS Icon](https://addons.mozilla.org/addon/rss-icon/?src=external-extension-list-generator) 1.0.6  
 RSS URL Bar Icon
 
-55. [Save Image in Folder](https://addons.mozilla.org/addon/save-image-in-folder/?src=external-extension-list-generator) 1.3.14  
+54. [Save Image in Folder](https://addons.mozilla.org/addon/save-image-in-folder/?src=external-extension-list-generator) 1.3.14  
 Easily save images in personally customized folders.
 
-56. [Save Link in Folder](https://addons.mozilla.org/addon/save-link-in-folder/?src=external-extension-list-generator) 1.5.14  
+55. [Save Link in Folder](https://addons.mozilla.org/addon/save-link-in-folder/?src=external-extension-list-generator) 1.5.14  
 Easily save links in personally customized folders.
 
-57. [Saved Password Editor](https://addons.mozilla.org/addon/saved-password-editor/?src=external-extension-list-generator) 2.7  
+56. [Saved Password Editor](https://addons.mozilla.org/addon/saved-password-editor/?src=external-extension-list-generator) 2.7  
 Adds the ability to create and edit entries in the password manager.
 
-58. [Scratchpad Editor](https://addons.mozilla.org/addon/scratchedit/?src=external-extension-list-generator) 0.3.3  
+57. [Scratchpad Editor](https://addons.mozilla.org/addon/scratchedit/?src=external-extension-list-generator) 0.3.3  
 Allows you to use external text editor on Scratchpad.
 
-59. [Scriptish](https://addons.mozilla.org/addon/scriptish/?src=external-extension-list-generator) 0.1.11pre.20130711.0400.git-6088ce9  
+58. [Scriptish](https://addons.mozilla.org/addon/scriptish/?src=external-extension-list-generator) 0.1.11pre.20130711.0400.git-6088ce9  
 A Script Extension Manager for Firefox
 
-60. [Settings Guard for Firefox](https://addons.mozilla.org/addon/settings-guard/?src=external-extension-list-generator) 0.5  
+59. [Settings Guard for Firefox](https://addons.mozilla.org/addon/settings-guard/?src=external-extension-list-generator) 0.5  
 Detects and resets changes to settings that are frequently done by add-ons and application installers.
 
-61. [Shorten URL](http://shortenurl.googlecode.com/) 0.4pre2012021401  
-Shorten long URL from Firefox context menu or toolbar button with your selected URL shortener and display the result in location bar.
-
-62. [Show Parent Folder](https://addons.mozilla.org/addon/show-parent-folder/?src=external-extension-list-generator) 2.0  
+60. [Show Parent Folder](https://addons.mozilla.org/addon/show-parent-folder/?src=external-extension-list-generator) 2.0  
 Show Parent Folder
 
-63. [Sidebar Bookmark Selector](https://addons.mozilla.org/addon/sidebar-bookmark-selector/?src=external-extension-list-generator) 3.0  
+61. [Sidebar Bookmark Selector](https://addons.mozilla.org/addon/sidebar-bookmark-selector/?src=external-extension-list-generator) 3.0  
 Sidebar Bookmark Selector
 
-64. [SPDY indicator](https://addons.mozilla.org/addon/spdy-indicator/?src=external-extension-list-generator) 2.1  
+62. [SPDY indicator](https://addons.mozilla.org/addon/spdy-indicator/?src=external-extension-list-generator) 2.1  
 An indicator showing SPDY support in the address bar.
 
-65. [SQLite Manager](https://addons.mozilla.org/addon/sqlite-manager/?src=external-extension-list-generator) 0.8.0  
+63. [SQLite Manager](https://addons.mozilla.org/addon/sqlite-manager/?src=external-extension-list-generator) 0.8.0  
 Manage any SQLite database on your computer
 
-66. [Stay-Open Menu](https://addons.mozilla.org/addon/stay-open-menu/?src=external-extension-list-generator) 2.1  
+64. [Stay-Open Menu](https://addons.mozilla.org/addon/stay-open-menu/?src=external-extension-list-generator) 2.1  
 Facilitates opening multiple items from the Bookmarks Menu and various other bookmark/history related dropdown menus.
 
-67. [Stylish](https://addons.mozilla.org/addon/stylish/?src=external-extension-list-generator) 1.3.3b1  
+65. [Stylish](https://addons.mozilla.org/addon/stylish/?src=external-extension-list-generator) 1.3.3  
 Restyle the web with Stylish, a user styles manager.
 
-68. [Suspend background tabs](https://addons.mozilla.org/addon/suspend-background-tabs/) 1.0.1  
+66. [Suspend background tabs](https://addons.mozilla.org/addon/suspend-background-tabs/) 1.0.1  
 Delays periodical actions in background tabs until they are selected again, saves CPU time.
 
-69. [Suspend Tab](https://addons.mozilla.org/addon/suspend-tab/?src=external-extension-list-generator) 0.1.2013053101  
+67. [Suspend Tab](https://addons.mozilla.org/addon/suspend-tab/?src=external-extension-list-generator) 0.1.2013053101  
 Suspends background old tabs automatically to save memory usage.
 
-70. [Tab Mix Plus](https://addons.mozilla.org/addon/tab-mix-plus/?src=external-extension-list-generator) 0.4.1.1pre.130809a  
+68. [Tab Mix Plus](https://addons.mozilla.org/addon/tab-mix-plus/?src=external-extension-list-generator) 0.4.1.2pre.130918a  
 Tab browsing with an added boost.
 
-71. [TabSubmit](https://addons.mozilla.org/addon/tabsubmit/?src=external-extension-list-generator) 1.0.2.4  
+69. [TabSubmit](https://addons.mozilla.org/addon/tabsubmit/?src=external-extension-list-generator) 1.0.2.4  
 Directs the submission of a form to a new tab or window. [Bug #17754]
 
-72. [Test Pilot](https://addons.mozilla.org/addon/test-pilot/?src=external-extension-list-generator) 1.2.2  
+70. [Test Pilot](https://addons.mozilla.org/addon/test-pilot/?src=external-extension-list-generator) 1.2.2  
 Help make Firefox better by running user studies.
 
-73. [TripleSelect](http://patsis.brownhost.com) 1.7  
+71. [TripleSelect](http://patsis.brownhost.com) 1.7  
 Select a paragraph by triple-clicking on text.
 
-74. [Tweet Context](https://addons.mozilla.org/addon/tweet-context/?src=external-extension-list-generator) 0.2.2a.20120403.01  
+72. [Tweet Context](https://addons.mozilla.org/addon/tweet-context/?src=external-extension-list-generator) 0.2.2a.20120403.01  
 Tweet anything from context menu.
 
-75. [Undo Bookmarks Menu](https://addons.mozilla.org/addon/undo-bookmarks-menu/?src=external-extension-list-generator) 1.7  
+73. [Undo Bookmarks Menu](https://addons.mozilla.org/addon/undo-bookmarks-menu/?src=external-extension-list-generator) 1.7  
 Undo Bookmarks Menu
 
-76. [URL in Tab Tooltip](https://addons.mozilla.org/addon/tab-tooltip/?src=external-extension-list-generator) 0.1  
+74. [URL in Tab Tooltip](https://addons.mozilla.org/addon/tab-tooltip/?src=external-extension-list-generator) 0.1  
 Display tab URL in tab tooltip.
 
-77. [User Agent Switcher](https://addons.mozilla.org/addon/user-agent-switcher/?src=external-extension-list-generator) 0.7.3  
+75. [User Agent Switcher](https://addons.mozilla.org/addon/user-agent-switcher/?src=external-extension-list-generator) 0.7.3  
 Adds a menu and a toolbar button to switch the user agent of a browser.
 
-78. [Web Developer](https://addons.mozilla.org/addon/web-developer/?src=external-extension-list-generator) 1.2.5  
+76. [Web Developer](https://addons.mozilla.org/addon/web-developer/?src=external-extension-list-generator) 1.2.5  
 Adds a menu and a toolbar with various web developer tools.
 
-79. [XPather](https://addons.mozilla.org/addon/xpather/?src=external-extension-list-generator) 1.4.5  
+77. [XPather](https://addons.mozilla.org/addon/xpather/?src=external-extension-list-generator) 1.4.5  
 Feature rich XPath generator, editor, inspector and simple extraction tool.

@@ -22,7 +22,7 @@
 // @name            Darken
 // @namespace       http://userscripts.org/users/12
 // @description     Add menuitem to browser context menu to darken the web page
-// @version         3.0
+// @version         3.1
 // @author          LouCypher
 // @contributor     luckymouse (CSS)
 // @license         GPL
@@ -32,58 +32,61 @@
 // @include         *
 // ==/UserScript==
 
-if (frameElement) return;
+(function() {
+  if (frameElement) return;
 
-const STYLE_ID = "userscript-darken-style";
-var isDark = sessionStorage.getItem("dark-site");
-if (isDark) darken();
+  const STYLE_ID = "userscript-darken-style";
+  var isDark = localStorage.getItem("dark-site");
+  if (isDark) darken();
 
-if (!(document.head && document.body)) return;
-var menu = document.body.appendChild(document.createElement("menu"));
-var html = document.documentElement;
-if (html.hasAttribute("contextmenu")) {
-  // We don't want to override web page context menu if any
-  var contextmenu = $("#" + html.getAttribute("contextmenu"));
-  contextmenu.appendChild(menu); // Append to web page context menu
-} else {
-  html.setAttribute("contextmenu", "userscript-darken-context-menu");
-}
-
-menu.outerHTML = '<menu id="userscript-darken-context-menu"\
-                        type="context">\
-                    <menuitem id="userscript-darken-menuitem"\
-                              type="checkbox"\
-                              label="Darken">\
-                    </menuitem>\
-                  </menu>';
-
-if ("contextMenu" in html && "HTMLMenuItemElement" in window) {
-  var menuitem = $("#userscript-darken-menuitem");
-  if (isDark) menuitem.setAttribute("checked", "true");
-  // Executed on clicking a menuitem
-  menuitem.addEventListener("click", toggleDarken, false);
-}
-
-function darken() {
-  var style = $("head").appendChild(document.createElement("style"));
-  style.id = STYLE_ID;
-  style.textContent = GM_getResourceText("css");
-  sessionStorage.setItem("dark-site", true);
-}
-
-function toggleDarken() {
-  var x = pageXOffset;
-  var y = pageYOffset
-  var styleNode = document.getElementById(STYLE_ID);
-  if (styleNode) {
-    styleNode.parentNode.removeChild(styleNode);
-    sessionStorage.removeItem("dark-site");
+  if ((document.head && document.body)) return;
+  var menu = document.body.appendChild(document.createElement("menu"));
+  var html = document.documentElement;
+  if (html.hasAttribute("contextmenu")) {
+    // We don't want to override web page context menu if any
+    var contextmenu = $("#" + html.getAttribute("contextmenu"));
+    contextmenu.appendChild(menu); // Append to web page context menu
   } else {
-    darken();
+    html.setAttribute("contextmenu", "userscript-darken-context-menu");
   }
-  scrollTo(x, y); // Restore scroll positions
-}
 
-function $(aSelector, aNode) {
-  return (aNode || document).querySelector(aSelector);
-}
+  menu.outerHTML = '<menu id="userscript-darken-context-menu"\
+                          type="context">\
+                      <menuitem id="userscript-darken-menuitem"\
+                                type="checkbox"\
+                                label="Darken">\
+                      </menuitem>\
+                    </menu>';
+
+  if ("contextMenu" in html && "HTMLMenuItemElement" in window) {
+    var menuitem = $("#userscript-darken-menuitem");
+    if (isDark) menuitem.setAttribute("checked", "true");
+    // Executed on clicking a menuitem
+    menuitem.addEventListener("click", toggleDarken, false);
+  }
+
+
+  function darken() {
+    var style = $("head").appendChild(document.createElement("style"));
+    style.id = STYLE_ID;
+    style.textContent = GM_getResourceText("css");
+    localStorage.setItem("dark-site", true);
+  }
+
+  function toggleDarken() {
+    var x = pageXOffset;
+    var y = pageYOffset
+    var styleNode = document.getElementById(STYLE_ID);
+    if (styleNode) {
+      styleNode.parentNode.removeChild(styleNode);
+      localStorage.removeItem("dark-site");
+    } else {
+      darken();
+    }
+    scrollTo(x, y); // Restore scroll positions
+  }
+
+  function $(aSelector, aNode) {
+    return (aNode || document).querySelector(aSelector);
+  }
+})()
