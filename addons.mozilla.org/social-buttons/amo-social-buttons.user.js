@@ -20,7 +20,7 @@
 // @name            Social Buttons for AMO
 // @namespace       http://mozilla.status.net/loucypher
 // @description     Add Google +1, Twitter, Facebook Like Pinterest buttons, etc. to AMO
-// @version         2.20
+// @version         2.21
 // @author          LouCypher
 // @license         GPL
 // @icon            https://github.com/LouCypher/userscripts/raw/master/addons.mozilla.org/social-buttons/amo-social-buttons.png
@@ -46,6 +46,7 @@ Resources:
 - http://www.stumbleupon.com/badges/
 - http://share.lockerz.com/buttons/
 - http://sharethis.com/publishers/get-sharing-tools
+- http://support.sharethis.com/customer/portal/articles/475097-ssl-support
 - https://github.com/sizzlemctwizzle/GM_config/
 */
 
@@ -226,7 +227,8 @@ var xml = '<div class="g-plusone" data-href="' + url + '" data-size="medium"'
         + ' - ' + $esc(desc.content) + '"' + ' count-layout="horizontal">'
         + '<img border="0" src="//assets.pinterest.com/images/PinExt.png"/>'
         + '</a></div>'
-        + '<div><su:badge layout="2" location="' + url + '"></su:badge></div>'
+        + '<div><su:badge layout="2" location="' + url + '?src=external-stumbleupon">'
+        + '</su:badge></div>'
         + '<div><a class="a2a_dd"'
         + ' href="http://www.addtoany.com/share_save?linkurl='
         + $esc(url + '?src=external-lockerz') + '&linkname='
@@ -290,7 +292,7 @@ a2a_config.prioritize = [\
 if (GM_config.get("shareThis")) {
   $(".st_sharethis").style.display = "block";
   buttons.appendChild($script()).textContent = "var switchTo5x=false;";
-  buttons.appendChild($script("http://w.sharethis.com/button/buttons.js"));
+  buttons.appendChild($script("//ws.sharethis.com/button/buttons.js"));
   buttons.appendChild($script()).textContent = "\
 stLight.options({publisher:'73203996-db03-49eb-babe-bebd62c11a26',\
 onhover:false});";
