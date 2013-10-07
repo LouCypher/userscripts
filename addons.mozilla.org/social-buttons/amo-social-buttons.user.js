@@ -20,7 +20,7 @@
 // @name            Social Buttons for AMO
 // @namespace       http://mozilla.status.net/loucypher
 // @description     Add Google +1, Twitter, Facebook Like Pinterest buttons, etc. to AMO
-// @version         2.21
+// @version         2.22
 // @author          LouCypher
 // @license         GPL
 // @icon            https://github.com/LouCypher/userscripts/raw/master/addons.mozilla.org/social-buttons/amo-social-buttons.png
@@ -43,6 +43,7 @@ Resources:
 - https://twitter.com/about/resources/buttons#tweet
 - https://developers.facebook.com/docs/reference/plugins/like/
 - http://pinterest.com/about/goodies/#button_for_websites
+- http://developers.pinterest.com/pin_it/
 - http://www.stumbleupon.com/badges/
 - http://share.lockerz.com/buttons/
 - http://sharethis.com/publishers/get-sharing-tools
@@ -221,11 +222,11 @@ var xml = '<div class="g-plusone" data-href="' + url + '" data-size="medium"'
         + '" data-layout="button_count" data-send="' + GM_config.get("fbSend")
         + '" data-show-faces="false" data-width="90px"></div>'
         + '<div><a class="pin-it-button" title="Pin It"'
-        + ' href="http://pinterest.com/pin/create/button/'
+        + ' href="http://www.pinterest.com/pin/create/button/'
         + '?url=' + $esc(url + "?src=external-pinterest") + '&media='
         + $esc(imgSrc.href) + '&description=' + $esc(document.title)
         + ' - ' + $esc(desc.content) + '"' + ' count-layout="horizontal">'
-        + '<img border="0" src="//assets.pinterest.com/images/PinExt.png"/>'
+        + '<img border="0" src="//assets.pinterest.com/images/pidgets/pin_it_button.png"/>'
         + '</a></div>'
         + '<div><su:badge layout="2" location="' + url + '?src=external-stumbleupon">'
         + '</su:badge></div>'
