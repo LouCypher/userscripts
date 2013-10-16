@@ -17,6 +17,8 @@ Firefox 17+ and Scriptish 0.1.8+
 
 ## Screenshots
 
+**Note:** the background image is not part of the script :blush:
+
 [![Config page](https://lh3.googleusercontent.com/-mb6T7fzqSqg/UbKMRyCJM0I/AAAAAAAADrA/eeCmkx_84X0/s604/Screen%2520Shot%25202013-06-08%2520at%252008.36.18.jpg)](https://lh3.googleusercontent.com/-mb6T7fzqSqg/UbKMRyCJM0I/AAAAAAAADrA/eeCmkx_84X0/s0/Screen%2520Shot%25202013-06-08%2520at%252008.36.18.jpg)  
 [![Thumbnails](https://lh5.googleusercontent.com/-NJn5-dYZSHk/UbKQjOt21LI/AAAAAAAADsI/nDuYREVfrfQ/s300/Screen%2520Shot%25202013-06-08%2520at%252008.36.11-x.jpg)](https://lh5.googleusercontent.com/-NJn5-dYZSHk/UbKQjOt21LI/AAAAAAAADsI/nDuYREVfrfQ/s0/Screen%2520Shot%25202013-06-08%2520at%252008.36.11-x.jpg)
 [![with New Tab Tools extension](https://lh5.googleusercontent.com/-n4mH8vrAfjU/UbKQjfl5JkI/AAAAAAAADsM/GX4ZgOg5GWI/s300/Screen%2520Shot%25202013-06-08%2520at%252008.36.31-x.jpg)](https://lh5.googleusercontent.com/-n4mH8vrAfjU/UbKQjfl5JkI/AAAAAAAADsM/GX4ZgOg5GWI/s0/Screen%2520Shot%25202013-06-08%2520at%252008.36.31-x.jpg)
