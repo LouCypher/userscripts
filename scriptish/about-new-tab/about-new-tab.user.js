@@ -12,7 +12,7 @@
 // @name            about:newtab
 // @namespace       http://mozilla.status.net/loucypher
 // @description     Add input fields to change rows and columns setting on about:newtab page.
-// @version         3.0
+// @version         3.1
 // @author          LouCypher
 // @contributor     Benjamin Humphrey - icons http://findicons.com/icon/554396/64_thumbnails
 // @license         MPL 2.0
@@ -31,11 +31,20 @@
 // @include         about:newtab
 // @include         chrome://browser/content/newtab/newTab.xul
 // @run-at          document-end
+// @grant           GM_getResourceText
+// @grant           GM_getResourceURL
 // ==/UserScript==
+
+/* I can't use `setAttribute` on `Application.activeWindow.activeTab` for the active tab
+   so I'm using `Application.activeWindow.tabs[0]._tabbrowser.mCurrentTab` */
+let browser = Application.activeWindow.tabs[0]._tabbrowser;
+let tab = browser.mCurrentTab;
+if (browser.mCurrentBrowser.currentURI.spec == "about:newtab")
+  tab.setAttribute("scriptish-url", "about:newtab");
 
 // Set favicon. Couldn't be done using DOM method, so I cheated with nsIStyleSheetService.
 let css = '@namespace url("' + document.documentElement.namespaceURI + '");'
-        + 'tab[label="' + document.title + '"] .tab-icon-image {'
+        + 'tab[scriptish-url="about:newtab"] .tab-icon-image {'
         + 'list-style-image: url(' + GM_getResourceURL("favicon") + ') !important;}'
 let uri = Services.io.newURI("data:text/css,/*about:newtab userscript*/%0A" +
                              encodeURIComponent(css), null, null);
@@ -46,15 +55,15 @@ if (!sss.sheetRegistered(uri, sss.USER_SHEET))
 
 /***** Begin initializations *****/
 
-// Inject style
-var style = document.documentElement.appendChild(document.createElementNS(HTML_NAMESPACE, "style"));
+// Inject style. Can't use GM_addStyle here
+let style = document.documentElement.appendChild(document.createElementNS(HTML_NAMESPACE, "style"));
 style.type = "text/css";
 style.textContent = GM_getResourceText("CSS");
 
-var divS = (new DOMParser).parseFromString(GM_getResourceText("HTML"), "application/xml")
+let divS = (new DOMParser).parseFromString(GM_getResourceText("HTML"), "application/xml")
                           .documentElement;
 
-if (typeof newTabTools === "object") { // If New Tab Tools extension is enabled
+if (typeof newTabTools === "object") { // If New Tab Tools extension is active
   gAllPages.enabled = true; // Always show thumbnails
 
   $("#config-inner").insertBefore(divS, $("#config-morePrefs"));
