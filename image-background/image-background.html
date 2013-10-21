@@ -32,8 +32,11 @@ BAQAOw==">
             label="Show Image Transparency"
             type="checkbox">
   </menuitem>
+  <menuitem id="toggle-image-placeholder"
+            label="Show Image Placeholder"
+            type="checkbox">
+  </menuitem>
   <menuitem id="donate" label="Donate/share" hidden="true"></menuitem>
-  <menuitem id="help" label="Help" hidden="true"></menuitem>
 </menu>
 
 <!-- Dummy element to check color value -->
@@ -44,7 +47,7 @@ BAQAOw==">
   <div>
     Pick any color or enter valid
     <a href="https://developer.mozilla.org/docs/CSS/color_value"
-       target="_help">color value</a>.
+       target="_blank">color value</a>.
   </div>
   <div>
     <input id="color-picker" placeholder="Color value"
@@ -56,7 +59,9 @@ BAQAOw==">
     <button id="default">Default</button>
     <div id="links">
       <a id="error" class="hide">Color picker not appear?</a>
-      <a id="about" href="">About</a>
+      <a id="about" target="_blank" href="">About</a>
+      <a id="help" target="_blank"
+         href="http://loucypher.github.io/userscripts/image-background/help.html">Help</a>
     </div>
   </div>
 </div>

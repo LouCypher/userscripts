@@ -9,6 +9,12 @@ html {
 }
 body, img { background-image: none !important }
 img.transparent { background-color: transparent !important }
+img.placeholder {
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .25),
+                                              rgba(255, 255, 255, .25)) !important;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, .25),
+                                               rgba(255, 255, 255, .25)) !important;
+}
 img {
   box-shadow: none;
   background-color: hsl(0,0%,90%);
@@ -42,6 +48,7 @@ img {
   cursor: pointer;
   text-decoration: underline;
 }
-#about { float: right; }
+#help, #about { float: right; }
+#about { margin-left: 1em }
 .hide { display: none; }
 menuitem[disabled] { font-weight: bold; }

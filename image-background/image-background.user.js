@@ -20,7 +20,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         7.10
+// @version         8.0
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.io/userscripts/image-background/images/screenshot-after.png
@@ -74,6 +74,7 @@ function init() {
   var bgColor = GM_getValue("bgColor", ""); // Get color value pref (def = empty)
   var bgImage = GM_getValue("bgImage", true); // Get background pref (def = true)
   var imgTrans = GM_getValue("imgTrans", true); // Get transparency pref (def = true)
+  var placeholder = GM_getValue("placeholder", true); // Get image placeholder pref (def = true)
   var enableSVG = GM_getValue("enableSVG", true);
   var computedColor = GM_getValue("computedColor", "");
   /***** End checking preferences *****/
@@ -103,6 +104,7 @@ function init() {
   setBgColor(bgColor); // Set background color from pref
   setBgImage(bgImage); // Set background patters from pref
   showTransparency(imgTrans); // Set image transparency from pref
+  showPlaceholder(placeholder); // Set image placeholder from pref
   saveComputedColor();
   GM_addStyle(GM_getResourceText("CSS")); // Inject style from @resource
 
@@ -125,14 +127,14 @@ function init() {
   GM_registerMenuCommand("Change Background Color", showColorConfig);
   GM_registerMenuCommand("Toggle Checkerboard Background", toggleBgImage);
   GM_registerMenuCommand("Toggle Image Transparency", toggleTransparency);
+  GM_registerMenuCommand("Toggle Image Placeholder", togglePlaceholder);
 
   /***** Start context menu initialization *****/
   // Add event listeners to menuitems
   $("change-background-color").addEventListener("click", showColorConfig);
-  $("toggle-image-transparency").addEventListener("click", toggleTransparency);
   $("toggle-background-image").addEventListener("click", toggleBgImage);
-  $("about").addEventListener("click", showThanks);
-  $("help").addEventListener("click", goHelp);
+  $("toggle-image-transparency").addEventListener("click", toggleTransparency);
+  $("toggle-image-placeholder").addEventListener("click", togglePlaceholder);
 
   // Set context menu to html element
   gDocElm.setAttribute("contextmenu", "context-menu");
@@ -160,16 +162,21 @@ function init() {
   $("cancel").addEventListener("click", resetBgColor);
   $("default").addEventListener("click", defaultBgColor);
   $("error").addEventListener("click", showAlert);
+  $("about").href = getThanksURL();
+}
+
+function getThanksURL() {
+  var url = GM_getResourceURL("thanks");
+  if (/^data\:/.test(url)) { // If old GM_resourceURL
+    url = url.replace(/text\/plain/, "text/html");
+  }
+  return url;
 }
 
 // Show 'thank you' page
 function showThanks(aEvent) {
   if (aEvent) aEvent.preventDefault();
-  var thanks = GM_getResourceURL("thanks");
-  if (/^data\:/.test(thanks)) { // If old GM_resourceURL
-    thanks = thanks.replace(/text\/plain/, "text/html");
-  }
-  GM_openInTab(thanks); // Open 'thank you' page
+  GM_openInTab(getThanksURL()); // Open 'thank you' page
 }
 
 // Executed on right click
@@ -184,6 +191,8 @@ function popupShowing(aEvent) {
   // Check/uncheck menu items based on prefs
   $("toggle-background-image").checked = GM_getValue("bgImage");
   $("toggle-image-transparency").checked = GM_getValue("imgTrans");
+  $("toggle-image-placeholder").checked = GM_getValue("placeholder");
+  $("toggle-image-placeholder").hidden = !$("toggle-image-transparency").checked;
 }
 
 // Check validity of color value
@@ -290,14 +299,14 @@ function setBgImage(aEnable) {
 
 // Toggle checkerboard background on/off
 function toggleBgImage(aEvent) {
-  if (!aEvent) {
-    setBgImage(!GM_getValue("bgImage"));
-    return;
-  }
-  var node = aEvent.target;
-  if (node instanceof HTMLMenuItemElement) {
-    setBgImage(node.checked);
-  } else {
+  try {
+    var node = aEvent.target;
+    if (node instanceof HTMLMenuItemElement) {
+      setBgImage(node.checked);
+    } else {
+      setBgImage(!GM_getValue("bgImage"));
+    }
+  } catch(ex) {
     setBgImage(!GM_getValue("bgImage"));
   }
 }
@@ -315,20 +324,42 @@ function showTransparency(aEnable) {
 
 // Toggle image transparency on/off
 function toggleTransparency(aEvent) {
-  if (!aEvent) {
-    showTransparency(!GM_getValue("imgTrans"));
-    return;
-  }
-  var node = aEvent.target;
-  if (node instanceof HTMLMenuItemElement) {
-    showTransparency(node.checked);
-  } else {
+  try {
+    var node = aEvent.target;
+    if (node instanceof HTMLMenuItemElement) {
+      showTransparency(node.checked);
+    } else {
+      showTransparency(!GM_getValue("imgTrans"));
+    }
+  } catch(ex) {
     showTransparency(!GM_getValue("imgTrans"));
   }
 }
 
-function goHelp() {
-  GM_openInTab("https://github.com/LouCypher/userscripts/blob/master/image-background/readme.md#change-background-color");
+
+// Enable/disable image placeholder
+function showPlaceholder(aEnable) {
+  var image = document.querySelector("img");
+  if (aEnable) {
+    image.classList.add("placeholder");
+  } else {
+    image.classList.remove("placeholder");
+  }
+  GM_setValue("placeholder", aEnable); // Save image placeholder option to pref
+}
+
+// Toggle image placeholder on/off
+function togglePlaceholder(aEvent) {
+  try {
+    var node = aEvent.target;
+    if (node instanceof HTMLMenuItemElement) {
+      showPlaceholder(node.checked);
+    } else {
+      showPlaceholder(!GM_getValue("placeholder"));
+    }
+  } catch(ex) {
+    showPlaceholder(!GM_getValue("placeholder"));
+  }
 }
 
 function setStyleProperty(aNode, aPropertyName, aValue) {
