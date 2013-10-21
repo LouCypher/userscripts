@@ -1,33 +1,34 @@
-7.8 - Fixed: didn't work on SVG images with Scriptish.
-7.7 - Fixed some compatibility with Scriptish.
-7.6 - Added GM menu command to configure.
-7.5 - Added GM menu command to toggle SVG.
-7.4 - Changed some texts.
-7.3 - Fixed: Context menu error on SVG image.
-7.2 - Fixed: SVG image not always centered.
-7.1 - Centered SVG image.
-    - Iconic <menuitem>.
-7.0 - Works with SVG images.
+  7.10 - Refactored.
+  7.8  - Fixed: didn't work on SVG images with Scriptish.
+  7.7  - Fixed some compatibility with Scriptish.
+  7.6  - Added GM menu command to configure.
+  7.5  - Added GM menu command to toggle SVG.
+  7.4  - Changed some texts.
+  7.3  - Fixed: Context menu error on SVG image.
+  7.2  - Fixed: SVG image not always centered.
+  7.1  - Centered SVG image.
+       - Iconic <menuitem>.
+  7.0  - Works with SVG images.
 
-6.4 - Refactored.
-6.3 - Turn off JSColor if content type is non-image.
-6.2 - Fixed: 'Thank you' page shown as data:text/plain on Scriptish and older Greasemonkey
-6.0 - Added color picker from jscolor.com.
-    - Fixed: conflict with Walnut theme.
+  6.4  - Refactored.
+  6.3  - Turn off JSColor if content type is non-image.
+  6.2  - Fixed: 'Thank you' page shown as data:text/plain on Scriptish and older Greasemonkey
+  6.0  - Added color picker from jscolor.com.
+       - Fixed: conflict with Walnut theme.
 
-5.0 - Added color validator.
+  5.0  - Added color validator.
 
-4.1 - Fixed: image transparency lost when zoom/unzoom image.
-4.0 - Added 'Show Image Transparency' menuitem.
+  4.1  - Fixed: image transparency lost when zoom/unzoom image.
+  4.0  - Added 'Show Image Transparency' menuitem.
 
-3.4 - Using @resource for menu.
-3.3 - Refactored.
-3.2 - Dir changes
-3.1 - Scriptish compatibility.
-3.0 - Background color and patterns are now configurable via context menu.
+  3.4  - Using @resource for menu.
+  3.3  - Refactored.
+  3.2  - Dir changes
+  3.1  - Scriptish compatibility.
+  3.0  - Background color and patterns are now configurable via context menu.
 
-2.2 - Changed name and description.
-2.1 - Configurable color for background checkers in CSS.
-2.0 - Using @resource for CSS.
+  2.2  - Changed name and description.
+  2.1  - Configurable color for background checkers in CSS.
+  2.0  - Using @resource for CSS.
 
-1.0 - Initial release.
+  1.0  - Initial release.

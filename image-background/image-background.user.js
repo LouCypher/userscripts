@@ -20,7 +20,7 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         7.8
+// @version         7.10
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.io/userscripts/image-background/images/screenshot-after.png
@@ -269,24 +269,23 @@ function hidePicker(aEvent) {
 }
 
 function showAlert() {
-  var site = (location.protocol == "file:") ? "file://" : location.hostname;
+  var scheme = location.protocol;
+  var site = (scheme == "file:") ? "file://" : (scheme + "//" + location.hostname);
   alert("Color picker requires JavaScript to be enabled. However,\n" +
         "you can still change the background color by entering any\n" +
         "valid color value.\n\nIf you have NoScript extension, color " +
-        "picker will work if\nyou click 'Allow " + site +
-        "' from NoScript menu.");
+        "picker will work\nif you select 'Allow [ " + site +
+        " ]'\nfrom NoScript menu.");
 }
 
 // Enable/disable checkerboard background
-function setBgImage(aBoolean) {
-  switch(aBoolean) {
-    case true: // Enable checkerboard background
-      gDocElm.style.backgroundImage = ""; // Use checkerboard bg in CSS resource
-      break;
-    case false: // Disable checkerboard background
-      setStyleProperty(gDocElm, "background-image", "none");
-  }
-  GM_setValue("bgImage", aBoolean); // Save background option to pref
+function setBgImage(aEnable) {
+  if (aEnable) // Enable checkerboard background
+    gDocElm.style.backgroundImage = ""; // Use checkerboard bg in CSS resource
+  else // Disable checkerboard background
+    setStyleProperty(gDocElm, "background-image", "none");
+
+  GM_setValue("bgImage", aEnable); // Save background option to pref
 }
 
 // Toggle checkerboard background on/off
@@ -304,21 +303,14 @@ function toggleBgImage(aEvent) {
 }
 
 // Enable/disable image transparency
-function showTransparency(aBoolean) {
-  var styleId = "transparent-image";
-  var style = null;
-  switch (aBoolean) {
-    case true: // Enable image transparency
-      // Inject style
-      style = document.head.appendChild(document.createElement("style"));
-      style.textContent = "img { background-color: transparent !important; }";
-      style.id = styleId;
-      break;
-    case false: // Disable image transparency
-      style = $(styleId);
-      style && style.parentNode.removeChild(style); // Remove style if exists
+function showTransparency(aEnable) {
+  var image = document.querySelector("img");
+  if (aEnable) { // Enable image transparency
+    image.classList.add("transparent");
+  } else { // Disable image transparency
+    image.classList.remove("transparent");
   }
-  GM_setValue("imgTrans", aBoolean); // Save image transparency option to pref
+  GM_setValue("imgTrans", aEnable); // Save image transparency option to pref
 }
 
 // Toggle image transparency on/off
