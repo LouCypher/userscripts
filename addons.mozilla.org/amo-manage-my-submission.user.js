@@ -7,7 +7,7 @@
 // @name            AMO: Manage My Submisions - View Listing Links
 // @namespace       https://userscripts.org/users/12
 // @description     Add/change add-ons view/edit link on AMO DevHub
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @license         MPL 2.0
 // @icon            https://addons.cdn.mozilla.net/media//img/addon-icons/default-32.png
@@ -68,7 +68,7 @@ if (items.length) {
       editLink.parentNode.appendChild(addLink(editLink.getAttribute("href"),
                                               tooltip.title,
                                               "icon-edit"));
-      viewLink = $(".more-actions-popup > ul:last-child > li a");
+      viewLink = $(".more-actions-popup > ul:last-child > li a", items[i]);
       if (viewLink) {
         editLink.href = viewLink.getAttribute("href");
         editLink.title = viewLink.textContent;
