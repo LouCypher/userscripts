@@ -7,6 +7,7 @@
 // ==UserScript==
 // @name            GitHub - Open Source Report Card
 // @namespace       https://userscripts.org/users/12
+// @description     Add link to The Open Source Report Card http://osrc.dfm.io/
 // @version         1.0
 // @author          LouCypher
 // @license         WTFPL
