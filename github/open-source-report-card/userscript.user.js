@@ -12,7 +12,7 @@
 // @license         WTFPL
 // @icon            https://raw.github.com/LouCypher/userscripts/master/github/open-source-report-card/icon48.png
 // @icon64URL       https://raw.github.com/LouCypher/userscripts/master/github/open-source-report-card/icon64.png
-// @screenshot      https://raw.github.com/LouCypher/userscripts/master/github/open-source-report-card/screenshot.jpg
+// @screenshot      https://raw.github.com/LouCypher/userscripts/master/github/open-source-report-card/screenshot.png
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?GitHub+Open+Source+Report+Card
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/github/open-source-report-card
 // @supportURL      https://github.com/LouCypher/userscripts/issues
