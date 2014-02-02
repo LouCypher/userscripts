@@ -1,1 +1,2 @@
+2.0   Use `MutationObserver`.
 1.0   Initial release.

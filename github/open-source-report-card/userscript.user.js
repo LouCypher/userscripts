@@ -8,7 +8,7 @@
 // @name            GitHub - Open Source Report Card
 // @namespace       https://userscripts.org/users/12
 // @description     Add link to The Open Source Report Card http://osrc.dfm.io/
-// @version         1.0
+// @version         2.0
 // @author          LouCypher
 // @license         WTFPL
 // @icon            https://raw.github.com/LouCypher/userscripts/master/github/open-source-report-card/icon48.png
@@ -25,15 +25,35 @@
 // @grant           none
 // ==/UserScript==
 
-var user = document.querySelector(".column-sec.vcard .vcard-username");
-var vcard = document.querySelector(".column-sec.vcard .vcard-details");
-if (user && vcard) {
-  var list = document.createElement("li");
-  list.className = "vcard-detail";
-  list.innerHTML = '<span class="octicon octicon-graph"></span>'
-                 + '<a href="http://osrc.dfm.io/' + user.textContent
-                 + '?ref=userscript">Open Source Report Card</a>';
-  /*var last = vcard.querySelector("li.vcard-detail:last-child")
-  vcard.insertBefore(list, last);*/
-  vcard.appendChild(list);
+function $(aSelector, aNode) {
+  return (aNode || document).querySelector(aSelector);
+}
+
+function addReportLink() {
+  var username = $(".vcard-username");
+  var details = $(".vcard-details");
+  if (username && details) {
+    var list = document.createElement("li");
+    list.className = "vcard-detail";
+    list.innerHTML = '<span class="octicon octicon-graph"></span>'
+                   + '<a href="http://osrc.dfm.io/' + username.textContent
+                   + '?ref=userscript">Open Source Report Card</a>';
+    details.appendChild(list);
+  }
+}
+
+var siteContainer = $("#site-container");
+var vcard = $(".column-sec.vcard");
+if (siteContainer && vcard) {
+  addReportLink();
+
+  if ("MutationObserver" in window || "WebKitMutationObserver" in window) {
+    new (MutationObserver ? MutationObserver : WebKitMutationObserver)(function(aMutations) {
+      aMutations.forEach(function(aMutation) {
+        if (aMutation.removedNodes.length)
+          if (!$(".vcard-detail .octicon-graph"))
+            addReportLink();
+      });
+    }).observe(siteContainer, {childList:true});
+  }
 }
