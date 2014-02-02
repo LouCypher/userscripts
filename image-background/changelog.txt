@@ -1,3 +1,4 @@
+  8.1  - Refactored.
   8.0  - Added 'Show Image Placeholder' menu.
        - Added 'Help' link.
 
