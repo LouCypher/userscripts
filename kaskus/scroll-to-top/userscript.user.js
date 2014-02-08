@@ -69,4 +69,5 @@ if (row) {
   link.innerHTML = '<i class="icon-step-backward header-icon rotate-right"></i>';
   link.addEventListener("click", scrollToTop);
   window.addEventListener("scroll", showButton);
+  showButton();
 }
