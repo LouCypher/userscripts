@@ -10,7 +10,7 @@ Add button on [Kaskus](http://www.kaskus.co.id/) topbar to quickly scroll to top
 
 ### Installation
 
-* via Userscripts.org (not yet submitted)
+* via [Userscripts.org](https://userscripts.org/scripts/show/356658)
 * via [GitHub](https://raw.github.com/LouCypher/userscripts/master/kaskus/scroll-to-top/userscript.user.js)
 
 ### Screenshot
