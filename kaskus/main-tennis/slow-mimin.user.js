@@ -9,7 +9,7 @@
 // @name            Kaskus - Main Tennis - Slow Mimin
 // @namespace       https://userscripts.org/users/12
 // @description     Bikin Mimin jadi lemot.
-// @version         1.0
+// @version         1.1
 // @author          LouCypher
 // @license         WTFPL
 // @icon            http://loucypher.github.io/userscripts/kaskus/kaskus-48.png
@@ -20,9 +20,11 @@
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/kaskus/main-tennis/slow-mimin.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/kaskus/main-tennis/slow-mimin.user.js
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
+// @resource        image https://mediacru.sh/uuNl0z2DzrVH.gif
 // @run-at          document-start
 // @include         http://www.kaskus.co.id/*
 // @grant           unsafeWindow
+// @grant           GM_getResourceURL
 // ==/UserScript==
 
 window.addEventListener("beforescriptexecute", function(aEvent) {
@@ -32,8 +34,9 @@ window.addEventListener("beforescriptexecute", function(aEvent) {
     aEvent.preventDefault();
     document.addEventListener("DOMContentLoaded", function(aEvent) {
       unsafeWindow.$("#pong1").pong("", {
-        ballSpeed: 10,
-        compSpeed: 1,
+        ballSpeed: 15,
+        compSpeed: 5,
+        //ballAngle: 0,
         playerSpeed: 15,
         //playTo: 1,
         paddleHeight: 60
@@ -43,7 +46,7 @@ window.addEventListener("beforescriptexecute", function(aEvent) {
           if (aMutation.addedNodes[0].nodeType === 3) {
             if (aMutation.addedNodes[0].textContent === "you win!")
               unsafeWindow.$(aMutation.addedNodes[0]).before(
-                '<img src="http://www.dab.hi-ho.ne.jp/joji/te/cheer.gif"/><br/>'
+                '<img src="' + GM_getResourceURL("image") + '" style="margin-top:-32px"/><br/>'
               );
           }
         });
