@@ -1,5 +1,6 @@
   9.0  - Use Greasemonkey specific scheme for JSColor image resources for offline use.
        - Don't open thanks.html when in frame.
+       - Upgraded JSColor to version 1.4.2.
 
   8.1  - Refactored.
   8.0  - Added 'Show Image Placeholder' menu.
