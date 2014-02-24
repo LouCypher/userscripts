@@ -31,7 +31,7 @@
 // @supportURL      https://github.com/LouCypher/userscripts/issues
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
-// @require         https://github.com/JasonBarnabe/greasyfork/raw/master/public/libraries/jscolor/1.4.2/jscolor.js?
+// @require         https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/jscolor.js
 // @resource        hs.png https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/hs.png
 // @resource        hv.png https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/hv.png
 // @resource        arrow.gif https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/arrow.gif
