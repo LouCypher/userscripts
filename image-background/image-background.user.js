@@ -20,18 +20,22 @@
 // @name            Standalone Image Background and Transparency
 // @namespace       http://userscripts.org/users/12
 // @description     Change standalone image background and show its transparency on Firefox. Use context menu to configure.
-// @version         8.1
+// @version         9.0a2
 // @author          LouCypher
 // @license         GPL
 // @screenshot      http://loucypher.github.io/userscripts/image-background/images/screenshot-after.png
 // @icon            http://loucypher.github.io/userscripts/image-background/images/miku-icon48.png
 // @icon64URL       http://loucypher.github.io/userscripts/image-background/images/miku-icon64.png
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Standalone+Image+Background
-// @homepageURL     https://github.com/LouCypher/userscripts/tree/master/image-background
+// @homepageURL     http://loucypher.github.io/userscripts/image-background/
 // @supportURL      https://github.com/LouCypher/userscripts/issues
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.user.js
-// @require         https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/jscolor.js
+// @require         https://github.com/JasonBarnabe/greasyfork/raw/master/public/libraries/jscolor/1.4.2/jscolor.js?
+// @resource        hs.png https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/hs.png
+// @resource        hv.png https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/hv.png
+// @resource        arrow.gif https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/arrow.gif
+// @resource        cross.gif https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/cross.gif
 // @resource        CSS https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.css
 // @resource        HTML https://raw.github.com/LouCypher/userscripts/master/image-background/image-background.html
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
@@ -46,6 +50,7 @@
 // @grant           GM_setValue
 // @grant           GM_openInTab
 // @grant           GM_registerMenuCommand
+// @grant           GM_log
 // ==/UserScript==
 
 function $(aId) document.getElementById(aId);
@@ -302,7 +307,10 @@ function init() {
 
   // Check if JavaScript is enabled for JSColor to work
   if (getComputedStyle($("noscript"), null).display == "none") { // If JavaScript is enabled
-    jscolor.dir = "https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/";
+    if (typeof GM_info === "object")  // Greasemonkey, use @resource images for offline use
+      jscolor.dir = GM_getResourceURL("LICENSE").match(/[^\/]+/).toString() + "/";
+    else  // Scriptish
+      jscolor.dir = "https://raw.github.com/LouCypher/userscripts/master/image-background/jscolor/";
     $("color-picker").value = bgColor;
   }
   else { // JavaScript is disabled
@@ -392,10 +400,11 @@ try {
 } catch (ex) {};
 
 var firstRun = GM_getValue("firstRun", true);
-if (firstRun) { // If first time use
+if (firstRun && window.top === window.self) { // If first time use and not in frame
   showThanks(); // Open 'thank you' page
   GM_setValue("firstRun", false); // Don't open 'thank you' page again
 }
 
+//GM_log(GM_getResourceURL("LICENSE")); //.match(/[^\/]+/));
 var gDocElm = null;
 init();
