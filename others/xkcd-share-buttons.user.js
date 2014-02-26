@@ -17,8 +17,7 @@
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/others/xkcd-plus.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/xkcd-plus.user.js
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
-// @include         http://xkcd.com/*
-// @include         https://xkcd.com/*
+// @include         /^https?://(www\.)?xkcd\.com/.*/
 // @grant           none
 // ==/UserScript==
 
