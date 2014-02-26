@@ -8,7 +8,7 @@
 // @id              xkcd-plus@loucypher
 // @name            xkdc+
 // @namespace       http://userscripts.org/users/12
-// @description     Add buttons on xkcd.com to share on Twitter, Tumblr, Pinterest, etc. as well as add link to explainxkcd.com.
+// @description     Add buttons on xkcd.com to share on Twitter, Tumblr, Pinterest, etc. as well as add button for explainxkcd.com.
 // @version         3.0
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
