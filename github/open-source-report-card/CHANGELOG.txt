@@ -1,2 +1,3 @@
+2.1   Updated class name.
 2.0   Use `MutationObserver`.
 1.0   Initial release.

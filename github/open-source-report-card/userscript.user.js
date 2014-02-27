@@ -8,7 +8,7 @@
 // @name            GitHub - Open Source Report Card
 // @namespace       https://userscripts.org/users/12
 // @description     Add link to The Open Source Report Card http://osrc.dfm.io/
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @license         WTFPL
 // @icon            https://raw.github.com/LouCypher/userscripts/master/github/open-source-report-card/icon48.png
@@ -43,8 +43,8 @@ function addReportLink() {
 }
 
 var siteContainer = $("#site-container");
-var vcard = $(".column-sec.vcard");
-if (siteContainer && vcard) {
+var vcards = $(".vcard-details");
+if (siteContainer && vcards) {
   addReportLink();
 
   if ("MutationObserver" in window || "WebKitMutationObserver" in window) {
