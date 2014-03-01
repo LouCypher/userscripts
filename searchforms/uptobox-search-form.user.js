@@ -9,7 +9,7 @@
 // @name            Uptobox - search form
 // @namespace       http://userscripts.org/users/12
 // @description     Add Google search form on uptobox.com
-// @version         1.0
+// @version         2.0
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Uptobox+-+search+form
@@ -24,8 +24,31 @@
 // @grant           none
 // ==/UserScript==
 
-if (document.head) {
-  var link = document.head.appendChild(document.createElement("link"));
+function addSearchForm() {
+  var header = document.getElementById("header");
+  if (header) {
+    var form = header.appendChild(document.createElement("form"));
+    form.outerHTML = '<form action="//www.google.com/search" method="get"'
+                   + ' class="search_form"><input type="hidden"'
+                   + ' name="sitesearch" value="uptobox.com"/>'
+                   + '<input type="search" name="q" size="25" accesskey="s"'
+                   + ' tabindex="1" placeholder="Search for downloads"/>'
+                   + '<input type="submit" value="Search"/></form>';
+  }
+}
+
+var head = document.head;
+if (head) {
+  var css = '.search_form { position: absolute; top: 70px; right: 0;'
+          + ' padding: .5em 0 .75em .75em; background-color: #242424; }'
+          + ' .search_form input { border: 1px solid transparent; }'
+          + ' .search_form input[type="submit"] { background: transparent;'
+          + ' color: #fff; }';
+
+  var style = head.appendChild(document.createElement("style"));
+  style.outerHTML = '<style type="text/css">' + css + '</style>';
+
+  var link = head.appendChild(document.createElement("link"));
   link.outerHTML = '<link rel="search" type="application/opensearchdescription'
                  + '+xml" title="Uptobox" href="https://raw.github.com/'
                  + 'LouCypher/userscripts/master/searchforms/searchplugins/'
@@ -39,17 +62,4 @@ if ((typeof opera === "object" && typeof GM_log !== "function") ||
 } else {
   // Chrome userscript or Tampermonkey (Chrome) or Violentmonkey (Opera)
   document.addEventListener("DOMContentLoaded", addSearchForm, false);
-}
-
-function addSearchForm() {
-  var menu = document.getElementById("container-menu");
-  if (menu) {
-    var form = menu.appendChild(document.createElement("form"));
-    form.outerHTML = '<form action="//www.google.com/search" method="get"'
-                   + ' style="float:right"><input type="hidden"'
-                   + ' name="sitesearch" value="uptobox.com"/>'
-                   + '<input type="text" name="q" size="25" accesskey="s"'
-                   + ' tabindex="1" placeholder="Search for downloads"/>'
-                   + '<input type="submit" value="Search"/></form>';
-  }
 }
