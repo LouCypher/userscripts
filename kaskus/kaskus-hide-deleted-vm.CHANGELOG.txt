@@ -1,15 +1,32 @@
+7.5 - Updated regexp in `@include`.
+    - Don't run if Kaskus is main tenis or over posting.
+    - Refactored.
+
 7.4 - Fixed style for 'unapproved vm'.
     - No confirmation on moderating vm.
+
 7.3 - Changes on GitHub vs Scriptish issue #72.
+
 7.2 - Fixed: 'show/hide' button is shown on profile page not your own.
+
 7.0 - Bumped version.
+
 6.4 - Better logging.
+
 6.3 - Set item's background color to red when it's deleted.
+
 6.2 - Throw error if JavaScript is disabled.
+
 6.1 - Refactored.
+
 6.0 - Add button to toggle show/hide deleted VM.
+
 5.0 - Hide immediately if a post has been deleted.
+
 4.0 - Don't run if user is not logged in or the page is not own profile page.
+
 3.0 - Use afterscriptexecute event.
+
 2.0 - Refactored.
+
 1.0 - Initial release.

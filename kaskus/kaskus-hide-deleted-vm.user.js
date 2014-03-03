@@ -9,7 +9,7 @@
 // @id                kaskus.vm@loucypher
 // @namespace         http://userscripts.org/users/12
 // @description       Hide deleted VM on your profile page.
-// @version           7.4
+// @version           7.5
 // @author            LouCypher
 // @license           WTFPL
 // @icon              http://loucypher.github.io/userscripts/kaskus/kaskus-48.png
@@ -22,8 +22,7 @@
 // @resource          CSS https://raw.github.com/LouCypher/userscripts/master/kaskus/moderated-vm-fix.css
 // @resource          CHANGELOG https://raw.github.com/LouCypher/userscripts/master/kaskus/kaskus-hide-deleted-vm.CHANGELOG.txt
 // @resource          LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
-// @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/[0-9]+\/?$/
-// @include           /^https?:\/\/www\.kaskus\.co\.id\/profile\/?$/
+// @include           /^http://www\.kaskus\.co\.id/profile(/[0-9]+)?/?$/
 // @run-at            document-start
 // @grant             unsafeWindow
 // @grant             GM_getValue
@@ -34,7 +33,6 @@
 // ==/UserScript==
 
 var log = (typeof GM_info == "object") ? "" : "\n";
-start(isMyProfile(getUserId())); // Start if current page is user's profile page
 
 // Get user's numeric id from cookie if user is logged in
 function getUserId() {
@@ -87,8 +85,8 @@ function process(aEvent) {
       b && $("#do-see-more-updates").remove();
       var profile = $("#profile-content");
       profile.append('<div class="item" style="text-align:center"' +
-                     ' id="ajax_loader_html"><img src="http://kkcdn' +
-                     '-static.kaskus.co.id/img/ajax-loader.gif"/></div>');
+                     ' id="ajax_loader_html"><img src="http://kkcdn-static.' +
+                     'kaskus.co.id/img/ajax-loader.gif"/></div>');
       $.getJSON("/profile/stream_activity_vm/all/" + (b ? b : "0") + "/" +
                 $("#userid").val(), function(c) {
         $("#ajax_loader_html").remove("");
@@ -109,10 +107,11 @@ function process(aEvent) {
           html += "</div>";
           profile.append(html);
           if (c.stream_activity.length - 1 == e && f.username != "") {
-            profile.append('<div class="load-more"><a href="javascript:void(0);' +
-                           '" id="do-see-more-updates" onclick="getVM(\'' +
-                           c.oldest_id + '\'); return false;" class="button' +
-                           ' small white">Load More updates</a></div>')
+            profile.append('<div class="load-more"><a href="javascript:' +
+                           'void(0);" id="do-see-more-updates" onclick="' +
+                           'getVM(\'' + c.oldest_id + '\'); return false;"' +
+                           ' class="button small white">Load More updates' +
+                           '</a></div>')
           }
         })
       })
@@ -144,9 +143,13 @@ function contentLoad() {
   // Scriptish doesn't add styles at document-start so we put it here
   GM_addStyle(GM_getResourceText("CSS"));
 
+  if (document.querySelector('div[class^="wrap op"]') ||  // over posting
+      document.querySelector("div.pong-wrapper"))         // main tenis
+    return; // Don't run if Kaskus is over posting or main tenis
+
   if (!("$" in unsafeWindow)) {
     var msg = "JavaScript must be enabled for Kaskus - Hide Deleted VM "
-            + "userscript to work.\nIf you have NoScript extension, "
+            + "user script to work.\nIf you have NoScript extension, "
             + "you must allow `googleapis.com`, `kaskus.com` and\n"
             + "`kaskus.co.id` from NoScript menu.";
     alert(msg);
@@ -156,10 +159,9 @@ function contentLoad() {
   var $ = unsafeWindow.$;
 
   // Add button to toggle show/hide deleted VM
-  $("#say-what .act input").after('<input type="button"' +
-                                  ' value="Show deleted VM"' +
-                                  ' class="button small white"' +
-                                  ' style="float:left"/>');
+  $("#say-what .act input").after('<input type="button" value="Show deleted' +
+                                  ' VM" class="button small white" style="' +
+                                  'float:left"/>');
 
   // Button action
   $("#say-what .act input[type='button']").click(function(e) {
@@ -167,10 +169,14 @@ function contentLoad() {
       e.target.value = e.target.value.replace(/^Show/, "Hide");
       $(".deleted").removeClass("hide");
       unsafeWindow.hideDeleted = false;
-    } else {
+    }
+    else {
       e.target.value = e.target.value.replace(/^Hide/, "Show");
       $(".deleted").addClass("hide");
       unsafeWindow.hideDeleted = true;
     }
   })
 }
+
+// Start if current page is user's profile page
+start(isMyProfile(getUserId()));
