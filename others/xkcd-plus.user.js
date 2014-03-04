@@ -6,10 +6,10 @@
 
 // ==UserScript==
 // @id              xkcd-plus@loucypher
-// @name            xkdc+
+// @name            xkcd+
 // @namespace       http://userscripts.org/users/12
 // @description     Add buttons on xkcd.com to share on Twitter, Tumblr, Pinterest, etc. as well as add button for explainxkcd.com.
-// @version         3.0
+// @version         3.0.1
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @homepageURL     https://github.com/LouCypher/userscripts
