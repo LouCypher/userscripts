@@ -1,0 +1,2 @@
+ 2.0   - Fixed compatibility with Sonny's Greasy Fork user script.
+ 1.0   - Initial release.
