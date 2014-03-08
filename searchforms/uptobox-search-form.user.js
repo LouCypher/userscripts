@@ -9,7 +9,7 @@
 // @name            Uptobox - search form
 // @namespace       http://userscripts.org/users/12
 // @description     Add Google search form on uptobox.com
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Uptobox+-+search+form
@@ -24,7 +24,22 @@
 // @grant           none
 // ==/UserScript==
 
+function addStyle() {
+  var css = '.search_form { position: absolute; top: 70px; right: 0;'
+          + ' padding: .5em 0 .75em .75em; background-color: #242424; }'
+          + ' .search_form input { border: 1px solid transparent; }'
+          + ' .search_form input[type="submit"] { background: transparent;'
+          + ' color: #fff; } .switch_lang { position: relative; z-index: 1; }';
+
+  var style = document.head.appendChild(document.createElement("style"));
+  style.outerHTML = '<style type="text/css" id="style-search-form">'
+                  + css + '</style>';
+}
+
 function addSearchForm() {
+  if (!document.getElementById("style-search-form"))
+    addStyle();
+
   var header = document.getElementById("header");
   if (header) {
     var form = header.appendChild(document.createElement("form"));
@@ -35,31 +50,24 @@ function addSearchForm() {
                    + ' tabindex="1" placeholder="Search for downloads"/>'
                    + '<input type="submit" value="Search"/></form>';
   }
+  else
+    throw new Error("Sam Ting Wen Wong!");
 }
 
-var head = document.head;
-if (head) {
-  var css = '.search_form { position: absolute; top: 70px; right: 0;'
-          + ' padding: .5em 0 .75em .75em; background-color: #242424; }'
-          + ' .search_form input { border: 1px solid transparent; }'
-          + ' .search_form input[type="submit"] { background: transparent;'
-          + ' color: #fff; }';
+if (document.head) {
+  addStyle();
 
-  var style = head.appendChild(document.createElement("style"));
-  style.outerHTML = '<style type="text/css">' + css + '</style>';
-
-  var link = head.appendChild(document.createElement("link"));
+  /* Search plugin */
+  var link = document.head.appendChild(document.createElement("link"));
   link.outerHTML = '<link rel="search" type="application/opensearchdescription'
                  + '+xml" title="Uptobox" href="https://raw.github.com/'
                  + 'LouCypher/userscripts/master/searchforms/searchplugins/'
                  + 'uptobox-via-google.xml"/>';
 }
 
-if ((typeof opera === "object" && typeof GM_log !== "function") || 
-    (typeof safari === "object")) {
-  // If Opera UserJS and not Violentmonkey or if Safari (NinjaKit)
+// Opera or Safari (NinjaKit)
+if (typeof opera === "object" || typeof safari === "object")
   addSearchForm();
-} else {
-  // Chrome userscript or Tampermonkey (Chrome) or Violentmonkey (Opera)
+
+else // Firefox or Chrome
   document.addEventListener("DOMContentLoaded", addSearchForm, false);
-}
