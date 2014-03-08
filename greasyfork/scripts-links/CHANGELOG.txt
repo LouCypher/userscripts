@@ -1,2 +1,6 @@
+ 3.0   - Don't install scripts that are under review.
+       - Fixed: 'update' links appear on scripts not owned by logged in user.
+
  2.0   - Fixed compatibility with Sonny's Greasy Fork user script.
+
  1.0   - Initial release.
