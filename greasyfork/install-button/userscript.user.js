@@ -9,7 +9,7 @@
 // @name            Greasy Fork - More Install button
 // @namespace       https://github.com/LouCypher/userscripts
 // @description     Add install button on script Code, Versions and Feedback page.
-// @version         1.0
+// @version         2.0
 // @author          LouCypher
 // @license         WTFPL
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Greasy+Fork+-+More+Install+button
@@ -25,6 +25,7 @@
 // @grant           none
 // ==/UserScript==
 
+var blocked = /\/scripts\/(94|115|116|117|119|120|121|122|123|172)\//;
 var header, title;
 header = document.querySelector("#script-info header")
 if (header)
@@ -44,9 +45,18 @@ if (title) {
   link.href = "/scripts/" + scriptId + "/code.user.js";
   link.dataset.pingUrl = "/scripts/" + scriptId + "/install-ping"
                        + (authToken ? authToken : "");
-  link.className = "install-link";
   link.textContent = "Install";
-  link.style = "float:right";
+  link.className = "install-link";
+  link.style.cssFloat = "right";
+
+  if (blocked.test(location.href)) {
+    link.href = "/scripts/under-assessment";
+    link.style.backgroundColor = "maroon";
+    link.addEventListener("click", function(aEvent) {
+      aEvent.preventDefault();
+      alert("This script is currently under review");
+    });
+  }
 }
 
 else
