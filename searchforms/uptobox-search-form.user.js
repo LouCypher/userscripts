@@ -9,7 +9,7 @@
 // @name            Uptobox - search form
 // @namespace       http://userscripts.org/users/12
 // @description     Add Google search form on uptobox.com
-// @version         2.1
+// @version         2.1.1
 // @author          LouCypher
 // @license         WTFPL http://www.wtfpl.net/
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Uptobox+-+search+form
@@ -17,6 +17,7 @@
 // @supportURL      https://github.com/LouCypher/userscripts/issues
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/searchforms/uptobox-search-form.user.js
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/searchforms/uptobox-search-form.user.js
+// @screenshot      https://raw.github.com/LouCypher/userscripts/master/searchforms/uptobox-search-form.png
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @include         http://uptobox.com/*
 // @include         http://www.uptobox.com/*
