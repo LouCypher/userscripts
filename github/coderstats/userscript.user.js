@@ -8,7 +8,7 @@
 // @name            GitHub - CoderStats
 // @id              github-coderstats@loucypher
 // @namespace       https://github.com/LouCypher/userscripts
-// @description     Add link to CoderStats http://http://coderstats.net//
+// @description     Add link to CoderStats http://coderstats.net//
 // @version         1.0
 // @author          LouCypher
 // @license         WTFPL
@@ -47,6 +47,7 @@ function addReportLink() {
 
 var siteContainer = $("#site-container");
 var vcards = $(".vcard-details");
+
 if (siteContainer && vcards) {
   addReportLink();
 
@@ -60,5 +61,6 @@ if (siteContainer && vcards) {
     }).observe(siteContainer, {childList:true});
   }
 }
+
 else
   console.log("GitHub - CoderStats user script: Sam Ting Wen Wong!");
