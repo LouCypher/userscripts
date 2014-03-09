@@ -1,3 +1,5 @@
-2.1   Updated class name.
-2.0   Use `MutationObserver`.
-1.0   Initial release.
+  2.2   - Updated to work with CoderStats user script.
+  2.1   - Updated class name.
+  2.0   - Use `MutationObserver`.
+
+  1.0   - Initial release.
