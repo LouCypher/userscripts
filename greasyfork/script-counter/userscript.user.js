@@ -12,6 +12,7 @@
 // @version         1.0
 // @author          LouCypher
 // @license         WTFPL
+// @screenshot      https://raw.github.com/LouCypher/userscripts/master/greasyfork/script-counter/screenshot.png
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Greasy+Fork+-+Script+Counter
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/greasyfork/script-counter
 // @supportURL      https://github.com/LouCypher/userscripts/issues
