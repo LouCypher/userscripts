@@ -1,1 +1,2 @@
+ 1.1   - Fixed: counter is hidden with blue/brown style in Sonny's script
  1.0   - Initial release.
