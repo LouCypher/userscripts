@@ -31,8 +31,8 @@ function getXPCOMInterface(aClass, aInterface) {
 }
 
 const iOService = getXPCOMInterface("network/io-service;1", "nsIIOService");
-const getXPCOMInterface= getXPCOMService("content/style-sheet-service;1",
-                                         "nsIStyleSheetService");
+const styleSheetService = getXPCOMInterface("content/style-sheet-service;1",
+                                            "nsIStyleSheetService");
 
 let css = "/* Add-ons Manager Scriptish Screenshot\n\
    by LouCypher */\n\n\
