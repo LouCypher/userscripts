@@ -9,7 +9,7 @@
 // @name            Greasy Fork - Script Counter
 // @namespace       https://github.com/LouCypher/userscripts
 // @description     Add number of scripts on user's profile page
-// @version         1.1
+// @version         2.0
 // @author          LouCypher
 // @license         WTFPL
 // @screenshot      https://raw.github.com/LouCypher/userscripts/master/greasyfork/script-counter/screenshot.png
@@ -29,36 +29,17 @@ function throwError() {
   throw new Error("Some thing went wrong.");
 }
 
-// For blue/brown style in Sonny's script
-function addStyle(aNum) {
-  var css = 'body > h2:after { content: " - ' + aNum + ' Scripts" !important; }';
-  var style = document.head.appendChild(document.createElement("style"));
-  style.type = "text/css";
-  style.textContent = css;
-}
-
-var scriptList = document.querySelectorAll("#user-script-list > li");
-var scriptTable = document.getElementById("script-table");
 var scripts;
 
+var scriptList = document.querySelectorAll("#user-script-list > li");
 if (scriptList.length)
   scripts = scriptList.length;  // User has script(s)
-
-// If user has script(s) and Sonny's user script is installed
-else if (scriptTable) {
-  var rows = scriptTable.querySelectorAll("tr");  // Count number of rows
-  scripts = rows.length - 1;  // Number of scripts = number of rows - 1
-}
 
 if (scripts) {  // If user has script(s)
   var username = document.querySelector("h2");
   var title = document.querySelector("body > section:not([id]) h3");
-  if (title)
-    // If using brown/blue style by Sonny's script
-    if (getComputedStyle(title, null).getPropertyValue("display") == "none")
-      addStyle(scripts);  // overwrite style
-    else  // add number of script(s) in Scripts section
-      title.appendChild(document.createTextNode(" (" + scripts + ")"));
+  if (title)  // add number of script(s) in Scripts section
+    title.appendChild(document.createTextNode(" (" + scripts + ")"));
   else
     throwError(); // Sam ting wen wong
 }

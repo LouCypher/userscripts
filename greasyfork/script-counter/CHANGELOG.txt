@@ -1,2 +1,3 @@
- 1.1   - Fixed: counter is hidden with blue/brown style in Sonny's script
+ 2.0   - No more attempt to make it work with Sonny's script as he already adapted this script to his.
+ 1.1   - Fixed: counter is hidden with blue/brown style in Sonny's script.
  1.0   - Initial release.
