@@ -3,7 +3,7 @@
  *  file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // ==UserScript==
-// @id              addons-manager-stylish-install-style-from-url
+// @id              addons-manager-stylish-install-style-from-url@loucypher
 // @name            Add-ons Manager - Stylish - Install style from URL
 // @namespace       https://github.com/LouCypher/userscripts
 // @description     Add menu item to install style from URL. Requires Stylish 1.4 or newer.
