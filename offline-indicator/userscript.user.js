@@ -20,7 +20,7 @@
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Offline+Indicator
 // @homepageURL     https://github.com/LouCypher/userscripts/tree/master/offline-indicator
 // @supportURL      https://github.com/LouCypher/userscripts/issues
-// @updateURL       https://raw.github.com/LouCypher/userscripts/master/offline-indicator/usercript.user.js
+// @updateURL       https://raw.github.com/LouCypher/userscripts/master/offline-indicator/userscript.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/offline-indicator/userscript.user.js
 // @resource        CSS https://raw.github.com/LouCypher/userscripts/master/offline-indicator/offline-indicator.css
 // @resource        SVG https://raw.github.com/LouCypher/userscripts/master/offline-indicator/offline-indicator.svg

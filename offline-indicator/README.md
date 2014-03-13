@@ -10,7 +10,7 @@ Scriptish, Greasemonkey, Tampermonkey, Violentmonkey.
 
 ### Installation
 
-* [Install](https://raw.github.com/LouCypher/userscripts/master/offline-indicator/usercript.user.js)
+* [Install](https://raw.github.com/LouCypher/userscripts/master/offline-indicator/userscript.user.js)
 
 ### Screenshot
 
