@@ -1,0 +1,5 @@
+  2.1   - Fixed: icon not displayed with Violentmonkey on Opera 12.
+  2.0   - Use `@resource` CSS.
+        - Added `@icon` and `@icon64` metadata.
+
+  1.0   - Initial release.
