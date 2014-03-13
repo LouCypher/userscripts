@@ -2,6 +2,8 @@
 
 Add icon to web page on bottom right as indicator when in offline mode.
 
+Inspired by [Barbiegirl](https://greasyfork.org/users/36)'s [OFFLINE ALERT](https://greasyfork.org/scripts/193) user script.
+
 ### Compatibility
 
 Scriptish, Greasemonkey, Tampermonkey, Violentmonkey.
@@ -17,5 +19,8 @@ Scriptish, Greasemonkey, Tampermonkey, Violentmonkey.
 ### Licenses
 
 * User script: [WTFPL](http://www.wtfpl.net/txt/copying/).
+
 * CSS: [MIT License](https://raw.github.com/LouCypher/userscripts/master/licenses/MIT/LICENSE.txt).
-* Icon: Public domain.
+
+* Icon by [Tango! Desktop Project](http://tango.freedesktop.org/Tango_Desktop_Project).
+It has been released into the [public domain](http://tango.freedesktop.org/Frequently_Asked_Questions#Terms_of_Use.3F) by its author.

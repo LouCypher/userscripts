@@ -11,6 +11,7 @@
 // @description     Add icon to web page on bottom right as indicator when in offline mode.
 // @version         2.1
 // @author          LouCypher
+// @contributor     Tango! Desktop Project (icon)
 // @license         WTFPL
 // @CSS-license     MIT License
 // @SVG-license     Public domain
