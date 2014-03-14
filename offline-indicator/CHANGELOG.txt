@@ -1,3 +1,6 @@
+  3.0   - New feature: change icon position by clicking on it.
+        - Upgrade license to MIT License.
+
   2.1   - Fixed: icon not displayed with Violentmonkey on Opera 12.
   2.0   - Use `@resource` CSS.
         - Added `@icon` and `@icon64` metadata.

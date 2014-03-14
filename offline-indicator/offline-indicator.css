@@ -27,10 +27,24 @@
   display: none;
   padding: 10px;
   position: fixed;
-  bottom: 0;
-  right: 0;
   z-index: 32768;
 }
+
+.offline-indicator-icon-top {
+  top: 0;
+} 
+
+.offline-indicator-icon-right {
+  right: 0;
+} 
+
+.offline-indicator-icon-bottom {
+  bottom: 0;
+} 
+
+.offline-indicator-icon-left {
+  left: 0;
+} 
 
 #offline-indicator img {
   width: 24px;
