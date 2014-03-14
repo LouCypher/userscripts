@@ -1,5 +1,6 @@
   3.0   - New feature: change icon position by clicking on it.
         - Don't run when in frame.
+        - Use PNG as icon instead of SVG.
         - Upgrade license to MIT License.
 
   2.1   - Fixed: icon not displayed with Violentmonkey on Opera 12.

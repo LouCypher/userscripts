@@ -32,7 +32,7 @@
 // @author          LouCypher
 // @contributor     Tango! Desktop Project (icon)
 // @license         MIT License
-// @SVG-license     Public domain
+// @icon-license    Public domain
 // @icon            https://raw.github.com/LouCypher/userscripts/master/offline-indicator/icon48.png
 // @icon64URL       https://raw.github.com/LouCypher/userscripts/master/offline-indicator/icon64.png
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Offline+Indicator
@@ -41,7 +41,7 @@
 // @updateURL       https://raw.github.com/LouCypher/userscripts/master/offline-indicator/userscript.user.js
 // @downloadURL     https://raw.github.com/LouCypher/userscripts/master/offline-indicator/userscript.user.js
 // @resource        CSS https://raw.github.com/LouCypher/userscripts/master/offline-indicator/offline-indicator.css
-// @resource        SVG https://raw.github.com/LouCypher/userscripts/master/offline-indicator/offline-indicator.svg
+// @resource        ICON https://raw.github.com/LouCypher/userscripts/master/offline-indicator/icon24.png
 // @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/offline-indicator/CHANGELOG.txt
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/MIT/LICENSE.txt
 // @include         /^(https?|ftp|unmht):.*/
@@ -131,10 +131,10 @@ if (document instanceof HTMLDocument && window.self === window.top) {
   }
 
   var img = div.appendChild(document.createElement("img"));
-  img.src = GM_getResourceURL("SVG");
+  img.src = GM_getResourceURL("ICON");
   if (typeof opera === "object")
-    img.src = img.src.replace(/^data:/, "data:image/svg+xml");
-  img.alt = "Working offline"
+    img.src = img.src.replace(/^data:/, "data:image/png");
+  img.alt = "Working offline";
   img.title = img.alt + "\nClick to change its position";
   img.addEventListener("click", changePosition);
 
