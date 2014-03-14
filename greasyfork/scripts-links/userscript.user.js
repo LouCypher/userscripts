@@ -3,7 +3,7 @@
 // @name            Greasy Fork - Scripts Links
 // @namespace       https://userscripts.org/users/12
 // @description     Add more scripts' links on scripts listing.
-// @version         3.0
+// @version         3.1
 // @author          LouCypher
 // @license         MIT License
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Greasy+Fork+-+Scripts+Links
@@ -68,7 +68,7 @@ if (typeof GM_addStyle !== "function" && GM_log !== "function") {
   }
 }
 
-var blocked = /(94|115|116|117|119|120|121|122|123|172)$/;
+var blocked = /\/(94|115|116|117|119|120|121|122|123|172)$/;
 var user = $(".user-profile-link a"); // Check if you're logged in
 
 /* Get CSRF authenticity token */
