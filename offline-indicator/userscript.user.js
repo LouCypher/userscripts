@@ -134,7 +134,8 @@ if (document instanceof HTMLDocument) {
   img.src = GM_getResourceURL("SVG");
   if (typeof opera === "object")
     img.src = img.src.replace(/^data:/, "data:image/svg+xml");
-  img.alt = img.title = "Working offline";
+  img.alt = "Working offline"
+  img.title = img.alt + "\nClick to change its position";
   img.addEventListener("click", changePosition);
 
   if (!navigator.onLine)
