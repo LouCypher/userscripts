@@ -103,8 +103,8 @@ function changePosition() {
   }
 }
 
-// Run on HTML document only
-if (document instanceof HTMLDocument) {
+// Run on HTML document only and not in frame
+if (document instanceof HTMLDocument && window.self === window.top) {
   GM_addStyle(GM_getResourceText("CSS"));
 
   // Append <div> to <html> element
