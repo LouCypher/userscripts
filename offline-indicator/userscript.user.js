@@ -32,7 +32,7 @@
 // @author          LouCypher
 // @contributor     Tango! Desktop Project (icon)
 // @license         MIT License
-// @icon-license    Public domain
+// @license-icon    Public domain
 // @icon            https://raw.github.com/LouCypher/userscripts/master/offline-indicator/icon48.png
 // @icon64URL       https://raw.github.com/LouCypher/userscripts/master/offline-indicator/icon64.png
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Offline+Indicator
