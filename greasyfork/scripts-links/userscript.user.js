@@ -3,7 +3,7 @@
 // @name            Greasy Fork - Scripts Links
 // @namespace       https://userscripts.org/users/12
 // @description     Add more scripts' links on scripts listing.
-// @version         3.1
+// @version         3.2
 // @author          LouCypher
 // @license         MIT License
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Greasy+Fork+-+Scripts+Links
@@ -80,8 +80,6 @@ var authToken = csrfToken ? "?authenticity_token=" +
 var scriptBoxes = $$(".script-list article");
 //GM_log(scriptBoxes.length);
 if (scriptBoxes.length) {
-  GM_addStyle(".script-list li{height:200px!important}");
-
   var box, node, name, href, install;
   for (var i = 0; i < scriptBoxes.length; i++) {
     box = scriptBoxes[i];
