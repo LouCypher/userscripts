@@ -1,3 +1,5 @@
+  3.3   - Added 'sync' links.
+        - Cosmetic changes.
   3.2   - Don't overwrite script entries' height.
   3.1   - Fixed regexp.
   3.0   - Don't install scripts that are under review.

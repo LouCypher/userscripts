@@ -7,10 +7,10 @@
 // @author          LouCypher
 // @license         MIT License
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Greasy+Fork+-+Scripts+Links
-// @homepageURL     https://github.com/LouCypher/userscripts/tree/master/greasyfork/scripts-links
-// @supportURL      https://github.com/LouCypher/userscripts/issues
-// @updateURL       https://raw.github.com/LouCypher/userscripts/master/greasyfork/scripts-links/userscript.user.js
-// @downloadURL     https://raw.github.com/LouCypher/userscripts/master/greasyfork/scripts-links/userscript.user.js
+// @homepageURL     https://greasyfork.org/scripts/174
+// @supportURL      https://greasyfork.org/scripts/174/feedback
+// @updateURL       https://greasyfork.org/scripts/174/code.user.js
+// @downloadURL     https://greasyfork.org/scripts/174/code.user.js
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/greasyfork/scripts-links/LICENSE.txt
 // @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/greasyfork/scripts-links/CHANGELOG.txt
 // @include         https://greasyfork.org/scripts*
