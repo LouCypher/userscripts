@@ -14,10 +14,10 @@
 // @license         WTFPL
 // @screenshot      https://raw.github.com/LouCypher/userscripts/master/greasyfork/script-counter/screenshot.png
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Greasy+Fork+-+Script+Counter
-// @homepageURL     https://github.com/LouCypher/userscripts/tree/master/greasyfork/script-counter
-// @supportURL      https://github.com/LouCypher/userscripts/issues
-// @updateURL       https://raw.github.com/LouCypher/userscripts/master/greasyfork/script-counter/userscript.user.js
-// @downloadURL     https://raw.github.com/LouCypher/userscripts/master/greasyfork/script-counter/userscript.user.js
+// @homepageURL     https://greasyfork.org/scripts/180
+// @supportURL      https://greasyfork.org/scripts/180/feedback
+// @updateURL       https://greasyfork.org/scripts/180/code.user.js
+// @downloadURL     https://greasyfork.org/scripts/180/code.user.js
 // @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/greasyfork/script-counter/CHANGELOG.txt
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @run-at          document-end
