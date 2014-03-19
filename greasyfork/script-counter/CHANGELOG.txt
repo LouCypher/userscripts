@@ -1,3 +1,5 @@
+  3.0   - Added user discussions link
+
   2.1   - If error occured, display message on page alert box.
   2.0   - No more attempt to make it work with Sonny's script as he already adapted this script to his.
 
