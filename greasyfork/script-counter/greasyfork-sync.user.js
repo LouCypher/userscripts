@@ -9,7 +9,7 @@
 // @name            Greasy Fork - Script Counter
 // @namespace       https://github.com/LouCypher/userscripts
 // @description     Add number of scripts on user's profile page
-// @version         3.0
+// @version         3.1
 // @author          LouCypher
 // @license         WTFPL
 // @screenshot      https://raw.github.com/LouCypher/userscripts/master/greasyfork/script-counter/screenshot.png
@@ -22,7 +22,7 @@
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @run-at          document-end
 // @include         https://greasyfork.org/users/*
-// @grant           none
+// @grant           GM_addStyle
 // ==/UserScript==
 
 function $(aSelector, aNode) {
@@ -63,6 +63,33 @@ function showError() {
     console.log("Some thing went wrong.");
 }
 
+// Opera UserJS doesn't recognize GM_addStyle so we re-write the function
+if (typeof GM_addStyle !== "function") {
+  function GM_addStyle(aCSS) {
+    var style = createElement("style");
+    style.type = "text/css";
+    style.textContent = aCSS;
+    $("head").appendChild(style);
+  }
+}
+
+GM_addStyle(".discussion-more{list-style-image:url(data:image/png;base64,\
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A\
+/wD/oL2nkwAAAsFJREFUOMulk0FoXFUUhr9377lvplPHkjSTNEXohFYwhibgRjsqrS0mG2EQXdil\
+6xTc6KY4XUwg6FYCbkQRREFwEYqFGFpN1VQQkZimUVEyXbXJmybqZPJm3rv3XTeT2o1uPMvDOf85\
+/Pxf4L3nwZq5dHESmAIqwGivvQ4sAwu1+uwXD84H+wIzly6WgQtDR46eHxsfHywfG5GBUgmAZhTR\
+uL1h135a2dq8e+cTYK5Wn23cF+gtz5w+N1l96lSlqLuG3R8cO58laJXR91JI4QmDDVO+u/Fta+nq\
+4jxQq9VnG9L75MLpc5PVZytnipsfpTTf28Uoh9EOrTL+WGvzp/IcevUgz7x8pghUl64ubgKva50l\
+k0NHht98ofriwL2PM+69H5MXR04sRltEO5AOXrp0bu4ShFB+/kTut19/KV+5PH9TAVNj4xODKjFs\
+f9AhJ5ZQpxixBNLBmRbOtMlMjDcpf326haSasfGJQWBKgEr52IjEPzpELDnlEG1x2R7pdgvXsrAt\
+KA6gCNF9Qvf7hPLxEQEqAowOlEo03+lixKEyS3xrh260DanCcAjlH8KicSh8M8DNtBn+vAQwum8i\
+SmcEmwnxzzukdgcIML4fz0FiBIuQeoUnQGPu50AB680oovicwa3GOBvjsQgPk1GggyH2IXs+R0ye\
+PfL0TxeIoghgXQHLjcaGPfBkSEaXjA6KPNoXsRgSb+gQEhPS9jn2fJ6+s0KjsWGBZQUsrK2ubLmC\
+pb9+GI9FkcOhSdGkCCmGjg9JjHD8LUVWSLi1urIFLOhrS1//fuXy/FEt5uRjr4zlVKjpfuVw5HvX\
+DV0fkogw+jaceC1g+cb11trqyoe1+uy7+ybOXb+2OARUT73xdLF/+hHaX3a5M5cgCI9OC4fPBvhC\
+wjf/RHnuX2AaPv/4yYnBcnlESj2Yoiji9n/B9H9w/hupo0mgKfUuDwAAAABJRU5ErkJggg==)};");
+// YAY! PINK!
+
 var scripts;
 
 var scriptEntries = $$("#user-script-list > li");
@@ -84,8 +111,9 @@ if (scripts) {  // If user has script(s)
   // Add "discussions on user's scripts" link
   var userForum = $("#user-discussions-on-scripts-written ul");
   if (userForum) {
-    userForum.appendChild(createElement("li"))
-             .appendChild(createLink(userForumURL, "More discussions\u2026"));
+    var list = userForum.appendChild(createElement("li"));
+    list.className = "discussion-more";
+    list.appendChild(createLink(userForumURL, "More discussions\u2026"));
   }
   else {
     var scriptList = $("#user-script-list") || $("#table-container");
