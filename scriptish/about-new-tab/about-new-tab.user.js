@@ -3,8 +3,6 @@
  *  License, v. 2.0. If a copy of the MPL was not distributed with this
  *  file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- *  Contributor(s):
- *  - LouCypher (original code)
  */
 
 // ==UserScript==
@@ -12,7 +10,7 @@
 // @name            about:newtab
 // @namespace       http://mozilla.status.net/loucypher
 // @description     Add input fields to change rows and columns setting on about:newtab page.
-// @version         3.1
+// @version         3.3
 // @author          LouCypher
 // @contributor     Benjamin Humphrey - icons http://findicons.com/icon/554396/64_thumbnails
 // @license         MPL 2.0

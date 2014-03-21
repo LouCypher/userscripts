@@ -1,3 +1,4 @@
+3.3 - Refactored.
 3.1 - Prevent `nsIStyleSheetService` from re-registering stylesheet on different locales.
 3.0 - Use `@resource` and `DOMParser` to insert HTML elements.
 2.1 - Fixed error with older version of New Tab Tools.
