@@ -8,7 +8,7 @@
 // @id              chrome-newtab-blank@loucypher
 // @name            Google Chrome - Blank New Tab
 // @namespace       https://github.com/LouCypher/userscripts
-// @description     Use blank page as new tab
+// @description     Use blank page as new tab on Google Chrome.
 // @version         1.0
 // @author          LouCypher
 // @license         WTFPL

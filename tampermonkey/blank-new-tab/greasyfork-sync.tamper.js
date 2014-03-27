@@ -8,15 +8,15 @@
 // @id              chrome-newtab-blank@loucypher
 // @name            Google Chrome - Blank New Tab
 // @namespace       https://github.com/LouCypher/userscripts
-// @description     Use blank page as new tab
-// @version         1.0pre
+// @description     Use blank page as new tab on Google Chrome.
+// @version         1.0
 // @author          LouCypher
 // @license         WTFPL
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Chrome+New+Tab+Blank
-// @homepageURL     
-// @supportURL      
-// @downloadURL     
-// @updateURL       
+// @homepageURL     https://greasyfork.org/scripts/217
+// @supportURL      https://greasyfork.org/scripts/217/feedback
+// @downloadURL     https://greasyfork.org/scripts/217/code.user.js
+// @updateURL       https://greasyfork.org/scripts/217/code.user.js
 // @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/tampermonkey/blank-new-tab/CHANGELOG.txt
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/licenses/WTFPL/LICENSE.txt
 // @include         /^https?://www\.google\.[a-z\.]+/\_/chrome/newtab.*/
