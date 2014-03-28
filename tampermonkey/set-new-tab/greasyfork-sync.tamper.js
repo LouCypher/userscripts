@@ -27,7 +27,7 @@ if (/^https?:\/\/www.google.[a-z.]+\/\_\/chrome\/newtab.*/.test(location.href)) 
 }
 
 GM_registerMenuCommand("Set new tab page", function() {
-  var setCurrentPage = confirm("Use current page as new tab? Press 'Cancel' to enter URL");
+  var setCurrentPage = confirm("Use current page as new tab?\mPress 'Cancel' to enter URL");
   if (setCurrentPage)
     GM_setValue("newTabURL", location.href);
   else {
