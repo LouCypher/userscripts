@@ -1,1 +1,4 @@
+  2.1   - Refactored.
+  2.0   - Added more menu commands for setting current page as new tab.
+
   1.0   - Initial release.

@@ -3,7 +3,7 @@
 // @name            Google Chrome - Set New Tab
 // @namespace       https://github.com/LouCypher/userscripts
 // @description     Set a specified URL as new tab page on Google Chrome.
-// @version         2.0
+// @version         2.1
 // @author          LouCypher
 // @license         MIT License
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Google+Chrome+-+Set+New+Tab
@@ -21,13 +21,20 @@
 // @grant           GM_registerMenuCommand
 // ==/UserScript==
 
-var isDefaultNewTab = /^https?:\/\/www.google.[a-z.]+\/\_\/chrome\/newtab.*/.test(top.location.href);
+const REGEXP = /^https?:\/\/www.google.[a-z.]+\/\_\/chrome\/newtab.*/;
+var isDefaultNewTab = REGEXP.test(top.location.href);
 
-function setNewTabURL(aMsg, aURL) {
+function setNewTabURL(aURL, aMsg) {
+  var message = "Enter URL as new tab.\n" +
+                "Enter 'about:blank' to use a blank page.\n" +
+                "Enter empty string to use browser default.";
+  if (aMsg)
+    message = aMsg + "\nor\n" + message;
+
   if (isDefaultNewTab)
     aURL = "";
 
-  var newTabURL = prompt(aMsg, aURL);
+  var newTabURL = prompt(message, aURL);
   if (newTabURL || newTabURL === "")
     GM_setValue("newTabURL", newTabURL);
 }
@@ -35,19 +42,18 @@ function setNewTabURL(aMsg, aURL) {
 if (isDefaultNewTab) {
   var newTabURL = GM_getValue("newTabURL", "");
   if (newTabURL) {
+    stop(); // in the name of love
     document.documentElement.innerHTML = "<head></head><body></body>";
     location.replace(newTabURL);
   }
 }
 
 GM_registerMenuCommand("New Tab: set a new location", function() {
-  setNewTabURL("Enter URL as new tab.\n" +
-               "Enter 'about:blank' to use a blank page.\n" +
-               "Leave it empty to use the default.",
-               GM_getValue("newTabURL", ""));
+  setNewTabURL(GM_getValue("newTabURL", ""));
 });
 
-GM_registerMenuCommand("New Tab: use current page", function() {
-  setNewTabURL("Press 'OK' to use current page or enter a new location as new tab.",
-               top.location.href);
-});
+if (!isDefaultNewTab) {
+  GM_registerMenuCommand("New Tab: use current page", function() {
+    setNewTabURL(top.location.href, "Press 'OK' to use current page");
+  });
+}
