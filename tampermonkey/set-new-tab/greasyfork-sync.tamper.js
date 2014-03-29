@@ -39,12 +39,12 @@ function setNewTabURL(aURL, aMsg) {
     GM_setValue("newTabURL", newTabURL);
 }
 
-if (isDefaultNewTab) {
+if (isDefaultNewTab) {  // If default new tab
   var newTabURL = GM_getValue("newTabURL", "");
   if (newTabURL) {
     stop(); // in the name of love
     document.documentElement.innerHTML = "<head></head><body></body>";
-    location.replace(newTabURL);
+    location.replace(newTabURL);  // Redirect to a specified new tab
   }
 }
 
