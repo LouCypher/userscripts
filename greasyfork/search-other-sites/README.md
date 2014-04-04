@@ -13,6 +13,7 @@ Add search option to search on [Userscripts.org](https://userscripts.org) and [O
 ### Installation
 
 * [via GitHub](https://raw.github.com/LouCypher/userscripts/master/greasyfork/search-other-sites/userscript.user.js)
+* [via Greasy Fork](https://greasyfork.org/scripts/259/code.user.js)
 
 ### To-do
 
