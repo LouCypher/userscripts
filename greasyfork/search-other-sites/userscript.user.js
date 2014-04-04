@@ -2,7 +2,7 @@
 // @id              greasyfork-search-other-sites@loucypher
 // @name            Greasy Fork - Search other sites
 // @namespace       https://github.com/LouCypher/userscripts
-// @description     Add search option to search on USO and OUJS.
+// @description     Add search option to search on Userscripts.org and OpenUserJS.org.
 // @version         1.0
 // @author          LouCypher
 // @license         MIT License

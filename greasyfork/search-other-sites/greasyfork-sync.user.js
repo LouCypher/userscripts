@@ -2,11 +2,15 @@
 // @id              greasyfork-search-other-sites@loucypher
 // @name            Greasy Fork - Search other sites
 // @namespace       https://github.com/LouCypher/userscripts
-// @description     Add search option to search on USO and OUJS.
-// @version         1.0pre
+// @description     Add search option to search on Userscripts.org and *cough* OpenUserJS.org.
+// @version         1.0
 // @author          LouCypher
 // @license         MIT License
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Greasy+Fork+-+Search+other+sites
+// @homepageURL     https://greasyfork.org/scripts/259
+// @supportURL      https://greasyfork.org/scripts/259/feedback
+// @updateURL       https://greasyfork.org/scripts/259/code.user.js
+// @downloadURL     https://greasyfork.org/scripts/259/code.user.js
 // @resource        LICENSE https://raw.github.com/LouCypher/userscripts/master/greasyfork/search-other-sites/LICENSE.txt
 // @resource        CHANGELOG https://raw.github.com/LouCypher/userscripts/master/greasyfork/search-other-sites/CHANGELOG.txt
 // @include         https://greasyfork.org/*

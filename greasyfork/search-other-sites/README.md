@@ -1,6 +1,6 @@
 ## Greasy Fork - Search other sites
 
-Add search option to search on [USO](https://userscripts.org) and [OUJS](https://openuserjs.org).
+Add search option to search on [Userscripts.org](https://userscripts.org) and [OpenUserJS.org](https://openuserjs.org).
 
 ### Screenshot
 
