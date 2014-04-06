@@ -1,1 +1,2 @@
+  1.1   - Change input placeholder when selecting.
   1.0   - Initial release.

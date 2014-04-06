@@ -3,7 +3,7 @@
 // @name            Greasy Fork - Search other sites
 // @namespace       https://github.com/LouCypher/userscripts
 // @description     Add search option to search on Userscripts.org and *cough* OpenUserJS.org.
-// @version         1.0
+// @version         1.1
 // @author          LouCypher
 // @license         MIT License
 // @contributionURL http://loucypher.github.io/userscripts/donate.html?Greasy+Fork+-+Search+other+sites
@@ -49,8 +49,8 @@ function addStyle(aCSS) {
 }
 
 var sites = [
-  { text: "Userscripts.org", url: "http://userscripts.org/scripts/search?q=" },
-  { text: "OpenUserJS.org",  url: "https://openuserjs.org/search/" }
+  { name: "Userscripts.org", url: "http://userscripts.org/scripts/search?q=" },
+  { name: "OpenUserJS",  url: "https://openuserjs.org/search/" }
 ];
 
 function onsubmit(aEvent) {
@@ -68,6 +68,16 @@ function onsubmit(aEvent) {
   }
 }
 
+function onchange(aEvent) {
+  var input = $("#script-search").q;
+  switch (parseInt(aEvent.target.value)) {
+    case 2:  input.placeholder = "Search " + sites[1].name; break;
+    case 1:  input.placeholder = "Search " + sites[0].name; break;
+    default: input.placeholder = "Search";
+  }
+  $("#script-search input[type='submit']").title = input.placeholder;
+}
+
 var form = $("#script-search");
 if (form) {
   addStyle("#search-other-sites{width:19px;direction:rtl}" +
@@ -77,9 +87,10 @@ if (form) {
   select.id = "search-other-sites";
   select.title = "Search other sites";
   select.innerHTML = '<option value="0">Greasy Fork</option>'
-                   + '<option value="1">' + sites[0].text + '</option>'
-                   + '<option value="2">' + sites[1].text + '</option>';
+                   + '<option value="1">' + sites[0].name + '</option>'
+                   + '<option value="2">' + sites[1].name + '</option>';
 
+  select.addEventListener("change", onchange);
   form.addEventListener("submit", onsubmit);
 }
 
@@ -95,7 +106,7 @@ if (location.pathname === "/scripts/search") {
     var li;
     sites.forEach(function(site) {
       li = ul.appendChild(createElement("li"));
-      li.appendChild(createLink(site.url + encodeURIComponent(query), site.text));
+      li.appendChild(createLink(site.url + encodeURIComponent(query), site.name));
     });
   }
 }
