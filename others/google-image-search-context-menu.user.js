@@ -22,11 +22,10 @@
 // @name            Google Image Search Context Menu
 // @namespace       http://userscripts.org/users/12
 // @description     Add 'Search by Image' in browser context menu when you right click on image to search Google with that image.
-// @version         1.2
+// @version         1.3
 // @author          LouCypher
 // @license         GPL
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
-// @updateURL       https://raw.github.com/LouCypher/userscripts/master/others/google-image-search-context-menu.user.js
 // @include         *
 // @exclude         file://*
 // @grant           GM_openInTab
@@ -55,9 +54,9 @@ w3DuxmcMtVgDkYONicHLVoTBSJOXgYONieHHz38Ml+98Ydh88DXDtx//CBtACmBiYGCYS4H+OYyU\
 document.querySelector("#userscript-search-by-image menuitem")
         .addEventListener("click", searchImage, false);
 
+// Executed when user right click on web page body
+// aEvent.target is the element you right click on
 function initMenu(aEvent) {
-  // Executed when user right click on web page body
-  // aEvent.target is the element you right click on
   var node = aEvent.target;
   var item = document.querySelector("#userscript-search-by-image menuitem");
   if (node.localName == "img") {
@@ -77,17 +76,17 @@ function addParamsToForm(aForm, aKey, aValue) {
   aForm.appendChild(hiddenField);
 }
 
+// Executed when user click on menuitem
+// aEvent.target is the <menuitem> element
 function searchImage(aEvent) {
-  // Executed when user click on menuitem
-  // aEvent.target is the <menuitem> element
   var imageURL = aEvent.target.getAttribute("imageURL");
   if (imageURL.indexOf("data:") == 0) {
     var base64Offset = imageURL.indexOf(",");
     if (base64Offset != -1) {
       var inlineImage = imageURL.substring(base64Offset + 1)
-                                 .replace(/\+/g, "-")
-                                 .replace(/\//g, "_")
-                                 .replace(/\./g, "=");
+                                .replace(/\+/g, "-")
+                                .replace(/\//g, "_")
+                                .replace(/\./g, "=");
 
       var form = document.createElement("form");
       form.setAttribute("method", "POST");
@@ -101,7 +100,12 @@ function searchImage(aEvent) {
       form.submit();
     }
   } else {
-    GM_openInTab("https://www.google.com/searchbyimage?image_url=" +
-                 encodeURIComponent(imageURL));
+    var url = "https://www.google.com/searchbyimage?image_url=" +
+        			encodeURIComponent(imageURL);
+    //console.log("GM_openInTab: " + typeof GM_openInTab == "function")
+    if (typeof GM_openInTab == "function")
+      GM_openInTab(url);
+    else
+    	open(url);
   }
 }
