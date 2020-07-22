@@ -22,13 +22,14 @@
 // @name            Google Image Search Context Menu
 // @namespace       http://userscripts.org/users/12
 // @description     Add 'Search by Image' in browser context menu when you right click on image to search Google with that image.
-// @version         1.3
+// @version         1.4
 // @author          LouCypher
 // @license         GPL
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
 // @include         *
 // @exclude         file://*
 // @grant           GM_openInTab
+// @grant           GM.openInTab
 // ==/UserScript==
 
 if (!("contextMenu" in document.documentElement &&
@@ -101,11 +102,13 @@ function searchImage(aEvent) {
     }
   } else {
     var url = "https://www.google.com/searchbyimage?image_url=" +
-        			encodeURIComponent(imageURL);
+              encodeURIComponent(imageURL);
     //console.log("GM_openInTab: " + typeof GM_openInTab == "function")
     if (typeof GM_openInTab == "function")
       GM_openInTab(url);
+    elseif (typeof GM.openInTab == "function")
+      GM.openInTab(url);
     else
-    	open(url);
+      open(url);
   }
 }
