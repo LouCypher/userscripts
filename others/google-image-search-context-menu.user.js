@@ -106,7 +106,7 @@ function searchImage(aEvent) {
     //console.log("GM_openInTab: " + typeof GM_openInTab == "function")
     if (typeof GM_openInTab == "function")
       GM_openInTab(url);
-    elseif (typeof GM.openInTab == "function")
+    else if (typeof GM.openInTab == "function")
       GM.openInTab(url);
     else
       open(url);
