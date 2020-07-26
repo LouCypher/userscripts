@@ -1,7 +1,7 @@
 /*
-    Google Image Search Context Menu
-    Add 'Search by Image' in browser context menu when you
-    right click on image to search Google with that image.
+    Search by Image Context Menu
+    Add menu in browser context menu when you right click on a standalone
+    image page to search that image on search engines.
     Copyright (C) 2012 LouCypher
 
     This program is free software: you can redistribute it and/or modify
@@ -19,10 +19,10 @@
 */
 
 // ==UserScript==
-// @name            Google Image Search Context Menu
+// @name            Search by Image Context Menu
 // @namespace       http://userscripts.org/users/12
-// @description     Add 'Search by Image' in browser context menu when you right click on image to search Google with that image.
-// @version         1.4
+// @description     Add menu in browser context menu when you right click on a standalone image page to search that image on search engines.
+// @version         2.0
 // @author          LouCypher
 // @license         GPL
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
@@ -38,28 +38,53 @@ if (!("contextMenu" in document.documentElement &&
 var body = document.body;
 body.addEventListener("contextmenu", initMenu, false);
 
-var menu = body.appendChild(document.createElement("menu"));
-menu.outerHTML = '<menu id="userscript-search-by-image" type="context">\
-                    <menuitem label="Search Google with this image"\
-                              icon="data:image/png;base64,\
-iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz\
-AAAK6wAACusBgosNWgAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNXG14zYAAAEl\
-SURBVDiNY/z//z8DJYCRkIKsthv/kRX9Z2BgmFalARdiIcaGKZXqcH5O+01U+ay2G3MYGBiSiXUm\
-mofnsBDSjEUTMkiBe2Eq1JnZ7TcZBHhZGNythBl0lLkZODmYGX7++sdw/sZnhl3H3zF8+voHwwsY\
-FkR5ijNICLMzTF31hOHnr38MHGxMDJlhMgwv3vxkWL7jJYpaJmzu0lTigWtmYGBg+PHrH8P0VU8Y\
-tJV5MNRiNYCfmxmuGQZ+/PrHwMmOqRyrAX///WfgYEOV4mBjwjAUpwHHL31iyA6XgRvCwcbEkBUm\
-w3DuxmcMtVgDkYONicHLVoTBSJOXgYONieHHz38Ml+98Ydh88DXDtx//CBtACmBiYGCYS4H+OYyU\
-5kasgUgKAADN8WLFzlj9rgAAAABJRU5ErkJggg=="></menuitem>\
-                  </menu>';
+var services = [
+  {
+    "name": "Google",
+    "host": "https://www.google.com/",
+    "query": "searchbyimage?image_url="
+  }, {
+    "name": "Bing",
+    "host": "https://www.bing.com/",
+    "query": "images/search?view=detailv2&iss=sbi&q=imgurl:"
+  }, {
+    "name": "Yandex",
+    "host": "https://yandex.com/",
+    "query": "images/search?rpt=imageview&url="
+  }, {
+    "name": "SauceNAO",
+    "host": "https://saucenao.com/",
+    "query": "search.php?url="
+  }, {
+    "name": "IQDB",
+    "host": "https://iqdb.org/",
+    "query": "?url="
+  }, {
+    "name": "TinEye",
+    "host": "https://tineye.com/",
+    "query": "search?sort=size&order=desc&url="
+  }
+];
 
-document.querySelector("#userscript-search-by-image menuitem")
+var menu = body.appendChild(document.createElement("menu"));
+menu.setAttribute("id", "userscript-search-by-image");
+menu.setAttribute("type", "context");
+
+for (let i in services) {
+  let menuitem = menu.appendChild(document.createElement("menuitem"));
+  menuitem.setAttribute("label", "Search " + services[i].name);
+  menuitem.setAttribute("icon", services[i].host + "favicon.ico");
+  menuitem.setAttribute("url", services[i].host + services[i].query);
+}
+
+document.querySelector("#userscript-search-by-image")
         .addEventListener("click", searchImage, false);
 
 // Executed when user right click on web page body
 // aEvent.target is the element you right click on
 function initMenu(aEvent) {
-  var node = aEvent.target;
-  var item = document.querySelector("#userscript-search-by-image menuitem");
+  let node = aEvent.target;
+  let item = document.querySelector("#userscript-search-by-image");
   if (node.localName == "img") {
     body.setAttribute("contextmenu", "userscript-search-by-image");
     item.setAttribute("imageURL", node.src);
@@ -70,7 +95,7 @@ function initMenu(aEvent) {
 }
 
 function addParamsToForm(aForm, aKey, aValue) {
-  var hiddenField = document.createElement("input");
+  let hiddenField = document.createElement("input");
   hiddenField.setAttribute("type", "hidden");
   hiddenField.setAttribute("name", aKey);
   hiddenField.setAttribute("value", aValue);
@@ -78,18 +103,19 @@ function addParamsToForm(aForm, aKey, aValue) {
 }
 
 // Executed when user click on menuitem
-// aEvent.target is the <menuitem> element
+// aEvent.target is the <menu> element
 function searchImage(aEvent) {
-  var imageURL = aEvent.target.getAttribute("imageURL");
+  let imageURL = aEvent.target.parentNode.getAttribute("imageURL");
+  console.log(aEvent.target);
   if (imageURL.indexOf("data:") == 0) {
-    var base64Offset = imageURL.indexOf(",");
+    let base64Offset = imageURL.indexOf(",");
     if (base64Offset != -1) {
-      var inlineImage = imageURL.substring(base64Offset + 1)
+      let inlineImage = imageURL.substring(base64Offset + 1)
                                 .replace(/\+/g, "-")
                                 .replace(/\//g, "_")
                                 .replace(/\./g, "=");
 
-      var form = document.createElement("form");
+      let form = document.createElement("form");
       form.setAttribute("method", "POST");
       form.setAttribute("action", "//www.google.com/searchbyimage/upload");
       form.setAttribute("enctype", "multipart/form-data");
@@ -101,14 +127,14 @@ function searchImage(aEvent) {
       form.submit();
     }
   } else {
-    var url = "https://www.google.com/searchbyimage?image_url=" +
+    let url = aEvent.target.getAttribute("url") +
               encodeURIComponent(imageURL);
-    //console.log("GM_openInTab: " + typeof GM_openInTab == "function")
-    if (typeof GM_openInTab == "function")
+    if (typeof GM_openInTab == "function") {
       GM_openInTab(url);
-    else if (typeof GM.openInTab == "function")
-      GM.openInTab(url);
-    else
+    } else if (typeof GM.openInTab == "function") {
+      GM.openInTab(url, false);
+    } else {
       open(url);
+    }
   }
 }
