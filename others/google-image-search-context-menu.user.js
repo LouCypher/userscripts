@@ -22,7 +22,7 @@
 // @name            Search by Image Context Menu
 // @namespace       http://userscripts.org/users/12
 // @description     Add menu in browser context menu when you right click on a standalone image page to search that image on search engines.
-// @version         2.0
+// @version         2.0.1
 // @author          LouCypher
 // @license         GPL
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
@@ -52,17 +52,21 @@ var services = [
     "host": "https://yandex.com/",
     "query": "images/search?rpt=imageview&url="
   }, {
+    "name": "Baidu",
+    "host": "https://graph.baidu.com/",
+    "query": "details?carousel=0&image="
+  }, {
     "name": "SauceNAO",
     "host": "https://saucenao.com/",
     "query": "search.php?url="
   }, {
-    "name": "IQDB",
-    "host": "https://iqdb.org/",
-    "query": "?url="
-  }, {
     "name": "TinEye",
     "host": "https://tineye.com/",
     "query": "search?sort=size&order=desc&url="
+  }, {
+    "name": "IQDB",
+    "host": "https://iqdb.org/",
+    "query": "?url="
   }
 ];
 
