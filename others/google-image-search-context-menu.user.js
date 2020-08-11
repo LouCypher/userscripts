@@ -1,7 +1,7 @@
 /*
     Search by Image Context Menu
-    Add menu in browser context menu when you right click on a standalone
-    image page to search that image on search engines.
+    Add menu in browser context menu when you right click on
+    an image to search that image on search engines.
     Copyright (C) 2012 LouCypher
 
     This program is free software: you can redistribute it and/or modify
@@ -21,8 +21,8 @@
 // ==UserScript==
 // @name            Search by Image Context Menu
 // @namespace       http://userscripts.org/users/12
-// @description     Add menu in browser context menu when you right click on a standalone image page to search that image on search engines.
-// @version         2.0.1
+// @description     Add menu in browser context menu when you right click on an image to search that image on search engines.
+// @version         2.1
 // @author          LouCypher
 // @license         GPL
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
@@ -32,66 +32,13 @@
 // @grant           GM.openInTab
 // ==/UserScript==
 
-if (!("contextMenu" in document.documentElement &&
-      "HTMLMenuItemElement" in window)) return;
-
-var body = document.body;
-body.addEventListener("contextmenu", initMenu, false);
-
-var services = [
-  {
-    "name": "Google",
-    "host": "https://www.google.com/",
-    "query": "searchbyimage?image_url="
-  }, {
-    "name": "Bing",
-    "host": "https://www.bing.com/",
-    "query": "images/search?view=detailv2&iss=sbi&q=imgurl:"
-  }, {
-    "name": "Yandex",
-    "host": "https://yandex.com/",
-    "query": "images/search?rpt=imageview&url="
-  }, {
-    "name": "Baidu",
-    "host": "https://graph.baidu.com/",
-    "query": "details?carousel=0&image="
-  }, {
-    "name": "SauceNAO",
-    "host": "https://saucenao.com/",
-    "query": "search.php?url="
-  }, {
-    "name": "TinEye",
-    "host": "https://tineye.com/",
-    "query": "search?sort=size&order=desc&url="
-  }, {
-    "name": "IQDB",
-    "host": "https://iqdb.org/",
-    "query": "?url="
-  }
-];
-
-var menu = body.appendChild(document.createElement("menu"));
-menu.setAttribute("id", "userscript-search-by-image");
-menu.setAttribute("type", "context");
-
-for (let i in services) {
-  let menuitem = menu.appendChild(document.createElement("menuitem"));
-  menuitem.setAttribute("label", "Search " + services[i].name);
-  menuitem.setAttribute("icon", services[i].host + "favicon.ico");
-  menuitem.setAttribute("url", services[i].host + services[i].query);
-}
-
-document.querySelector("#userscript-search-by-image")
-        .addEventListener("click", searchImage, false);
-
+function initMenu(aEvent) {
 // Executed when user right click on web page body
 // aEvent.target is the element you right click on
-function initMenu(aEvent) {
-  let node = aEvent.target;
   let item = document.querySelector("#userscript-search-by-image");
-  if (node.localName == "img") {
+  if (aEvent.target.localName == "img") {
     body.setAttribute("contextmenu", "userscript-search-by-image");
-    item.setAttribute("imageURL", node.src);
+    item.setAttribute("imageURL", aEvent.target.src);
   } else {
     body.removeAttribute("contextmenu");
     item.removeAttribute("imageURL");
@@ -132,9 +79,10 @@ function searchImage(aEvent) {
     }
   } else {
     let url = aEvent.target.getAttribute("url") +
-              encodeURIComponent(imageURL);
+              (aEvent.target.hasAttribute("noescape")
+              ? imageURL : encodeURIComponent(imageURL));
     if (typeof GM_openInTab == "function") {
-      GM_openInTab(url);
+      GM_openInTab(url, false);
     } else if (typeof GM.openInTab == "function") {
       GM.openInTab(url, false);
     } else {
@@ -142,3 +90,65 @@ function searchImage(aEvent) {
     }
   }
 }
+
+if (!("contextMenu" in document.documentElement &&
+      "HTMLMenuItemElement" in window)) return;
+
+var body = document.body;
+body.addEventListener("contextmenu", initMenu, false);
+
+var services = [
+  {
+    "name": "Google",
+    "host": "https://www.google.com/",
+    "query": "searchbyimage?image_url="
+  }, {
+    "name": "Bing",
+    "host": "https://www.bing.com/",
+    "query": "images/search?view=detailv2&iss=sbi&q=imgurl:"
+  }, {
+    "name": "Yandex",
+    "host": "https://yandex.com/",
+    "query": "images/search?rpt=imageview&url="
+  }, {
+    "name": "Baidu",
+    "host": "https://graph.baidu.com/",
+    "query": "details?carousel=0&image="
+  }, {
+    "name": "TinEye",
+    "host": "https://tineye.com/",
+    "query": "search?sort=size&order=desc&url="
+  }, {
+    "name": "SauceNAO",
+    "host": "https://saucenao.com/",
+    "query": "search.php?url="
+  }, {
+    "name": "IQDB",
+    "host": "https://iqdb.org/",
+    "query": "?url="
+  }, {
+    "name": "Karma Decay",
+    "host": "http://karmadecay.com/",
+    "query": "search?q="
+  }, {
+    "name": "ImgOps",
+    "host": "http://imgops.com/",
+    "query": ""
+  }
+];
+
+var menu = body.appendChild(document.createElement("menu"));
+menu.setAttribute("id", "userscript-search-by-image");
+menu.setAttribute("type", "context");
+
+for (let i in services) {
+  let menuitem = menu.appendChild(document.createElement("menuitem"));
+  menuitem.setAttribute("label", "Search " + services[i].name);
+  menuitem.setAttribute("icon", services[i].host + "favicon.ico");
+  menuitem.setAttribute("url", services[i].host + services[i].query);
+  if (services[i].query == "")
+    menuitem.setAttribute("noescape", "");
+}
+
+document.querySelector("#userscript-search-by-image")
+        .addEventListener("click", searchImage, false);
