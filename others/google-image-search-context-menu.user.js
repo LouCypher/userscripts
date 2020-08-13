@@ -22,7 +22,7 @@
 // @name            Search by Image Context Menu
 // @namespace       http://userscripts.org/users/12
 // @description     Add menu in browser context menu when you right click on an image to search that image on search engines.
-// @version         2.1
+// @version         2.1.1
 // @author          LouCypher
 // @license         GPL
 // @resource        license https://raw.github.com/LouCypher/userscripts/master/licenses/GPL/LICENSE.txt
@@ -137,13 +137,16 @@ var services = [
   }
 ];
 
-var menu = body.appendChild(document.createElement("menu"));
-menu.setAttribute("id", "userscript-search-by-image");
-menu.setAttribute("type", "context");
+var menucontainer = body.appendChild(document.createElement("menu"));
+menucontainer.setAttribute("id", "userscript-search-by-image");
+menucontainer.setAttribute("type", "context");
+
+var menu = menucontainer.appendChild(document.createElement("menu"));
+menu.setAttribute("label", "Search Image via\u2026");
 
 for (let i in services) {
   let menuitem = menu.appendChild(document.createElement("menuitem"));
-  menuitem.setAttribute("label", "Search " + services[i].name);
+  menuitem.setAttribute("label", services[i].name);
   menuitem.setAttribute("icon", services[i].host + "favicon.ico");
   menuitem.setAttribute("url", services[i].host + services[i].query);
   if (services[i].query == "")
